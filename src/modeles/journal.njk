@@ -17,7 +17,7 @@
 
 <ul>
     {%- for post in collections.all -%}
-    <li{% if page.url == post.url %} aria-current="page"{% endif %}><a href="{{ post.url }}">{{ post.url }}</a></li>
+    <li{% if page.url == post.url %} aria-current="page"{% endif %}><a href="{{ post.url | url }}">{{ post.url }}</a></li>
     {%- endfor -%}
     </ul>
 
