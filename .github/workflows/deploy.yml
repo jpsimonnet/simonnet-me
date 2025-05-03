@@ -1,4 +1,4 @@
-name: Deploy Eleventy to GitHub Pages
+name: lancer Eleventy sur les GitHub Pages
 
 on:
   push:
