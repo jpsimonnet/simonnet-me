@@ -5,7 +5,7 @@ export default function(eleventyConfig) {
   import { HtmlBasePlugin } from "@11ty/eleventy";
 
   export const config = {
-    pathPrefix: "./",
+    pathPrefix: "/",
     dir: {
       input: "src",
       output: "public",
