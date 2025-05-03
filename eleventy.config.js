@@ -5,12 +5,11 @@ export default function(eleventyConfig) {
   import { HtmlBasePlugin } from "@11ty/eleventy";
 
   export const config = {
-    
+    pathPrefix: "/simonnet-me/",
     dir: {
       input: "src",
       output: "public",
       includes: "modeles",
-      pathPrefix: "/simonnet-me/",
     }
 
    
