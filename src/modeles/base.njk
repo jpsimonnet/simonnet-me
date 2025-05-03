@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>{{ title }}</title>
+       <link rel="stylesheet" href="./css/style.css" />
+      </head>
+<body>
+    <h1>Test base</h1>
+    <hr>
+    <p class="text-end"> Mis en ligne le {{date}}  </p>
+{{content | safe }}
+
+<ul>
+    {%- for post in collections.all -%}
+    <li{% if page.url == post.url %} aria-current="page"{% endif %}><a href="{{ post.url }}">{{ post.url }}</a></li>
+    {%- endfor -%}
+    </ul>
+
+</body>
+</html> 
