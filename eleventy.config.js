@@ -69,7 +69,7 @@ export default function(eleventyConfig) {
 
   // ✅ Retourne TOUT ici (y compris markdownTemplateEngine)
   return {
-    pathPrefix: "/simonnet-me/",
+    pathPrefix: "./",
     dir: {
       input: "src",
       output: "public",
