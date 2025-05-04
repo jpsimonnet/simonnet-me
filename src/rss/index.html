@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lecteur de flux RSS</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="sidebar" id="sidebar">
+     <h2>Flux RSS</h2>
+     <a href="../" style="display:block; margin-bottom:20px; color:#fff;">Revenir à mon site web</a>
+      <ul id="feedList"></ul>
+     <h2>Importer votre fichier OPML</h2>
+      <input type="file" id="opmlFile" accept=".opml, .xml"><br>
+      <button id="importBtn">Importer un fichier OPML</button>
+
+    </div>
+    <button id="toggleSidebar" class="toggle-btn">☰</button>
+    <div class="content" id="content">
+      <h2 id="feedTitle">Choisir une source pour voir les articles</h2>
+      <div id="feedContent"></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

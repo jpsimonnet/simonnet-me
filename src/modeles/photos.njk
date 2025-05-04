@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="fr" data-bs-theme="light">
+    <head>
+      <title>{{ site.title }} - {{ title or meta.title }}</title>
+       {% include "meta.njk" %}
+      </head>
+<body>
+  <div class="container">
+
+
+      {% include "header.njk" %}
+
+  <main id="main">
+    <div class="container py-4">
+ 
+      {{ content | safe }}
+
+
+
+<div class="row">
+
+ 
+
+  {%- for post in collections.photos | reverse-%}
+  
+  <div class="  col-lg-4 col-sm-6 mb-3 " >
+    <div class="card shadow-sm h-100">
+      <img src="{{ post.data.image }}" class="card-img-top" alt=" ">
+  <div class="card-body">
+    <h2 class="card-title"><a href="{{post.url}}" class=" stretched-link">{{ post.data.title }}</a></h2>
+    <p class="card-text">{{ post.data.description }}</p>
+   <p class="card-text fw-bold"> {{ post.data.date | formatDateFr }}</p>
+  </div>
+
+</div>
+</div>
+  
+  {%- endfor -%}
+
+
+  
+
+
+ 
+  
+  </div>
+  
+
+      
+    
+ 
+
+  </div>
+
+  </main>
+
+
+  {% include "footer.njk" %}
+
+  </div>
+
+</body>
+</html> 
