@@ -13,7 +13,7 @@ name : JP Simonnet
 {% imageResponsive "src/assets/images/jp.jpg", "Jean-Philippe", "right", [500, 500], ["webp", "jpeg"], "Jean-Philippe Simonnet en 2025" %}
 
 
-       <p class="col-md-10 fs-5 mb-0 pt-2">
+       <p class="col-md-12 fs-5 mb-0 pt-2">
   Je suis actuellement Chargé de mission 'hospitalité numérique' à la DNUM - Usages Numériques et Innovation - au ministère de l’Aménagement du territoire et de la Décentralisation et le ministère de la Transition écologique, de la Biodiversité, de la Forêt, de la Mer et de la Pêche. 
     </p>
         <p class="col-md-10 fs-5 mb-0 pt-2">
