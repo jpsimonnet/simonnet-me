@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="fr" data-bs-theme="light">
+    <head>
+      <title>{{ site.title }} - {{ title or meta.title }}</title>
+       {% include "meta.njk" %}
+      </head>
+<body>
+  <div class="container">
+
+
+      {% include "header.njk" %}
+
+  <main id="main">
+    <div class="container py-4">
+ 
+      {{ content | safe }}
+   
+    <ul>
+      {%- for post in collections.all | reverse-%}
+        <li>
+          <a href="{{ post.url }}">{{ post.data.title or post.fileSlug }} </a> - {{ post.data.date | formatDateFr }} 
+        </li>
+      {%- endfor -%}
+    </ul>
+
+  </div>
+
+  </main>
+
+
+  {% include "footer.njk" %}
+
+  </div>
+
+</body>
+</html> 
