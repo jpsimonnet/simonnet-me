@@ -1,24 +1,29 @@
 <!doctype html>
-<html lang="fr">
+<html lang="fr" data-bs-theme="light">
     <head>
-        <meta charset="utf-8">
-       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       <title>{{ title }}</title>
-       <link rel="stylesheet" href="./css/style.css" />
+      <title>{{ site.title }} - {{ title or meta.title }}</title>
+       {% include "meta.njk" %}
       </head>
 <body>
-    <h1>Test base</h1>
-    <hr>
-    <p class="text-end"> Mis en ligne le {{date}}  </p>
-{{content | safe }}
+  <div class="container">
 
-<ul>
-    {%- for post in collections.all -%}
-      <li{% if page.url == post.url %} aria-current="page"{% endif %}>
-        <a href="{{ post.url }}">{{ post.data.title or post.fileSlug }}</a>
-      </li>
-    {%- endfor -%}
-  </ul>
+
+      {% include "header.njk" %}
+
+
+  <main id="main">
+    <div class="container py-4">
+ 
+      {{ content | safe }}
+
+  </div>
+
+  </main>
+
+
+  {% include "footer.njk" %}
+
+  </div>
 
 </body>
 </html> 

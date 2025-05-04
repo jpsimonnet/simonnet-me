@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="fr" data-bs-theme="light">
+    <head>
+      <title>{{ site.title }} - {{ title or meta.title }}</title>
+       {% include "meta.njk" %}
+      </head>
+<body>
+  <div class="container">
+
+
+      {% include "header.njk" %}
+
+
+  <main id="main">
+    <div class="container py-4">
+
+      <h1>{{ site.title }}</h1>
+
+
+  
+      
+       
+        </div>
+      </div>
+
+      <p class="text-end"> Publié le {{ date | formatDateFr }} </p>
+ 
+      {{ content | safe }}
+
+  </div>
+
+  </main>
+
+
+  {% include "footer.njk" %}
+
+  </div>
+
+</body>
+</html> 
