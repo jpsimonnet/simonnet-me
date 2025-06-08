@@ -39,8 +39,11 @@ const actualites = response.results.map((page) => {
     title: properties.Nom.title[0]?.plain_text || '',
     url: properties.URL.url || '',
     created: properties.Created.created_time || '',
+    summary: properties.Résumé.rich_text[0]?.plain_text || '',
+    image: properties['URL image'].url || '',
   };
 });
+
 
 const outputPath = path.join(__dirname, '../src/_data/actualite.json');
 
