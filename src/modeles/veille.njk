@@ -18,16 +18,16 @@
     {{ content | safe }}
 
   <section aria-labelledby="titre-actualite" class="actualite-a-la-une my-5">
-    <h2 id="titre-actualite" class="h4 mb-3">À la une</h2>
+    <h2 id="titre-actualite" class=" mb-3">À la une</h2>
 
     {% if actualite and actualite.length > 0 %}
       <div class="row">
-            {% for item in actualite %}
+            {% for item in actualite | slice(0, 30) %}
               <div class="  col-lg-4 col-sm-6 mb-3 " >
                 <div class="card shadow-sm h-100">
-            {% if item.image %} <img src="{{ item.image }}" alt="Photo de {{ item.title }}" class="card-img-top" >{% endif %}
+            {% if item.image %} <img src="{{ item.image }}" alt="Illustration de l’article {{ item.title }}" class="card-img-top" >{% endif %}
                   <div class="card-body">
-                    <h2 class="card-title"><a href="{{ item.url }}" class=" stretched-link">{{ item.title }}</a></h2>
+                    <h3 class="card-title"><a target="_blank" rel="noopener noreferrer" href="{{ item.url }}" class=" stretched-link">{{ item.title }}</a></h3>
                     {% if item.summary %}<p class="card-text">{{ item.summary }}</p>{% endif %}
                       <p class="card-text fw-bold"> Publié le {{ item.created | formatDateFr }}</p>
                   </div>
