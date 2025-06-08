@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="fr" data-bs-theme="light">
+    <head>
+      <title>{{ site.title }} - {{ title or meta.title }}</title>
+       {% include "meta.njk" %}
+      </head>
+<body>
+  <div class="container">
+
+
+      {% include "header.njk" %}
+
+
+  <main id="main">
+    <div class="container py-4">
+ 
+      {{ content | safe }}
+
+<section aria-labelledby="titre-actualite" class="actualite-a-la-une my-5">
+  <h2 id="titre-actualite" class="h4 mb-3">À la une</h2>
+
+  {% if actualite and actualite.length > 0 %}
+    <ul>
+      {% for item in actualite %}
+        <li>
+          <h3 class="h5">
+            <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">
+              {{ item.title }}
+            </a>
+          </h3>
+          <p class="text-muted">Publié le {{ item.created | formatDateFr }}</p>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>Aucune actualité à la une pour le moment.</p>
+  {% endif %}
+</section>
+
+
+
+  </div>
+
+  </main>
+
+
+  {% include "footer.njk" %}
+
+  </div>
+
+</body>
+</html> 
