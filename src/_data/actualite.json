@@ -119,199 +119,178 @@
     "image": "https://simonnet.me/assets/images/actualites/cerveau.jpg"
   },
   {
-    "title": "Orbit by Mozilla",
-    "url": "https://orbitbymozilla.com/",
-    "created": "2025-03-01T09:38:00.000Z",
-    "summary": "",
-    "image": "https://simonnet.me/assets/images/actualites/actu.svg"
-  },
-  {
     "title": "Les 60 Meilleurs Logiciels IA Classés par Catégorie en 2025",
     "url": "https://independant.io/logiciel-ia/",
     "created": "2025-02-23T17:51:00.000Z",
-    "summary": "",
-    "image": "https://simonnet.me/assets/images/actualites/actu.svg"
+    "summary": "Après le boom de l’IA en France et dans le monde ces dernières années, nous avons décidé de nous intéresser de plus près aux meilleurs outils d’intelligence artificielle disponibles aujourd’hui. Vous voulez vous lancer avec l’IA ? Alors voici notre compilation des 60 meilleurs logiciels d’IA, classés par domaine.",
+    "image": "https://simonnet.me/assets/images/actualites/60ia.png"
   },
   {
     "title": "Les Français et leur usage d’Internet : les chiffres de Médiamétrie",
     "url": "https://www.blogdumoderateur.com/francais-usage-internet-chiffres-mediametrie-2025/",
     "created": "2025-02-22T08:55:00.000Z",
-    "summary": "",
-    "image": "https://simonnet.me/assets/images/actualites/actu.svg"
+    "summary": "Chaque année, Médiamétrie dévoile les grandes tendances de l’usage d’Internet en France. ",
+    "image": "https://simonnet.me/assets/images/actualites/mediametrie.jpg"
   },
   {
     "title": "Portrait — 5 questions sur Sarah Franklin, nouvelle coqueluche de la Silicon Valley",
     "url": "https://www.presse-citron.net/portrait-5-questions-sur-sarah-franklin-nouvelle-coqueluche-de-la-silicon-valley/",
     "created": "2025-02-09T19:42:00.000Z",
-    "summary": "",
-    "image": "https://simonnet.me/assets/images/actualites/actu.svg"
+    "summary": "À la tête de la société Lattice, Sarah Franklin est l’une des seules dirigeantes de licornes au monde. Et elle ne manque pas d’ambition. Retour sur le parcours de cette ingénieur devenue femme d’affaires et professionnelle du marketing, aujourd’hui plébiscitée au sein de la Silicon Valley.",
+    "image": "https://simonnet.me/assets/images/actualites/Franklin.jpg"
   },
   {
     "title": "Internet, mobile et réseaux sociaux : 30 chiffres clés à connaître en 2025",
     "url": "https://www.blogdumoderateur.com/internet-mobile-reseaux-sociaux-chiffres-cles-2025/",
     "created": "2025-02-06T23:54:00.000Z",
-    "summary": "",
-    "image": "https://simonnet.me/assets/images/actualites/actu.svg"
+    "summary": "Ce mercredi 5 février 2025, We Are Social a dévoilé",
+    "image": "https://simonnet.me/assets/images/actualites/30chiffres.jpg"
   },
   {
     "title": "Hugging Face dévoile Spaces : une plateforme qui intègre 400 000 outils IA à tester",
     "url": "https://www.blogdumoderateur.com/hugging-face-devoile-spaces-plateforme-outils-ia/",
     "created": "2025-02-06T23:53:00.000Z",
-    "summary": "",
-    "image": "https://simonnet.me/assets/images/actualites/actu.svg"
+    "summary": "Hugging Face vient de lancer un nouvel espace visant à présenter des applications conçues « par des constructeurs d’IA pour des constructeurs d’IA ». Elles peuvent être testées dès maintenant !",
+    "image": "https://simonnet.me/assets/images/actualites/Hugging.jpg"
   },
   {
     "title": "La France crée son institut de surveillance de l’IA | À la une | Acteurs Publics",
     "url": "https://acteurspublics.fr/articles/la-france-cree-son-institut-de-surveillance-de-lia",
     "created": "2025-02-05T09:31:00.000Z",
-    "summary": "",
-    "image": "https://simonnet.me/assets/images/actualites/actu.svg"
+    "summary": "L’Institut national dédié à la sécurité de l'IA (Inesia) vise à encadrer le développement de l’intelligence artificielle (IA) en évaluant les risques dits systémiques. ",
+    "image": "https://simonnet.me/assets/images/actualites/Inesia.jpg"
   },
   {
     "title": "Accessibilité web en 2025 : le RGAA impose de nouvelles règles, comment s’y préparer ?",
     "url": "https://www.blogdumoderateur.com/accessibilite-web-2025-rgaa-nouvelles-regles/",
     "created": "2025-01-25T21:51:00.000Z",
-    "summary": "",
-    "image": "https://simonnet.me/assets/images/actualites/actu.svg"
+    "summary": "Élaboré dans le cadre de la loi sur l’égalité des droits et des chances de 2005, le RGAA, ou Référentiel Général d’Amélioration de l’Accessibilité, verra son rayon d’application élargi le 28 juin 2025. Découvrez les 5 points qui vont évoluer cet été.",
+    "image": "https://simonnet.me/assets/images/actualites/rgaa2025.jpg"
   },
   {
     "title": "Le design du site de Gallica fait peau neuve",
     "url": "https://www.archimag.com/bibliotheque-edition/2025/01/22/design-site-gallica-fait-peau-neuve",
     "created": "2025-01-25T21:45:00.000Z",
-    "summary": "",
-    "image": "https://simonnet.me/assets/images/actualites/actu.svg"
+    "summary": "La plateforme Gallica a été lancée en 1997, la bibliothèque numérique de la BnF, arbore un nouveau design repensé par le studio Hartland Villa.",
+    "image": "https://simonnet.me/assets/images/actualites/Gallica.jpg"
   },
   {
     "title": "Data.ina.fr : Analyse des Médias par l’IA - Données et Statistiques de l’INA",
     "url": "https://data.ina.fr/",
     "created": "2025-01-25T08:58:00.000Z",
-    "summary": "",
-    "image": "https://simonnet.me/assets/images/actualites/actu.svg"
+    "summary": "L’INA capte 184 chaînes de télévision et de radio, chaque jour, 24h sur 24. Une matière formidable qui reflète les phénomènes qui animent la société. Pour data.ina.fr, 1 136 200 heures issues de cette immense « matière » ont été explorées par différents algorithmes",
+    "image": "https://simonnet.me/assets/images/actualites/data-ina.png"
   },
   {
     "title": "Comment les jeunes utilisent l’IA : outils, habitudes, thématiques recherchées…",
     "url": "https://www.blogdumoderateur.com/comment-jeunes-utilisent-ia-outils-habitudes-thematiques-recherchees/",
     "created": "2025-01-15T07:59:00.000Z",
-    "summary": "",
-    "image": "https://simonnet.me/assets/images/actualites/actu.svg"
-  },
-  {
-    "title": "Bylo.ai : Le meilleur générateur d'images AI gratuit de texte en image",
-    "url": "https://bylo.ai/fr/app",
-    "created": "2025-01-11T14:18:00.000Z",
-    "summary": "",
-    "image": "https://simonnet.me/assets/images/actualites/actu.svg"
+    "summary": "L’étude Born AI, publiée par l’",
+    "image": "https://simonnet.me/assets/images/actualites/born-ai.jpg"
   },
   {
     "title": "Défendre l'accessibilité numérique – Tamara Sredojevic",
     "url": "https://www.iamtamara.design/fr/blog/defendre-accessibilite-arguments",
     "created": "2025-01-06T11:37:00.000Z",
-    "summary": "",
-    "image": "https://simonnet.me/assets/images/actualites/actu.svg"
+    "summary": "Quand on parle d’accessibilité, la conversation bute souvent sur un “oui, mais…”. Deux mots simples pour annoncer la réticence. Non pas que l’esprit critique me dérange, mais pourquoi cette résistance sur un sujet aussi essentiel ?",
+    "image": "https://simonnet.me/assets/images/actualites/tamara.png"
   },
   {
     "title": "Grok permet de générer des images de personnalités françaises, et c’est aussi drôle qu’inquiétant",
     "url": "https://www.presse-citron.net/grok-permet-de-generer-des-images-de-personnalites-francaises-et-cest-aussi-drole-quinquietant/",
     "created": "2024-12-14T09:23:00.000Z",
-    "summary": "",
-    "image": "https://simonnet.me/assets/images/actualites/actu.svg"
+    "summary": "Grok",
+    "image": "https://simonnet.me/assets/images/actualites/grok.jpg"
   },
   {
     "title": "Accessibilité - Qui est le plus irresponsable : l’IA qui pollue ou l’humain qui exclut ? - 24 jours de web",
     "url": "https://www.24joursdeweb.fr/2024/accessibilite-qui-est-le-plus-irresponsable-lia-qui-pollue-ou-lhumain-qui-exclut",
     "created": "2024-12-10T13:16:00.000Z",
-    "summary": "",
-    "image": "https://simonnet.me/assets/images/actualites/actu.svg"
+    "summary": "Je me sens devant un effroyable paradoxe : choisir entre le numérique responsable et l’intelligence artificielle qui pourrait enfin rendre accessible ce que les humains n’ont pas réussi à faire jusqu’à présent ?",
+    "image": "https://simonnet.me/assets/images/actualites/ia-vs-a11y.svg"
   },
   {
     "title": "Accessibilité numérique : les administrations fautives s’exposent désormais à des amendes | À la une | Acteurs Publics",
     "url": "https://acteurspublics.fr/articles/accessibilite-numerique-les-administrations-fautives-sexposent-desormais-a-des-amendes",
     "created": "2024-12-05T09:38:00.000Z",
-    "summary": "",
-    "image": "https://simonnet.me/assets/images/actualites/actu.svg"
+    "summary": "Depuis 2012, les sites Web et applications des acteurs publics sont tenus d’être accessibles à tous, y compris aux personnes handicapées. S’ils ne remplissent pas cette obligation, ils s’exposent désormais à des sanctions financières.",
+    "image": "https://simonnet.me/assets/images/actualites/fautive.jpg"
   },
   {
     "title": "Un observatoire de l’accessibilité numérique pour mettre les collectivités face à leurs manquements | À la une | Acteurs Publics",
     "url": "https://acteurspublics.fr/articles/un-observatoire-de-laccessibilite-numerique-pour-mettre-les-collectivites-face-a-leurs-manquements",
     "created": "2024-12-05T09:38:00.000Z",
-    "summary": "",
-    "image": "https://simonnet.me/assets/images/actualites/actu.svg"
+    "summary": "L’Adullact, mutualisant informatique pour les collectivités locales, a mis en ligne un tout nouvel observatoire afin de mesurer le niveau d’accessibilité numérique des sites Web publics. Dans son viseur : les sites des collectivités territoriales, largement perfectibles.",
+    "image": "https://simonnet.me/assets/images/actualites/observatoire.jpg"
   },
   {
     "title": "Video LADAPT - Le regard des autres - YouTube",
     "url": "https://www.youtube.com/watch?v=gbJzk64PoSs",
     "created": "2024-12-05T09:35:00.000Z",
-    "summary": "",
-    "image": "https://simonnet.me/assets/images/actualites/actu.svg"
+    "summary": "La vidéo de la semaine de l’emploi du handicap",
+    "image": "https://simonnet.me/assets/images/actualites/LADAPT.png"
   },
   {
     "title": "France Identité s’améliore pour faciliter la connexion à FranceConnect",
     "url": "https://www.lesnumeriques.com/societe-numerique/france-identite-s-ameliore-pour-faciliter-la-connexion-a-franceconnect-n230383.html",
     "created": "2024-12-04T19:57:00.000Z",
-    "summary": "",
-    "image": "https://simonnet.me/assets/images/actualites/actu.svg"
+    "summary": "France Identité poursuit sa route, et les développeurs travaillent en ce moment sur une méthode plus facile et rapide pour se connecter avec FranceConnect.",
+    "image": "https://simonnet.me/assets/images/actualites/France-identite.png"
   },
   {
     "title": "Le gouvernement va s'inspirer des banques pour améliorer FranceConnect - Numerama",
     "url": "https://www.numerama.com/politique/1857470-le-gouvernement-va-sinspirer-des-banques-pour-ameliorer-franceconnect.html",
     "created": "2024-12-02T17:40:00.000Z",
-    "summary": "",
-    "image": "https://simonnet.me/assets/images/actualites/actu.svg"
+    "summary": "France Identité, l’application qui permet de transporter sa carte d’identité et son permis de conduire sur son smartphone, permettra prochainement de s’authentifier à l’aide de FranceConnect. Comme avec l’application de sa banque, il suffira de l’ouvrir pour se connecter.",
+    "image": "https://simonnet.me/assets/images/actualites/FranceConnect.jpg"
   },
   {
     "title": "LinkedIn sous l'emprise de l'IA : 54% des contenus seraient générés par des robots",
     "url": "https://siecledigital.fr/2024/11/29/linkedin-sous-lemprise-de-lia-54-des-contenus-seraient-generes-par-des-robots/",
     "created": "2024-12-01T08:29:00.000Z",
-    "summary": "",
-    "image": "https://simonnet.me/assets/images/actualites/actu.svg"
+    "summary": "LinkedIn, le réseau social professionnel acquis par Microsoft, n’échappe pas à la tendance de l’IA. Des outils d’écriture assistée par IA sont désormais couramment utilisés pour rédiger des publications, des profils et même des messages directs. Selon une analyse récente partagée par la startup de détection de contenus IA Originality AI, plus de 54 % des longs posts en anglais de LinkedIn seraient probablement générés par des robots.",
+    "image": "https://simonnet.me/assets/images/actualites/linkedin-robot.jpg"
   },
   {
     "title": "SEEPH 2024 : l’accessibilité numérique une priorité pour le numérique de l’État",
-    "url": "https://www.numerique.gouv.fr/actualites/seeph-2024-laccessibilite-numerique-une-priorite-pour-le-numerique-de-letat/",
+    "url": "https://www.numerique.gouv.fr/actualites/seeph-2024-laccessibilit%C3%A9-num%C3%A9rique-une-priorit%C3%A9-pour-le-num%C3%A9rique-de-l%C3%A9tat/",
     "created": "2024-12-01T08:23:00.000Z",
-    "summary": "",
-    "image": "https://simonnet.me/assets/images/actualites/actu.svg"
+    "summary": "La semaine européenne pour l’emploi des personnes handicapées (SEEPH) 2024, qui s’est tenue du 18 au 22 novembre 2024, avait pour thème cette année « Handicap et parcours professionnel, comment assurer une véritable égalité des chances ? ». Retour sur les actions menées par la direction interministérielle du numérique (DINUM) pour sensibiliser les acteurs et agents à ce sujet.",
+    "image": "https://simonnet.me/assets/images/actualites/SEEPH-2024.png"
   },
   {
     "title": "L’IA Claude imite votre style d’écriture ! Testez cette nouvelle option bluffante - LEBIGDATA.FR",
     "url": "https://www.lebigdata.fr/lia-claude-imite-votre-style-decriture-testez-cette-nouvelle-option-bluffante",
     "created": "2024-11-30T08:00:00.000Z",
-    "summary": "",
-    "image": "https://simonnet.me/assets/images/actualites/actu.svg"
+    "summary": "L’IA ",
+    "image": "https://simonnet.me/assets/images/actualites/ecriture.png"
   },
   {
     "title": "Plus de la moitié des posts sur LinkedIn seraient écrits par des robots",
     "url": "https://www.frandroid.com/culture-tech/2420868_plus-de-la-moitie-des-posts-sur-linkedin-seraient-ecrits-par-des-robots",
     "created": "2024-11-28T12:23:00.000Z",
-    "summary": "",
-    "image": "https://simonnet.me/assets/images/actualites/actu.svg"
-  },
-  {
-    "title": "AI Image Generator (free, no sign-up, unlimited)",
-    "url": "https://perchance.org/ai-text-to-image-generator",
-    "created": "2024-11-24T19:10:00.000Z",
-    "summary": "",
-    "image": "https://simonnet.me/assets/images/actualites/actu.svg"
+    "summary": "Sur LinkedIn, certains utilisateurs ont déjà pu souffrir d’une impression de déjà-vu à la lecture de certains posts, questionnant même leur humanité. Une réflexion que semble partager l’entreprise Originality.ai qui a mené ",
+    "image": "https://simonnet.me/assets/images/actualites/linkedin1.jpg"
   },
   {
     "title": "Open Feedback - Talks/events/meetups/conferences feedback",
     "url": "https://openfeedback.io/",
     "created": "2024-11-22T14:39:00.000Z",
-    "summary": "",
-    "image": "https://simonnet.me/assets/images/actualites/actu.svg"
+    "summary": "Collectez des feedbacks facilement\nSolution idéale pour les conférences, meetups, évènement, séminaire, formation et bien plus",
+    "image": "https://simonnet.me/assets/images/actualites/openfeedback.gif"
   },
   {
     "title": "Coulisses de la transformation numérique : 9 épisodes du podcast « Le numérique dans tous ses états » à écouter",
-    "url": "https://www.numerique.gouv.fr/actualites/coulisses-de-la-transformation-numerique-9-episodes-du-podcast-le-numerique-dans-tous-ses-etats-a-ecouter/",
+    "url": "https://www.numerique.gouv.fr/actualites/podcast-campus-numerique-public/",
     "created": "2024-11-22T07:15:00.000Z",
-    "summary": "",
-    "image": "https://simonnet.me/assets/images/actualites/actu.svg"
+    "summary": "Le campus du numérique public de la direction interministérielle du numérique (DINUM), en collaboration avec l’académie du numérique de la Défense du ministère des Armées, a lancé en juin 2024 une nouvelle série de podcasts intitulée « ",
+    "image": "https://simonnet.me/assets/images/actualites/podcast-numerique.png"
   },
   {
     "title": "La Dinum persiste sur sa suite d'outils collaboratifs - Le Monde Informatique",
     "url": "https://www.cio-online.com/actualites/lire-suite-numerique-l-etat-francais-se-pique-encore-de-collaboratif-15992.html",
     "created": "2024-11-22T07:12:00.000Z",
-    "summary": "",
-    "image": "https://simonnet.me/assets/images/actualites/actu.svg"
+    "summary": "Démarrés en janvier 2024, les travaux sur la Suite numérique se sont d’abord concentrés sur la capacité à proposer une authentification unique sur tous les composants.",
+    "image": "https://simonnet.me/assets/images/actualites/suite.jpg"
   }
 ]
