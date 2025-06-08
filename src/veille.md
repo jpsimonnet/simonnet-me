@@ -8,4 +8,4 @@ name : JP Simonnet
 
 # le journal de ma veille
 
-Ma veille sur l'accessibilité, l'IA, le web .... : [Le journal de ma veille](https://oxymore.notion.site/)
+Ma veille sur l'accessibilité, l'IA, le web : [Le journal de ma veille](https://oxymore.notion.site/)
