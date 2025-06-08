@@ -1,7 +1,7 @@
 ---
 pagination:
   data: actualite
-  size: 10
+  size: 9
   alias: actualitePage
 permalink: "a-la-une/{{ pagination.pageNumber }}/index.html"
 layout: base
