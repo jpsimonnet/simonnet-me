@@ -12,10 +12,8 @@
 
 
   <main id="main">
-    <div class="container py-4">
- 
-      {{ content | safe }}
 
+<div class="container py-4"> 
 <section aria-labelledby="titre-actualite" class="actualite-a-la-une my-5">
   <h2 id="titre-actualite" class="h4 mb-3">À la une : {{ actualite | length }} actualités</h2>
 
@@ -36,8 +34,11 @@
     <p>Aucune actualité à la une pour le moment.</p>
   {% endif %}
 </section>
+</div>
 
-
+    <div class="container py-4">
+ 
+      {{ content | safe }}
 
   </div>
 
