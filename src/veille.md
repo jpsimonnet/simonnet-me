@@ -1,5 +1,5 @@
 ---
-layout: base
+layout: veille
 title: le journal de ma veille
 tags: post
 date: 2025-01-01
