@@ -28,6 +28,11 @@ export default function(eleventyConfig) {
     });
   });
 
+eleventyConfig.addFilter("slice", function(arr, start, end) {
+  return arr.slice(start, end);
+});
+
+
   eleventyConfig.addNunjucksAsyncShortcode("imageResponsive", async function(
     src,
     alt = "",

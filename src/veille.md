@@ -4,6 +4,9 @@ title: le journal de ma veille
 tags: post
 date: 2025-01-01
 name : JP Simonnet
+pagination:
+  data: actualite
+  size: 10
 ---
 
 # le journal de ma veille
