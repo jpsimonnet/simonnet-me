@@ -22,7 +22,7 @@
 
     {% if actualite and actualite.length > 0 %}
       <div class="row">
-            {% for item in actualite | slice(0, 30) %}
+            {% for item in actualite | slice(20) %}
               <div class="  col-lg-4 col-sm-6 mb-3 " >
                 <div class="card shadow-sm h-100">
             {% if item.image %} <img src="{{ item.image }}" alt="Illustration de l’article {{ item.title }}" class="card-img-top" >{% endif %}
