@@ -17,7 +17,7 @@
       {{ content | safe }}
 
 <section aria-labelledby="titre-actualite" class="actualite-a-la-une my-5">
-  <h2 id="titre-actualite" class="h4 mb-3">À la une</h2>
+  <h2 id="titre-actualite" class="h4 mb-3">À la une : {{ actualite | length }} actualités</h2>
 
   {% if actualite and actualite.length > 0 %}
     <ul>
