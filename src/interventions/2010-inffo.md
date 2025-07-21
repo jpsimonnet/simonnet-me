@@ -6,6 +6,8 @@ title: "2010 - Processus d’accessibilité continue au Centre Inffo"
 date: 2010-06-25
 image: /assets/images/2010-inffo.jpg
 description: "Formation : enjeux et sensibilisation sur le handicap et l’accessibilité"
+rubriqueurl: /interventions/
+rubriquenom: "Mes interventions"
 eleventyNavigation:
   key: interventions
   hideInMainNav: true

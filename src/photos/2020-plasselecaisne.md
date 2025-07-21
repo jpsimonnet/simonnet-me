@@ -5,6 +5,8 @@ title: "Plasse Le Caisne"
 date: 1986-01-01
 image: /assets/images/plasse.jpg
 description: "Adolescent, j’habitais à Houx, en Eure et Loir, et mon voisin était un tisserand. "
+rubriqueurl: /photos/
+rubriquenom: "Mes photos"
 ---
 
 # Plasse Le Caisne

@@ -5,6 +5,8 @@ title: "La Défense"
 date: 2020-01-01
 image: /assets/images/ladefense.jpg
 description: "Voila quelques années que je travaille à la Défense."
+rubriqueurl: /photos/
+rubriquenom: "Mes photos"
 ---
 
 # La Défense 

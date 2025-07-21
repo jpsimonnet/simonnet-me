@@ -5,6 +5,8 @@ title: "Berlin, 1990"
 date: 1990-06-01
 image: /assets/images/berlin.jpg
 description: "Quelques images de Berlin que j’ai visité a une époque étonnante, en1990."
+rubriqueurl: /photos/
+rubriquenom: "Mes photos"
 ---
 
 # Berlin, 1990

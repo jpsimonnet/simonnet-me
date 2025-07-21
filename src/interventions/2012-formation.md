@@ -7,6 +7,8 @@ title: "2012 - Accessibilité numérique et formation"
 date: 2012-06-19
 image: /assets/images/2012-formation.jpg
 description: "Demi-journée fffod avec Centre Inffo, le 19 juin 2012 matin à la Cité des Sciences"
+rubriqueurl: /interventions/
+rubriquenom: "Mes interventions"
 eleventyNavigation:
   key: interventions
   hideInMainNav: true

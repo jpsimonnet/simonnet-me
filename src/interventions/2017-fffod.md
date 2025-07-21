@@ -7,6 +7,8 @@ title: "2017 - Accessibilité numérique : où en est-on ? webinar fffod"
 date: 2017-11-28
 image: /assets/images/2017-ffod.jpg
 description: "Quelle est la législation en vigueur ? Quels sont les principaux mécanismes généraux mis en œuvre pour favoriser l’accessibilité numérique ?"
+rubriqueurl: /interventions/
+rubriquenom: "Mes interventions"
 ---
 
 # 2017 - Accessibilité numérique : où en est-on ? webinar fffod

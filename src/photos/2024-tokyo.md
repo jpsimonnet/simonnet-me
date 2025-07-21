@@ -5,6 +5,8 @@ title: "2023 - Tokyo - Japon"
 date: 2023-02-25
 image: /assets/images/japon.jpg
 description: "Petit voyage au Japon et en particulier à Tokyo. "
+rubriqueurl: /photos/
+rubriquenom: "Mes photos"
 ---
 
 # 2023 - Tokyo - Japon

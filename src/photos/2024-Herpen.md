@@ -5,6 +5,8 @@ title: "Exposition : Iris van Herpen"
 date: 2024-02-25
 image: /assets/images/herpen.jpg
 description: "Musée des Arts Décoratifs : exposition « Iris van Herpen. Sculpting the Senses »"
+rubriqueurl: /photos/
+rubriquenom: "Mes photos"
 ---
 
 # Exposition : Iris van Herpen

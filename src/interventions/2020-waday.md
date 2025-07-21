@@ -6,6 +6,8 @@ date: 2020-01-28
 description: "#WAday : événement annuel de Webassoc"
 image: /assets/images/waday.jpg
 Présentation globale de la pollution liée au numérique : activités et impacts. Focus sur l’éco-conception des sites web avec des recommandations concrètes."
+rubriqueurl: /interventions/
+rubriquenom: "Mes interventions"
 maj : 28 janvier 2020
 ---
 

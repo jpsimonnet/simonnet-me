@@ -7,6 +7,8 @@ title: "2015 - Accessibilité numérique : où en est-on ? webinar fffod"
 date: 2015-12-07
 image: /assets/images/2015-ffod.jpg
 description: "La loi ne règle pas tout. Alors que tout le monde s’accorde pour considérer que le numérique est une aide précieuse pour les personnes handicapées, la loi du 11 février 2005 n’est toujours pas appliquée. "
+rubriqueurl: /interventions/
+rubriquenom: "Mes interventions"
 eleventyNavigation:
   key: interventions
   hideInMainNav: true
