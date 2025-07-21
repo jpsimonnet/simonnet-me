@@ -13,27 +13,45 @@
 
   <main id="main">
 
-<div class="container py-4"> 
-    {{ content | safe }}
-  <section aria-labelledby="titre-actualite" class="actualite-a-la-une my-5"><h2 id="titre-actualite" class=" mb-3">À la une</h2>{% if actualite and actualite.length > 0 %}
-      <div class="row">{% for item in actualite %}<div class="  col-lg-4 col-sm-6 mb-3 " >
-                <div class="card shadow-sm h-100">
-            {% if item.image %} <img src="{{ item.image }}" alt="Illustration de l’article {{ item.title }}" class="card-img-top" >{% endif %}
-                  <div class="card-body">
-                    <h3 class="card-title"><a target="_blank" rel="noopener noreferrer" href="{{ item.url }}" class=" stretched-link">{{ item.title }}</a></h3>
-                    {% if item.summary %}<p class="card-text">{{ item.summary }}</p>{% endif %}
-                      <p class="card-text fw-bold"> Publié le {{ item.created | formatDateFr }}</p>
-                  </div>
-                </div>
-              </div>
-            {% endfor %} 
-          {% else %}
-            <p>Aucune actualité à la une pour le moment.</p>
-          {% endif %}
-        </div> 
-  </section>
+    <div class="container py-4">
 
-</div>
+      <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Accueil</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{title}}</li>
+        </ol>
+      </nav>
+
+      <h2>Flux RSS</h2>
+
+    <link rel="stylesheet" href="{{ '/css/rss.css' }} ">
+
+   <div class="row">
+    <div class="sidebar col-3" id="sidebar">
+     
+ 
+      <ul id="feedList" class="col-12"></ul>
+  
+
+    </div>
+    <button id="toggleSidebar" class="toggle-btn">☰</button>
+    <div class="content col-9" id="content">
+      <h3 id="feedTitle">Choisir une source pour voir les articles</h3>
+      <div id="feedContent"></div>
+    </div>
+ 
+    </div>
+
+    <hr>
+
+       <h2>Importer votre fichier OPML</h2>
+
+      <input class="btn btn-light" type="file" id="opmlFile" accept=".opml, .xml"> 
+      <button class="btn btn-primary"  id="importBtn">Importer un fichier OPML</button>
+
+  <script language="JavaScript" type="text/javascript" src="{{ '/js/app.js' }}"></script>
+
+  </div>
 
   </main>
 
