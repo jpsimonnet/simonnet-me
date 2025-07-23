@@ -14,6 +14,7 @@
 <script language="JavaScript" type="text/javascript" src="/js/jquery.js"></script>
 <script language="JavaScript" type="text/javascript" src="/js/script.js"></script>
 <script language="JavaScript" type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
 
       </head>
 <body>
@@ -151,6 +152,16 @@
             </ul>
           </li>
 
+<!-- Moteur de recherche intégré -->
+<li class="nav-item">
+  <button class="btn btn-link nav-link px-4 d-flex align-items-center" id="open-search" type="button" aria-label="Ouvrir la recherche">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+      <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"></path>
+    </svg>
+    <span class="d-lg-none ms-2">Recherche</span>
+  </button>
+</li>
+
         </ul>
       </div>
       <div>
@@ -164,9 +175,9 @@
 </header>
 
 
- 
 
-  <main id="main">
+
+  <main id="main" data-pagefind-body="">
 
 
 
@@ -183,6 +194,8 @@
             <li class="breadcrumb-item active" aria-current="page">2010 - Accessibilité : Comment améliorer la gestion de vos productions numériques</li>
         </ol>
       </nav>
+
+      <div id="results"></div>
 
       <h1>2010 - Accessibilité : Comment améliorer la gestion de vos productions numériques</h1>
 <p><strong>14 juin 2010 - Les Premières Rencontres des Acteurs de l’Orientation</strong></p>
@@ -217,9 +230,12 @@
   </div>
 
 
+<script src="/js/recherche.js"></script>
+
 
 
   
+
 
 </body>
 </html> 

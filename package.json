@@ -3,15 +3,19 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "npx @11ty/eleventy --serve",
-    "build": "npx @11ty/eleventy"
+    "build": "eleventy",
+    "serve": "eleventy --serve",
+    "search": "npx pagefind --source public"
+  },
+  "devDependencies": {
+    "pagefind": "^1.0.0"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@11ty/eleventy": "^3.0.0"
+    "@11ty/eleventy": "^3.0.0",
+    "pagefind": "^1.3.0"
   },
   "dependencies": {
     "@11ty/eleventy-img": "^6.0.2",

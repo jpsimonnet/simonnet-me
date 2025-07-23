@@ -1,0 +1,38 @@
+---
+title: Recherche
+layout: base.njk
+permalink: /recherche/
+---
+
+<div class="container my-5">
+  <div class="row">
+    <div class="col-lg-8 mx-auto">
+      <h1 class="mb-4">{{ title }}</h1>
+      <div id="search"></div>
+    </div>
+  </div>
+</div>
+
+<script src="/pagefind/pagefind-ui.js"></script>
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    new PagefindUI({ 
+      element: "#search",
+      showImages: false,
+      showSubResults: true,
+      translations: {
+        placeholder: "Rechercher dans le site...",
+        clear_search: "Effacer",
+        load_more: "Charger plus de résultats",
+        search_label: "Recherche",
+        filters_label: "Filtres",
+        zero_results: "Aucun résultat pour [SEARCH_TERM]",
+        many_results: "[COUNT] résultats pour [SEARCH_TERM]",
+        one_result: "[COUNT] résultat pour [SEARCH_TERM]",
+        searching: "Recherche en cours..."
+      }
+    });
+  });
+</script>

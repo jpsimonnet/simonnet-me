@@ -14,6 +14,7 @@
 <script language="JavaScript" type="text/javascript" src="/js/jquery.js"></script>
 <script language="JavaScript" type="text/javascript" src="/js/script.js"></script>
 <script language="JavaScript" type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
 
       </head>
 <body>
@@ -152,6 +153,16 @@
             </ul>
           </li>
 
+<!-- Moteur de recherche intégré -->
+<li class="nav-item">
+  <button class="btn btn-link nav-link px-4 d-flex align-items-center" id="open-search" type="button" aria-label="Ouvrir la recherche">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+      <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"></path>
+    </svg>
+    <span class="d-lg-none ms-2">Recherche</span>
+  </button>
+</li>
+
         </ul>
       </div>
       <div>
@@ -165,10 +176,10 @@
 </header>
 
 
- 
 
 
-  <main id="main">
+
+  <main id="main" data-pagefind-body="">
     <div class="container py-4">
 
                 <nav aria-label="breadcrumb">
@@ -229,9 +240,71 @@ Solution idéale pour les conférences, meetups, évènement, séminaire, format
   </div>
 
 
+<script src="/js/recherche.js"></script>
+
 
 
   </div>
+
+
+<script src="/pagefind/pagefind-ui.js"></script>
+<script>
+(function() {
+  document.addEventListener('DOMContentLoaded', () => {
+    const inputSel   = '#pf-input';
+    const resultsSel = '#pf-results';
+
+    const input   = document.querySelector(inputSel);
+    const results = document.querySelector(resultsSel);
+
+    // Si la nav n'est pas sur la page ou si PagefindUI n'est pas chargé
+    if (!input || !results || typeof PagefindUI === 'undefined') return;
+
+    // Init PagefindUI
+    new PagefindUI({
+      element: resultsSel,
+      inputElement: inputSel,
+      showEmptyResults: false,
+      resetStyles: false,
+      snippetLength: 20,
+      pageSize: 10,
+      translations: {
+        placeholder: "Rechercher…",
+        results: "résultat(s)",
+        clear_search: "Effacer",
+        load_more: "Charger plus"
+      }
+    });
+
+    // Ouvrir / fermer le dropdown en fonction du contenu
+    const show = () => results.classList.add('show');
+    const hide = () => results.classList.remove('show');
+
+    // MutationObserver = on détecte quand Pagefind injecte des résultats
+    const observer = new MutationObserver(() => {
+      // S'il y a au moins un résultat, on ouvre
+      if (results.querySelector('.pagefind-ui__result')) show();
+      else hide();
+    });
+    observer.observe(results, { childList: true, subtree: true });
+
+    // Fermer en cliquant ailleurs
+    document.addEventListener('click', (e) => {
+      if (!results.contains(e.target) && e.target !== input) hide();
+    });
+
+    // ESC pour fermer
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        hide();
+        input.blur();
+      }
+    });
+  });
+})();
+</script>
+
+
 
 </body>
 </html> 

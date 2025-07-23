@@ -11,7 +11,7 @@
       {% include "header.njk" %}
 
 
-  <main id="main">
+  <main id="main" data-pagefind-body>
     <div class="container py-4">
 
                 <nav aria-label="breadcrumb">
@@ -32,6 +32,66 @@
   {% include "footer.njk" %}
 
   </div>
+
+
+<script src="{{ '/pagefind/pagefind-ui.js' | url }}"></script>
+<script>
+(function() {
+  document.addEventListener('DOMContentLoaded', () => {
+    const inputSel   = '#pf-input';
+    const resultsSel = '#pf-results';
+
+    const input   = document.querySelector(inputSel);
+    const results = document.querySelector(resultsSel);
+
+    // Si la nav n'est pas sur la page ou si PagefindUI n'est pas chargé
+    if (!input || !results || typeof PagefindUI === 'undefined') return;
+
+    // Init PagefindUI
+    new PagefindUI({
+      element: resultsSel,
+      inputElement: inputSel,
+      showEmptyResults: false,
+      resetStyles: false,
+      snippetLength: 20,
+      pageSize: 10,
+      translations: {
+        placeholder: "Rechercher…",
+        results: "résultat(s)",
+        clear_search: "Effacer",
+        load_more: "Charger plus"
+      }
+    });
+
+    // Ouvrir / fermer le dropdown en fonction du contenu
+    const show = () => results.classList.add('show');
+    const hide = () => results.classList.remove('show');
+
+    // MutationObserver = on détecte quand Pagefind injecte des résultats
+    const observer = new MutationObserver(() => {
+      // S'il y a au moins un résultat, on ouvre
+      if (results.querySelector('.pagefind-ui__result')) show();
+      else hide();
+    });
+    observer.observe(results, { childList: true, subtree: true });
+
+    // Fermer en cliquant ailleurs
+    document.addEventListener('click', (e) => {
+      if (!results.contains(e.target) && e.target !== input) hide();
+    });
+
+    // ESC pour fermer
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        hide();
+        input.blur();
+      }
+    });
+  });
+})();
+</script>
+
+
 
 </body>
 </html> 

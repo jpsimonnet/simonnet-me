@@ -1,0 +1,10 @@
+source: public
+bundle_dir: public/pagefind
+root_selector: html
+exclude_selectors:
+  - nav
+  - footer
+  - .sidebar
+  - .breadcrumb
+keep_index_url: true
+force_language: fr
