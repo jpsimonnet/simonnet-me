@@ -116,7 +116,7 @@ figure{margin:0}
 
 .search-input:focus {
   outline: none;
-  border-color: #007bff;
+  border-color: #e6025d;
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.15), 0 4px 8px rgba(0,0,0,0.1);
 }
 
@@ -219,13 +219,13 @@ figure{margin:0}
   left: 0;
   width: 4px;
   height: 100%;
-  background: #007bff;
+  background: #e6025d;
   transform: scaleY(0);
   transition: transform 0.2s ease;
 }
 
 .result-item:hover {
-  border-color: #007bff;
+  border-color: #e6025d;
   box-shadow: 0 4px 12px rgba(0, 123, 255, 0.1);
   transform: translateY(-2px);
 }
@@ -242,13 +242,13 @@ figure{margin:0}
 }
 
 .result-title a {
-  color: #007bff;
+  color: #e6025d;
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
 .result-title a:hover {
-  color: #0056b3;
+  color: #e6025d;
   text-decoration: underline;
 }
 
@@ -269,7 +269,7 @@ figure{margin:0}
 
 .result-url {
   font-family: 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
-  color: #28a745;
+  color: #e6025d;
   font-weight: 500;
 }
 
