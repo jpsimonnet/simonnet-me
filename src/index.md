@@ -17,15 +17,8 @@ pagination:
            <img class="rounded float-end img-thumbnail" src="/assets/images/jp.jpg" type="image/svg+xml" width="350" height="350" alt="Bienvenue sur mon site">
 
 
-       <h2>Jean-Philippe Simonnet</h2>
-       <p class="col-md-10 fs-5 mb-0 pt-2">
-
-Je suis actuellement Chargé de mission 'hospitalité numérique' à la DNUM - Usages Numériques et Innovation - au ministère de l’Aménagement du territoire et de la Décentralisation et le ministère de la Transition écologique, de la Biodiversité, de la Forêt, de la Mer et de la Pêche.
-
-</p>
-<p class="col-md-10 fs-5 mb-0 pt-2">
-Je suis également expert accessibilité depuis 2011.
-</p>
+<h2>Jean-Philippe Simonnet</h2>
+<p class="col-md-10 fs-5 mb-0 pt-2">Je suis actuellement Chargé de mission 'hospitalité numérique' à la DNUM - Usages Numériques et Innovation - au ministère de l’Aménagement du territoire et de la Décentralisation et le ministère de la Transition écologique, de la Biodiversité, de la Forêt, de la Mer et de la Pêche.</p><p class="col-md-10 fs-5 mb-0 pt-2">Je suis également expert accessibilité depuis 2011.</p>
 
       <div class="my-3">
       <ul class="list-unstyled reseaux">

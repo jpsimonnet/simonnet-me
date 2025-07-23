@@ -13,12 +13,8 @@ name : JP Simonnet
 {% imageResponsive "src/assets/images/jp.jpg", "Jean-Philippe", "right", [500, 500], ["webp", "jpeg"], "Jean-Philippe Simonnet en 2025" %}
 
 
-       <p class="col-md-12 fs-5 mb-0 pt-2">
-  Je suis actuellement Chargé de mission 'hospitalité numérique' à la DNUM - Usages Numériques et Innovation - au ministère de l’Aménagement du territoire et de la Décentralisation et le ministère de la Transition écologique, de la Biodiversité, de la Forêt, de la Mer et de la Pêche. 
-    </p>
-        <p class="col-md-10 fs-5 mb-0 pt-2">
-        Je suis également expert accessibilité depuis 2011.
-      </p>
+
+<p class="col-md-12 fs-5 mb-0 pt-2">Je suis actuellement Chargé de mission 'hospitalité numérique' à la DNUM - Usages Numériques et Innovation - au ministère de l’Aménagement du territoire et de la Décentralisation et le ministère de la Transition écologique, de la Biodiversité, de la Forêt, de la Mer et de la Pêche. </p><p class="col-md-10 fs-5 mb-3 pt-2">Je suis également expert accessibilité depuis 2011.</p>
 
 Ma mission au sein de la Sous-direction usages numériques et innovation : 
 - Piloter la transition de populations de nouveaux utilisateurs vers une offre de service DNUM ou un bouquet d'offres de services ;
