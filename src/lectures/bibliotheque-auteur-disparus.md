@@ -3,7 +3,7 @@ layout: lecture
 tags: lectures
 title: "La bibliothèque des auteurs disparus"
 date: 2025-07-22
-image: /assets/images/lectures/clara.webp
+image: /assets/images/lectures/bibliotheque.webp
 auteur: "Hika Harada"
 source: "https://www.babelio.com/livres/Harada-La-bibliotheque-des-auteurs-disparus/1776397"
 nom_source: "Babelio"
