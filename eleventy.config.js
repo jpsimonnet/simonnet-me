@@ -13,7 +13,7 @@ export default function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/rss/");
 
   // Copy `img/favicon/` to `_site/`
-  eleventyConfig.addPassthroughCopy({ "./src/favicon": "/" });
+  eleventyConfig.addPassthroughCopy({ "favicon": "/" });
 
 
   // Plugins
