@@ -11,6 +11,8 @@ export default function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/assets");
   eleventyConfig.addPassthroughCopy("src/assets/images");
   eleventyConfig.addPassthroughCopy("src/rss/");
+  eleventyConfig.addPassthroughCopy("src/favicon");
+  eleventyConfig.addPassthroughCopy("src/assets/ascee");
 
   // Plugins
   eleventyConfig.addPlugin(HtmlBasePlugin);
