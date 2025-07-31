@@ -2,9 +2,9 @@
 layout: lecture
 tags: lectures
 title: "Mon vrai nom est Elisabeth"
-date: 2024-07-30
+date: 2025-07-30
 image: /assets/images/lectures/betsi.webp
-auteur: "Françoise Sagan"
+auteur: "Adèle Yon"
 source: "https://www.babelio.com/livres/Yon-Mon-vrai-nom-est-Elisabeth/1777228"
 nom_source: "Babelio"
 eleventyNavigation:

@@ -38,3 +38,23 @@ pagination:
 
  <p><a class="btn btn-outline-secondary mt-2" role="button" href="/a-la-une/0/">Toutes les actualité à la une</a></p>
 </section>
+
+<hr>
+<section aria-labelledby="titre-actualite" class="actualite-a-la-une my-5 container">
+  <h2 id="titre-actualite" class=" mb-3">Mes dernieres lectures </h2>
+    <div class="row">
+    {%- for post in collections.lectures | reverse | slice(0, 3) -%}
+      <div class="  col-lg-4 col-sm-6 mb-3 " >
+    <div class="card shadow-sm h-100">
+      <img src="{{ post.data.image }}" class="card-img-top" alt=" ">
+  <div class="card-body">
+    <h2 class="card-title"><a href="{{post.url}}" class=" stretched-link">{{ post.data.title }}</a></h2>
+    <p class="card-text">{{ post.data.auteur }}</p>
+   <p class="card-text fw-bold"> {{ post.data.date | formatDateFr }}</p>
+  </div>
+</div>
+</div>
+    {% endfor %}
+    </div>
+ <p><a class="btn btn-outline-secondary mt-2" role="button" href="/lectures/">Toutes mes lectures</a></p>
+</section>
