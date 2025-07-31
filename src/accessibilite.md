@@ -2,7 +2,7 @@
 layout: post
 title: Accessibilité | Qualité web | Éco-conception
 tags: post
-date: 2025-01-01
+date: 2025-07-31
 
 ---
 
@@ -13,7 +13,7 @@ J'essaye de m'appliquer plusieurs référentiels, bien sur j'essaye d'améliorer
 
 ## Accessibilité
 
-Un jour je  me ferai mon audit, en attendant j'améliore accessibilité au fur et à mesure.
+Un jour je  me ferai [mon audit RGAA](https://accessibilite.numerique.gouv.fr/), en attendant j'améliore accessibilité au fur et à mesure.
 
 
 **Lien d’accès rapide**
@@ -34,11 +34,15 @@ j'ai mis des liens d’accès rapide qui s'activent au clavier.
 ## Qualité web
 Les test automatiques ne remplacent jamais [un bon audit opquast](https://checklists.opquast.com/fr/assurance-qualite-web/) bien évidemment ... 
 
-- [Mon test Google Page Speed (Lighthouse)](https://pagespeed.web.dev/analysis/http-simonnet-me/l9sjksc93d?form_factor=mobile) : Performances 98 - Accessibilité 94 - Bonnes pratiques 76 - SEO 91
+- [Mon test Google Page Speed (Lighthouse)](https://pagespeed.web.dev/analysis/https-simonnet-me/zcrxiszl38?form_factor=desktop) : 
+    - **Performances :** 100 
+    - **Accessibilité :** 92 
+    - **Bonnes pratiques :** 100 
+    - **SEO :** 82
 
 ## Éco-conception
 
-- Utiliser des images quand c'est nécessaire et proposer des images en svg
+- Utiliser des images quand c'est nécessaire et proposer des images en svg et en webp
 - Maitriser les poids et chargements des images de chaque page.
 - Faire des audits réguliers et surtout cela me permet de vérifier quelques erreurs.
 - [Test du websitecarbon : note A+](https://www.websitecarbon.com/website/simonnet-me/) : "This is cleaner than 
