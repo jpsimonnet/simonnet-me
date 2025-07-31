@@ -6,7 +6,6 @@ pagination:
 permalink: "a-la-une/{{ pagination.pageNumber }}/index.html"
 layout: base
 title: "À la une"
-tags: post
 name : JP Simonnet
 
 ---

@@ -1,9 +1,9 @@
 import Image from "@11ty/eleventy-img";
 import path from "path";
 import { HtmlBasePlugin } from "@11ty/eleventy";
+import { feedPlugin } from "@11ty/eleventy-plugin-rss";
 
 export default function(eleventyConfig) {
-
 
   // Ressources statiques
   eleventyConfig.addPassthroughCopy("./src/css");
@@ -14,10 +14,55 @@ export default function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy({"src/assets/favicon": "/"});
   eleventyConfig.addPassthroughCopy({"src/assets/favicon": "./"});
 
+  // Collections
+  eleventyConfig.addCollection("posts", function(collectionApi) {
+    return collectionApi.getFilteredByGlob("src/posts/*.md").reverse();
+  });
+
+  // Collections
+  eleventyConfig.addCollection("allPosts", function(collectionApi) {
+    // Combine tous les articles avec tous vos tags
+    const lectures = collectionApi.getFilteredByTag("lectures");
+    const photos = collectionApi.getFilteredByTag("photos");
+    const interventions = collectionApi.getFilteredByTag("interventions");
+    const actualitePage = collectionApi.getFilteredByTag("actualitePage");
+    const post = collectionApi.getFilteredByTag("post");
+    
+    console.log("📚 Lectures trouvées:", lectures.length);
+    console.log("📸 Photos trouvées:", photos.length);
+    console.log("🎤 Interventions trouvées:", interventions.length);
+    console.log("📰 ActualitePage trouvées:", actualitePage.length);
+    console.log("📝 Post trouvés:", post.length);
+    
+    // Fusionner tous les contenus et trier par date (plus récent en premier)
+    const allPosts = [...lectures, ...photos, ...interventions, ...actualitePage, ...post]
+      .sort((b, a) => new Date(b.date) - new Date(a.date));
+    
+    console.log("📄 Total articles pour RSS:", allPosts.length);
+    
+    return allPosts;
+  });
 
   // Plugins
   eleventyConfig.addPlugin(HtmlBasePlugin);
-  
+
+  eleventyConfig.addPlugin(feedPlugin, {
+    type: "rss",
+    outputPath: "/feed.xml",
+    collection: {
+      name: "allPosts", // ← Changé de "posts" vers "allPosts"
+      limit: 0, 
+    },
+    metadata: {
+      language: "fr",
+      title: "Oxymore",
+      subtitle: "Le site de Jean-Philippe Simonnet",
+      base: "https://simonnet.me/",
+      author: {
+        name: "Jean-Philippe Simonnet"
+      }
+    }
+  }); // ← Correction : fermeture correcte du plugin
 
   // Shortcodes
   eleventyConfig.addShortcode("year", () => `${new Date().getFullYear()}`);
@@ -31,10 +76,9 @@ export default function(eleventyConfig) {
     });
   });
 
-eleventyConfig.addFilter("slice", function(arr, start, end) {
-  return arr.slice(start, end);
-});
-
+  eleventyConfig.addFilter("slice", function(arr, start, end) {
+    return arr.slice(start, end);
+  });
 
   eleventyConfig.addNunjucksAsyncShortcode("imageResponsive", async function(
     src,
@@ -56,13 +100,11 @@ eleventyConfig.addFilter("slice", function(arr, start, end) {
       alt,
       loading: "lazy",
       decoding: "async"
-      // ❌ PAS de class ici → pas de classe sur <img>
     };
   
-    // ✅ Classes Bootstrap uniquement sur <figure>
     const figureClass = [
       "mb-3",
-      "img-fluid", // tu peux l'enlever si non souhaité
+      "img-fluid",
       position === "right" ? "float-end ms-3" : "",
       position === "left" ? "float-start me-3" : ""
     ].filter(Boolean).join(" ");
@@ -74,8 +116,7 @@ eleventyConfig.addFilter("slice", function(arr, start, end) {
       : `<figure class="${figureClass}">${imageHTML}</figure>`;
   });
   
-
-  // ✅ Retourne TOUT ici (y compris markdownTemplateEngine)
+  // ✅ Retourne la configuration à la fin de la fonction
   return {
     pathPrefix: "./",
     dir: {

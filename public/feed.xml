@@ -1,0 +1,913 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xml:base="https://simonnet.me/" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Oxymore</title>
+    <link>https://simonnet.me/</link>
+    <atom:link href="https://simonnet.me/feed.xml" rel="self" type="application/rss+xml" />
+    <description>Le site de Jean-Philippe Simonnet</description>
+    <language>fr</language>
+    <item>
+      <title>Accessibilité | Qualité web | Éco-conception</title>
+      <link>https://simonnet.me/accessibilite/</link>
+      <description>&lt;h1&gt;Accessibilité | Qualité web | Éco-conception&lt;/h1&gt;
+&lt;p&gt;J&#39;essaye de m&#39;appliquer plusieurs référentiels, bien sur j&#39;essaye d&#39;améliorer l’&lt;strong&gt;accessibilité&lt;/strong&gt; de mon site, mais j&#39;essaie aussi de m&#39;appliquer d&#39;autres référentiels comme la &lt;strong&gt;Qualité Web&lt;/strong&gt; (opquast) ou &lt;strong&gt;l&#39;éco-conception web&lt;/strong&gt;.&lt;/p&gt;
+&lt;h2&gt;Accessibilité&lt;/h2&gt;
+&lt;p&gt;Un jour je  me ferai &lt;a href=&quot;https://accessibilite.numerique.gouv.fr/&quot;&gt;mon audit RGAA&lt;/a&gt;, en attendant j&#39;améliore accessibilité au fur et à mesure.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Lien d’accès rapide&lt;/strong&gt;
+j&#39;ai mis des liens d’accès rapide qui s&#39;activent au clavier.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Navigation dans le site&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Un fil d’Ariane&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://simonnet.me/plan&quot;&gt;Un plan de site&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Liens externes&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Les liens externes sont normalement détectés et signalés&lt;/li&gt;
+&lt;li&gt;Aucun lien n&#39;est forcé pour ouvrir une nouvelle page (target=blank)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Qualité web&lt;/h2&gt;
+&lt;p&gt;Les test automatiques ne remplacent jamais &lt;a href=&quot;https://checklists.opquast.com/fr/assurance-qualite-web/&quot;&gt;un bon audit opquast&lt;/a&gt; bien évidemment ...&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://pagespeed.web.dev/analysis/https-simonnet-me/zcrxiszl38?form_factor=desktop&quot;&gt;Mon test Google Page Speed (Lighthouse)&lt;/a&gt; :
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Performances :&lt;/strong&gt; 100&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Accessibilité :&lt;/strong&gt; 92&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Bonnes pratiques :&lt;/strong&gt; 100&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;SEO :&lt;/strong&gt; 82&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Éco-conception&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Utiliser des images quand c&#39;est nécessaire et proposer des images en svg et en webp&lt;/li&gt;
+&lt;li&gt;Maitriser les poids et chargements des images de chaque page.&lt;/li&gt;
+&lt;li&gt;Faire des audits réguliers et surtout cela me permet de vérifier quelques erreurs.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.websitecarbon.com/website/simonnet-me/&quot;&gt;Test du websitecarbon : note A+&lt;/a&gt; : &amp;quot;This is cleaner than
+97% of all web pages globally&amp;quot;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.ecoindex.fr/resultat/?id=e7bf4db0-4c34-4d0b-bbef-08bfb77caf98&quot;&gt;Test ecoindex (89 / 100 - A)&lt;/a&gt; - Le top. On se rapproche dangereusement de la perfection (selon eux).&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      <pubDate>Thu, 31 Jul 2025 02:00:00 GMT</pubDate>
+      <dc:creator>Jean-Philippe Simonnet</dc:creator>
+      <guid>https://simonnet.me/accessibilite/</guid>
+    </item>
+    <item>
+      <title>Mon vrai nom est Elisabeth</title>
+      <link>https://simonnet.me/lectures/betsi/</link>
+      <description>&lt;p&gt;Une chercheuse craignant de devenir folle mène une enquête pour tenter de rompre le silence qui entoure la maladie de son arrière-grand-mère Élisabeth, dite Betsy, diagnostiquée schizophrène dans les années 1950. La narratrice ne dispose, sur cette femme morte avant sa naissance, que de quelques légendes familiales dont les récits fluctuent. Une vieille dame coquette qui aimait nager, bonnet de bain en caoutchouc et saut façon grenouille, dans la piscine de la propriété de vacances.&lt;/p&gt;
+&lt;p&gt;Une grand-mère avec une cavité de chaque côté du front qui accusait son petit-fils de la regarder nue à travers les murs. Une maison qui prend feu. Des grossesses non désirées. C’est à peu près tout. Les enfants d’Élisabeth ne parlent jamais de leur mère entre eux et ils n’en parlent pas à leurs enfants qui n’en parlent pas à leurs petits-enfants. “C’était un nom qu’on ne prononçait pas. Maman, c’était un non-sujet. Tu peux enregistrer ça. Maman, c’était un non-sujet.”&lt;/p&gt;
+&lt;p&gt;&amp;quot;Mon vrai nom est Élisabeth&amp;quot; est un premier livre poignant à la lisière de différents genres : l’enquête familiale, le récit de soi, le road-trip, l’essai. À travers la voix de la narratrice, les archives et les entretiens, se déploient différentes histoires, celles du poids de l’hérédité, des violences faites aux femmes, de la psychiatrie du XXe siècle, d’une famille nombreuse et bourgeoise renfermant son lot de secrets.&lt;/p&gt;
+</description>
+      <pubDate>Wed, 30 Jul 2025 02:00:00 GMT</pubDate>
+      <dc:creator>Jean-Philippe Simonnet</dc:creator>
+      <guid>https://simonnet.me/lectures/betsi/</guid>
+    </item>
+    <item>
+      <title>L&#39;occupation</title>
+      <link>https://simonnet.me/lectures/l-occupation/</link>
+      <description>&lt;p&gt;C&#39;est une femme qui raconte, en même temps qu&#39;elle se raconte. Tragédie banale s&#39;il en est, son amant, W., l&#39;a quittée. Enfin presque quittée. Ils continuent de se voir, tandis que W. réserve désormais sa passion et son sexe à une inconnue, professeur d&#39;histoire à l&#39;université de Paris III.&lt;/p&gt;
+&lt;p&gt;Pourquoi écrire, qu&#39;écrire alors ? Sans doute, et la narratrice le reconnaît elle-même, les mots ont-ils une vocation cathartique, qui permet de réduire en l&#39;exprimant le trop-plein de la jalousie qui ronge les derniers souvenirs, promesse d&#39;un futur non tenu. S&#39;ensuit une aussi phatique que pathétique fuite en avant pour retrouver la trace de l&#39;Autre et apaiser la douleur de ne pas savoir. Ne pas savoir son nom, ne pas savoir ce qu&#39;elle est ni à quoi, au juste, elle ressemble…&lt;/p&gt;
+</description>
+      <pubDate>Sun, 27 Jul 2025 02:00:00 GMT</pubDate>
+      <dc:creator>Jean-Philippe Simonnet</dc:creator>
+      <guid>https://simonnet.me/lectures/l-occupation/</guid>
+    </item>
+    <item>
+      <title>La vie devant soi</title>
+      <link>https://simonnet.me/lectures/vie-devant-soi/</link>
+      <description>&lt;p&gt;Signé Ajar, ce roman reçut le prix Goncourt en 1975. Histoire d’amour d’un petit garçon arabe pour une très vieille femme juive : Momo se débat contre les six étages que Madame Rosa ne veut plus monter et contre la vie parce que «ça ne pardonne pas» et parce qu’il n’est «pas nécessaire d’avoir des raisons pour avoir peur».&lt;/p&gt;
+&lt;p&gt;Le petit garçon l’aidera à se cacher dans son «trou juif», elle n’ira pas mourir à l&#39;hôpital et pourra ainsi bénéficier du droit sacré «des peuples à disposer d’eux-mêmes» qui n’est pas respecté par l’Ordre des médecins. Il lui tiendra compagnie jusqu’à ce qu’elle meure et même au-delà de la mort.&lt;/p&gt;
+</description>
+      <pubDate>Fri, 25 Jul 2025 02:00:00 GMT</pubDate>
+      <dc:creator>Jean-Philippe Simonnet</dc:creator>
+      <guid>https://simonnet.me/lectures/vie-devant-soi/</guid>
+    </item>
+    <item>
+      <title>La Très Catastrophique Visite du Zoo</title>
+      <link>https://simonnet.me/lectures/catastrophique-visite-zoo%20copy/</link>
+      <description>&lt;p&gt;&amp;quot;Pendant des années, dans la petite ville où j&#39;ai grandi, les esprits restèrent marqués par les évènements qui se produisirent au zoo local un vendredi de décembre, à quelques jours de Noël. Et pendant toutes ces années, personne ne sut la vérité sur ce qui s&#39;était réellement passé là-bas.&lt;/p&gt;
+&lt;p&gt;Jusqu&#39;à ce livre.&amp;quot;À la veille de Noël, une visite scolaire dans un zoo tourne à la catastrophe.Que s&#39;est-il passé exactement ? Les parents de Joséphine, qui participait à cette sortie et qui semble être l&#39;une des protagonistes de cette affaire, sont bien déterminés à le découvrir.Dans cette quête de vérité, on comprend peu à peu qu&#39;une catastrophe n&#39;arrive jamais seule.&lt;/p&gt;
+&lt;p&gt;Les apparences sont trompeuses et le récit des évènements va prendre une tournure que personne n&#39;était près d&#39;imaginer.La Très Catastrophique Visite du Zoo est une enquête qui nous tient en haleine jusqu&#39;au bout, mais aussi un roman drôle et touchant, parsemé de clins d&#39;œil sur nos modes sociétaux (démocratie, éducation inclusive, rapports parents-enseignants).&lt;/p&gt;
+&lt;p&gt;Et c&#39;est justement le tour de force de ce livre, mêlant plusieurs niveaux de compréhension, qui émerveillera lecteurs de tous âges et tous horizons. Un livre pour lire et faire lire. À mettre entre toutes les mains !&lt;/p&gt;
+</description>
+      <pubDate>Wed, 23 Jul 2025 02:00:00 GMT</pubDate>
+      <dc:creator>Jean-Philippe Simonnet</dc:creator>
+      <guid>https://simonnet.me/lectures/catastrophique-visite-zoo%20copy/</guid>
+    </item>
+    <item>
+      <title>La bibliothèque des auteurs disparus</title>
+      <link>https://simonnet.me/lectures/bibliotheque-auteur-disparus/</link>
+      <description>&lt;p&gt;De son premier emploi dans une grande chaîne de librairies, Otoha Higuchi ne garde que des mauvais souvenirs. Alors, quand on lui propose de travailler dans une bibliothèque de la banlieue de Tokyo, elle accepte sans hésiter. Qu&#39;importe que le mystérieux établissement ne soit ouvert que la nuit et rassemble des collections un peu particulières : les bibliothèques personnelles d&#39;auteurs décédés.
+Résolue à faire bonne impression, Otoha se rapproche de ses collègues et découvre leurs histoires contrariées. Mais le plus grand secret de la bibliothèque reste entier : qui est l&#39;énigmatique propriétaire qui offre à tous les passionnés de livres comme elle une chance au moment où ils en ont le plus besoin ?&lt;/p&gt;
+</description>
+      <pubDate>Tue, 22 Jul 2025 02:00:00 GMT</pubDate>
+      <dc:creator>Jean-Philippe Simonnet</dc:creator>
+      <guid>https://simonnet.me/lectures/bibliotheque-auteur-disparus/</guid>
+    </item>
+    <item>
+      <title>Tout le monde aime Clara</title>
+      <link>https://simonnet.me/lectures/clara/</link>
+      <description>&lt;p&gt;Clara voit au-delà des apparences. Ceux qui la connaissent la redoutent autant qu’ils l’admirent. Car elle ne prédit pas seulement l’avenir, elle l’éveille.&lt;/p&gt;
+</description>
+      <pubDate>Mon, 21 Jul 2025 02:00:00 GMT</pubDate>
+      <dc:creator>Jean-Philippe Simonnet</dc:creator>
+      <guid>https://simonnet.me/lectures/clara/</guid>
+    </item>
+    <item>
+      <title>Intérieur nuit</title>
+      <link>https://simonnet.me/lectures/interieur-nuit/</link>
+      <description>&lt;p&gt;&lt;em&gt;« Les événements racontés dans ce livre se déroulent sur plus de vingt ans. Pendant toutes ces années, je me suis tu. Aujourd’hui, j’écris en pensant à toutes celles et ceux, des centaines de milliers, peut-être des millions, qui souffrent en silence du même mal. »&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Nicolas Demorand est journaliste.
+Il co-anime la matinale de France Inter depuis 2017.&lt;/p&gt;
+</description>
+      <pubDate>Sat, 19 Jul 2025 02:00:00 GMT</pubDate>
+      <dc:creator>Jean-Philippe Simonnet</dc:creator>
+      <guid>https://simonnet.me/lectures/interieur-nuit/</guid>
+    </item>
+    <item>
+      <title>le journal de ma veille</title>
+      <link>https://simonnet.me/veille/</link>
+      <description>&lt;h1&gt;le journal de ma veille&lt;/h1&gt;
+&lt;p&gt;Ma veille sur l&#39;accessibilité, l&#39;IA, le web : &lt;a href=&quot;https://oxymore.notion.site/&quot;&gt;Le journal de ma veille&lt;/a&gt;&lt;/p&gt;
+</description>
+      <pubDate>Wed, 01 Jan 2025 01:00:00 GMT</pubDate>
+      <dc:creator>Jean-Philippe Simonnet</dc:creator>
+      <guid>https://simonnet.me/veille/</guid>
+    </item>
+    <item>
+      <title>Qui suis je ?</title>
+      <link>https://simonnet.me/qui-suis-je/</link>
+      <description>&lt;h1&gt;Qui suis je ?&lt;/h1&gt;
+&lt;h2&gt;Jean-Philippe Simonnet&lt;/h2&gt;
+&lt;figure class=&quot;mb-3 img-fluid float-end ms-3&quot;&gt;&lt;picture&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;https://simonnet.me/img/qyh-DcIuee-300.webp 300w&quot;&gt;&lt;img src=&quot;https://simonnet.me/img/qyh-DcIuee-300.jpeg&quot; alt=&quot;Jean-Philippe&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; width=&quot;300&quot; height=&quot;300&quot;&gt;&lt;/picture&gt;&lt;figcaption class=&quot;figure-caption&quot;&gt;Jean-Philippe Simonnet en 2025&lt;/figcaption&gt;&lt;/figure&gt;
+&lt;p class=&quot;col-md-12 fs-5 mb-0 pt-2&quot;&gt;Je suis actuellement Chargé de mission &#39;hospitalité numérique&#39; à la DNUM - Usages Numériques et Innovation - au ministère de l’Aménagement du territoire et de la Décentralisation et le ministère de la Transition écologique, de la Biodiversité, de la Forêt, de la Mer et de la Pêche. &lt;/p&gt;&lt;p class=&quot;col-md-10 fs-5 mb-3 pt-2&quot;&gt;Je suis également expert accessibilité depuis 2011.&lt;/p&gt;
+&lt;p&gt;Ma mission au sein de la Sous-direction usages numériques et innovation :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Piloter la transition de populations de nouveaux utilisateurs vers une offre de service DNUM ou un bouquet d&#39;offres de services ;&lt;/li&gt;
+&lt;li&gt;Assurer la bonne adéquation et la cohérence des offres de service DNUM avec les nouvelles pratiques de travail (ex. flex office, mobilité, équipes réparties dans l&#39;espace, incluant des acteurs externes, recours aux IA) ;&lt;/li&gt;
+&lt;li&gt;Veiller à la facilité de consommation des nouvelles offres, telle que l&#39;offre cloud, par des populations d&#39;utilisateurs non experts ;&lt;/li&gt;
+&lt;li&gt;S&#39;assurer de l&#39;accessibilité (conformément à l’article 47 de la loi n° 2005-102 du 11 février 2005) des produits de la sous-direction/de la DNUM .&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;/p&gt;&lt;div class=&quot;my-3&quot;&gt;
+&lt;ul class=&quot;list-unstyled reseaux&quot;&gt;
+&lt;li&gt;&lt;a class=&quot;btn btn-outline-secondary mt-2&quot; href=&quot;http://www.linkedin.com/in/simonnet/fr&quot; rel=&quot;external&quot;&gt; &lt;img src=&quot;https://simonnet.me/assets/icons/linkedin.svg&quot; alt=&quot;Logo Linkedin&quot; class=&quot;me-2&quot;&gt; Mon Profil Linkedin&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&quot;btn btn-outline-secondary mt-2&quot; href=&quot;https://bsky.app/profile/simonnet.me&quot; rel=&quot;external&quot;&gt; &lt;img src=&quot;https://simonnet.me/assets/icons/bluesky.svg&quot; alt=&quot;Logo Bluesky&quot; class=&quot;me-2&quot;&gt; Mon compte Bluesky&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&quot;btn btn-outline-secondary mt-2&quot; href=&quot;http://www.facebook.com/jeanphilippe.simonnet&quot; rel=&quot;external&quot;&gt; &lt;img src=&quot;https://simonnet.me/assets/icons/facebook.svg&quot; alt=&quot;Logo Facebook&quot; class=&quot;me-2&quot;&gt; Mon compte facebook&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&quot;btn btn-outline-secondary mt-2&quot; href=&quot;http://www.twitter.com/oxymore&quot; rel=&quot;external&quot;&gt; &lt;img src=&quot;https://simonnet.me/assets/icons/twitter.svg&quot; alt=&quot;Logo Twitter&quot; class=&quot;me-2&quot;&gt; Mon compte twitter&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&quot;btn btn-outline-secondary mt-2&quot; href=&quot;https://www.instagram.com/oxymore93/&quot; rel=&quot;external&quot;&gt; &lt;img src=&quot;https://simonnet.me/assets/icons/instagram.svg&quot; alt=&quot;Logo Instagram&quot; class=&quot;me-2&quot;&gt; Mon compte Instagram&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&quot;btn btn-outline-secondary mt-2&quot; href=&quot;https://github.com/jpsimonnet&quot; rel=&quot;external&quot;&gt; &lt;img src=&quot;https://simonnet.me/assets/icons/github.svg&quot; alt=&quot;Logo Github&quot; class=&quot;me-2&quot;&gt; Mon compte Github&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&quot;btn btn-outline-secondary mt-2&quot; href=&quot;http://www.doyoubuzz.com/jean-philippe-simonnet&quot; rel=&quot;external&quot;&gt; &lt;img src=&quot;https://simonnet.me/assets/images/doyoubuzz.svg&quot; alt=&quot;Logo doyoubuzz&quot; class=&quot;me-2&quot; width=&quot;50px&quot;&gt; Mon CV sur Doyoubuzz&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;&lt;p&gt;&lt;/p&gt;
+</description>
+      <pubDate>Wed, 01 Jan 2025 01:00:00 GMT</pubDate>
+      <dc:creator>Jean-Philippe Simonnet</dc:creator>
+      <guid>https://simonnet.me/qui-suis-je/</guid>
+    </item>
+    <item>
+      <title>Photos</title>
+      <link>https://simonnet.me/photos/</link>
+      <description>&lt;h1&gt;Mes photos&lt;/h1&gt;
+</description>
+      <pubDate>Wed, 01 Jan 2025 01:00:00 GMT</pubDate>
+      <dc:creator>Jean-Philippe Simonnet</dc:creator>
+      <guid>https://simonnet.me/photos/</guid>
+    </item>
+    <item>
+      <title>Mentions légales</title>
+      <link>https://simonnet.me/mentions/</link>
+      <description>&lt;h1&gt;Mentions légales&lt;/h1&gt;
+&lt;p&gt;Ce site est la propriété de Jean-Philippe Simonnet&lt;/p&gt;
+&lt;p&gt;Il est hébergé sur GitHub.com&lt;/p&gt;
+&lt;p&gt;Licence Creative Commons
+Ce(tte) œuvre de www.simonnet.me est mise à disposition selon les termes de la licence Creative Commons Attribution - Partage dans les Mêmes Conditions 3.0 France.&lt;/p&gt;
+</description>
+      <pubDate>Wed, 01 Jan 2025 01:00:00 GMT</pubDate>
+      <dc:creator>Jean-Philippe Simonnet</dc:creator>
+      <guid>https://simonnet.me/mentions/</guid>
+    </item>
+    <item>
+      <title>La place</title>
+      <link>https://simonnet.me/lectures/laplace/</link>
+      <description>&lt;p&gt;Annie Ernaux compose La Place après la disparition de son père. Au fil de ses souvenirs, elle retrace la vie de cet homme, ouvrier devenu cafetier, qui avait conquis sa « place » dans la société.&lt;/p&gt;
+&lt;p&gt;Dans une écriture épurée et pudique, elle dévoile la douloureuse distance que ses études et son mariage ont installée entre elle et son père, et rend un vibrant hommage à ses parents.&lt;/p&gt;
+&lt;p&gt;Annie Ernaux a reçu le Prix Nobel de littérature en 2022.&lt;/p&gt;
+</description>
+      <pubDate>Fri, 13 Dec 2024 01:00:00 GMT</pubDate>
+      <dc:creator>Jean-Philippe Simonnet</dc:creator>
+      <guid>https://simonnet.me/lectures/laplace/</guid>
+    </item>
+    <item>
+      <title>Le Pays des autres</title>
+      <link>https://simonnet.me/lectures/paysdesautres/</link>
+      <description>&lt;p&gt;En 1944, Mathilde, une jeune Alsacienne, s’éprend d’Amine Belhaj, un Marocain combattant dans l’armée française. Après la Libération, le couple s’installe au Maroc à Meknès, ville de garnison et de colons. Tandis qu’Amine tente de mettre en valeur un domaine constitué de terres rocailleuses et ingrates, Mathilde se sent vite étouffée par le climat rigoriste du Maroc. Seule et isolée à la ferme avec ses deux enfants, elle souffre de la méfiance qu’elle inspire en tant qu’étrangère et du manque d’argent. Le travail acharné du couple portera-t-il ses fruits? Les dix années que couvre le roman sont aussi celles d’une montée inéluctable des tensions et des violences qui aboutiront en 1956 à l’indépendance de l’ancien protectorat.&lt;/p&gt;
+&lt;p&gt;Tous les personnages de ce roman vivent dans «le pays des autres» : les colons comme les indigènes, les soldats comme les paysans ou les exilés. Les femmes, surtout, vivent dans le pays des hommes et doivent sans cesse lutter pour leur émancipation. Après deux romans au style clinique et acéré, Leïla Slimani, dans cette grande fresque, fait revivre une époque et ses acteurs avec humanité, justesse, et un sens très subtil de la narration.&lt;/p&gt;
+</description>
+      <pubDate>Fri, 23 Aug 2024 02:00:00 GMT</pubDate>
+      <dc:creator>Jean-Philippe Simonnet</dc:creator>
+      <guid>https://simonnet.me/lectures/paysdesautres/</guid>
+    </item>
+    <item>
+      <title>Ravel</title>
+      <link>https://simonnet.me/lectures/ravel/</link>
+      <description>&lt;p&gt;Ravel fut grand comme un jockey, donc comme Faulkner. Son corps était si léger qu&#39;en 1914, désireux de s&#39;engager, il tenta de persuader les autorités militaires qu&#39;un pareil poids serait justement idéal pour l&#39;aviation. Cette incorporation lui fut refusée, d&#39;ailleurs on l&#39;exempta de toute obligation mais, comme il insistait, on l&#39;affecta sans rire à la conduite des poids lourds. C&#39;est ainsi qu&#39;on put voir un jour, descendant les Champs-Élysées, un énorme camion militaire contenant une petite forme en capote bleue trop grande agrippée tant bien que mal à un volant trop gros. Ce roman retrace les dix dernières années de la vie du compositeur français Maurice Ravel (1875-1937).&lt;/p&gt;
+</description>
+      <pubDate>Thu, 22 Aug 2024 02:00:00 GMT</pubDate>
+      <dc:creator>Jean-Philippe Simonnet</dc:creator>
+      <guid>https://simonnet.me/lectures/ravel/</guid>
+    </item>
+    <item>
+      <title>Pourquoi j&#39;ai mangé mon père</title>
+      <link>https://simonnet.me/lectures/mangemonpere/</link>
+      <description>&lt;p&gt;Approchez homo sapiens ! Ce livre vous fera hurler de rire ! Faites la connaissance d&#39;une famille préhistorique : Edouard, le père, génial inventeur qui va changer la face du monde en ramenant le feu ; Vania, l&#39;oncle réac, ennemi du progrès ; Erenst, le narrateur, un tantinet benêt ; Edwige, Griselda et autres ravissantes donzelles... Ces êtres délicieux font le monde autour d&#39;un feu en dégustant des os à moelle. Regardez-les découvrir l&#39;amour, s&#39;essayer à la drague, se battre avec l&#39;évolution... Situations rocambolesques, personnages hilarants d&#39;un monde où l&#39;homme est pourtant déjà homme : batailleur, jaloux, ingrat et aussi rétrograde. Un miroir à consulter souvent. Pour rire et réfléchir.&lt;/p&gt;
+</description>
+      <pubDate>Tue, 20 Aug 2024 02:00:00 GMT</pubDate>
+      <dc:creator>Jean-Philippe Simonnet</dc:creator>
+      <guid>https://simonnet.me/lectures/mangemonpere/</guid>
+    </item>
+    <item>
+      <title>Le restaurant des recettes oubliées </title>
+      <link>https://simonnet.me/lectures/recettesoubliees/</link>
+      <description>&lt;p&gt;Caché dans les ruelles de Kyoto se trouve le petit restaurant des Kamogawa, d’où s’élèvent d’exquises odeurs de riz cuit, de nabe et de légumes sautés.&lt;/p&gt;
+&lt;p&gt;En plus de délicieux repas faits maison, Nagare et sa fille Koishi proposent une expérience qui sort de l’ordinaire : reproduire un plat que leurs clients ont en mémoire, mais dont la recette est depuis longtemps oubliée. Nabeyaki udon, sushis de maquereau, tonkatsu ou pâtes napolitaines... pour chaque nouveau plat, la famille Kamogawa enquête et propose à ses convives de déguster une nouvelle fois les mets savoureux qui ont marqué leur vie. Et grâce à un soupçon de magie, ces saveurs perdues enfin retrouvées permettent de rêver à de nouveaux départs.&lt;/p&gt;
+</description>
+      <pubDate>Sun, 18 Aug 2024 02:00:00 GMT</pubDate>
+      <dc:creator>Jean-Philippe Simonnet</dc:creator>
+      <guid>https://simonnet.me/lectures/recettesoubliees/</guid>
+    </item>
+    <item>
+      <title>Je vais bien, ne t’en fait pas</title>
+      <link>https://simonnet.me/lectures/jevaisbien/</link>
+      <description>&lt;p&gt;Une autre lettre de Loïc. Elles sont rares. Quelques phrases griffonnées sur un papier. Il va bien. Il n&#39;a pas pardonné. Il ne rentrera pas. Il l&#39;aime. Rien d&#39;autre. Rien sur son départ précipité. Deux ans déjà qu&#39;il est parti. Peu après que Claire a obtenu son bac. A son retour de vacances, il n&#39;était plus là. Son frère avait disparu, sans raison. Sans un mot d&#39;explication.&lt;/p&gt;
+&lt;p&gt;Claire croit du bout des lèvres à une dispute entre Loïc et son père. Demain, elle quittera son poste de caissière au supermarché et se rendra à Portbail. C&#39;est de là-bas que la lettre a été postée. Claire dispose d&#39;une semaine de congé pour retrouver Loïc. Lui parler. Comprendre.&lt;/p&gt;
+</description>
+      <pubDate>Fri, 16 Aug 2024 02:00:00 GMT</pubDate>
+      <dc:creator>Jean-Philippe Simonnet</dc:creator>
+      <guid>https://simonnet.me/lectures/jevaisbien/</guid>
+    </item>
+    <item>
+      <title>La frontière des oubliés</title>
+      <link>https://simonnet.me/lectures/frontieredesoublies/</link>
+      <description>&lt;p&gt;Neuf récits composent La frontière des oubliés et retracent le parcours de l’écrivaine, depuis sa fuite, enfant, de la frontière afghane pour se bâtir une vie à Téhéran. Dans chacune de ces vignettes de vie qui se font écho, elle brosse le portrait de ses compatriotes exilés, des « frontaliers », souvent des femmes, qui portent tous des traces de la guerre, des plaies profondes marquées par des balles invisibles. À chaque rencontre, elle s’interroge sur la violence, l’exil et l’identité. Et en s’imprégnant de son propre vécu, Aliyeh Ataei embrasse ici plus largement le sort de tous ceux qui ont hérité des « chromosomes-douleurs », se faisant l’écho de leurs voix si peu audibles.&lt;/p&gt;
+&lt;p&gt;La frontière des oubliés nous fait découvrir une nouvelle plume puissante venue d’Iran. De son style clair et tranchant, Aliyeh Ataei dévoile des vérités qui secouent, et bouleversent.&lt;/p&gt;
+</description>
+      <pubDate>Wed, 14 Aug 2024 02:00:00 GMT</pubDate>
+      <dc:creator>Jean-Philippe Simonnet</dc:creator>
+      <guid>https://simonnet.me/lectures/frontieredesoublies/</guid>
+    </item>
+    <item>
+      <title>Vers la beauté </title>
+      <link>https://simonnet.me/lectures/verslabeautee/</link>
+      <description>&lt;p&gt;Antoine Duris est professeur aux Beaux-Arts de Lyon. Du jour au lendemain, il décide de tout quitter pour devenir gardien de salle au musée d’Orsay. Personne ne connaît les raisons de cette reconversion ni le traumatisme qu’il vient d’éprouver. Pour survivre, cet homme n&#39;a trouvé qu’un remède, se tourner vers la beauté. Derrière son secret, on comprendra qu’il y a un autre destin, celui d’une jeune femme, Camille, hantée par un drame.&lt;/p&gt;
+</description>
+      <pubDate>Sun, 11 Aug 2024 02:00:00 GMT</pubDate>
+      <dc:creator>Jean-Philippe Simonnet</dc:creator>
+      <guid>https://simonnet.me/lectures/verslabeautee/</guid>
+    </item>
+    <item>
+      <title>Stupeur et tremblements</title>
+      <link>https://simonnet.me/lectures/stupeur/</link>
+      <description>&lt;p&gt;Au début des années 1990, la narratrice est embauchée par Yumimoto, une puissante firme japonaise. Elle va découvrir à ses dépens l’implacable rigueur de l’autorité d’entreprise, en même temps que les codes de conduite, incompréhensibles au profane, qui gouvernent la vie sociale au pays du Soleil levant.
+D’erreurs en maladresses et en échecs, commence alors pour elle, comme dans un mauvais rêve, la descente inexorable dans les degrés de la hiérarchie, jusqu’au rang de surveillante des toilettes, celui de l’humiliation dernière. Une course absurde vers l’abîme – image de la vie –, où l’humour percutant d’Amélie Nothomb fait mouche à chaque ligne.&lt;/p&gt;
+&lt;p&gt;Entre le rire et l’angoisse, cette satire des nouveaux despotismes aux échos kafkaïens a conquis un immense public et valu à l’auteur d’Hygiène de l’assassin le Grand Prix du roman de l’Académie française en 1999.&lt;/p&gt;
+</description>
+      <pubDate>Fri, 09 Aug 2024 02:00:00 GMT</pubDate>
+      <dc:creator>Jean-Philippe Simonnet</dc:creator>
+      <guid>https://simonnet.me/lectures/stupeur/</guid>
+    </item>
+    <item>
+      <title>L’événement</title>
+      <link>https://simonnet.me/lectures/evenement/</link>
+      <description>&lt;p&gt;&lt;em&gt;«Depuis des années, je tourne autour de cet événement de ma vie. Lire dans un roman le récit d&#39;un avortement me plonge dans un saisissement sans images ni pensées, comme si les mots se changeaient instantanément en sensation violente.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;De la même façon entendre par hasard La javanaise, J&#39;ai la mémoire qui flanche, n&#39;importe quelle chanson qui m&#39;a accompagnée durant cette période, me bouleverse.»&lt;/em&gt;&lt;/p&gt;
+</description>
+      <pubDate>Fri, 09 Aug 2024 02:00:00 GMT</pubDate>
+      <dc:creator>Jean-Philippe Simonnet</dc:creator>
+      <guid>https://simonnet.me/lectures/evenement/</guid>
+    </item>
+    <item>
+      <title>Bonjour tristesse</title>
+      <link>https://simonnet.me/lectures/tristesse/</link>
+      <description>&lt;p&gt;La villa est magnifique, l&#39;été brûlant, la Méditerranée toute proche. Cécile a dix-sept ans. Elle ne connaît de l&#39;amour que des baisers, des rendez-vous, des lassitudes. Pas pour longtemps. Son père, veuf, est un adepte joyeux des liaisons passagères et sans importance. Ils s&#39;amusent, ils n&#39;ont besoin de personne, ils sont heureux. La visite d&#39;une femme de cœur, intelligente et calme, vient troubler ce délicieux désordre. Comment écarter la menace ? Dans la pinède embrasée, un jeu cruel se prépare.&lt;/p&gt;
+&lt;p&gt;C&#39;était l&#39;été 1954. On entendait pour la première fois la voix sèche et rapide d&#39;un &amp;quot; charmant petit monstre &amp;quot; qui allait faire scandale. La deuxième moitié du XXe siècle commençait. Elle serait à l&#39;image de cette adolescente déchirée entre le remords et le culte du plaisir.&lt;/p&gt;
+</description>
+      <pubDate>Tue, 06 Aug 2024 02:00:00 GMT</pubDate>
+      <dc:creator>Jean-Philippe Simonnet</dc:creator>
+      <guid>https://simonnet.me/lectures/tristesse/</guid>
+    </item>
+    <item>
+      <title>Vernon Subutex</title>
+      <link>https://simonnet.me/lectures/subutex/</link>
+      <description>&lt;p&gt;Qui est Vernon Subutex ?&lt;/p&gt;
+&lt;p&gt;Une légende urbaine.&lt;/p&gt;
+&lt;p&gt;Un ange déchu.&lt;/p&gt;
+&lt;p&gt;Un disparu qui ne cesse de ressurgir.&lt;/p&gt;
+&lt;p&gt;Le détenteur d&#39;un secret.&lt;/p&gt;
+&lt;p&gt;Le dernier témoin d&#39;un monde révolu.&lt;/p&gt;
+&lt;p&gt;L&#39;ultime visage de notre comédie inhumaine.&lt;/p&gt;
+&lt;p&gt;Notre fantôme à tous.&lt;/p&gt;
+</description>
+      <pubDate>Tue, 06 Aug 2024 02:00:00 GMT</pubDate>
+      <dc:creator>Jean-Philippe Simonnet</dc:creator>
+      <guid>https://simonnet.me/lectures/subutex/</guid>
+    </item>
+    <item>
+      <title>La délicatesse </title>
+      <link>https://simonnet.me/lectures/delicatesse/</link>
+      <description>&lt;p&gt;&lt;em&gt;« François pensa : si elle commande un déca, je me lève et je m’en vais. C’est la boisson la moins conviviale qui soit. Un thé, ce n’est guère mieux. On sent qu’on va passer des dimanches après-midi à regarder la télévision. Ou pire : chez les beaux-parents. Finalement, il se dit qu’un jus ça serait bien. Oui, un jus, c’est sympathique. C’est convivial et pas trop agressif. On sent la fille douce et équilibrée. Mais quel jus ? Mieux vaut esquiver les grands classiques : évitons la pomme ou l’orange, trop vu. Il faut être un tout petit peu original, sans être toutefois excentrique. La papaye ou la goyave, ça fait peur. Le jus d’abricot, ça serait parfait. Si elle choisit ça, je l’épouse…
+– Je vais prendre un jus… Un jus d’abricot, je crois, répondit Nathalie.
+Il la regarda comme si elle était une effraction de la réalité. »&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;La délicatesse a obtenu dix prix littéraires et a été traduit dans plus de quinze langues.&lt;/p&gt;
+</description>
+      <pubDate>Tue, 06 Aug 2024 02:00:00 GMT</pubDate>
+      <dc:creator>Jean-Philippe Simonnet</dc:creator>
+      <guid>https://simonnet.me/lectures/delicatesse/</guid>
+    </item>
+    <item>
+      <title>Exposition : Iris van Herpen</title>
+      <link>https://simonnet.me/photos/2024-Herpen/</link>
+      <description>&lt;h1&gt;Exposition : Iris van Herpen&lt;/h1&gt;
+&lt;p&gt;Iris van Herpen est une créatrice de mode remarquable qui associe la mode et la technologie dans ses créations novatrices et visionnaires. Elle utilise des techniques avancées comme l&#39;impression 3D, le laser-cutting, ou la robotique pour créer des vêtements qui sont de véritables œuvres d&#39;art.&lt;/p&gt;
+&lt;p&gt;Elle a exposé ses créations dans de nombreux musées prestigieux dans le monde entier et elle a habillé des personnalités comme Beyoncé, Lady Gaga, ou Cate Blanchett.&lt;/p&gt;
+&lt;h2&gt;Musée des Arts Décoratifs : « Iris van Herpen. Sculpting the Senses »&lt;/h2&gt;
+&lt;div style=&quot;height: 800px;&quot;&gt;
+  &lt;iframe src=&quot;https://www.playbook.com/e/oxymore/Bhwj2aBNaPvVwkVEG1pdYtK2?theme=gallery&quot; title=&quot;Iris van Herpen. Sculpting the Senses&quot; sandbox=&quot;allow-same-origin allow-scripts&quot; frameborder=&quot;0&quot; width=&quot;100%&quot; height=&quot;100%&quot;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.playbook.com/s/oxymore/UChLhxS45breRhQzqUWzJ1M8&quot;&gt;Voir la galerie sur Playbook&lt;/a&gt;&lt;/p&gt;
+</description>
+      <pubDate>Sun, 25 Feb 2024 01:00:00 GMT</pubDate>
+      <dc:creator>Jean-Philippe Simonnet</dc:creator>
+      <guid>https://simonnet.me/photos/2024-Herpen/</guid>
+    </item>
+    <item>
+      <title>2024 - Mes test d&#39;IA générative en images</title>
+      <link>https://simonnet.me/photos/2024-IA/</link>
+      <description>&lt;h1&gt;Mes test d&#39;IA générative en images&lt;/h1&gt;
+&lt;p&gt;Quelques exemples de test d’image générative début 2024&lt;/p&gt;
+&lt;h2&gt;Dessins d&#39;archi&lt;/h2&gt;
+&lt;div style=&quot;height: 600px;&quot;&gt;
+  &lt;iframe src=&quot;https://www.playbook.com/e/oxymore/JEiQ9gv7TUAaHjPyEPA1UB1H?theme=gallery&quot; title=&quot;IA - dessins d’archi&quot; sandbox=&quot;allow-same-origin allow-scripts&quot; frameborder=&quot;0&quot; width=&quot;100%&quot; height=&quot;100%&quot;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;h2&gt;Mode a travers les âges&lt;/h2&gt;
+&lt;div style=&quot;height: 600px;&quot;&gt;
+  &lt;iframe src=&quot;https://www.playbook.com/e/oxymore/Z3zy8PKLbfLfM8qthTFWobFk?theme=gallery&quot; title=&quot;IA - mode&quot; sandbox=&quot;allow-same-origin allow-scripts&quot; frameborder=&quot;0&quot; width=&quot;100%&quot; height=&quot;100%&quot;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;h2&gt;Quelques skylines&lt;/h2&gt;
+&lt;div style=&quot;height: 600px;&quot;&gt;
+  &lt;iframe src=&quot;https://www.playbook.com/e/oxymore/nc94YsymqE6xdQBkFyahui7P?theme=gallery&quot; title=&quot;IA - skyline&quot; sandbox=&quot;allow-same-origin allow-scripts&quot; frameborder=&quot;0&quot; width=&quot;100%&quot; height=&quot;100%&quot;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;h2&gt;L&#39;espace&lt;/h2&gt;
+&lt;div style=&quot;height: 600px;&quot;&gt;
+  &lt;iframe src=&quot;https://www.playbook.com/e/oxymore/L37Y3ydgyrRLtMtEpGqfraSM?theme=gallery&quot; title=&quot;IA - Space poster&quot; sandbox=&quot;allow-same-origin allow-scripts&quot; frameborder=&quot;0&quot; width=&quot;100%&quot; height=&quot;100%&quot;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;h2&gt;Tests de prompts divers&lt;/h2&gt;
+&lt;div style=&quot;height: 600px;&quot;&gt;
+  &lt;iframe src=&quot;https://www.playbook.com/e/oxymore/hhmM7bgjPhJdR9tdiedGrUyQ?theme=gallery&quot; title=&quot;IA - Prompts&quot; sandbox=&quot;allow-same-origin allow-scripts&quot; frameborder=&quot;0&quot; width=&quot;100%&quot; height=&quot;100%&quot;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;h2&gt;IA - Ukiyo-e&lt;/h2&gt;
+&lt;p&gt;des images inspirés de 3 haïkus :&lt;/p&gt;
+&lt;div class=&quot;container&quot;&gt;
+  &lt;div class=&quot;row&quot;&gt;
+&lt;div class=&quot;col&quot;&gt;
+&lt;poesie&gt;
+Sous la pluie d&#39;été
+Raccourcissent
+Les pattes du héron
+&lt;/poesie&gt;
+{Basho}
+&lt;/div&gt;
+&lt;div class=&quot;col&quot;&gt;
+&lt;poesie&gt;
+Aux poils de la chenille
+On devine que souffle
+La brise matinale.
+&lt;/poesie&gt;
+{Yosa Buson}
+&lt;/div&gt;
+&lt;div class=&quot;col&quot;&gt;
+&lt;poesie&gt;
+Rien ne dit
+dans le chant de la cigale
+qu’elle est près de sa fin
+&lt;/poesie&gt;
+{Basho}
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div style=&quot;height: 900px;&quot;&gt; &lt;iframe src=&quot;https://www.playbook.com/e/oxymore/CTywWbDRDQ5VUvNqQhubcKDv?theme=gallery&quot; &quot;=&quot;&quot; title=&quot;AI - ukiyo-e - Playbook.com&quot; sandbox=&quot;allow-same-origin allow-scripts&quot; frameborder=&quot;0&quot; width=&quot;100%&quot; height=&quot;100%&quot;&gt;&lt;/iframe&gt; &lt;/div&gt;
+&lt;h2&gt;IA abstract&lt;/h2&gt;
+&lt;div style=&quot;height: 900px;&quot;&gt; &lt;iframe src=&quot;https://www.playbook.com/e/oxymore/rSDoKhRdKxdmL5egcZFDcabG?theme=gallery&quot; &quot;=&quot;&quot; title=&quot;IA - abstract - Playbook.com&quot; sandbox=&quot;allow-same-origin allow-scripts&quot; frameborder=&quot;0&quot; width=&quot;100%&quot; height=&quot;100%&quot;&gt;&lt;/iframe&gt; &lt;/div&gt;
+&lt;h2&gt;Chats noir&lt;/h2&gt;
+&lt;p&gt;Il est difficile d&#39;attraper un chat noir dans une pièce sombre, surtout lorsqu&#39;il n&#39;y est pas.&lt;/p&gt;
+&lt;div style=&quot;height: 900px;&quot;&gt;
+  &lt;iframe src=&quot;https://www.playbook.com/e/oxymore/bb3opzrVFT2Tz8s93wbWL9HD?theme=gallery&quot; title=&quot;IA - Chats noir - Playbook.com&quot; sandbox=&quot;allow-same-origin allow-scripts&quot; frameborder=&quot;0&quot; width=&quot;100%&quot; height=&quot;100%&quot;&gt;&lt;/iframe&gt;
+&lt;/div&gt;</description>
+      <pubDate>Mon, 01 Jan 2024 01:00:00 GMT</pubDate>
+      <dc:creator>Jean-Philippe Simonnet</dc:creator>
+      <guid>https://simonnet.me/photos/2024-IA/</guid>
+    </item>
+    <item>
+      <title>2023 - Tokyo - Japon</title>
+      <link>https://simonnet.me/photos/2024-tokyo/</link>
+      <description>&lt;h1&gt;2023 - Tokyo - Japon&lt;/h1&gt;
+&lt;p&gt;Petit voyage au Japon et en particulier à Tokyo.&lt;/p&gt;
+&lt;div style=&quot;height: 800px;&quot;&gt;
+  &lt;iframe src=&quot;https://www.playbook.com/e/oxymore/pyUJnnBZVJ9oLcVD6x2n2fre?theme=gallery&quot; title=&quot;Japon - Playbook.com&quot; sandbox=&quot;allow-same-origin allow-scripts&quot; frameborder=&quot;0&quot; width=&quot;100%&quot; height=&quot;100%&quot;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.playbook.com/s/oxymore/VLnTX9Vriv1GNg4b32vgTtSj&quot;&gt;Voir la galerie sur Playbook&lt;/a&gt;&lt;/p&gt;
+</description>
+      <pubDate>Sat, 25 Feb 2023 01:00:00 GMT</pubDate>
+      <dc:creator>Jean-Philippe Simonnet</dc:creator>
+      <guid>https://simonnet.me/photos/2024-tokyo/</guid>
+    </item>
+    <item>
+      <title>2020 - #WAday : Lier performance et écologie</title>
+      <link>https://simonnet.me/interventions/2020-waday/</link>
+      <description>&lt;h1&gt;2020 - #WAday : Lier performance et écologie&lt;/h1&gt;
+&lt;hr&gt;
+&lt;div class=&quot;float-end ms-5&quot;&gt; 
+&lt;p&gt;&lt;img src=&quot;https://simonnet.me/assets/images/waday.jpg&quot; alt=&quot;WADAYS&quot;&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;fw-bold&quot;&gt; &lt;p&gt;#WAday : événement annuel de Webassoc. Journée de conférences pour les ONG et associations humanitaires, de solidarité et d’environnement, organisée par des professionnels du web résolument bénévoles.&lt;/p&gt;
+&lt;p&gt;
+Présentation globale de la pollution liée au numérique : activités et impacts. Focus sur l’éco-conception des sites web avec des recommandations concrètes.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Présentation faite avec Christophe Clouzeau, ancien patron d’agence digitale sensible à l’écologie, il communique depuis 2012 sur l’impact environnemental et sociétal du numérique à travers blogs, webzines et conférences. &lt;a href=&quot;https://twitter.com/Christophe_Cl&quot;&gt;@Christophe_Cl&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://simonnet.me/assets/pdf/2020-waday.pdf&quot;&gt;Télécharger la présentation&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;PS : articles et services pour votre information, pas de sponsoring pour ces liens&lt;/em&gt;&lt;/p&gt;
+&lt;h3&gt;Le numérique et l’éco-conception&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://institutnr.org/institut&quot;&gt;INR, Institut du Numérique Responsable&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.greenit.fr/&quot;&gt;GreenIT.fr communauté des acteurs du numérique responsable&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://collectif.greenit.fr/ecoconception-web/&quot;&gt;Référentiel d’écoconception web&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.24joursdeweb.fr/2018/impact-ecologique-du-numerique/#commentaires&quot;&gt;Impact écologique du numérique : que faire en tant que professionnel du web ?&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;2019 - Empreinte environnementale du numérique mondial&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.greenit.fr/2019/10/22/12982/&quot;&gt;Article de présentation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.greenit.fr/empreinte-environnementale-du-numerique-mondial/&quot;&gt;La fiche de l’étude pour la télécharger&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Une méthodologie pour mieux concevoir : le design thinking et le design de service&lt;/h3&gt;
+&lt;p&gt;Le design thinking est un processus utilisé par les designers pour innover à partir d’usages existants ou à inventer.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.lecolededesign.com/actualites/deployer-systematiquement-le-design-en-collectivite-olivier-garry-cgdd-3091&quot;&gt;Présentation par Olivier Garry : Déployer le design de manière systématique dans une collectivité&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://comment-faire.modernisation.gouv.fr/&quot;&gt;Plateforme &amp;quot;Comment Faire&amp;quot;&lt;/a&gt;&lt;br&gt;
+Ce site diffuse les méthodes collaboratives et créatives du design au sein des services pour leur donner les moyens de déployer par elles-mêmes leurs projets de modernisation.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.usabilis.com/quest-ce-que-le-design-thinking/&quot;&gt;Article d’Usabilis : Qu’est-ce que le Design Thinking ?&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Evaluer son site&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.ecoindex.fr/&quot;&gt;Ecoindex&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.ecometer.org/&quot;&gt;Ecometer (Ademe)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://greenspector.com/fr/&quot;&gt;Greenpector&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://gtmetrix.com/&quot;&gt;GT MEtrix&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://theshiftproject.org/carbonalyser-extension-navigateur/&quot;&gt;Carbonalyser (extension Firefox)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://stockage.univ-valenciennes.fr/MenetACVBAT20120704/acvbat/chap02/co/ch02_190_1-6-2.html&quot;&gt;Norme ISO 14062&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Redimensionner une image :&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://squoosh.app/&quot;&gt;https://squoosh.app/&lt;/a&gt; (reduit et redimensionne en meme temps&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.fotor.com&quot;&gt;https://www.fotor.com&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://pixlr.com/&quot;&gt;https://pixlr.com/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Logiciels de compression en ligne :&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://compressor.io/&quot;&gt;https://compressor.io/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://tinyjpg.com/&quot;&gt;https://tinyjpg.com/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://compressjpeg.com/fr/&quot;&gt;https://compressjpeg.com/fr/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.iloveimg.com/fr&quot;&gt;https://www.iloveimg.com/fr&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.websiteplanet.com/fr/webtools/imagecompressor/&quot;&gt;https://www.websiteplanet.com/fr/we...&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://imagecompressor.com/fr/&quot;&gt;https://imagecompressor.com/fr/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.img2go.com/fr/&quot;&gt;https://www.img2go.com/fr/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://imageresizer.com/compress-images&quot;&gt;https://imageresizer.com/compress-images&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Compresseur automatique et pour CMS&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.gumlet.com/&quot;&gt;Gumlet : service de compression automatisé des images de votre site&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://kinsta.com/fr/blog/optimiser-les-images-pour-le-web/&quot;&gt;Article d’un hébergeur wordpress qui présente des solutions pour vos gestiosn d’images sur wordpress&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Contribuer&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.ecosia.org/&quot;&gt;Ecosia : moteur de recherche qui plante des arbres&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;A suivre&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;The Shift Project, dont le rapport sur la sobriété numérique : &lt;a href=&quot;https://theshiftproject.org/&quot;&gt;https://theshiftproject.org/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Fing - Fédération Internet Nouvelle Génération : &lt;a href=&quot;http://fing.org/&quot;&gt;http://fing.org/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Agit - Alliance Green IT : &lt;a href=&quot;https://alliancegreenit.org/&quot;&gt;https://alliancegreenit.org/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;INR - Institut du Numérique Responsable : &lt;a href=&quot;https://institutnr.org&quot;&gt;https://institutnr.org&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;HOP - Halte à l’Obsolescence Programmée : &lt;a href=&quot;https://www.halteobsolescence.org/&quot;&gt;https://www.halteobsolescence.org/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;GreenIT.fr : &lt;a href=&quot;https://www.greenit.fr/&quot;&gt;https://www.greenit.fr/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Opquast, dont la checklist GreenIT : &lt;a href=&quot;https://checklists.opquast.com/fr/&quot;&gt;https://checklists.opquast.com/fr/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Ademe : &lt;a href=&quot;https://www.ademe.fr/&quot;&gt;https://www.ademe.fr/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;La Fresque du Climat pour les Professionnels du Numérique : &lt;a href=&quot;https://fresqueduclimat.org/&quot;&gt;https://fresqueduclimat.org/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      <pubDate>Tue, 28 Jan 2020 01:00:00 GMT</pubDate>
+      <dc:creator>Jean-Philippe Simonnet</dc:creator>
+      <guid>https://simonnet.me/interventions/2020-waday/</guid>
+    </item>
+    <item>
+      <title>La Défense</title>
+      <link>https://simonnet.me/photos/2020-ladefense/</link>
+      <description>&lt;h1&gt;La Défense&lt;/h1&gt;
+&lt;p&gt;Voila quelques années que je travaille à la Défense.&lt;/p&gt;
+&lt;p&gt;J’aime bien cette vue que l’on peut avoir sur Paris, cet alignement de l’Arche de la Défense sur les artères Hausmannienne.&lt;/p&gt;
+&lt;div style=&quot;height: 800px; margin-bottom:2em&quot;&gt;
+&lt;iframe src=&quot;https://www.playbook.com/e/oxymore/qaELTbcQ2Q1vGg3qDKDn9rRW?theme=gallery&quot; title=&quot;La défense - Playbook.com&quot; sandbox=&quot;allow-same-origin allow-scripts&quot; frameborder=&quot;0&quot; width=&quot;100%&quot; height=&quot;100%&quot;&gt;&lt;/iframe&gt; &lt;/div&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.playbook.com/s/oxymore/hcVzxj6nuG9Nfm2nDkQR7uTg&quot;&gt;Voir la galerie sur Playbook&lt;/a&gt;&lt;/p&gt;
+</description>
+      <pubDate>Wed, 01 Jan 2020 01:00:00 GMT</pubDate>
+      <dc:creator>Jean-Philippe Simonnet</dc:creator>
+      <guid>https://simonnet.me/photos/2020-ladefense/</guid>
+    </item>
+    <item>
+      <title>2019 - Parisweb - Et si Tim avait toujours raison ?</title>
+      <link>https://simonnet.me/interventions/2019-parisweb/</link>
+      <description>&lt;h1&gt;2019 - Parisweb - Et si Tim avait toujours raison ?&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;L’avenir du web est celui de la publication !&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Et si pour ouvrir le web il fallait revenir à sa sémantique ? Revenir à la base du HTML ? Loin du big data et de l’intelligence artificielle, revenir à la question de la publication universelle décentralisée, refaire de l’hyperlien l’avenir du web : produire des documents avec un seul langage, le HTML et promouvoir la publication web pour produire de la connaissance partagée. Pour ouvrir le web, revenons aux sources.&lt;/p&gt;
+&lt;p&gt;Retour d’expérience sur une mise en place à grande échelle d’une diffusion de connaissance dans un web public et ouvert qui s’appuie sur la qualité web, la sémantique et l’empathie. Cette présentation contiendra des slides framboise assortis à mon polo.&lt;/p&gt;
+&lt;div style=&quot;padding:56.25% 0 0 0;position:relative;&quot;&gt;&lt;iframe src=&quot;https://player.vimeo.com/video/377176266&quot; style=&quot;position:absolute;top:0;left:0;width:100%;height:100%;&quot; frameborder=&quot;0&quot; allow=&quot;autoplay; fullscreen&quot; allowfullscreen=&quot;&quot; data-ready=&quot;true&quot;&gt;&lt;/iframe&gt;&lt;/div&gt;&lt;script src=&quot;https://player.vimeo.com/api/player.js&quot;&gt;&lt;/script&gt;
+&lt;p&gt;&lt;a href=&quot;https://vimeo.com/377176266&quot;&gt;Et si Tim avait toujours raison&amp;nbsp;? L’avenir du web est celui de la publication&amp;nbsp;!&lt;/a&gt; from &lt;a href=&quot;https://vimeo.com/parisweb&quot;&gt;Paris Web&lt;/a&gt; on &lt;a href=&quot;https://vimeo.com&quot;&gt;Vimeo&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Fri, 18 Oct 2019 02:00:00 GMT</pubDate>
+      <dc:creator>Jean-Philippe Simonnet</dc:creator>
+      <guid>https://simonnet.me/interventions/2019-parisweb/</guid>
+    </item>
+    <item>
+      <title>2019 - Webinaire DCANT #18 - L’écoconception web</title>
+      <link>https://simonnet.me/interventions/2019-dcant/</link>
+      <description>&lt;h1&gt;2019 - Webinaire DCANT #18 - L’écoconception web&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;Comment rendre le numérique plus responsable, en consommant moins de bande passante, moins de serveurs, moins d’électronique, moins d’énergie, tout en assurant une qualité de service optimale ?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Jean-Philippe Simonnet du commissariat général au développement durable (CGDD), au sein du ministère de la transition écologique et solidaire, vous fait découvrir l’éco-conception web, sujet encore peu connu mais qui prend de plus en plus d’ampleur, alors que le numérique est la 3e cause de consommation mondiale d’électricité.&lt;/p&gt;
+&lt;p&gt;Webinaire du 14 mars 2019 organisé par l’équipe du programme de développement concerté de l’administration numérique territoriale (DCANT) de la DINSIC et le centre national de la fonction publique territoriale (CNFPT).&lt;/p&gt;
+&lt;iframe frameborder=&quot;0&quot; width=&quot;100%&quot; height=&quot;450&quot; src=&quot;https://www.dailymotion.com/embed/video/x74yoj5&quot; allowfullscreen=&quot;&quot; allow=&quot;autoplay&quot;&gt;&lt;/iframe&gt;
+</description>
+      <pubDate>Thu, 14 Mar 2019 01:00:00 GMT</pubDate>
+      <dc:creator>Jean-Philippe Simonnet</dc:creator>
+      <guid>https://simonnet.me/interventions/2019-dcant/</guid>
+    </item>
+    <item>
+      <title>2017 - Accessibilité numérique : où en est-on ? webinar fffod</title>
+      <link>https://simonnet.me/interventions/2017-fffod/</link>
+      <description>&lt;h1&gt;2017 - Accessibilité numérique : où en est-on ? webinar fffod&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Quelle est la législation en vigueur ?&lt;/li&gt;
+&lt;li&gt;Quels sont les principaux mécanismes généraux mis en œuvre pour favoriser l’accessibilité numérique ?&lt;/li&gt;
+&lt;li&gt;Comment concevoir et développer de nouveaux systèmes numériques accessibles ?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;iframe src=&quot;https://www.slideshare.net/slideshow/embed_code/key/f78dg3gLyyHzr6&quot; width=&quot;595&quot; height=&quot;485&quot; frameborder=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; scrolling=&quot;no&quot; style=&quot;border:1px solid #CCC; border-width:1px; margin-bottom:35px; max-width: 100%;&quot; allowfullscreen=&quot;&quot;&gt; &lt;/iframe&gt;
+</description>
+      <pubDate>Tue, 28 Nov 2017 01:00:00 GMT</pubDate>
+      <dc:creator>Jean-Philippe Simonnet</dc:creator>
+      <guid>https://simonnet.me/interventions/2017-fffod/</guid>
+    </item>
+    <item>
+      <title>2017 - Rendre accessible l’information pour tous</title>
+      <link>https://simonnet.me/interventions/2017-inffo/</link>
+      <description>&lt;h1&gt;2017 - Rendre accessible l’information pour tous&lt;/h1&gt;
+&lt;h2&gt;Assises nationales de l’information sur la formation&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Intervention lors de l’atelier 4 pendant les Premières Assises nationales de l’information sur la formation : A l’ère des open et big data, quels enjeux pour nos métiers et nos pratiques ?&lt;/strong&gt;&lt;/p&gt;
+&lt;iframe src=&quot;https://www.slideshare.net/slideshow/embed_code/key/aQ9SvLWDRrhx8W&quot; width=&quot;595&quot; height=&quot;485&quot; frameborder=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; scrolling=&quot;no&quot; style=&quot;border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;&quot; allowfullscreen=&quot;&quot;&gt; &lt;/iframe&gt;
+</description>
+      <pubDate>Mon, 30 Jan 2017 01:00:00 GMT</pubDate>
+      <dc:creator>Jean-Philippe Simonnet</dc:creator>
+      <guid>https://simonnet.me/interventions/2017-inffo/</guid>
+    </item>
+    <item>
+      <title>2015 - Accessibilité numérique : où en est-on ? webinar fffod</title>
+      <link>https://simonnet.me/interventions/2015-fffod/</link>
+      <description>&lt;h1&gt;2015 - Accessibilité numérique : où en est-on ? webinar fffod&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;La loi ne règle pas tout. Alors que tout le monde s’accorde pour considérer que le numérique est une aide précieuse pour les personnes handicapées et que l’administration voudrait rendre obligatoires certaines démarches en ligne comme la déclaration d’impôts, la loi du 11 février 2005 (qui devait imposer l’accessibilité des lieux réels ou virtuels recevant du public) n’est toujours pas appliquée.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Les délais d’adaptation sont sans cesse repoussés et seulement, moins de 4% des sites Internet soumis à la loi avaient fait une déclaration de conformité au RGAA, le référentiel général d’accessibilité pour les administrations, selon une enquête de Braillenet de mars 2014.&lt;/p&gt;
+&lt;p&gt;Pour autant le référentiel s’est modernisé et nous venons de voir apparaître un e-label.
+Que faut-il en penser ?&lt;/p&gt;
+&lt;p&gt;La dernière proposition de projet de loi pour une république numérique va aussi changer la donne sur certains sujets comme, en particulier, la mobilité, les responsabilités et les contraintes.&lt;/p&gt;
+&lt;p&gt;A quoi peut-on s’attendre ?&lt;/p&gt;
+&lt;iframe src=&quot;https://fr.slideshare.net/slideshow/embed_code/key/G7zYj7VfEEVZgY&quot; width=&quot;668&quot; height=&quot;714&quot; frameborder=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; scrolling=&quot;no&quot; style=&quot;border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;&quot; allowfullscreen=&quot;&quot;&gt; &lt;/iframe&gt;
+</description>
+      <pubDate>Mon, 07 Dec 2015 01:00:00 GMT</pubDate>
+      <dc:creator>Jean-Philippe Simonnet</dc:creator>
+      <guid>https://simonnet.me/interventions/2015-fffod/</guid>
+    </item>
+    <item>
+      <title>2014 - Le café de Laetitia</title>
+      <link>https://simonnet.me/interventions/2014-cafe/</link>
+      <description>&lt;h1&gt;2014 - Le café de Laetitia&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;Interview Handichat Présenté par Laetitia Bernard sur l’accessibilité numérique&lt;/strong&gt;&lt;/p&gt;
+ &lt;iframe width=&quot;100%&quot; height=&quot;550&quot; src=&quot;https://www.youtube.com/embed/Rbh7341h1R4&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+</description>
+      <pubDate>Sun, 07 Dec 2014 01:00:00 GMT</pubDate>
+      <dc:creator>Jean-Philippe Simonnet</dc:creator>
+      <guid>https://simonnet.me/interventions/2014-cafe/</guid>
+    </item>
+    <item>
+      <title>2014 - Petits secrets entre amis : les acteurs du web doivent ils prêter serment ?</title>
+      <link>https://simonnet.me/interventions/2014-serment/</link>
+      <description>&lt;h1&gt;2014 - Petits secrets entre amis : les acteurs du web doivent ils prêter serment ?&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;17 octobre 2014 - Mini-conf Paris web&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;http://simonnet.me/serment/&quot;&gt;Voir le mini-site de présentation du serment&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Vidéo&lt;/h2&gt;
+&lt;iframe class=&quot;my-4&quot; src=&quot;https://player.vimeo.com/video/113939766&quot; width=&quot;100%&quot; height=&quot;475&quot; frameborder=&quot;0&quot; webkitallowfullscreen=&quot;&quot; mozallowfullscreen=&quot;&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;h2&gt;Résumé&lt;/h2&gt;
+&lt;p&gt;webmaster, chef de projets, développeurs, intégrateurs, administrateur réseau… Nous avons tous entre les mains des mots de passe de nos collègues, amis, responsables, voire de nos sociétés, certains de nos clients.&lt;/p&gt;
+&lt;p&gt;Pourtant combien d’entre nous ont une clause de confidentialité dans leurs contrats ? À l’heure de la tentation sécuritaire, de l’envie de légiférer des politiciens sur les droits et les devoirs des internautes, de la peur de ne pas savoir gérer nos identités numériques, que penser de ces mots de passe qui nous sont confiés du fait de notre compétence professionnelle ? Serons-nous, un jour, comme les médecins, avocats obligés de prêter serment ? Pourrons-nous invoquer la protection de nos sources, comme les journalistes, pour les données qui nous sont confiées ?&lt;/p&gt;
+&lt;h2&gt;Le serment du Beffroi de Montrouge&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Je fais le serment de remplir mes fonctions avec conscience, indépendance, et humanité.&lt;/p&gt;
+&lt;p&gt;Je m’engage à suivre les standards du web, de la qualité et de l’accessibilité pour que le web reste universel, neutre, libre et ouvert.&lt;/p&gt;
+&lt;p&gt;Je m’engage à respecter et protéger le secret dû aux données personnelles et à la vie privée dont j’aurai connaissance dans l’exécution de mon travail.&lt;/p&gt;
+&lt;p&gt;Je suis un travailleur du web, j’en suis fier,&lt;br&gt;
+et j’assumerai mon rôle avec dignité .&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Les slides de la présentation&lt;/h2&gt;
+&lt;iframe class=&quot;my-4&quot; src=&quot;https://www.slideshare.net/slideshow/embed_code/40375243?rel=0&quot; width=&quot;597&quot; height=&quot;486&quot; frameborder=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; scrolling=&quot;no&quot; style=&quot;border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;&quot; allowfullscreen=&quot;&quot;&gt; &lt;/iframe&gt;
+&lt;hr&gt;
+&lt;h2&gt;Failles de sécurités&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.silicon.fr/5-mois-apres-bilan-faille-heartbleed-96634.html&quot;&gt;5 mois après : le bilan de la faille Heartbleed&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://fr.wikipedia.org/wiki/Zataz&quot;&gt;L’affaire Zataz&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://reflets.info/moi-kitetoa-ex-cybercriminel-associe-a-un-cyberminel-pour-linstant/&quot;&gt;Moi, Kitetoa, ex cybercriminel, associé à un cybercriminel (pour l’instant)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.maitre-eolas.fr/post/2014/02/07/NON,-on-ne-peut-pas-%C3%AAtre-condamn%C3%A9-pour-utiliser-Gougleu&quot;&gt;L’affaire Bluetouff ou : NON, on ne peut pas être condamné pour utiliser Gogleu&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2&gt;CNIL :&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.cnil.fr/documentation/deliberations/deliberation/delib/169/&quot;&gt;Norme simplifiée n° 46 : Délibération n°2005-002 du 13 janvier 2005 portant adoption d’une norme destinée à simplifier l’obligation de déclaration des traitements mis en œuvre par les organismes publics et privés pour la gestion de leurs personnels&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.cnil.fr/linstitution/actualite/article/article/protection-des-donnees-personnelles-au-travail-les-bonnes-pratiques/&quot;&gt;Protection des données personnelles au travail : les bonnes pratiques&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.cnil.fr/documentation/fiches-pratiques/fiche/article/codes-de-deontologie/&quot;&gt;Les codes de déontologie pour la prospection par voie électronique&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.cnil.fr/documentation/fiches-pratiques/fiche/article/lacces-a-la-messagerie-dun-salarie-en-son-absence/&quot;&gt;L’accès à la messagerie d’un salarié en son absence&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006070719&amp;amp;idArticle=LEGIARTI000006417955&amp;amp;dateTexte=&amp;amp;categorieLien=cid&quot;&gt;Legifrance Article 226-16 - traitements de données à caractère personnel&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Ethique, déontologie&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;http://scinfolex.com/2014/01/24/comment-code-is-law-sest-renverse-en-law-is-code/&quot;&gt;Comment « Code Is Law » s’est renversé en « Law Is Code »&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.lagazettedescommunes.com/1723/deontologie-des-fonctionnaires-des-obligations-en-evolution-introduction/&quot;&gt;Déontologie des fonctionnaires : des obligations en évolution – Introduction&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Serment&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.laposterecrute.fr/a-la-une-detail/170/le-serment-professionnel-des-postiers.html&quot;&gt;Le serment professionnel des postiers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.journaldunet.com/management/pratique/vie-professionnelle/4625/le-secret-professionnel.html&quot;&gt;Le secret professionnel&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://fr.wikipedia.org/wiki/Liste_de_serments&quot;&gt;Liste de serments&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+      <pubDate>Fri, 17 Oct 2014 02:00:00 GMT</pubDate>
+      <dc:creator>Jean-Philippe Simonnet</dc:creator>
+      <guid>https://simonnet.me/interventions/2014-serment/</guid>
+    </item>
+    <item>
+      <title>2012 - Accessibilité numérique et formation</title>
+      <link>https://simonnet.me/interventions/2012-formation/</link>
+      <description>&lt;h1&gt;2012 - Accessibilité numérique et formation&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;Demi-journée fffod avec Centre Inffo, le 19 juin 2012 matin à la Cité des Sciences&lt;/strong&gt;&lt;/p&gt;
+&lt;h3&gt;Le Référentiel général d’accessibilité pour les administrations (RGAA), un outil précieux pour progresser tous ensemble&lt;/h3&gt;
+&lt;p&gt;par Jean-Philippe Simonnet&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://simonnet.me/assets/pdf/2012-formation.pdf&quot;&gt;Télécharger la présentation&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;iframe width=&quot;853&quot; height=&quot;480&quot; src=&quot;https://www.youtube-nocookie.com/embed/videoseries?list=PLA9494D75417592A9&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;hr&gt;
+&lt;h3&gt;Revue de presse&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.actualite-de-la-formation.fr/foad/spip.php?page=article&amp;amp;id_article=1061&quot;&gt;Le Quotidien de la formation : Lectora, un premier programme e-learning dédié au handicap chez Thales&lt;/a&gt; par Benjamin d’Alguerre&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.debatformation.fr/tendance-formation/pour-un-meilleur-acces-des-handicapes-a-internet&quot;&gt;debatformation : Pour un meilleur accès des handicapés à Internet&lt;/a&gt; par Philippe Tranchart&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.actualite-de-la-formation.fr/foad/spip.php?page=article&amp;amp;id_article=1062&quot;&gt;Le quotidien de la formation : « Au-delà du handicap, l’accessibilité profite à tous »&lt;/a&gt; par Benjamin d’Alguerre&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.actualite-de-la-formation.fr/foad/spip.php?page=article&amp;amp;id_article=1063&quot;&gt;« La loi du 11 février 2005 sur l’accessibilité numérique n’est, aujourd’hui, pas appliquée par les organismes de formation publics »&lt;/a&gt;par Sonia Le Louarn, FFFOD&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Accessibilité :&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Site de braillenet&lt;/strong&gt;  : &lt;a href=&quot;http://www.braillenet.org/&quot;&gt;http://www.braillenet.org/&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Site de l’institut de l’accessibilité numérique&lt;/strong&gt; : &lt;a href=&quot;http://www.accessibilite-numerique.org/&quot;&gt;http://www.accessibilite-numerique.org/&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Wikipedia - Accessibilité du web&lt;/strong&gt; : &lt;a href=&quot;http://fr.wikipedia.org/wiki/Accessibilit%C3%A9_du_web&quot;&gt;http://fr.wikipedia.org/wiki/Access...&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Wikipedia - Accessibilité numérique&lt;/strong&gt; : &lt;a href=&quot;http://fr.wikipedia.org/wiki/Accessibilit%C3%A9_num%C3%A9rique&quot;&gt;http://fr.wikipedia.org/wiki/Access...&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Site de ressources sur les standarts du web&lt;/strong&gt; : &lt;a href=&quot;http://openweb.eu.org/accessibilite&quot;&gt;http://openweb.eu.org/accessibilite&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Le blog de Témésis&lt;/strong&gt; : &lt;a href=&quot;http://blog.temesis.com/&quot;&gt;http://blog.temesis.com/&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Gestion de projet web&lt;/strong&gt; : &lt;a href=&quot;http://www.accede-web.com/fr/&quot;&gt;http://www.accede-web.com/fr/&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Planète Accessibilité&lt;/strong&gt; : &lt;a href=&quot;http://planete-accessibilite.com/&quot;&gt;http://planete-accessibilite.com/&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Le Référentiel général d’accessibilité pour les administrations (RGAA),&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Site officiel du RGAA&lt;/strong&gt; : &lt;a href=&quot;http://references.modernisation.gouv.fr/rgaa-accessibilite&quot;&gt;http://references.modernisation.gou...&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Site non officiel sur le RGAA&lt;/strong&gt; :&lt;br&gt;
+Le site rgaa.net présente sous une forme navigable et accessible les 187 tests de l’annexe 2 du RGAA (version 2.2, dernière version publiée)&lt;br&gt;
+&lt;a href=&quot;http://rgaa.net/&quot;&gt;http://rgaa.net/&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;L’académie de créteil&lt;/strong&gt; : L’accessibilité des services de communication publique en ligne&lt;br&gt;
+&lt;a href=&quot;http://www.ac-creteil.fr/accessibilite.html&quot;&gt;http://www.ac-creteil.fr/accessibil...&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;W3C - Braillenet&lt;/strong&gt;&lt;br&gt;
+Traduction française des Web Content Accessibility Guidelines (WCAG) 2.0 :&lt;br&gt;
+&lt;a href=&quot;http://www.w3.org/Translations/WCAG20-fr/&quot;&gt;http://www.w3.org/Translations/WCAG...&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Accessiweb&lt;/strong&gt; : &lt;a href=&quot;http://www.accessiweb.org/&quot;&gt;http://www.accessiweb.org/&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Outils de validation&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Opquast - Gestion de la qualité :&lt;/strong&gt; &lt;a href=&quot;http://www.opquast.com/&quot;&gt;http://www.opquast.com/&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Validateur d’accessibilité Ocawa&lt;/strong&gt; : &lt;a href=&quot;http://www.ocawa.com/fr/Accueil.htm&quot;&gt;http://www.ocawa.com/fr/Accueil.htm&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Accessibility first step&lt;/strong&gt; par Témésis :&lt;br&gt;
+ : &lt;a href=&quot;https://checklists.opquast.com/fr/accessibilityfirststep/&quot;&gt;https://checklists.opquast.com/fr/a...&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Accessibility 2nd step&lt;/strong&gt; par Témésis : &lt;a href=&quot;https://checklists.opquast.com/fr/accessibilitysecondstep&quot;&gt;https://checklists.opquast.com/fr/a...&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;MIPAW (Modèle d’Implémentation Progressive de l’Accessibilité du Web)&lt;/strong&gt; par Qelios et Braillenet : &lt;a href=&quot;http://www.slideshare.net/Qelios/mipaw-modle-dimplmentation-progressive-de-laccessibilit-du-web&quot;&gt;http://www.slideshare.net/Qelios/mi...&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;PDF accessibles&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;AcceDe PDF - La démarche accessibilité&lt;/strong&gt; : &lt;a href=&quot;http://www.pdf-accessible.com/fr/&quot;&gt;http://www.pdf-accessible.com/fr/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;La société Atalan&lt;/strong&gt; : &lt;a href=&quot;http://www.atalan.fr/&quot;&gt;http://www.atalan.fr/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Vidéos accessibles&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Le portail de référence sur le sous-titrage pour les sourds et malentendants&lt;/strong&gt;  : &lt;a href=&quot;http://www.medias-soustitres.com/&quot;&gt;http://www.medias-soustitres.com/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://simonnet.me/interventions/2012-formation/2010-Accessibilite-Comment-ameliorer-la-gestion-de-vos-productions-numeriques&quot;&gt;2010 - Accessibilité : Comment améliorer la gestion de vos productions numériques&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Conférence parisweb 2011&lt;/strong&gt; : Je veux un VRAI sous-titrage ! : &lt;a href=&quot;http://www.paris-web.fr/2011/conferences/je-veux-un-vrai-sous-titrage.php&quot;&gt;http://www.paris-web.fr/2011/confer...&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Audio-description&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Association française d’audiodescription (AFA)&lt;/strong&gt;  : &lt;a href=&quot;http://audiodescriptionfrance.wordpress.com/ethique/&quot;&gt;http://audiodescriptionfrance.wordp...&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      <pubDate>Tue, 19 Jun 2012 02:00:00 GMT</pubDate>
+      <dc:creator>Jean-Philippe Simonnet</dc:creator>
+      <guid>https://simonnet.me/interventions/2012-formation/</guid>
+    </item>
+    <item>
+      <title>2011 - L’accessibilité : un truc réservé aux riches ?</title>
+      <link>https://simonnet.me/interventions/2011-parisweb/</link>
+      <description>&lt;h1&gt;2011 - L’accessibilité : un truc réservé aux riches ?&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;13 octobre 2011 - Lightning talks Paris web&lt;/strong&gt;&lt;/p&gt;
+&lt;h2&gt;La vidéo&lt;/h2&gt;
+&lt;div class=&quot;my-5&quot; style=&quot;position:relative;padding-bottom:56.25%;height:0;overflow:hidden;&quot;&gt; &lt;iframe style=&quot;width:100%;height:100%;position:absolute;left:0px;top:0px;overflow:hidden&quot; frameborder=&quot;0&quot; type=&quot;text/html&quot; src=&quot;https://www.dailymotion.com/embed/video/xpqxvq&quot; width=&quot;100%&quot; height=&quot;100%&quot; allowfullscreen=&quot;&quot;&gt; &lt;/iframe&gt; &lt;/div&gt;
+&lt;h2&gt;La présentation&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://simonnet.me/assets/pdf/2011-parisweb.pdf&quot;&gt;Télécharger la présentation&lt;/a&gt;&lt;/p&gt;
+</description>
+      <pubDate>Thu, 13 Oct 2011 02:00:00 GMT</pubDate>
+      <dc:creator>Jean-Philippe Simonnet</dc:creator>
+      <guid>https://simonnet.me/interventions/2011-parisweb/</guid>
+    </item>
+    <item>
+      <title>2011 - Vidéo industrielle accessible sur le Web</title>
+      <link>https://simonnet.me/interventions/2011-video/</link>
+      <description>&lt;h1&gt;2011 - Vidéo industrielle accessible sur le Web&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;Temesis - Juin 2011&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Présentation du mémoire &amp;quot;Vidéo industrielle accessible sur le Web&amp;quot; de Jean-Philippe Simonnet dans le cadre de la formation longue d’expert accessibilité Temesis&lt;/p&gt;
+&lt;h2&gt;La vidéo de la présentation&lt;/h2&gt;
+&lt;div class=&quot;my-5&quot; style=&quot;position:relative;padding-bottom:56.25%;height:0;overflow:hidden;&quot;&gt; &lt;iframe style=&quot;width:100%;height:100%;position:absolute;left:0px;top:0px;overflow:hidden&quot; frameborder=&quot;0&quot; type=&quot;text/html&quot; src=&quot;https://www.dailymotion.com/embed/video/xllfgt&quot; width=&quot;100%&quot; height=&quot;100%&quot; allowfullscreen=&quot;&quot;&gt; &lt;/iframe&gt; &lt;/div&gt;
+&lt;h2&gt;La présentation&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://simonnet.me/assets/pdf/2011-video.pdf&quot;&gt;Télécharger la présentation&lt;/a&gt;&lt;/p&gt;
+</description>
+      <pubDate>Wed, 01 Jun 2011 02:00:00 GMT</pubDate>
+      <dc:creator>Jean-Philippe Simonnet</dc:creator>
+      <guid>https://simonnet.me/interventions/2011-video/</guid>
+    </item>
+    <item>
+      <title>2011 - W3Café - accessibilité : Vidéo web accessible, ça avance !?</title>
+      <link>https://simonnet.me/interventions/2011-w3c/</link>
+      <description>&lt;h1&gt;2011 - W3Café - accessibilité : Vidéo web accessible, ça avance !?&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;16 avril 2011 à Télécom ParisTech&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Qu’est ce que rendre une vidéo accessible avec WCAG 2.0 ? Comment la faire ? Avec quels outils et à quel coût ?&lt;/p&gt;
+&lt;p&gt;Autant de réponses auxquelles nous essayerons de répondre au cours de cet atelier tout en regardant du coin de l’oeil les players vidéo dit accessibles qui existent et la balise vidéo html 5 .&lt;/p&gt;
+&lt;h2&gt;La présentation&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;https://simonnet.me/assets/images/2011-w3c.jpg&quot; alt=&quot;Vidéo web accessible, ça avance !?&quot; title=&quot;Vidéo web accessible, ça avance !?&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://simonnet.me/assets/pdf/2011-w3c.pdf&quot;&gt;Télécharger la présentation&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;les sites de players html5&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;JW Player&lt;br&gt;
+&lt;a href=&quot;http://www.longtailvideo.com/players/jw-flv-player/&quot;&gt;http://www.longtailvideo.com/players/jw-flv-player/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Workshop’s accessible media player&lt;br&gt;
+&lt;a href=&quot;http://www.theworkshop.co.uk/video-player&quot;&gt;http://www.theworkshop.co.uk/video-player&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Acorn Media Player&lt;br&gt;
+&lt;a href=&quot;http://ghinda.net/acornmediaplayer/&quot;&gt;http://ghinda.net/acornmediaplayer/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Jcaps&lt;br&gt;
+&lt;a href=&quot;http://www.360innovate.co.uk/blog/2010/02/jcaps-making-html5-video-captions-easier-with-jquery-plugin/&quot;&gt;http://www.360innovate.co.uk/blog/2010/02/jcaps-making-html5-video-captions-easier-with-jquery-plugin/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Site internet : vid.ly&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;http://vid.ly&quot;&gt;http://vid.ly&lt;/a&gt;&lt;/p&gt;
+</description>
+      <pubDate>Sat, 16 Apr 2011 02:00:00 GMT</pubDate>
+      <dc:creator>Jean-Philippe Simonnet</dc:creator>
+      <guid>https://simonnet.me/interventions/2011-w3c/</guid>
+    </item>
+    <item>
+      <title>2010 - Processus d’accessibilité continue au Centre Inffo</title>
+      <link>https://simonnet.me/interventions/2010-inffo/</link>
+      <description>&lt;h1&gt;2010 - Processus d’accessibilité continue au Centre Inffo&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;Formation : enjeux et sensibilisation sur le handicap et l’accessibilité&lt;/strong&gt;&lt;/p&gt;
+&lt;h2&gt;Le document de formation&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;https://simonnet.me/assets/images/2010-inffo.jpg&quot; alt=&quot;Processus d’accessibilité continue au Centre Inffo&quot; title=&quot;Processus d’accessibilité continue au Centre Inffo&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://simonnet.me/assets/pdf/2010-inffo.pdf&quot;&gt;Télécharger la présentation&lt;/a&gt;&lt;/p&gt;
+</description>
+      <pubDate>Fri, 25 Jun 2010 02:00:00 GMT</pubDate>
+      <dc:creator>Jean-Philippe Simonnet</dc:creator>
+      <guid>https://simonnet.me/interventions/2010-inffo/</guid>
+    </item>
+    <item>
+      <title>2010 - Accessibilité : Comment améliorer la gestion de vos productions numériques</title>
+      <link>https://simonnet.me/interventions/2010-rao/</link>
+      <description>&lt;h1&gt;2010 - Accessibilité : Comment améliorer la gestion de vos productions numériques&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;14 juin 2010 - Les Premières Rencontres des Acteurs de l’Orientation&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Rendre les outils numériques accessibles à tous : une obligation légale applicable (RGAA). Comment intégrer l’accessibilité dans une démarche de qualité continue : mieux produire, réduire les coûts, former les personnels. Une approche qui relève en priorité du domaine du management et de la gestion de la production.&lt;/p&gt;
+&lt;h2&gt;Le document de formation&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;https://simonnet.me/assets/images/2010-rao.jpg&quot; alt=&quot;RAO&quot; title=&quot;RAO&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://simonnet.me/assets/pdf/2010-inffo.pdf&quot;&gt;Télécharger la présentation&lt;/a&gt;&lt;/p&gt;
+</description>
+      <pubDate>Mon, 14 Jun 2010 02:00:00 GMT</pubDate>
+      <dc:creator>Jean-Philippe Simonnet</dc:creator>
+      <guid>https://simonnet.me/interventions/2010-rao/</guid>
+    </item>
+    <item>
+      <title>Berlin, 1990</title>
+      <link>https://simonnet.me/photos/1990-berlin/</link>
+      <description>&lt;h1&gt;Berlin, 1990&lt;/h1&gt;
+&lt;p&gt;Quelques images de Berlin que j’ai visité a une époque étonnante, en1990.&lt;/p&gt;
+&lt;p&gt;Le mur de Berlin était tombé quelques mois auparavant, on pouvait alors aller en Allemagne de l’Est.&lt;/p&gt;
+&lt;p&gt;J’accompagnais un photographe japonais dans ma 1er vie d’assistant photo : Sanjiro Minamikawa, et nous avions réalisé un reportage à Berlin mais aussi aux alentours.&lt;/p&gt;
+&lt;div style=&quot;height: 800px; margin-bottom:2em&quot;&gt;
+  &lt;iframe src=&quot;https://www.playbook.com/e/oxymore/AgjFV5YPVBcs1jQZp6nSMRrd?theme=gallery&quot; title=&quot;Berlin - Playbook.com&quot; sandbox=&quot;allow-same-origin allow-scripts&quot; frameborder=&quot;0&quot; width=&quot;100%&quot; height=&quot;100%&quot;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.playbook.com/s/oxymore/JBRVgYXeBmL33j9YvfoKspSp&quot;&gt;Voir la galerie sur Playbook&lt;/a&gt;&lt;/p&gt;
+</description>
+      <pubDate>Fri, 01 Jun 1990 02:00:00 GMT</pubDate>
+      <dc:creator>Jean-Philippe Simonnet</dc:creator>
+      <guid>https://simonnet.me/photos/1990-berlin/</guid>
+    </item>
+    <item>
+      <title>New York City depuis 1988</title>
+      <link>https://simonnet.me/photos/1988-nyc/</link>
+      <description>&lt;h1&gt;New York City depuis 1988&lt;/h1&gt;
+&lt;p&gt;J&#39;ai toujours aimé NYC, depuis ma 1ere visite en 1988.&lt;/p&gt;
+&lt;p&gt;j&#39;y suis retourné plusieurs fois et j&#39;aime y visiter quelques amis qui s&#39;y sont installés.&lt;/p&gt;
+&lt;p&gt;J&#39;y apprécie ce coté de ville qui ne dort jamais, ou l&#39;on y trouve tout, culturellement, et ce désordre des grandes villes ou tous se côtoient.&lt;/p&gt;
+&lt;p&gt;Et puis pour un parisien, NYC est étonnamment accueillante ...&lt;/p&gt;
+&lt;div style=&quot;height: 800px;&quot;&gt;
+  &lt;iframe src=&quot;https://www.playbook.com/e/oxymore/ga5LnY4WH6x4yWovk5dUYPF4?theme=gallery&quot; title=&quot;New York City - Playbook.com&quot; sandbox=&quot;allow-same-origin allow-scripts&quot; frameborder=&quot;0&quot; width=&quot;100%&quot; height=&quot;100%&quot;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.playbook.com/s/oxymore/yAiM87Jjz1Pfuf8UgKq5cVrr&quot;&gt;Voir la galerie sur Playbook&lt;/a&gt;&lt;/p&gt;
+</description>
+      <pubDate>Sat, 02 Jul 1988 02:00:00 GMT</pubDate>
+      <dc:creator>Jean-Philippe Simonnet</dc:creator>
+      <guid>https://simonnet.me/photos/1988-nyc/</guid>
+    </item>
+    <item>
+      <title>Plasse Le Caisne</title>
+      <link>https://simonnet.me/photos/2020-plasselecaisne/</link>
+      <description>&lt;h1&gt;Plasse Le Caisne&lt;/h1&gt;
+&lt;p&gt;Adolescent, j’habitais à Houx, en Eure et Loir, et mon voisin était un tisserand.
+Il avait un métier à tisser immense et réalisait des toiles de plusieurs mètres de long.
+Mais surtout il a connu d’immenses artistes contemporains et a adapté leurs peintures en toiles tissées.
+Il aimait nous raconter sa vie et les gens qu’il avait rencontré.
+Sa femme l’accompagnait dans ce travail. En 1989, j’ai suivi la réalisation d’une toile de bout en bout en faisant des photos et un petit fascicule (à la faveur d’un devoir d’anglais).&lt;/p&gt;
+&lt;p&gt;Voila les quelques photos que j’ai faites d’eux : Jacques et Bilou Plasse le Caisne&lt;/p&gt;
+&lt;div style=&quot;height: 800px; margin-bottom:2em&quot;&gt;
+  &lt;iframe src=&quot;https://www.playbook.com/e/oxymore/vs6gt1AgY7ZhSTPkHuaQVZiY?theme=gallery&quot; title=&quot;Plasse Le Caisne - Playbook.com&quot; sandbox=&quot;allow-same-origin allow-scripts&quot; frameborder=&quot;0&quot; width=&quot;100%&quot; height=&quot;100%&quot;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.playbook.com/s/oxymore/Uf6w52mgk98kHfbMhiXHZWpD&quot;&gt;Voir la galerie sur Playbook&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://fr.wikipedia.org/wiki/Atelier_Plasse_Le_Caisne&quot;&gt;A lire son histoire extaordinaire sur wikipédia&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      <pubDate>Wed, 01 Jan 1986 01:00:00 GMT</pubDate>
+      <dc:creator>Jean-Philippe Simonnet</dc:creator>
+      <guid>https://simonnet.me/photos/2020-plasselecaisne/</guid>
+    </item>
+  </channel>
+</rss>

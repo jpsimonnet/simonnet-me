@@ -8,17 +8,15 @@
     "search": "npx pagefind --source public"
   },
   "devDependencies": {
-    "pagefind": "^1.0.0"
+    "@11ty/eleventy": "^3.0.0",
+    "pagefind": "^1.3.0"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "@11ty/eleventy": "^3.0.0",
-    "pagefind": "^1.3.0"
-  },
   "dependencies": {
     "@11ty/eleventy-img": "^6.0.2",
+    "@11ty/eleventy-plugin-rss": "^2.0.4",
     "@notionhq/client": "^3.1.3",
     "a-sync-waterfall": "^1.0.1",
     "acorn": "^8.14.1",
