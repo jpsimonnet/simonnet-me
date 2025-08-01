@@ -6,9 +6,9 @@ date: 2025-01-01
 name : JP Simonnet
 ---
 
-# Qui suis je ?
+## Qui suis je ?
 
-## Jean-Philippe Simonnet
+### Jean-Philippe Simonnet
 
 {% imageResponsive "src/assets/images/jp.jpg", "Jean-Philippe", "right", [500, 500], ["webp", "jpeg"], "Jean-Philippe Simonnet en 2025" %}
 

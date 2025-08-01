@@ -14,7 +14,7 @@ eleventyNavigation:
   hideInMainNav: true
 ---
 
-# 2012 - Accessibilité numérique et formation
+## 2012 - Accessibilité numérique et formation
 
 **Demi-journée fffod avec Centre Inffo, le 19 juin 2012 matin à la Cité des Sciences** 
 

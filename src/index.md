@@ -10,14 +10,14 @@ pagination:
 
 ---
 
-# Bienvenue sur mon site
+## Bienvenue sur mon site
 
      <div class="jumbotron my-3 p-4">
         <div class="container-fluid py-2">
            <img class="rounded float-end img-thumbnail" src="/assets/images/jp.jpg" type="image/svg+xml" width="350" height="350" alt="Bienvenue sur mon site">
 
 
-<h2>Jean-Philippe Simonnet</h2>
+### Jean-Philippe Simonnet
 <p class="col-md-10 fs-5 mb-0 pt-2">Je suis actuellement Chargé de mission 'hospitalité numérique' à la DNUM - Usages Numériques et Innovation - au ministère de l’Aménagement du territoire et de la Décentralisation et le ministère de la Transition écologique, de la Biodiversité, de la Forêt, de la Mer et de la Pêche.</p><p class="col-md-10 fs-5 mb-0 pt-2">Je suis également expert accessibilité depuis 2011.</p>
 
       <div class="my-3">
@@ -33,22 +33,22 @@ pagination:
       </div>
 <hr>
 <section aria-labelledby="titre-actualite" class="actualite-a-la-une my-5 container">
-  <h2 id="titre-actualite" class=" mb-3">À la une </h2>{% if actualitePage and actualitePage.length > 0 %}
-    <div class="row">{% for item in actualitePage %}<div class="col-lg-4 col-sm-6 mb-3"><div class="card shadow-sm h-100">{% if item.image %}<img src="{{ item.image }}" alt="Illustration de l’article '{{ item.title }}'" class="card-img-top">{% endif %}<div class="card-body"><h3 class="card-title"><a href="{{ item.url }}" target="_blank" rel="noopener noreferrer" title="{{ item.title }} - (nouvelle fenêtre)" class="stretched-link">{{ item.title }}</a></h3>{% if item.summary %}<p class="card-text">{{ item.summary }}</p>{% endif %}<p class="card-text fw-bold">Publié le {{ item.created | formatDateFr }}</p></div></div></div>{% endfor %}</div>{% else %}<p>Aucune actualité à la une pour le moment.</p>{% endif %}
+  <h3 id="titre-actualite" class=" mb-3">À la une </h3>{% if actualitePage and actualitePage.length > 0 %}
+    <div class="row">{% for item in actualitePage %}<div class="col-lg-4 col-sm-6 mb-3"><div class="card shadow-sm h-100">{% if item.image %}<img src="{{ item.image }}" alt="Illustration de l’article '{{ item.title }}'" class="card-img-top">{% endif %}<div class="card-body"><h4 class="card-title"><a href="{{ item.url }}" target="_blank" rel="noopener noreferrer" title="{{ item.title }} - (nouvelle fenêtre)" class="stretched-link">{{ item.title }}</a></h4>{% if item.summary %}<p class="card-text">{{ item.summary }}</p>{% endif %}<p class="card-text fw-bold">Publié le {{ item.created | formatDateFr }}</p></div></div></div>{% endfor %}</div>{% else %}<p>Aucune actualité à la une pour le moment.</p>{% endif %}
 
  <p><a class="btn btn-outline-secondary mt-2" role="button" href="/a-la-une/0/">Toutes les actualité à la une</a></p>
 </section>
 
 <hr>
 <section aria-labelledby="titre-actualite" class="actualite-a-la-une my-5 container">
-  <h2 id="titre-actualite" class=" mb-3">Mes dernieres lectures </h2>
+  <h3 id="titre-actualite" class=" mb-3">Mes dernieres lectures </h3>
     <div class="row">
     {%- for post in collections.lectures | reverse | slice(0, 3) -%}
       <div class="  col-lg-4 col-sm-6 mb-3 " >
     <div class="card shadow-sm h-100">
       <img src="{{ post.data.image }}" class="card-img-top" alt=" ">
   <div class="card-body">
-    <h2 class="card-title"><a href="{{post.url}}" class=" stretched-link">{{ post.data.title }}</a></h2>
+    <h4 class="card-title"><a href="{{post.url}}" class=" stretched-link">{{ post.data.title }}</a></h4>
     <p class="card-text">{{ post.data.auteur }}</p>
    <p class="card-text fw-bold"> {{ post.data.date | formatDateFr }}</p>
   </div>

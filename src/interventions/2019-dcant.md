@@ -16,7 +16,7 @@ eleventyNavigation:
 
  
 
-# 2019 - Webinaire DCANT #18 - L’écoconception web
+## 2019 - Webinaire DCANT #18 - L’écoconception web
          
          
          
@@ -26,7 +26,7 @@ Jean-Philippe Simonnet du commissariat général au développement durable (CGDD
 
 Webinaire du 14 mars 2019 organisé par l’équipe du programme de développement concerté de l’administration numérique territoriale (DCANT) de la DINSIC et le centre national de la fonction publique territoriale (CNFPT).
 
-
+### La présentation
 
 <iframe frameborder="0" width="100%" height="450" src="https://www.dailymotion.com/embed/video/x74yoj5" allowfullscreen="" allow="autoplay"></iframe>
         

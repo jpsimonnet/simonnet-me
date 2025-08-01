@@ -10,7 +10,7 @@ name : JP Simonnet
 
 ---
 
-# Actualités
+## Actualités
 
 Ma veille sur l'accessibilité, l'IA, le web : [Le journal de ma veille sur notion](https://oxymore.notion.site/)
 
@@ -20,14 +20,14 @@ Ma veille sur l'accessibilité, l'IA, le web : [Le journal de ma veille sur noti
 <div class="container text-center">
   <div class="row align-items-start">
     <div class="col text-start p-0">
-      <h2 id="titre-actualite">À la une </h2>
+      <h3 id="titre-actualite">À la une </h3>
     </div>
     <div class="col">
       <p class="text-end" >Page {{ pagination.pageNumber + 1 }} / {{ pagination.pages.length }}</p>
     </div>
   </div>
 </div>
-{% if actualitePage and actualitePage.length > 0 %}<div class="row">{% for item in actualitePage %}<div class="col-lg-4 col-sm-6 mb-3"><div class="card shadow-sm h-100">{% if item.image %}<img src="{{ item.image }}" alt="Illustration de l’article '{{ item.title }}'" class="card-img-top">{% endif %}<div class="card-body"><h3 class="card-title"><a href="{{ item.url }}" target="_blank" title="{{ item.title }} - (nouvelle fenêtre)" rel="noopener noreferrer" class="stretched-link">{{ item.title }}</a></h3>{% if item.summary %}<p class="card-text">{{ item.summary }}</p>{% endif %}<p class="card-text fw-bold">Publié le {{ item.created | formatDateFr }}</p></div></div></div>{% endfor %}</div>
+{% if actualitePage and actualitePage.length > 0 %}<div class="row">{% for item in actualitePage %}<div class="col-lg-4 col-sm-6 mb-3"><div class="card shadow-sm h-100">{% if item.image %}<img src="{{ item.image }}" alt="Illustration de l’article '{{ item.title }}'" class="card-img-top">{% endif %}<div class="card-body"><h4 class="card-title"><a href="{{ item.url }}" target="_blank" title="{{ item.title }} - (nouvelle fenêtre)" rel="noopener noreferrer" class="stretched-link">{{ item.title }}</a></h4>{% if item.summary %}<p class="card-text">{{ item.summary }}</p>{% endif %}<p class="card-text fw-bold">Publié le {{ item.created | formatDateFr }}</p></div></div></div>{% endfor %}</div>
 
     <!-- Pagination nav -->
     <nav aria-label="Pagination des actualités" class="mt-4">
