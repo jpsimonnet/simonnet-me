@@ -2,7 +2,7 @@
 layout: lecture
 tags: lectures
 title: "L'Ombre du vent"
-date: 2025-08-01
+date: 2025-08-05
 image: /assets/images/lectures/ombreduvent.webp
 auteur: "Carlos Ruiz Zafón"
 source: "https://www.babelio.com/livres/Ruiz-Zafon-LOmbre-du-vent/3143"
