@@ -5,7 +5,7 @@ date: 2025-01-01
 
 pagination:
   data: actualite
-  size: 3
+  size: 6
   alias: actualitePage
 
 ---
