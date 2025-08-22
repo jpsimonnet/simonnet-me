@@ -14,7 +14,16 @@
 <script language="JavaScript" type="text/javascript" src="/js/jquery.js"></script>
 <script language="JavaScript" type="text/javascript" src="/js/script.js"></script>
 <script language="JavaScript" type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
 
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="Oxymore">
+<link rel="manifest" href="/site.webmanifest">
+
+<link rel="alternate" type="application/rss+xml" title="Oxymore - Jean-Philippe Simonnet" href="/feed.xml">
       </head>
 <body>
   <div class="container">
@@ -77,16 +86,22 @@
             </li>
 
             <li class="nav-item ">
-              <a class="nav-link on" href="/photos/">Photos</a>
-            </li>
- 
-            <li class="nav-item ">
-              <a class="nav-link on" href="/rss/index.html">Appli RSS</a>
+              <a class="nav-link on" href="/a-la-une/0/">Actualités</a>
             </li>
 
             <li class="nav-item ">
-              <a class="nav-link on" href="/veille/">Le journal de ma veille</a>
+              <a class="nav-link on" href="/photos/">Photos</a>
             </li>
+
+            <li class="nav-item ">
+              <a class="nav-link on" href="/lectures">Lectures</a>
+            </li>
+ 
+            <li class="nav-item ">
+              <a class="nav-link on" href="/veille">Veille RSS</a>
+            </li>
+
+
           
 
           <li class="nav-item dropdown">
@@ -146,6 +161,16 @@
             </ul>
           </li>
 
+<!-- Moteur de recherche intégré -->
+<li class="nav-item">
+  <button class="btn btn-link nav-link px-4 d-flex align-items-center" id="open-search" type="button" aria-label="Ouvrir la recherche">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+      <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"></path>
+    </svg>
+    <span class="d-lg-none ms-2">Recherche</span>
+  </button>
+</li>
+
         </ul>
       </div>
       <div>
@@ -159,83 +184,50 @@
 </header>
 
 
- 
+
 
 
   <main id="main">
 
-<div class="container py-4"> 
+    <div class="container py-4">
 
-    <h1>le journal de ma veille</h1>
-<p>Ma veille sur l'accessibilité, l'IA, le web : <a href="https://oxymore.notion.site/">Le journal de ma veille</a></p>
+      <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Accueil</a></li>
+            <li class="breadcrumb-item active" aria-current="page">le journal de ma veille</li>
+        </ol>
+      </nav>
 
+      <h2>Flux RSS</h2>
 
-  <section aria-labelledby="titre-actualite" class="actualite-a-la-une my-5">
-    <h2 id="titre-actualite" class=" mb-3">À la une</h2>
+    <link rel="stylesheet" href="/css/rss.css">
 
-    
-      <div class="row">
-            
-              <div class="  col-lg-4 col-sm-6 mb-3 ">
-                <div class="card shadow-sm h-100">
-            
-                  <div class="card-body">
-                    <h3 class="card-title"><a target="_blank" rel="noopener noreferrer" href="https://www.frandroid.com/culture-tech/2420868_plus-de-la-moitie-des-posts-sur-linkedin-seraient-ecrits-par-des-robots" class=" stretched-link">Plus de la moitié des posts sur LinkedIn seraient écrits par des robots</a></h3>
-                    
-                      <p class="card-text fw-bold"> Publié le 28 novembre 2024</p>
-                  </div>
-                </div>
-              </div>
-            
-              <div class="  col-lg-4 col-sm-6 mb-3 ">
-                <div class="card shadow-sm h-100">
-            
-                  <div class="card-body">
-                    <h3 class="card-title"><a target="_blank" rel="noopener noreferrer" href="https://perchance.org/ai-text-to-image-generator" class=" stretched-link">AI Image Generator (free, no sign-up, unlimited)</a></h3>
-                    
-                      <p class="card-text fw-bold"> Publié le 24 novembre 2024</p>
-                  </div>
-                </div>
-              </div>
-            
-              <div class="  col-lg-4 col-sm-6 mb-3 ">
-                <div class="card shadow-sm h-100">
-            
-                  <div class="card-body">
-                    <h3 class="card-title"><a target="_blank" rel="noopener noreferrer" href="https://openfeedback.io/" class=" stretched-link">Open Feedback - Talks/events/meetups/conferences feedback</a></h3>
-                    
-                      <p class="card-text fw-bold"> Publié le 22 novembre 2024</p>
-                  </div>
-                </div>
-              </div>
-            
-              <div class="  col-lg-4 col-sm-6 mb-3 ">
-                <div class="card shadow-sm h-100">
-            
-                  <div class="card-body">
-                    <h3 class="card-title"><a target="_blank" rel="noopener noreferrer" href="https://www.numerique.gouv.fr/actualites/coulisses-de-la-transformation-numerique-9-episodes-du-podcast-le-numerique-dans-tous-ses-etats-a-ecouter/" class=" stretched-link">Coulisses de la transformation numérique : 9 épisodes du podcast « Le numérique dans tous ses états » à écouter</a></h3>
-                    
-                      <p class="card-text fw-bold"> Publié le 22 novembre 2024</p>
-                  </div>
-                </div>
-              </div>
-            
-              <div class="  col-lg-4 col-sm-6 mb-3 ">
-                <div class="card shadow-sm h-100">
-            
-                  <div class="card-body">
-                    <h3 class="card-title"><a target="_blank" rel="noopener noreferrer" href="https://www.cio-online.com/actualites/lire-suite-numerique-l-etat-francais-se-pique-encore-de-collaboratif-15992.html" class=" stretched-link">La Dinum persiste sur sa suite d&#39;outils collaboratifs - Le Monde Informatique</a></h3>
-                    
-                      <p class="card-text fw-bold"> Publié le 22 novembre 2024</p>
-                  </div>
-                </div>
-              </div>
-             
-          
-        </div> 
-  </section>
+   <div class="row">
+    <div class="sidebar col-3" id="sidebar">
+     
+ 
+      <ul id="feedList" class="col-12"></ul>
+  
 
-</div>
+    </div>
+    <button id="toggleSidebar" class="toggle-btn">☰</button>
+    <div class="content col-9" id="content">
+      <h3 id="feedTitle">Choisir une source pour voir les articles</h3>
+      <div id="feedContent"></div>
+    </div>
+ 
+    </div>
+
+    <hr>
+
+       <h2>Importer votre fichier OPML</h2>
+
+      <input class="btn btn-light" type="file" id="opmlFile" accept=".opml, .xml"> 
+      <button class="btn btn-primary" id="importBtn">Importer un fichier OPML</button>
+
+  <script language="JavaScript" type="text/javascript" src="/js/app.js"></script>
+
+  </div>
 
   </main>
 
@@ -248,12 +240,14 @@
     <a href="/mentions/" class="spip_in">Mentions légales</a> 
     <a href="/plan/">Plan du site</a> 
     <a href="/accessibilite/">Accessibilité | Qualité web | Éco-conception</a> 
-    <a href="/rss/">Flux RSS</a> <br>
+    <a href="/feed.xml">Flux RSS</a> <br>
     <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/fr/">CC BY-SA 3.0 FR - 2025 </a></p>
         
 </footer>
   </div>
 
+
+<script src="/js/recherche.js"></script>
 
 
 
