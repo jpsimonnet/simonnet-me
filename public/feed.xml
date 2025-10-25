@@ -769,6 +769,240 @@ et j’assumerai mon rôle avec dignité .&lt;/p&gt;
       <guid>https://simonnet.me/interventions/2014-serment/</guid>
     </item>
     <item>
+      <title>2024 - Journée de l’IA - la minute nécessaire de monsieur POC</title>
+      <link>https://simonnet.me/interventions/2024-poc/</link>
+      <description>&lt;h1&gt;Journée de l’Intelligence Artificielle - la minute nécessaire de monsieur POC&lt;/h1&gt;
+&lt;p&gt;Journée de l’Intelligence Artificielle, le 1er octobre 2024 à l&#39;auditorium de la tour séquoia en partenarariat avec l&#39;Ecolab&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://simonnet.me/assets/images/poc-1.webp&quot; alt=&quot;poc-1.webp&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://simonnet.me/assets/images/poc-3.webp&quot; alt=&quot;poc-3.webp&quot;&gt;&lt;/p&gt;
+&lt;h2&gt;POC (Proof of concept)&lt;/h2&gt;
+&lt;h2&gt;1 - Résumez vos réunions&lt;/h2&gt;
+&lt;p&gt;Quelques logiciels :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Plaud.ai&lt;/li&gt;
+&lt;li&gt;Fireflies.ai&lt;/li&gt;
+&lt;li&gt;Dicte.ai&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Discussions sur les outils numériques, les coûts, et l&#39;optimisation&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://simonnet.me/assets/images/poc-4.webp&quot; alt=&quot;poc-4.webp&quot;&gt;&lt;/p&gt;
+&lt;h2&gt;Sous-titres de vidéos&lt;/h2&gt;
+&lt;p&gt;Vidéo MP4
+Transcription IA
+Youtube (privé)
+Fichier SBvers VTT
+Powerpoint&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://simonnet.me/assets/images/poc-5.webp&quot; alt=&quot;poc-5.webp&quot;&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3&gt;Conclusion&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Innovation et accessibilité&lt;/strong&gt;
+IA transforme la façon de travailler et permet d&#39;améliorer l&#39;accessibilité des réunions pour les personnes sourdes et aveugles
+&lt;strong&gt;Gain de temps&lt;/strong&gt;
+le résumé de la réunion est encore plus pratique que la retranscription. Plus étonnant, le résumé fait par l&#39;iA donne parfois une cohérence à une discussion qui n&#39;en a pas forcément
+&lt;strong&gt;Productivité&lt;/strong&gt;
+Renvoyer rapidement non seulement le résumé mais aussi les décisions prises pendant la réunion, détectée automatiquement&lt;/p&gt;
+&lt;h2&gt;2 - La bourse aux bureaux&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;A partir de l&#39;annuaire, export d&#39;un CSV
+1 ligne contenant le nombre de poste&lt;/li&gt;
+&lt;li&gt;Utilisation de ChatGPT - Excel Al
+Pour générer une ligne par nombre de poste&lt;/li&gt;
+&lt;li&gt;Mise en ligne dans la journée
+Proposition du tableur sur le BNUM&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;https://simonnet.me/assets/images/poc-6.webp&quot; alt=&quot;poc-6.webp&quot;&gt;&lt;/p&gt;
+&lt;h3&gt;Le fichier&lt;/h3&gt;
+&lt;p&gt;A partir de l&#39;annuaire LDAP, export d&#39;un excel / CSV avec 1 ligne contenant le nombre de poste&lt;/p&gt;
+&lt;h3&gt;Hésitation ...&lt;/h3&gt;
+&lt;p&gt;Trouver la bonne méthode :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Chercher une fonction excel Utiliser&lt;/li&gt;
+&lt;li&gt;L&#39;ia pour s&#39;aider&lt;/li&gt;
+&lt;li&gt;Trouver quelqu&#39;un qui sait faire du excel&lt;/li&gt;
+&lt;li&gt;Un collègue peut le faire mais ...
+Mais en fait il demande a ChatGPT de faire la duplication lui même&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;Le prompt&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&quot;language-jsx&quot;&gt;(1) : concatène les onglets &amp;quot;Etages_1_a_15&amp;quot;; &amp;quot;Etages_16_à_25&amp;quot;;
+&amp;quot;Etages_26_à_35&amp;quot;
+(2) : si &amp;quot;Nombre de personnes supposée dans le bureau&amp;quot; est &amp;gt; 1, alors duplique la ligne autant de fois que la valeur de &amp;quot;Nombre de personnes supposée dans le bureau&amp;quot;.
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Résultat :
+The concatenated data from the sheets &amp;quot;Etages_1_a_15&amp;quot;, &amp;quot;Etages_16_à_25&amp;quot; , and
+&amp;quot;Etages_26_à_35&amp;quot; has been successfully combined, and the rows have been duplicated according to the &amp;quot;Nombre de personnes supposée dans le bureau&amp;quot; condition.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;Export du CSV &lt;strong&gt;Puis mise en ligne dans le Bureau numerique&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://simonnet.me/assets/images/poc-7.webp&quot; alt=&quot;poc-7.webp&quot;&gt;&lt;/p&gt;
+&lt;h3&gt;Conclusion&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Savoir prompter avec ChatGPT&lt;/strong&gt;
+comprendre la logique et savoir lâcher prise
+&lt;strong&gt;Réactivité&lt;/strong&gt;
+La vitesse d&#39;exécution était cruciale dans cet exemple
+&lt;strong&gt;Frugalité&lt;/strong&gt;
+L&#39;utilisation du tableur partagé du BNUM a permis de rendre service rapidement aux agents&lt;/p&gt;
+&lt;h2&gt;3 - Gérer des candidatures&lt;/h2&gt;
+&lt;p&gt;(Exemple réalisé avec des CV fictifs)&lt;/p&gt;
+&lt;p&gt;27 CV chargés dans NotebookLM de Google.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Analyse par l&#39;IA
+IA trie et évalue les profils automatiquement.&lt;/li&gt;
+&lt;li&gt;Sélection
+Présentation des meilleurs candidats avec justifications.&lt;/li&gt;
+&lt;li&gt;Communication
+Génération d&#39;emails personnalisés pour chaque candidat.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;https://simonnet.me/assets/images/poc-8.webp&quot; alt=&quot;poc-8.webp&quot;&gt;&lt;/p&gt;
+&lt;h3&gt;Les prompts&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&quot;language-jsx&quot;&gt;Parmi tous ces CV, fais-moi une liste des quatre meilleurs qui pourraient correspondre au poste défini dans la note &amp;quot;poste&amp;quot;
+Pour les quatre CV retenus, rédige une lettre de convocation à un entretien personnalisé avec leur nom et prénom.
+Pour les autres CV, rédige une lettre expliquant que leur candidature n&#39;a pas été retenue.
+Pour les quatre CV retenus, fais-moi une liste des points forts et des points faibles par rapport au poste.
+Fais-moi également une liste de questions que je pourrais leur poser lors de l&#39;entretien.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Revue de Presse&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Emploi : les recruteurs croulent sous les CV générés par IA&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.franceinfo.fr/replay-radio/aujourd-hui-c-est-demain/emploi-les-recruteurs-croulent-sous-les-cv-generes-par-ia_6736596.html&quot;&gt;https://www.franceinfo.fr/replay-radio/aujourd-hui-c-est-demain/emploi-les-recruteurs-croulent-sous-les-cv-generes-par-ia_6736596.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;RH : La start-up Skillvue lève 2,5 millions d&#39;euros pour sa plateforme de compétences dopée à l&#39;IA&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.usine-digitale.fr/article/rh-la-start-up-skillvue-leve-2-5-millions-d-euros-pour-sa-plateforme-de-competences-dopee-a-l-ia.N2217789&quot;&gt;https://www.usine-digitale.fr/article/rh-la-start-up-skillvue-leve-2-5-millions-d-euros-pour-sa-plateforme-de-competences-dopee-a-l-ia.N2217789&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;L&#39;IA pourrait contribuer à optimiser 40% de la fonction RH&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.lemondeinformatique.fr/actualites/lire-l-ia-pourrait-contribuer-a-optimiser-40-de-la-fonction-rh-93303.html&quot;&gt;https://www.lemondeinformatique.fr/actualites/lire-l-ia-pourrait-contribuer-a-optimiser-40-de-la-fonction-rh-93303.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Utiliser l&#39;IA pour rédiger votre CV ? 64 % des RH sont OK avec ça&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.zdnet.fr/actualites/utiliser-lia-pour-rediger-votre-cv-64-des-rh-sont-ok-avec-ca-396157.htm&quot;&gt;https://www.zdnet.fr/actualites/utiliser-lia-pour-rediger-votre-cv-64-des-rh-sont-ok-avec-ca-396157.htm&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;IA &amp;amp; Métiers RH : 20 situations où utiliser l&#39;IA&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://culture-rh.com/livre-blanc-ia-metiers-rh-situations/&quot;&gt;https://culture-rh.com/livre-blanc-ia-metiers-rh-situations/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;https://www.toolify.ai/fr/jobs/ressources-humaines-38866&lt;/p&gt;
+&lt;h3&gt;Conclusion&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Attention aux données personnelles&lt;/strong&gt;
+Notebook LM précise bien : «Nous respectons votre confidentialité et n&#39;utilisons jamais vos données à caractère personnel pour entraîner NotebookLM.»
+&lt;strong&gt;Les outils IA restent des outils d&#39;aide à la décision&lt;/strong&gt;
+L&#39;outil ne prend pas la décision, c&#39;est un « super assistant » qui fait gagner du temps dans la réalisation de nos taches
+&lt;strong&gt;Éthique et usages&lt;/strong&gt;
+Plus de 50% des candidats utilisent ChatGPT pour répondre aux annonces.
+(Voir article Francelnfo : &lt;a href=&quot;https://www.franceinfo.fr/replay-radio/aujourd-hui-c-est-demain/emploi-les-recruteurs-croulent-sous-les-cv-generes-par-ia_6736596.html&quot;&gt;Emploi : les recruteurs croulent sous les CV générés par IA&lt;/a&gt;)&lt;/p&gt;
+&lt;h2&gt;Faire une webapp sans coder&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Faire une capture d&#39;ecran comme point de départ (application de flux RSS : feedly)&lt;/li&gt;
+&lt;li&gt;Avec cette image, un prompt pour chatGPT&lt;/li&gt;
+&lt;li&gt;Générer une application en html/javascript/css&lt;/li&gt;
+&lt;li&gt;Demande annexe
+je lui demande d&#39;intégrer une importation OPML&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Résultat en ligne : https://www.simonnet.me/rss/&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://simonnet.me/assets/images/poc-10.webp&quot; alt=&quot;poc-10.webp&quot;&gt;&lt;/p&gt;
+&lt;h3&gt;Le prompt&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&quot;language-jsx&quot;&gt;A partir de cette capture d&#39;ecran etde mon fichier opml, pourrais tu me creer une webapp delecteur de flux rss, ave 1 fichier css, 1 fichier
+JS, et 1 fichier html ?
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Ajustement du prompt et envoi sur le site&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-jsx&quot;&gt;je voudrais que l&#39;interface soit responsive pour les mobiles et ajouter une fonctionalité pour importer les flux rss d&#39;un opml que l&#39;on pourrait conserver en local storage
+il faudrait aussi limiter les tailles d&#39;images en mode mobile pour les rendre plus responsive
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;https://simonnet.me/assets/images/poc-11.webp&quot; alt=&quot;poc-11.webp&quot;&gt;&lt;/p&gt;
+&lt;h3&gt;Conclusion&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Une capacité à imiter / copier /&lt;/strong&gt;
+L&#39;IA à été entrainé sur github, elle a donc facilement créé le code. Attention cependant, elle peut aussi reproduire des erreurs existantes
+&lt;strong&gt;Serons nous remplacés ?&lt;/strong&gt;
+L&#39;IA ne vous remplace pas, c&#39;est un super assistant, nos prompts doivent être précis. Je n&#39;ai pas coder cette appli, mais je savais quoi demander, l&#39;humain n&#39;est pas remplacer, il est secondé.
+&lt;strong&gt;Opportunités&lt;/strong&gt;
+De nombreuses plateforme et de logiciels de code intègre dès à présent ces assistants virtuels dans les outils proposés au codeurs, le but : renforcer la chasse au bug, coder plus vite...&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;3 - Des présentations dopées à L&#39;IA : test de gamma.ai&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;https://simonnet.me/assets/images/poc-15.webp&quot; alt=&quot;poc-15.webp&quot;&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Ecrire son texte de départ&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Générer la présentation&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Peaufiner&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Exporter ou publier&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Ecrire son texte de départ&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code class=&quot;language-jsx&quot;&gt;PROGRAMME
+08h30
+Café d&#39;accueil
+09h00 Ouverture de la journée
+xxx  
+xxx C 
+Introduction
+xxx
+09h25
+IA générative, mythes et réalités
+xxx
+11h00
+Le résumé de vos réunions avec l&#39;IA
+La minute nécessaire de monsieur POC !
+11h05
+Pause-café
+11h20 xxx
+ 
+12h10
+xxx
+12h30
+xxxx
+12h50
+La bourse aux bureaux avec l&#39;IA
+La minute nécessaire de monsieur POC
+12h55
+Déjeuner libre
+14h10
+Démo « Prompting
+xxxxx
+14h30
+xxxxx
+etc ... 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;Choisir un thème&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://simonnet.me/assets/images/poc-12.webp&quot; alt=&quot;poc-12.webp&quot;&gt;&lt;/p&gt;
+&lt;h3&gt;Laisser faire l’Intelligence Artificielle&lt;/h3&gt;
+&lt;p&gt;puis corriger les texte et les images&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://simonnet.me/assets/images/poc-13.webp&quot; alt=&quot;poc-13.webp&quot;&gt;&lt;/p&gt;
+&lt;h3&gt;Partager et/ou exporter la présentation&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://simonnet.me/assets/images/poc-14.webp&quot; alt=&quot;poc-14.webp&quot;&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;strong&gt;Conclusion&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;La vitesse&lt;/strong&gt;
+Le principal atout : gagner en vitesse de production de document
+&lt;strong&gt;La qualité et le graphisme&lt;/strong&gt;
+Le résultat basé sur des modèles améliore forcémént legraphisme, mais le plus intéressant est la génération d&#39;images illustratives en relation avec les modèles proposés.
+&lt;strong&gt;Problème : le coût financier et écologique&lt;/strong&gt;
+Nous faisons ici une démonstration des capacités de l&#39;outil, mais se posera la question de la frugalité et du cout financier.
+Enfin le plus important, une belle présentation ne fait pas une présentation convaincante&lt;/p&gt;
+&lt;h2&gt;4 - Avoir des sous-titres pour vos vidéos (dans chrome)&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;https://simonnet.me/assets/images/poc-16.webp&quot; alt=&quot;poc-16.webp&quot;&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Pour comprendre
+Sous-titres pour les sourds et malentendants&lt;/li&gt;
+&lt;li&gt;Pour traduire une langue en direct
+Pour tout le monde&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;Activer la fonction dans Chrome&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://simonnet.me/assets/images/poc-20.webp&quot; alt=&quot;poc-20.webp&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;PS : cette fonction existe maintenant sur Windows 11 et sur MacOs 26&lt;/em&gt;&lt;/p&gt;
+&lt;h3&gt;Pour les visios&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://simonnet.me/assets/images/poc-17.webp&quot; alt=&quot;poc-17.webp&quot;&gt;&lt;/p&gt;
+&lt;h3&gt;Pour les formations&lt;/h3&gt;
+&lt;p&gt;Ici un exemple avec une formation mentor&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://simonnet.me/assets/images/poc-18.webp&quot; alt=&quot;poc-18.webp&quot;&gt;&lt;/p&gt;
+&lt;h3&gt;Pour les podcasts&lt;/h3&gt;
+&lt;p&gt;ici un exemple avec un podcast de france Inter&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://simonnet.me/assets/images/poc-19.webp&quot; alt=&quot;poc-19.webp&quot;&gt;&lt;/p&gt;
+&lt;h2&gt;Conclusion de l’intervention&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Etonnant, non ?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://simonnet.me/assets/images/desproges.webp&quot; alt=&quot;desproges.webp&quot;&gt;&lt;/p&gt;
+</description>
+      <pubDate>Tue, 19 Jun 2012 02:00:00 GMT</pubDate>
+      <dc:creator>Jean-Philippe Simonnet</dc:creator>
+      <guid>https://simonnet.me/interventions/2024-poc/</guid>
+    </item>
+    <item>
       <title>2012 - Accessibilité numérique et formation</title>
       <link>https://simonnet.me/interventions/2012-formation/</link>
       <description>&lt;h2&gt;2012 - Accessibilité numérique et formation&lt;/h2&gt;
