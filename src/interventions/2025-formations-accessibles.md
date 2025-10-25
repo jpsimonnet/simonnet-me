@@ -170,7 +170,7 @@ Vous noterez que la plupart de ces arguments se valent aussi bien pour les valid
 - Employer un jargon technique ou des métaphores floues.
 - Lire une diapositive sans la décrire.
 
-## Sources :
+## Télécharger la présentation :
 
 <div class="float-end ms-5"> 
 
@@ -181,15 +181,11 @@ Vous noterez que la plupart de ces arguments se valent aussi bien pour les valid
 - [Télécharger la présentation au format pdf](/assets/pdf/2025-formations-accessibles.pdf)
 - [Télécharger la présentation au format powerpoint](/assets/pdf/2025-formations-accessibles.pptx)
 
-
-**Le numérique en formation : objet de compensation ou levier d’innovation ?**
-
-[https://www.cmvrh.developpement-durable.gouv.fr/rencontres-de-la-eformation-2025-inscrivez-vous-a4634.html](https://www.cmvrh.developpement-durable.gouv.fr/rencontres-de-la-eformation-2025-inscrivez-vous-a4634.html)
-
-**Il était une fois… l‘Inclusion et l‘Accessibilité numérique !**
-
-[Il était une fois… l‘Inclusion et l‘Accessibilité numérique ! ](https://www.campus.numerique.gouv.fr/accessibilite-inclusion-numerique-formation/)
-
-**Le numérique peut-il faciliter la réussite des élèves et étudiants en situation de handicap ? (2018)**
-
-[https://shs.cairn.info/revue-la-nouvelle-revue-education-et-societe-inclusives-2018-2-page-215?lang=fr&tab=texte-integral](https://shs.cairn.info/revue-la-nouvelle-revue-education-et-societe-inclusives-2018-2-page-215?lang=fr&tab=texte-integral)
+## Sources
+- [Le numérique en formation : objet de compensation ou levier d’innovation ?](https://www.cmvrh.developpement-durable.gouv.fr/rencontres-de-la-eformation-2025-inscrivez-vous-a4634.html)
+- [Rendre les postes informatiques accessibles aux travailleurs handicapés : mise en pratique des normes RGAA et WCAG](https://www.lacostedbe.fr/blog/bureau/technique-bureau/rendre-les-postes-informatiques-accessibles-aux-travailleurs-handicapes-mise-en-pratique-des-normes-rgaa-et-wcag/)
+- [Organiser une réunion accessible (NationUnies)](https://www.ungeneva.org/fr/meetings-events/official-meetings/organizers/member-states/coordination/accessibility)
+- [Evaluer l'accessibilité d'un PDF - Luxembourg](https://renow.public.lu/fr/guides-pratiques/accessibilite/evaluer-accessibilite-pdf.html)
+- [Réaliser un PDF accessible - Luxembourg](https://renow.public.lu/fr/guides-pratiques/accessibilite/realiser-pdf-accessible.html)
+- [Il était une fois… l‘Inclusion et l‘Accessibilité numérique ! ](https://www.campus.numerique.gouv.fr/accessibilite-inclusion-numerique-formation/)
+- [Le numérique peut-il faciliter la réussite des élèves et étudiants en situation de handicap ? (2018)](https://shs.cairn.info/revue-la-nouvelle-revue-education-et-societe-inclusives-2018-2-page-215?lang=fr&tab=texte-integral)
