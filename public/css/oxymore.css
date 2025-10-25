@@ -1,3 +1,30 @@
+#content img {
+  max-width: 100%;
+}
+
+pre, .rst-content tt {
+    padding: 2em;
+    background: #f3f7fd;
+    margin: 0.5em 0;
+    overflow: auto;
+    color: #000;
+    box-shadow: 2px 2px 2px 2px #dfdede;
+    font-family: Consolas, Monaco, Andale Mono, Ubuntu Mono, monospace;
+    font-size: 0.8rem;
+    text-align: left;
+    white-space: pre-line;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+    -webkit-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+}
+
 .bi{width:1em;height:1em;vertical-align:-.125em;fill:currentcolor}
 .dropdown .nav-link:hover,.dropdown .nav-link:focus{border-bottom:3px solid transparent!important}
 ol.breadcrumb{background-color:transparent!important}
