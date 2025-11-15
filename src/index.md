@@ -40,21 +40,11 @@ pagination:
 </section>
 
 <hr>
+
 <section aria-labelledby="titre-actualite" class="actualite-a-la-une my-5 container">
   <h3 id="titre-actualite" class=" mb-3">Mes dernieres lectures </h3>
-    <div class="row">
-    {%- for post in collections.lectures | reverse | slice(0, 3) -%}
-      <div class="  col-lg-4 col-sm-6 mb-3 " >
-    <div class="card shadow-sm h-100">
-      <img src="{{ post.data.image }}" class="card-img-top" alt=" ">
-  <div class="card-body">
-    <h4 class="card-title"><a href="{{post.url}}" class=" stretched-link">{{ post.data.title }}</a></h4>
-    <p class="card-text">{{ post.data.auteur }}</p>
-   <p class="card-text fw-bold"> {{ post.data.date | formatDateFr }}</p>
-  </div>
-</div>
-</div>
-    {% endfor %}
-    </div>
- <p><a class="btn btn-outline-secondary mt-2" role="button" href="/lectures/">Toutes mes lectures</a></p>
+
+{% set derniers3Livres = collections.livresTries | slice(0, 3) %}{% if derniers3Livres and derniers3Livres.length > 0 %}<div class="row">{% for livre in derniers3Livres %}<div class="col-lg-4 col-sm-6 mb-3"><div class="card shadow-sm h-100">{% if livre.id %}<img src="/assets/images/lectures/{{ livre.id }}.webp" alt="Couverture de {{ livre.Nom }}" class="card-img-top">{% endif %}<div class="card-body"><h4 class="card-title"><a href="/lectures/{{ livre.id }}/" title="{{ livre.Nom }}" class="stretched-link">{{ livre.Nom }}</a></h4>{% if livre.Auteur %}<p class="card-text"><strong>{{ livre.Auteur }}</strong></p>{% endif %}{% if livre.Résumé %}<p class="card-text">{{ livre.Résumé | truncate(100) }}</p>{% endif %}<p class="card-text fw-bold">Lu le {{ livre["Lu le"] | formatDateFr }}</p></div></div></div>{% endfor %}</div>{% else %}<p>Aucun livre pour le moment.</p>{% endif %}
+
+ <p><a class="btn btn-outline-secondary mt-2" role="button" href="/lectures/0/">Toutes mes lectures</a></p>
 </section>

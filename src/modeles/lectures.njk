@@ -1,70 +1,80 @@
-<!doctype html>
-<html lang="fr" data-bs-theme="light">
-    <head>
-      <title>{{ site.title }} - {{ title or meta.title }}</title>
-       {% include "meta.njk" %}
-      </head>
-<body>
-  <div class="container" >
+---
+layout: base
+rubriquenom : "Mes dernières lectures"
+rubriqueurl : "/lectures/0/"
+---
 
-
-      {% include "header.njk" %}
 
   <main id="main" data-pagefind-body>
-    <div class="container py-4">
-
-      <nav aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/">Accueil</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{title}}</li>
-        </ol>
-      </nav>
  
-      {{ content | safe }}
-
-
-
-<div class="row">
-
+      <div id="content" class="col-lg-9 mx-auto my-5">
  
 
-  {%- for post in collections.lectures | reverse-%}
-  
-  <div class="  col-lg-3 col-sm-6 mb-3 " >
-    <div class="card shadow-sm h-100">
-      <img src="{{ post.data.image }}" class="card-img-top" alt=" ">
-  <div class="card-body">
-    <h3 class="card-title"><a href="{{post.url}}" class=" stretched-link">{{ post.data.title }}</a></h3>
-    <p class="card-text">{{ post.data.auteur }}</p>
-   <p class="card-text fw-bold"> {{ post.data.date | formatDateFr }}</p>
-  </div>
 
-</div>
-</div>
-  
-  {%- endfor -%}
-
-
-  
-
-
+<article class="lecture  ">
  
-  
-  </div>
-  
 
-      
     
+    <h1>{{ livre.Nom }}</h1>
+
+    <hr class="my-5">
+
+ <div class="row">
+
+  <div class="col-lg-6 col-12 mr-5">
+    
+    {% if livre.Auteur %}
+      <h2> {{ livre.Auteur }}</h2>
+    {% endif %}
+    
+    {% if livre.Type %}
+      <p><em>{{ livre.Type }}</em></p>
+    {% endif %}
+    
+    {% if livre["Lu le"] %}
+      <p class="text-muted">Lu le {{ livre["Lu le"] | formatDateFr }}</p>
+    {% endif %}
+    
+
  
+  
+  <section class="mt-4">
+    {% if livre.Résumé %}
+      {{ livre.Résumé | safe }}
+    {% endif %}
+  </section>
+
+    {% if livre["En ligne"]  %}
+      <p class="mt-5">
+        <a href="{{ livre["En ligne"] }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+          Voir sur Babelio
+        </a>
+      </p>
+    {% endif %}
 
   </div>
+
+<div class="col-lg-6 col-12">
+
+    {% if livre.id %}
+      <img src="/assets/images/lectures/{{ livre.id }}.webp" alt="Couverture de {{ livre.Nom }}" class="img-fluid img-thumbnail">
+    {% endif %}
+</div>
+
+
+  </div>
+
+    <nav class="mt-5">
+    <a href="/lectures/0/" class="btn btn-primary">← Retour à la bibliothèque</a>
+  </nav>
+
+  </div>
+  
+
+</article>
+
+      </div>
+
+ 
 
   </main>
-
-
-  {% include "footer.njk" %}
-
-  </div>
-
-</body>
-</html> 

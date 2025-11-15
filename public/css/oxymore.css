@@ -300,6 +300,11 @@ figure{margin:0}
   font-weight: 500;
 }
 
+.active>.page-link, .page-link.active {
+    background-color: #e6025d !important;
+    border-color: #e6025d !important;
+}
+
 /* Surlignage des termes recherchés */
 mark {
   background: linear-gradient(120deg, #fff3cd 0%, #ffeaa7 100%);

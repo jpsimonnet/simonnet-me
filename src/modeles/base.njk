@@ -7,14 +7,12 @@
 <body>
   <div class="container">
 
-
       {% include "header.njk" %}
-
 
   <main id="main" data-pagefind-body>
     <div class="container py-4">
 
-                <nav aria-label="breadcrumb">
+        <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/">Accueil</a></li>
             {% if rubriqueurl %}<li class="breadcrumb-item"><a href="{{rubriqueurl}}">{{rubriquenom}}</a></li>{% endif %}

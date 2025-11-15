@@ -15,17 +15,18 @@ eleventyNavigation:
 ---
 
 
+# Accessibilité : le numérique rend-il forcément les apprentissages plus accessibles ?
 
 
-<div class="float-end ms-5"> 
+## Introduction
+
+<div class="float-end ms-3"> 
 
 ![poc-1.webp](/assets/images/eformation.webp)
 
 </div>
 
 
- 
-# Accessibilité : le numérique rend-il forcément les apprentissages plus accessibles ?
 
 Témoignage au rencontres **eformation**  le 22 octobre 2025 à l’Ecole Nationale des Ponts et Chaussées (ENPC) de Champs-sur-marne :  **Le numérique en formation : objet de compensation ou levier d’innovation ?**
 

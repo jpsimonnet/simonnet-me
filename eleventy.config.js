@@ -1,7 +1,12 @@
 import Image from "@11ty/eleventy-img";
 import path from "path";
+import fs from "fs";
+import { fileURLToPath } from 'url';
 import { HtmlBasePlugin } from "@11ty/eleventy";
 import { feedPlugin } from "@11ty/eleventy-plugin-rss";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export default function(eleventyConfig) {
 
@@ -14,6 +19,21 @@ export default function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy({"src/assets/favicon": "/"});
   eleventyConfig.addPassthroughCopy({"src/assets/favicon": "./"});
 
+  
+  // Trier les livres par date de lecture (plus récents en premier)
+  eleventyConfig.addCollection("livresTries", function() {
+    const livresPath = path.join(__dirname, 'src/_data/livres.json');
+    const livresData = fs.readFileSync(livresPath, 'utf8');
+    const livres = JSON.parse(livresData);
+    
+    return livres.sort((a, b) => {
+      const dateA = new Date(a["Lu le"]);
+      const dateB = new Date(b["Lu le"]);
+      return dateB - dateA;
+    });
+  });
+  
+  
   // Collections
   eleventyConfig.addCollection("posts", function(collectionApi) {
     return collectionApi.getFilteredByGlob("src/posts/*.md").reverse();
@@ -50,7 +70,7 @@ export default function(eleventyConfig) {
     type: "rss",
     outputPath: "/feed.xml",
     collection: {
-      name: "allPosts", // ← Changé de "posts" vers "allPosts"
+      name: "allPosts",
       limit: 0, 
     },
     metadata: {
@@ -62,7 +82,7 @@ export default function(eleventyConfig) {
         name: "Jean-Philippe Simonnet"
       }
     }
-  }); // ← Correction : fermeture correcte du plugin
+  });
 
   // Shortcodes
   eleventyConfig.addShortcode("year", () => `${new Date().getFullYear()}`);
@@ -116,7 +136,6 @@ export default function(eleventyConfig) {
       : `<figure class="${figureClass}">${imageHTML}</figure>`;
   });
   
-  // ✅ Retourne la configuration à la fin de la fonction
   return {
     pathPrefix: "./",
     dir: {
