@@ -18,6 +18,10 @@ export default function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/rss/");
   eleventyConfig.addPassthroughCopy({"src/assets/favicon": "/"});
   eleventyConfig.addPassthroughCopy({"src/assets/favicon": "./"});
+  eleventyConfig.addPassthroughCopy("src/serment");
+  eleventyConfig.addPassthroughCopy("src/rdv");
+  eleventyConfig.addPassthroughCopy("src/gobelins");
+
 
   
   // Trier les livres par date de lecture (plus récents en premier)
