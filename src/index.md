@@ -1,7 +1,7 @@
 ---
 layout: base
 title: Accueil
-date: 2026-31-01
+date: 2026-01-31
 
 pagination:
   data: actualite
