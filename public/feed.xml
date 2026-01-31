@@ -7,6 +7,34 @@
     <description>Le site de Jean-Philippe Simonnet</description>
     <language>fr</language>
     <item>
+      <title>Qui suis je ?</title>
+      <link>https://simonnet.me/qui-suis-je/</link>
+      <description>&lt;h2&gt;Qui suis je ?&lt;/h2&gt;
+&lt;h3&gt;Jean-Philippe Simonnet&lt;/h3&gt;
+&lt;figure class=&quot;mb-3 img-fluid float-end ms-3&quot;&gt;&lt;picture&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;https://simonnet.me/img/qyh-DcIuee-300.webp 300w&quot;&gt;&lt;img src=&quot;https://simonnet.me/img/qyh-DcIuee-300.jpeg&quot; alt=&quot;Jean-Philippe&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; width=&quot;300&quot; height=&quot;300&quot;&gt;&lt;/picture&gt;&lt;figcaption class=&quot;figure-caption&quot;&gt;Jean-Philippe Simonnet en 2025&lt;/figcaption&gt;&lt;/figure&gt;
+&lt;p class=&quot;col-md-12 mb-0 pt-2&quot;&gt;Je suis actuellement Chargé de mission &#39;hospitalité numérique&#39; à la DNUM - Usages Numériques et Innovation - au ministère de l’Aménagement du territoire et de la Décentralisation et le ministère de la Transition écologique, de la Biodiversité, de la Forêt, de la Mer et de la Pêche. &lt;/p&gt;&lt;p class=&quot;col-md-10   mb-3 pt-2&quot;&gt;Je suis également expert accessibilité depuis 2011.&lt;/p&gt;
+&lt;p&gt;Ma mission au sein de la Sous-direction usages numériques et innovation :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Piloter la transition de populations de nouveaux utilisateurs vers une offre de service DNUM ou un bouquet d&#39;offres de services ;&lt;/li&gt;
+&lt;li&gt;Assurer la bonne adéquation et la cohérence des offres de service DNUM avec les nouvelles pratiques de travail (ex. flex office, mobilité, équipes réparties dans l&#39;espace, incluant des acteurs externes, recours aux IA) ;&lt;/li&gt;
+&lt;li&gt;Veiller à la facilité de consommation des nouvelles offres, telle que l&#39;offre cloud, par des populations d&#39;utilisateurs non experts ;&lt;/li&gt;
+&lt;li&gt;S&#39;assurer de l&#39;accessibilité (conformément à l’article 47 de la loi n° 2005-102 du 11 février 2005) des produits de la sous-direction/de la DNUM .&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;/p&gt;&lt;div class=&quot;my-3&quot;&gt;
+&lt;ul class=&quot;list-unstyled reseaux&quot;&gt;
+&lt;li&gt;&lt;a class=&quot;btn btn-outline-secondary mt-2&quot; href=&quot;http://www.linkedin.com/in/simonnet/fr&quot; rel=&quot;external&quot;&gt; &lt;img src=&quot;https://simonnet.me/assets/icons/linkedin.svg&quot; alt=&quot;Logo Linkedin&quot; class=&quot;me-2&quot;&gt; Mon Profil Linkedin&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&quot;btn btn-outline-secondary mt-2&quot; href=&quot;https://www.instagram.com/oxymore93/&quot; rel=&quot;external&quot;&gt; &lt;img src=&quot;https://simonnet.me/assets/icons/instagram.svg&quot; alt=&quot;Logo Instagram&quot; class=&quot;me-2&quot;&gt; Mon compte Instagram&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&quot;btn btn-outline-secondary mt-2&quot; href=&quot;https://github.com/jpsimonnet&quot; rel=&quot;external&quot;&gt; &lt;img src=&quot;https://simonnet.me/assets/icons/github.svg&quot; alt=&quot;Logo Github&quot; class=&quot;me-2&quot;&gt; Mon compte Github&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&quot;btn btn-outline-secondary mt-2&quot; href=&quot;http://www.doyoubuzz.com/jean-philippe-simonnet&quot; rel=&quot;external&quot;&gt; &lt;img src=&quot;https://simonnet.me/assets/images/doyoubuzz.svg&quot; alt=&quot;Logo doyoubuzz&quot; class=&quot;me-2&quot; width=&quot;50px&quot;&gt; Mon CV sur Doyoubuzz&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;&lt;p&gt;&lt;/p&gt;
+</description>
+      <pubDate>Sat, 31 Jan 2026 01:00:00 GMT</pubDate>
+      <dc:creator>Jean-Philippe Simonnet</dc:creator>
+      <guid>https://simonnet.me/qui-suis-je/</guid>
+    </item>
+    <item>
       <title>2025 - Accessibilité : le numérique rend-il forcément les apprentissages plus accessibles ?</title>
       <link>https://simonnet.me/interventions/2025-formations-accessibles/</link>
       <description>&lt;h1&gt;Accessibilité : le numérique rend-il forcément les apprentissages plus accessibles ?&lt;/h1&gt;
@@ -188,34 +216,6 @@ j&#39;ai mis des liens d’accès rapide qui s&#39;activent au clavier.&lt;/p&gt
       <pubDate>Wed, 01 Jan 2025 01:00:00 GMT</pubDate>
       <dc:creator>Jean-Philippe Simonnet</dc:creator>
       <guid>https://simonnet.me/veille/</guid>
-    </item>
-    <item>
-      <title>Qui suis je ?</title>
-      <link>https://simonnet.me/qui-suis-je/</link>
-      <description>&lt;h2&gt;Qui suis je ?&lt;/h2&gt;
-&lt;h3&gt;Jean-Philippe Simonnet&lt;/h3&gt;
-&lt;figure class=&quot;mb-3 img-fluid float-end ms-3&quot;&gt;&lt;picture&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;https://simonnet.me/img/qyh-DcIuee-300.webp 300w&quot;&gt;&lt;img src=&quot;https://simonnet.me/img/qyh-DcIuee-300.jpeg&quot; alt=&quot;Jean-Philippe&quot; loading=&quot;lazy&quot; decoding=&quot;async&quot; width=&quot;300&quot; height=&quot;300&quot;&gt;&lt;/picture&gt;&lt;figcaption class=&quot;figure-caption&quot;&gt;Jean-Philippe Simonnet en 2025&lt;/figcaption&gt;&lt;/figure&gt;
-&lt;p class=&quot;col-md-12 mb-0 pt-2&quot;&gt;Je suis actuellement Chargé de mission &#39;hospitalité numérique&#39; à la DNUM - Usages Numériques et Innovation - au ministère de l’Aménagement du territoire et de la Décentralisation et le ministère de la Transition écologique, de la Biodiversité, de la Forêt, de la Mer et de la Pêche. &lt;/p&gt;&lt;p class=&quot;col-md-10   mb-3 pt-2&quot;&gt;Je suis également expert accessibilité depuis 2011.&lt;/p&gt;
-&lt;p&gt;Ma mission au sein de la Sous-direction usages numériques et innovation :&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Piloter la transition de populations de nouveaux utilisateurs vers une offre de service DNUM ou un bouquet d&#39;offres de services ;&lt;/li&gt;
-&lt;li&gt;Assurer la bonne adéquation et la cohérence des offres de service DNUM avec les nouvelles pratiques de travail (ex. flex office, mobilité, équipes réparties dans l&#39;espace, incluant des acteurs externes, recours aux IA) ;&lt;/li&gt;
-&lt;li&gt;Veiller à la facilité de consommation des nouvelles offres, telle que l&#39;offre cloud, par des populations d&#39;utilisateurs non experts ;&lt;/li&gt;
-&lt;li&gt;S&#39;assurer de l&#39;accessibilité (conformément à l’article 47 de la loi n° 2005-102 du 11 février 2005) des produits de la sous-direction/de la DNUM .&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;p&gt;&lt;/p&gt;&lt;div class=&quot;my-3&quot;&gt;
-&lt;ul class=&quot;list-unstyled reseaux&quot;&gt;
-&lt;li&gt;&lt;a class=&quot;btn btn-outline-secondary mt-2&quot; href=&quot;http://www.linkedin.com/in/simonnet/fr&quot; rel=&quot;external&quot;&gt; &lt;img src=&quot;https://simonnet.me/assets/icons/linkedin.svg&quot; alt=&quot;Logo Linkedin&quot; class=&quot;me-2&quot;&gt; Mon Profil Linkedin&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&quot;btn btn-outline-secondary mt-2&quot; href=&quot;https://www.instagram.com/oxymore93/&quot; rel=&quot;external&quot;&gt; &lt;img src=&quot;https://simonnet.me/assets/icons/instagram.svg&quot; alt=&quot;Logo Instagram&quot; class=&quot;me-2&quot;&gt; Mon compte Instagram&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&quot;btn btn-outline-secondary mt-2&quot; href=&quot;https://github.com/jpsimonnet&quot; rel=&quot;external&quot;&gt; &lt;img src=&quot;https://simonnet.me/assets/icons/github.svg&quot; alt=&quot;Logo Github&quot; class=&quot;me-2&quot;&gt; Mon compte Github&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class=&quot;btn btn-outline-secondary mt-2&quot; href=&quot;http://www.doyoubuzz.com/jean-philippe-simonnet&quot; rel=&quot;external&quot;&gt; &lt;img src=&quot;https://simonnet.me/assets/images/doyoubuzz.svg&quot; alt=&quot;Logo doyoubuzz&quot; class=&quot;me-2&quot; width=&quot;50px&quot;&gt; Mon CV sur Doyoubuzz&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;&lt;p&gt;&lt;/p&gt;
-</description>
-      <pubDate>Wed, 01 Jan 2025 01:00:00 GMT</pubDate>
-      <dc:creator>Jean-Philippe Simonnet</dc:creator>
-      <guid>https://simonnet.me/qui-suis-je/</guid>
     </item>
     <item>
       <title>Photos</title>
