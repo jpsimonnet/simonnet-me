@@ -49,13 +49,27 @@ jobs:
         continue-on-error: true
 
       - name: Build Eleventy site
-        run: npm run build
+        run: |
+          echo "Starting Eleventy build..."
+          npm run build
+          echo "Build completed with exit code: $?"
+          echo "Listing current directory:"
+          ls -la
+
+      - name: Check if public directory was created
+        run: |
+          if [ -d "public" ]; then
+            echo "✅ public/ directory exists"
+            ls -la public/ | head -20
+          else
+            echo "❌ public/ directory NOT found"
+            echo "Current directory contents:"
+            ls -la
+            exit 1
+          fi
 
       - name: Generate Pagefind search index
         run: npm run search
-
-      - name: Verify public directory exists
-        run: ls -la public/ || echo "public/ directory not found!"
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
