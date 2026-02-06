@@ -11,4 +11,4 @@ node scripts/fetch-notion-actualite.cjs
 
 npm run build
 
-puis faire un githubdeskop push
+puis faire un githubdeskop push# Test workflow
