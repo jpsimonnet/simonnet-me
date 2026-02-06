@@ -5,21 +5,22 @@ function setCookie(cname, cvalue, exdays) {
   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
-$(document).ready(function () {
-  $("#flexSwitchCheckDefault").change(function () {
-    var colorMode = $("html").attr("data-bs-theme");
+document.addEventListener("DOMContentLoaded", function () {
+  const themeSwitch = document.getElementById("flexSwitchCheckDefault");
 
-    if (colorMode == "light") {
-      //$(this).attr('color-mode','dark');
-      $("html").attr("data-bs-theme", "dark");
-      setCookie("site-theme", "dark", 7);
-    }
-    if (colorMode == "dark") {
-      //  $(this).attr('color-mode','light');
-      $("html").attr("data-bs-theme", "light");
-      setCookie("site-theme", "light", 7);
-    }
-  });
+  if (themeSwitch) {
+    themeSwitch.addEventListener("change", function () {
+      const colorMode = document.documentElement.getAttribute("data-bs-theme");
+
+      if (colorMode === "light") {
+        document.documentElement.setAttribute("data-bs-theme", "dark");
+        setCookie("site-theme", "dark", 7);
+      } else if (colorMode === "dark") {
+        document.documentElement.setAttribute("data-bs-theme", "light");
+        setCookie("site-theme", "light", 7);
+      }
+    });
+  }
 });
 
 /*!
