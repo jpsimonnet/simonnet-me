@@ -1,2 +1,26 @@
+# OS files
+.DS_Store
 src/assets/images/.DS_Store
-src/assets/images/.DS_Store
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Dependencies
+node_modules/
+
+# Build output
+public/
+_site/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
