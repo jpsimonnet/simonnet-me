@@ -1,3 +1,8 @@
 {
-  "title": "Le site de Jean-Philippe Simonnet"
+  "title": "Le site de Jean-Philippe Simonnet",
+  "description": "Expert en accessibilité numérique, qualité web et éco-conception. Formateur et consultant pour un web plus inclusif et responsable.",
+  "url": "https://simonnet.me",
+  "author": "Jean-Philippe Simonnet",
+  "image": "/assets/images/og-image.jpg",
+  "twitter": "@jpsimonnet"
 }

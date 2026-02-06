@@ -21,6 +21,7 @@ export default function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/serment");
   eleventyConfig.addPassthroughCopy("src/rdv");
   eleventyConfig.addPassthroughCopy("src/gobelins");
+  eleventyConfig.addPassthroughCopy("src/robots.txt");
 
 
   

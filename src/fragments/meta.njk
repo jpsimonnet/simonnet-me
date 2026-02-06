@@ -1,8 +1,29 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-<meta name="keywords" lang="fr" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="{{ description or site.description }}">
+<meta name="author" content="{{ site.author }}">
 <meta name="revisit-after" content="1">
 <meta name="geo.country" content="fr"/>
+
+{# Open Graph meta tags #}
+<meta property="og:title" content="{{ title or site.title }}">
+<meta property="og:description" content="{{ description or site.description }}">
+<meta property="og:type" content="{{ type or 'website' }}">
+<meta property="og:url" content="{{ site.url }}{{ page.url }}">
+<meta property="og:image" content="{{ site.url }}{{ image or site.image }}">
+<meta property="og:site_name" content="Oxymore">
+<meta property="og:locale" content="fr_FR">
+
+{# Twitter Card meta tags #}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="{{ site.twitter }}">
+<meta name="twitter:creator" content="{{ site.twitter }}">
+<meta name="twitter:title" content="{{ title or site.title }}">
+<meta name="twitter:description" content="{{ description or site.description }}">
+<meta name="twitter:image" content="{{ site.url }}{{ image or site.image }}">
+
+{# Canonical URL #}
+<link rel="canonical" href="{{ site.url }}{{ page.url }}">
 
 <link rel="stylesheet" href="{{ '/css/oxymore.css' }}">
 <link rel="stylesheet" href="{{ '/css/bootstrap.min.css' }}">
