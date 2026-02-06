@@ -5,7 +5,7 @@
   "scripts": {
     "build": "eleventy",
     "serve": "eleventy --serve",
-    "search": "npx pagefind --source public"
+    "search": "npx pagefind --site public"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0",
