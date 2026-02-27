@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="fr" data-fr-theme="light">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="source/favicon/favicon.svg" type="image/svg+xml">
+<link rel="shortcut icon" href="source/favicon/favicon.ico">
+<link rel="apple-touch-icon" href="source/favicon/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Email-facile : générateur d'email en html</title>
+<meta name="color-scheme" content="light dark">
+
+  <!-- DSFR local -->
+  <link rel="stylesheet" href="./source/dsfr/dsfr.min.css" />
+  <script type="module" src="./source/dsfr/dsfr.module.min.js"></script>
+  <!-- Icônes DSFR -->
+  <link rel="stylesheet" href="./source/dsfr/utility/icons/icons.min.css" />
+
+<link rel="stylesheet" href="./source/css/app.css">
+</head>
+<body>
+
+   <header role="banner" class="fr-header">
+    <div class="fr-header__body">
+        <div class="fr-container">
+            <div class="fr-header__body-row">
+                <div class="fr-header__brand fr-enlarge-link">
+                    <div class="fr-header__brand-top">
+                        <div class="fr-header__logo">
+                            <p class="fr-logo">
+                                République <br>Française
+                            </p>
+                        </div>
+                    </div>
+                    <div class="fr-header__service">
+                        <a href="index.html" title="Retour à l'accueil">
+                            <p class="fr-header__service-title">
+                               Email-Facile
+                            </p>
+                        </a>
+                        <p class="fr-header__service-tagline">
+                            Créez vos e-mails facilement au format DSFR
+                        </p>
+                    </div>
+                </div>
+                <div class="fr-header__tools">
+                    <div class="fr-header__tools-links">
+                        <ul class="fr-btns-group">
+                            <li>
+                                <button class="fr-btn--display fr-btn" aria-controls="fr-theme-modal" data-fr-opened="false">Paramètres d'affichage</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Menu mobile (requis par DSFR HeaderLinks JS) -->
+    <div class="fr-header__menu fr-modal" id="modal-header-menu">
+        <div class="fr-container">
+            <button class="fr-btn--close fr-btn" aria-controls="modal-header-menu">Fermer</button>
+            <div class="fr-header__menu-links"></div>
+        </div>
+    </div>
+</header>
+
+  <main class=" fr-my-4w  fr-container ">
+
+    <div class="fr-btns-group fr-btns-group--inline fr-btns-group--sm fr-mb-1w" id="toolbar-top">
+      <button type="button" id="btn-import-file" class="fr-btn fr-btn--secondary fr-btn--sm fr-mx-1">📥 Importer un docx / md</button>
+      <button id="btn-copy-html" class="fr-btn fr-btn--secondary fr-btn--sm fr-mx-1">▶️ Copier le HTML</button>
+      <button id="btn-copy-text" class="fr-btn fr-btn--secondary fr-btn--sm fr-mx-1">✂️ Copier le Markdown</button>
+      <button id="btn-download" class="fr-btn fr-btn--secondary fr-btn--sm fr-mx-1">⬆🌐 Telecharger le HTML</button>
+      <button id="btn-save" class="fr-btn fr-btn--secondary fr-btn--sm fr-mx-1">💾 Sauvegarder</button>
+      <button id="btn-load" class="fr-btn fr-btn--secondary fr-btn--sm fr-mx-1">⬇️ Charger</button>
+      <button id="btn-clear" class="fr-btn fr-btn--secondary fr-btn--sm fr-mx-1">🗑️ Effacer tout</button>
+    </div>
+    <input id="import-file" type="file" accept=".md,.markdown,.txt,.docx" style="display:none">
+    <input type="radio" name="exportMode" value="web" checked style="display:none">
+    <input type="radio" name="inputType" value="md" checked style="display:none">
+    <p id="import-status" class="muted small fr-mb-2w" aria-live="polite"></p>
+
+    <!-- Import Nextcloud -->
+    <section class="fr-card fr-p-3w fr-mb-3w">
+      <div class="fr-grid-row fr-grid-row--gutters fr-grid-row--bottom">
+        <div class="fr-col-12 fr-col-md-9">
+          <div class="fr-input-group">
+            <label class="fr-label" for="nc-url">URL de partage du BNUM</label>
+            <input class="fr-input" id="nc-url" type="url" placeholder="https://bnum.din.gouv.fr/mdrive/index.php/s/...">
+          </div>
+        </div>
+        <div class="fr-col-12 fr-col-md-3">
+          <button id="btn-nc-fetch" class="fr-btn fr-btn--sm fr-btn--icon-left" style="width:100%">Charger le dossier</button>
+        </div>
+      </div>
+      <p id="nc-status" class="muted small fr-mt-1w" aria-live="polite"></p>
+      <div id="nc-zip-fallback" style="display:none;margin-top:12px">
+        <div class="fr-upload-group">
+          <label class="fr-label" for="nc-zip-input">Importer le ZIP telecharge</label>
+          <input class="fr-upload" id="nc-zip-input" type="file" accept=".zip">
+        </div>
+      </div>
+      <div id="nc-file-picker" style="display:none;margin-top:12px">
+        <div class="fr-grid-row fr-grid-row--gutters fr-grid-row--bottom">
+          <div class="fr-col-12 fr-col-md-9">
+            <div class="fr-select-group">
+              <label class="fr-label" for="nc-file-select">Fichier Markdown a importer</label>
+              <select id="nc-file-select" class="fr-select"></select>
+            </div>
+          </div>
+          <div class="fr-col-12 fr-col-md-3">
+            <button id="btn-nc-load" class="fr-btn fr-btn--sm fr-btn--secondary" style="width:100%">Importer</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="grid" role="region" aria-label="Configuration et contenu">
+
+      <!-- ── Onglets Code / Aperçu (pleine largeur) ── -->
+      <div class="fr-tabs" style="grid-column:1/-1">
+        <ul class="fr-tabs__list" role="tablist" aria-label="Contenu et aperçu">
+          <li role="presentation">
+            <button id="tab-code" class="fr-tabs__tab" tabindex="0" role="tab" aria-selected="true" aria-controls="panel-code">Voir le code Markdown</button>
+          </li>
+          <li role="presentation">
+            <button id="tab-preview" class="fr-tabs__tab" tabindex="-1" role="tab" aria-selected="false" aria-controls="panel-preview">Voir l'aperçu de l'e-mail</button>
+          </li>
+        </ul>
+
+        <!-- Panel Code -->
+        <div id="panel-code" class="fr-tabs__panel fr-tabs__panel--selected" role="tabpanel" aria-labelledby="tab-code">
+          <p class="muted">Collez votre contenu <strong>Markdown</strong> (ou basculez sur HTML). Les images doivent avoir un attribut <code>alt</code> en HTML, il sera ajoute si manquant lors de l'export e-mail.</p>
+          <label for="content" class="sr-only">Zone de contenu</label>
+          <textarea id="content" aria-describedby="content-help"># Bonjour !
+
+Bienvenue dans la **newsletter**.
+
+- Point 1 : nouveau site
+- Point 2 : ateliers
+- Point 3 : inscriptions ouvertes
+
+[Consultez le programme](https://example.org/agenda)</textarea>
+          <p id="content-help" class="muted small">Astuce : les URLs seront automatiquement balisees avec Matomo si l'option est cochee.</p>
+
+          <!-- Section Bandeau -->
+          <div class="footer-section">
+            <div class="footer-toggle">
+              <label><input type="checkbox" id="show-banner"> Ajouter un bandeau personnalisé</label>
+            </div>
+            <div class="banner-content" id="banner-content">
+              <p class="fr-label fr-mb-1w" style="margin-top:8px">Choisir un bandeau</p>
+              <div id="banner-gallery" class="banner-gallery" role="group" aria-label="Galerie de bandeaux"></div>
+
+              <div style="margin-top:12px">
+                <label for="banner-file" class="small">Ou importer une image personnalisée (SVG / PNG / JPG / WEBP)</label>
+                <input id="banner-file" type="file" accept="image/svg+xml,image/png,image/jpeg,image/webp">
+              </div>
+
+              <div id="banner-preview" class="banner-preview" style="display:none">
+                <p class="small muted">Aperçu du bandeau :</p>
+                <img id="banner-preview-img" alt="Aperçu du bandeau">
+              </div>
+
+              <input id="banner-img-data" type="hidden" value="">
+              <input id="banner-source" type="hidden" value="">
+            </div>
+          </div>
+
+          <!-- Section Footer -->
+          <div class="footer-section">
+            <div class="footer-toggle">
+              <label><input type="checkbox" id="show-footer"> Ajouter un footer personnalise</label>
+            </div>
+            <div class="footer-content" id="footer-content">
+              <fieldset aria-labelledby="footer-type-label">
+                <legend id="footer-type-label">Type de contenu pour le footer</legend>
+                <div role="radiogroup" aria-label="Type de contenu footer" class="row">
+                  <label><input type="radio" name="footerType" value="md" checked> Markdown</label>
+                  <label><input type="radio" name="footerType" value="html"> HTML</label>
+                </div>
+              </fieldset>
+              <label for="footer-content-textarea">Contenu du footer</label>
+              <textarea id="footer-content-textarea" placeholder="Votre contenu de footer en Markdown ou HTML...">---
+
+**Newsletter de l'organisation**
+
+Contact: contact@example.org
+Site web: https://example.org
+
+Pour vous desabonner, [cliquez ici](https://example.org/unsubscribe)</textarea>
+              <p class="muted small">Ce contenu apparaitra en bas de votre newsletter, apres le contenu principal.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel Aperçu -->
+        <div id="panel-preview" class="fr-tabs__panel" role="tabpanel" aria-labelledby="tab-preview">
+          <div class="preview" role="region" aria-label="Apercu du rendu">
+            <iframe id="preview-frame" title="Apercu" sandbox="allow-same-origin allow-scripts"></iframe>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Réglages (accordéons, pleine largeur) ── -->
+      <div style="grid-column:1/-1" class="fr-pb-2w">
+
+          <!-- Thèmes prêts à l'emploi -->
+          <p class="fr-label fr-mb-1w">Thèmes prêts à l'emploi</p>
+          <div id="theme-cards" role="group" aria-label="Sélection du thème"></div>
+
+          <!-- Accordéon personnalisation couleurs (DSFR) -->
+          <section class="fr-accordion fr-mt-2w">
+            <h3 class="fr-accordion__title">
+              <button class="fr-accordion__btn" aria-expanded="false" aria-controls="theme-customize-content">
+                Personnaliser les couleurs
+              </button>
+            </h3>
+            <div class="fr-collapse" id="theme-customize-content">
+
+              <!-- Fond & texte général -->
+              <p class="fr-label fr-mb-1w fr-mt-0">Général</p>
+              <div class="color-row">
+                <span class="color-row-label">Fond de l'e-mail</span>
+                <div class="color-pair">
+                  <input type="color" class="cp-input" id="cp-email-bg" value="#FFFFFF" title="Couleur de fond">
+                  <input type="text" class="hex-input" id="hex-email-bg" value="#FFFFFF" maxlength="7" aria-label="Fond email">
+                </div>
+              </div>
+              <div class="color-row">
+                <span class="color-row-label">Texte principal</span>
+                <div class="color-pair">
+                  <input type="color" class="cp-input" id="cp-text-color" value="#161616" title="Couleur du texte">
+                  <input type="text" class="hex-input" id="hex-text-color" value="#161616" maxlength="7" aria-label="Couleur texte">
+                </div>
+              </div>
+
+              <!-- Titres H1–H6 -->
+              <p class="fr-label fr-mb-1w" style="margin-top:16px">Titres</p>
+              <div class="heading-grid">
+                <span class="heading-grid-header">Titre</span>
+                <span class="heading-grid-header">Couleur</span>
+                <span class="heading-grid-header">Fond</span>
+
+                <span>H1</span>
+                <div class="color-pair">
+                  <input type="color" class="cp-input" id="cp-primary-color" value="#000091">
+                  <input type="text" class="hex-input" id="hex-primary-color" value="#000091" maxlength="7" aria-label="Couleur H1">
+                </div>
+                <span class="color-na">—</span>
+
+                <span>H2</span>
+                <div class="color-pair">
+                  <input type="color" class="cp-input" id="cp-h2-color" value="#000091">
+                  <input type="text" class="hex-input" id="hex-h2-color" value="#000091" maxlength="7" aria-label="Couleur H2">
+                </div>
+                <div class="color-pair">
+                  <input type="color" class="cp-input" id="cp-h2-bg" value="#e8edff">
+                  <input type="text" class="hex-input" id="hex-h2-bg" value="#e8edff" maxlength="7" aria-label="Fond H2">
+                </div>
+
+                <span>H3</span>
+                <div class="color-pair">
+                  <input type="color" class="cp-input" id="cp-h3-color" value="#000091">
+                  <input type="text" class="hex-input" id="hex-h3-color" value="#000091" maxlength="7" aria-label="Couleur H3">
+                </div>
+                <span class="color-na">—</span>
+
+                <span>H4</span>
+                <div class="color-pair">
+                  <input type="color" class="cp-input" id="cp-h4-color" value="#161616">
+                  <input type="text" class="hex-input" id="hex-h4-color" value="#161616" maxlength="7" aria-label="Couleur H4">
+                </div>
+                <span class="color-na">—</span>
+
+                <span>H5</span>
+                <div class="color-pair">
+                  <input type="color" class="cp-input" id="cp-h5-color" value="#161616">
+                  <input type="text" class="hex-input" id="hex-h5-color" value="#161616" maxlength="7" aria-label="Couleur H5">
+                </div>
+                <span class="color-na">—</span>
+
+                <span>H6</span>
+                <div class="color-pair">
+                  <input type="color" class="cp-input" id="cp-h6-color" value="#161616">
+                  <input type="text" class="hex-input" id="hex-h6-color" value="#161616" maxlength="7" aria-label="Couleur H6">
+                </div>
+                <span class="color-na">—</span>
+              </div>
+
+              <!-- Liens -->
+              <p class="fr-label fr-mb-1w" style="margin-top:16px">Liens</p>
+              <div class="color-row">
+                <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+                  <button type="button" class="link-preset fr-btn fr-btn--sm fr-btn--secondary" data-color="#000091" style="border-left:3px solid #000091">Bleu DSFR</button>
+                  <button type="button" class="link-preset fr-btn fr-btn--sm fr-btn--secondary" data-color="#1a1a1a" style="border-left:3px solid #1a1a1a">Noir</button>
+                  <div class="color-pair">
+                    <input type="color" class="cp-input" id="cp-link-color" value="#000091">
+                    <input type="text" class="hex-input" id="hex-link-color" value="#000091" maxlength="7" aria-label="Couleur lien">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Bordures -->
+              <p class="fr-label fr-mb-1w" style="margin-top:16px">Bordures</p>
+              <div class="color-row">
+                <span class="color-row-label">Bordure header</span>
+                <div class="color-pair">
+                  <input type="color" class="cp-input" id="cp-header-border-color" value="#000091">
+                  <input type="text" class="hex-input" id="hex-header-border-color" value="#000091" maxlength="7" aria-label="Couleur bordure header">
+                </div>
+              </div>
+              <div class="color-row">
+                <span class="color-row-label">Bordures générales</span>
+                <div class="color-pair">
+                  <input type="color" class="cp-input" id="cp-border-color" value="#dddddd">
+                  <input type="text" class="hex-input" id="hex-border-color" value="#dddddd" maxlength="7" aria-label="Couleur bordures">
+                </div>
+              </div>
+
+              <!-- Taille de police -->
+              <div class="color-row" style="margin-top:16px;border-bottom:none">
+                <span class="color-row-label">Taille de police</span>
+                <input type="text" id="val-font-size" class="hex-input" value="16px" style="width:72px" aria-label="Taille de police">
+              </div>
+
+              <!-- CSS avancé (DSFR accordion imbriqué) -->
+              <section class="fr-accordion fr-mt-2w">
+                <h3 class="fr-accordion__title">
+                  <button class="fr-accordion__btn" aria-expanded="false" aria-controls="css-advanced-content">
+                    CSS avancé (édition directe)
+                  </button>
+                </h3>
+                <div class="fr-collapse" id="css-advanced-content">
+                  <div style="padding:12px">
+                    <label class="fr-label" for="custom-css">Variables de style</label>
+                    <textarea id="custom-css" style="font-family:monospace;font-size:12px;min-height:200px;white-space:pre;tab-size:2;">:root {
+  --email-bg: #FFFFFF;
+  --text-color: #161616;
+  --primary-color: #000091;
+  --h2-bg: #e8edff;
+  --h2-color: #000091;
+  --h3-color: #000091;
+  --h4-color: #161616;
+  --h5-color: #161616;
+  --h6-color: #161616;
+  --link-color: #000091;
+  --border-color: #dddddd;
+  --header-border-color: #000091;
+  --font-family: Marianne, Arial, Helvetica, sans-serif;
+  --font-size: 16px;
+  --line-height: 1.5;
+  --toc-bg: #f8f9ff;
+  --toc-border: #dddddd;
+  --hr-color: #ddd;
+}</textarea>
+                    <div class="fr-btns-group fr-btns-group--inline fr-btns-group--sm fr-mt-1w">
+                      <button id="btn-reset-css" class="fr-btn fr-btn--sm fr-btn--tertiary">Reinitialiser les styles</button>
+                      <label class="fr-btn fr-btn--sm fr-btn--secondary" for="css-file-input" style="cursor:pointer;">Importer un fichier CSS</label>
+                      <input id="css-file-input" type="file" accept=".css,.txt" style="display:none;">
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+            </div>
+          </section>
+
+          <div id="copy-status" aria-live="polite" class="sr-only"></div>
+
+          <!-- Accordéon Gestion de Matomo -->
+          <section class="fr-accordion fr-mt-2w" aria-labelledby="matomo-heading">
+        <h2 class="fr-accordion__title" id="matomo-heading">
+          <button class="fr-accordion__btn" aria-expanded="false" aria-controls="matomo-content">
+            Gestion de Matomo
+          </button>
+        </h2>
+        <div class="fr-collapse" id="matomo-content">
+          <div class="fr-p-3w">
+            <div class="row">
+              <div style="flex:1 1 260px;">
+                <label for="sender">Expediteur</label>
+                <input id="sender" type="text" placeholder="Nom de l'expediteur" value="" />
+              </div>
+              <div style="flex:1 1 260px;">
+                <label for="msgTitle">Titre</label>
+                <input id="msgTitle" type="text" placeholder="Titre du message" value="" />
+              </div>
+              <div style="flex:1 1 220px">
+                <label for="campaign">Nom de campagne (Matomo / nom fichier)</label>
+                <input id="campaign" type="text" placeholder="ex: sept-2025-actu" value="sept-2025-actu" />
+              </div>
+            </div>
+
+            <div class="row" style="margin-top:10px">
+              <label class="small"><input id="utms" type="checkbox"> Ajouter le marquage Matomo aux liens</label>
+              <span class="muted small">(pk_campaign / pk_source=newsletter / pk_medium=email / pk_content)</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      </div>
+
+    </div>
+
+  </main>
+
+<footer class="fr-footer" role="contentinfo" id="footer">
+    <div class="fr-container">
+        <div class="fr-footer__body">
+            <div class="fr-footer__brand fr-enlarge-link">
+                <a href="/" title="Retour à l'accueil du site - Email-Facile">
+                    <p class="fr-logo">
+                        République <br>Française
+                    </p>
+                </a>
+            </div>
+            <div class="fr-footer__content">
+                <p class="fr-footer__content-desc">Ce site est géré par la DNUM</p>
+                <ul class="fr-footer__content-list">
+                    <li class="fr-footer__content-item">
+                        <a class="fr-footer__content-link" target="_blank" href="https://legifrance.gouv.fr" aria-label="legifrance.gouv.fr — Nouvelle fenêtre" rel="noopener">legifrance.gouv.fr</a>
+                    </li>
+                    <li class="fr-footer__content-item">
+                        <a class="fr-footer__content-link" target="_blank" href="https://gouvernement.fr" aria-label="gouvernement.fr — Nouvelle fenêtre" rel="noopener">gouvernement.fr</a>
+                    </li>
+                    <li class="fr-footer__content-item">
+                        <a class="fr-footer__content-link" target="_blank" href="https://service-public.fr" aria-label="service-public.fr — Nouvelle fenêtre" rel="noopener">service-public.fr</a>
+                    </li>
+                    <li class="fr-footer__content-item">
+                        <a class="fr-footer__content-link" target="_blank" href="https://data.gouv.fr" aria-label="data.gouv.fr — Nouvelle fenêtre" rel="noopener">data.gouv.fr</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="fr-footer__bottom">
+            <ul class="fr-footer__bottom-list">
+                <li class="fr-footer__bottom-item">
+                    <a class="fr-footer__bottom-link" href="./accessibilite.html">Accessibilité : non conforme</a>
+                </li>
+                <li class="fr-footer__bottom-item">
+                    <a class="fr-footer__bottom-link" href="./mentions-legales.html">Mentions légales</a>
+                </li>
+            </ul>
+            <div class="fr-footer__bottom-copy">
+                <p>Sauf mention contraire, tous les contenus de ce site sont sous <a href="https://github.com/etalab/licence-ouverte/blob/master/LO.md" target="_blank" aria-label="licence etalab-2.0 — Nouvelle fenêtre" rel="noopener">licence etalab-2.0</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Modale Paramètres d'affichage (composant DSFR natif) -->
+<dialog id="fr-theme-modal" class="fr-modal" role="dialog" aria-labelledby="fr-theme-modal-title">
+  <div class="fr-container fr-container--fluid fr-container-md">
+    <div class="fr-grid-row fr-grid-row--center">
+      <div class="fr-col-12 fr-col-md-6 fr-col-lg-4">
+        <div class="fr-modal__body">
+          <div class="fr-modal__header">
+            <button class="fr-btn--close fr-btn" aria-controls="fr-theme-modal" title="Fermer">Fermer</button>
+          </div>
+          <div class="fr-modal__content">
+            <h1 id="fr-theme-modal-title" class="fr-modal__title">Paramètres d'affichage</h1>
+            <div id="fr-display" class="fr-display">
+              <div class="fr-form-group">
+                <fieldset class="fr-fieldset">
+                  <legend class="fr-fieldset__legend fr-text--regular">Choisissez un thème pour personnaliser l'apparence du site.</legend>
+                  <div class="fr-fieldset__content">
+                    <div class="fr-radio-group fr-radio-rich">
+                      <input value="light" type="radio" id="fr-radios-theme-light" name="fr-radios-theme">
+                      <label class="fr-label" for="fr-radios-theme-light">Thème clair</label>
+                    </div>
+                    <div class="fr-radio-group fr-radio-rich">
+                      <input value="dark" type="radio" id="fr-radios-theme-dark" name="fr-radios-theme">
+                      <label class="fr-label" for="fr-radios-theme-dark">Thème sombre</label>
+                    </div>
+                    <div class="fr-radio-group fr-radio-rich">
+                      <input value="system" type="radio" id="fr-radios-theme-system" name="fr-radios-theme">
+                      <label class="fr-label" for="fr-radios-theme-system">Système
+                        <span class="fr-hint-text">Utilise les paramètres système.</span>
+                      </label>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<script src="./source/js/jszip.min.js"></script>
+<script src="./source/js/mammoth.min.js"></script>
+<script src="./source/js/turndown.min.js"></script>
+<script src="./source/js/turndown-plugin-gfm.min.js"></script>
+<script src="./source/js/newsletter.js"></script>
+<script src="./source/js/themes.js"></script>
+<script src="./source/js/nextcloud.js"></script>
+<script>
+/* Propagation du thème clair/sombre vers l'iframe de prévisualisation.
+   Le DSFR gère nativement la modale, les radios et data-fr-theme. */
+(function(){
+  var root = document.documentElement;
+  var iframe = document.getElementById('preview-frame');
+
+  function applyThemeToPreview(){
+    if(!iframe) return;
+    var theme = root.getAttribute('data-fr-theme') || 'light';
+    try {
+      var doc = iframe.contentDocument || iframe.contentWindow.document;
+      if(doc && doc.body){
+        if(theme === 'dark'){
+          doc.body.style.background = '#1e1e1e';
+          doc.body.style.color = '#e0e0e0';
+          doc.body.style.colorScheme = 'dark';
+        } else {
+          doc.body.style.background = '';
+          doc.body.style.color = '';
+          doc.body.style.colorScheme = 'light';
+        }
+      }
+    } catch(e){}
+  }
+
+  /* Observer les changements de data-fr-theme sur <html> (géré par DSFR) */
+  new MutationObserver(function(){ applyThemeToPreview(); })
+    .observe(root, { attributes: true, attributeFilter: ['data-fr-theme'] });
+
+  /* Propager le thème quand le srcdoc de l'iframe change */
+  if(iframe){
+    new MutationObserver(function(){
+      setTimeout(applyThemeToPreview, 80);
+    }).observe(iframe, { attributes: true, attributeFilter: ['srcdoc'] });
+  }
+})();
+</script>
+</body>
+</html>

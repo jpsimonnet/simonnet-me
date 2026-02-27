@@ -1,0 +1,6 @@
+[
+  { "file": "logo.webp", "label": "Logo principal" },
+  { "file": "logo-uni.webp", "label": "Logo Université" },
+  { "file": "logo-dma.webp", "label": "Logo DMA" },
+  { "file": "logo.svg", "label": "Logo SVG" }
+]

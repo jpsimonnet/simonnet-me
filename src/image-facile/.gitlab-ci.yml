@@ -1,0 +1,64 @@
+---
+default:
+  tags: [selfservice]
+
+stages:
+  - build-docker
+  - deploy
+
+variables:
+  IMAGE_NAME_WEB_APP: $CI_REGISTRY/$CI_PROJECT_PATH/image-nginx
+docker-build:
+  stage: build-docker
+  rules:
+  - if: $CI_COMMIT_TAG =~ /^P_[0-9][0-9\.]*$/
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    entrypoint:
+    - ""
+  script:
+  - version=$(echo "${CI_COMMIT_TAG}"|sed 's/P_//')
+  - mkdir -p /kaniko/.docker
+  - |
+    cat <<EOF > /kaniko/.docker/config.json
+    {
+      "auths": {
+        "$CI_REGISTRY": {
+          "username": "$CI_REGISTRY_USER",
+          "password": "$CI_REGISTRY_PASSWORD"
+        }
+      }
+    }
+    EOF
+  - ""
+  - /kaniko/executor --context "${CI_PROJECT_DIR}" --dockerfile "${CI_PROJECT_DIR}/docker/Dockerfile"
+    --registry-mirror registry-proxy.infra.cloud.e2.rie.gouv.fr --destination "${IMAGE_NAME_WEB_APP}:${version}"
+docker-deploy-preprod:
+  stage: deploy
+  rules:
+  - if: $CI_COMMIT_TAG =~ /^P_[0-9][0-9\.]*$/
+  image:
+    name: alpine
+    entrypoint:
+    - ""
+  variables:
+    APP_WORK_PATH: ${CI_PROJECT_DIR}/docker
+  script:
+  - version=$(echo "${CI_COMMIT_TAG}"|sed "s/P_//")
+  - wget  --output-document=- --post-data="user=$CI_REGISTRY_USER&pwd=$CI_REGISTRY_PASSWORD&caas_token=$CAAS_TOKEN&version=$version&ref=$CI_COMMIT_REF_NAME&file=docker/docker-compose-image-facile.yml"  http://caas-console-edd.gsil-preprod.r2.eco4.cloud.e2.rie.gouv.fr/caas/deploy.php
+  needs:
+  - docker-build
+docker-deploy:
+  stage: deploy
+  rules:
+  - if: $CI_COMMIT_TAG =~ /^[0-9][0-9\.]*$/
+  image:
+    name: alpine
+    entrypoint:
+    - ""
+  variables:
+    APP_WORK_PATH: ${CI_PROJECT_DIR}/docker
+  script:
+  - version=$(echo "${CI_COMMIT_TAG}"|sed "s/P_//")
+  - wget --output-document=- --post-data="user=$CI_REGISTRY_USER&pwd=$CI_REGISTRY_PASSWORD&caas_token=$CAAS_TOKEN&version=$version&ref=$CI_COMMIT_REF_NAME&file=docker/docker-compose-image-facile.yml" http://caas-console-edd.gsil.r2.eco4.cloud.e2.rie.gouv.fr/caas/deploy.php
+...

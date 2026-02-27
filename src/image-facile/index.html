@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<!-- saved from url=(0081)https://aide.din.developpement-durable.gouv.fr/fichiers/mkstudio/compression.html -->
+<html lang="fr" data-fr-theme="light" data-fr-js="true" data-fr-scheme="system"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="./source/favicon.svg" type="image/svg+xml">
+<link rel="shortcut icon" href="./source/favicon.ico">
+<link rel="apple-touch-icon" href="./source/apple-touch-icon.png">
+<title>Image Facile</title>
+    <meta name="description" content="Outil local et basique de compression et redimensionnement d&#39;images (JPEG, PNG, GIF).">
+    <meta name="robots" content="index,follow">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+
+
+    <!-- DSFR -->
+    <link rel="stylesheet" href="./source/dsfr.min.css">
+    <script type="module" src="./source/dsfr.module.min.js"></script>
+    <link rel="stylesheet" href="./source/icons.min.css">
+
+    <link rel="stylesheet" href="./source/app.css">
+    <link rel="modulepreload" href="./source/app.js">
+ 
+</head>
+  <body>
+    <noscript>
+      <div class="fr-callout fr-mb-3w" role="note">
+        JavaScript est désactivé. La compression d’images nécessite JavaScript;
+        vous pouvez toutefois consulter les informations et la FAQ.
+      </div>
+    </noscript>
+
+ <header role="banner" class="fr-header">
+    <div class="fr-header__body">
+        <div class="fr-container">
+            <div class="fr-header__body-row">
+                <div class="fr-header__brand fr-enlarge-link">
+                    <div class="fr-header__brand-top">
+                        <div class="fr-header__logo">
+                            <p class="fr-logo" style="">
+                                République <br>Française
+                            </p>
+                        </div>
+                    </div>
+                    <div class="fr-header__service">
+                            <p class="fr-header__service-title">
+                               Images-Facile
+                            </p>
+                        <p class="fr-header__service-tagline">
+                            Un outil de compression d'image simple et pratique
+                        </p>
+                    </div>
+                </div>
+                <div class="fr-header__tools">
+                    <div class="fr-header__tools-links">
+                        <ul class="fr-btns-group">
+                            <li>
+                                <button class="fr-btn--display fr-btn" aria-controls="fr-theme-modal" data-fr-opened="false">Paramètres d'affichage</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Menu mobile (requis par DSFR HeaderLinks JS) -->
+    <div class="fr-header__menu fr-modal" id="modal-header-menu">
+        <div class="fr-container">
+            <button class="fr-btn--close fr-btn" aria-controls="modal-header-menu">Fermer</button>
+            <div class="fr-header__menu-links"></div>
+        </div>
+    </div>
+</header>
+
+
+
+ 
+
+    <main class="fr-container fr-my-6w" id="main" tabindex="-1">
+      <section class="  fr-card fr-p-4w fr-mb-4w  " aria-labelledby="uploader-title">
+        <div class="fr-grid-row fr-grid-row--gutters fr-grid-row--middle">
+          <div class="fr-col-12 fr-col-lg-5">
+            <h1 id="uploader-title" class="fr-h4 fr-mb-1w">
+              Importer vos images
+            </h1>
+            <p class="fr-text--sm fr-mb-2w">
+              Déposez vos fichiers ou choisissez-les depuis votre ordinateur.
+              Aucun upload distant : tout est traité dans votre navigateur.
+            </p>
+          </div>
+          <div class="fr-col-12 fr-col-lg-7">
+            <div class="drop-section">
+              <div class="dropzone" id="dropZone" role="button" tabindex="0" aria-describedby="dropHint">
+                <label for="fileInput" class="primary-label fr-btn fr-btn--primary fr-btn--icon-left">
+                  <span aria-hidden="true">⬆️</span>
+                  Importer
+                </label>
+                <input id="fileInput" class="file-input" name="file" type="file" accept="image/jpeg,image/png,image/gif" multiple="" required="">
+                <p class="help" id="dropHint">
+                  <strong>Glisser-déposer</strong> ou choisissez vos fichiers
+                  (PNG, JPG ou GIF)
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Résultats affichés après compression -->
+      <section class="compress-results   fr-grid-row fr-grid-row--gutters fr-mb-4w" data-layout="duo" data-model="1-2" data-align="start" hidden="">
+        <div class="fr-col-12 fr-col-lg-4">
+          <div class="compress-results-inner" data-layout="stack" data-gap="s">
+            <!-- Advanced options -->
+            <div class="advanced-panels">
+              <section class="fr-accordion">
+                <h2 class="fr-accordion__title">
+                  <button type="button" class="fr-accordion__btn" aria-expanded="false" aria-controls="accordion-id">Réglages avancés</button>
+                </h2>
+                <div class="fr-collapse" id="accordion-id">
+
+                <div class="details-content fr-mt-1w fr-grid-row fr-grid-row--gutters">
+                  <div class="fr-col-12">
+                    <fieldset class="inline-fields fr-fieldset fr-mb-0" data-layout="stack" role="radiogroup" aria-labelledby="resizeTitle" id="resizeChoices">
+                      <legend id="resizeTitle" class="panel-title fr-h6">
+                        <h2 class="fr-h6">Redimensionnement</h2>
+                      </legend>
+                      <div class="fr-fieldset__content">
+                        <div class="fr-radio-group">
+                          <input type="radio" name="resize" id="size-original" value="original">
+                          <label class="fr-label" for="size-original">
+                            Dimensions d'origine
+                            <span class="resize-info fr-text--sm fr-mb-0" data-role="original-dim"></span>
+                          </label>
+                        </div>
+                        <div class="fr-radio-group">
+                          <input type="radio" name="resize" id="size-web" value="1400" checked="">
+                          <label class="fr-label" for="size-web">
+                            Dimensions adaptées Web
+                            <span class="resize-info fr-text--sm fr-mb-0" data-role="web-dim"></span>
+                          </label>
+                        </div>
+                      </div>
+                    </fieldset>
+                  </div>
+
+                  <div class="fr-col-12">
+                    <fieldset class="inline-fields fr-fieldset fr-mb-0" data-layout="stack" role="radiogroup" aria-labelledby="formatTitle" id="formatPanel">
+                      <legend id="formatTitle" class="panel-title fr-h6">
+                        <h2 class="fr-h6">Format de fichier</h2>
+                      </legend>
+                      <div class="fr-fieldset__content">
+                        <div class="fr-radio-group">
+                          <input type="radio" name="format" id="format-processed" value="processed">
+                          <label class="fr-label" for="format-processed">
+                            Format d'origine
+                            <span class="format-info fr-text--sm fr-mb-0" data-role="format-original"></span>
+                          </label>
+                        </div>
+                        <div class="fr-radio-group">
+                          <input type="radio" name="format" id="format-webp" value="webp" checked="">
+                          <label class="fr-label" for="format-webp">
+                            Format WebP <small>(conseillé)</small>
+                          </label>
+                        </div>
+                        <div class="fr-radio-group">
+                          <input type="radio" name="format" id="format-png" value="png">
+                          <label class="fr-label" for="format-png">
+                            Format PNG
+                          </label>
+                        </div>
+                        <div class="fr-radio-group">
+                          <input type="radio" name="format" id="format-jpeg" value="jpeg">
+                          <label class="fr-label" for="format-jpeg">
+                            Format JPEG
+                          </label>
+                        </div>
+                      </div>
+                    </fieldset>
+                  </div>
+
+                  <div class="fr-col-12">
+                    <fieldset class="inline-fields fr-fieldset fr-mb-0" data-layout="stack" role="radiogroup" aria-labelledby="qualityTitle" id="qualityPanel">
+                      <legend id="qualityTitle" class="panel-title fr-h6">
+                        <h2 class="fr-h6">Qualité de compression</h2>
+                      </legend>
+                      <div class="fr-fieldset__content">
+                        <div class="fr-radio-group">
+                          <input type="radio" name="quality" id="quality-low" value="50">
+                          <label class="fr-label" for="quality-low">
+                            Basse <small>(50% - fichier plus léger)</small>
+                          </label>
+                        </div>
+                        <div class="fr-radio-group">
+                          <input type="radio" name="quality" id="quality-medium" value="65">
+                          <label class="fr-label" for="quality-medium">
+                            Moyenne <small>(65%)</small>
+                          </label>
+                        </div>
+                        <div class="fr-radio-group">
+                          <input type="radio" name="quality" id="quality-high" value="75" checked="">
+                          <label class="fr-label" for="quality-high">
+                            Haute <small>(75% - recommandé)</small>
+                          </label>
+                        </div>
+                        <div class="fr-radio-group">
+                          <input type="radio" name="quality" id="quality-max" value="90">
+                          <label class="fr-label" for="quality-max">
+                            Maximale <small>(90% - meilleure qualité)</small>
+                          </label>
+                        </div>
+                      </div>
+                    </fieldset>
+                  </div>
+
+                  <div class="fr-col-12">
+                    <fieldset class="inline-fields fr-fieldset" data-layout="stack" aria-labelledby="transformTitle" id="transformPanel">
+                      <legend id="transformTitle" class="panel-title fr-h6">
+                       <h2 class="fr-h6"> Transformations</H2>
+                      </legend>
+                      <div class="fr-fieldset__content">
+                        <div class="transform-buttons-compact">
+                          <button type="button" id="rotateLeft" class="fr-btn fr-btn--tertiary fr-btn--sm fr-btn--icon-only" aria-label="Rotation 90° gauche" title="Rotation gauche">
+                            ↶
+                          </button>
+                          <button type="button" id="rotateRight" class="fr-btn fr-btn--tertiary fr-btn--sm fr-btn--icon-only" aria-label="Rotation 90° droite" title="Rotation droite">
+                            ↷
+                          </button>
+                          <button type="button" id="flipHorizontal" class="fr-btn fr-btn--tertiary fr-btn--sm fr-btn--icon-only" aria-label="Retournement horizontal" title="Retournement horizontal">
+                            ↔
+                          </button>
+                          <button type="button" id="flipVertical" class="fr-btn fr-btn--tertiary fr-btn--sm fr-btn--icon-only" aria-label="Retournement vertical" title="Retournement vertical">
+                            ↕
+                          </button>
+                        </div>
+                      </div>
+                    </fieldset>
+                  </div>
+                </div>
+
+
+                </div>
+              </section>
+            </div>
+
+            <!-- Bilan -->
+            <div class="field-group bilan-panel fr-p-2w fr-background-alt--blue-france fr-border-radius--md" id="bilanPlaceholder" role="group" aria-labelledby="bilanTitle">
+              <h3 id="bilanTitle" class="fr-h6 fr-mb-1w">Bilan</h3>
+              <div id="bilanContent" data-state="empty">
+                <p class="bilan-placeholder fr-text--sm">
+                  Le bilan de la compression (poids, économies en CO₂) apparaitra
+                  ici.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Résultats -->
+        <div class="fr-col-12 fr-col-lg-8">
+          <div class="results" aria-labelledby="results-title" data-state="idle">
+            <h2 id="results-title" class="fr-h5">Résultats</h2>
+            <div id="status" role="status" aria-live="polite" class="status fr-mb-2w"></div>
+            <div class="compare" id="compare" hidden="">
+              <div class="compare-inner" id="compareInner" data-built="false" data-layout="switcher" style="--col-min-size: 18rem"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Popover pour les messages d'erreur -->
+      <div id="errorPopover" popover="" class="error-popover fr-mb-3w">
+        <button type="button" popovertarget="errorPopover" popovertargetaction="hide" class="fr-btn fr-btn--tertiary-no-outline fr-btn--icon-left error-popover-close" aria-label="Fermer le message">
+          <span class="fr-icon-close-line" aria-hidden="true"></span>Fermer
+        </button>
+        <p id="errorPopoverMessage" class="error-popover-message fr-mt-1w"></p>
+      </div>
+
+      <!-- FAQ -->
+ <div data-fr-group="false" class="fr-accordions-group fr-card">
+
+  <section class="fr-accordion">
+    <h2 class="fr-accordion__title">
+      <button type="button" class="fr-accordion__btn" aria-expanded="false" aria-controls="faq-accordion-1">Comment ça marche ?</button>
+    </h2>
+    <div class="fr-collapse" id="faq-accordion-1">
+      <p>
+        Outil ultra-simple de compression et (re)dimensionnement d'images. L'utilisateur dépose un ou
+        plusieurs fichiers, et l'outil s'occupe du reste automatiquement.
+      </p>
+      <p>
+        La compression se fait nativement dans le navigateur, sans
+        dépendance à un service externe.
+      </p>
+      <p>Des préréglages permettent d'optimiser le poids final :</p>
+      <ul>
+        <li>Taille originelle (aucun redimensionnement)</li>
+        <li>Taille "optimisée Web" (plus grand côté ramené à 1400px)</li>
+        <li>Original compressé (le format d'origine est conservé)</li>
+        <li>Webp (fichier WebP de qualité 75 généré)</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="fr-accordion">
+    <h2 class="fr-accordion__title">
+      <button type="button" class="fr-accordion__btn" aria-expanded="false" aria-controls="faq-accordion-2">Pas d'image sous la main ?</button>
+    </h2>
+    <div class="fr-collapse" id="faq-accordion-2">
+      <p>Testez celle-ci :</p>
+      <figure class="sample-figure">
+        <button type="button" class="sample-load fr-btn fr-btn--secondary" data-full-src="https://cdn.pixabay.com/photo/2015/02/15/03/04/japanese-umbrellas-636870_1280.jpg" data-file-name="japanese-umbrellas-636870_1280" aria-label="Charger l'image d'exemple">
+          <picture>
+            <source type="image/webp" srcset="https://cdn.pixabay.com/photo/2015/02/15/03/04/japanese-umbrellas-636870_1280.jpg">
+            <img src="./source/questche_400.webp" width="200" alt="Exemple de photo" loading="lazy" decoding="async">
+          </picture>
+        </button>
+      </figure>
+      <p class="fr-text--xs">
+        Source image exemple :
+        <a href="https://cdn.pixabay.com/photo/2015/02/15/03/04/japanese-umbrellas-636870_1280.jpg" target="_blank" rel="noopener noreferrer">mac231 (Pixabay)</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="fr-accordion">
+    <h2 class="fr-accordion__title">
+      <button type="button" class="fr-accordion__btn" aria-expanded="false" aria-controls="faq-accordion-3">Conserve-t-on vos images ?</button>
+    </h2>
+    <div class="fr-collapse" id="faq-accordion-3">
+      <p>
+        Outil en ligne de compression et redimensionnement côté navigateur web. Le traitement est 100% en
+        local sur votre ordinateur et aucun fichier n'est envoyé sur un serveur.
+      </p>
+    </div>
+  </section>
+
+  <section class="fr-accordion">
+    <h2 class="fr-accordion__title">
+      <button type="button" class="fr-accordion__btn" aria-expanded="false" aria-controls="faq-accordion-4">Vous en voulez plus ?</button>
+    </h2>
+    <div class="fr-collapse" id="faq-accordion-4">
+      <p>
+        Simplicité : compression basique via les API natives du navigateur (JPEG/PNG et export WebP). Cela suffit
+        pour beaucoup d'usages rapides, mais reste limité face à des encodeurs avancés (MozJPEG, Oxipng, WebP multi-pass, AVIF, JPEG XL) et aux réglages fins (quantisation, subsampling, effort, vitesse vs qualité, réduction de palette…).
+      </p>
+      <p>
+        Pour une optimisation plus poussée, orientez-vous vers
+        <a href="https://squoosh.app/" target="_blank" rel="noopener noreferrer">Squoosh</a>
+        qui embarque des encodeurs WebAssembly performants (MozJPEG, Oxipng, AVIF, etc.).
+      </p>
+    </div>
+  </section>
+
+</div>
+
+              <p class="fr-container fr-m-O fr-p-0 fr-pt-5w fr-pb-2w">Programme inspiré de <a href="https://quetsche.alsacreations.com/"> l'outil quetsche </a>- Alsacreations</p>
+
+    </main>
+ 
+
+    <footer class="fr-footer" role="contentinfo" id="footer">
+        <div class="fr-container">
+            <div class="fr-footer__body">
+                <div class="fr-footer__brand fr-enlarge-link">
+                    <a href="/" title="Retour à l'accueil du site - Images-Facile">
+                        <p class="fr-logo">
+                            République <br>Française
+                        </p>
+                    </a>
+                </div>
+                <div class="fr-footer__content">
+                    <p class="fr-footer__content-desc">Ce site est géré par la DNUM</p>
+                    <ul class="fr-footer__content-list">
+                        <li class="fr-footer__content-item">
+                            <a class="fr-footer__content-link" target="_blank" href="https://legifrance.gouv.fr" aria-label="legifrance.gouv.fr — Nouvelle fenêtre" rel="noopener">legifrance.gouv.fr</a>
+                        </li>
+                        <li class="fr-footer__content-item">
+                            <a class="fr-footer__content-link" target="_blank" href="https://gouvernement.fr" aria-label="gouvernement.fr — Nouvelle fenêtre" rel="noopener">gouvernement.fr</a>
+                        </li>
+                        <li class="fr-footer__content-item">
+                            <a class="fr-footer__content-link" target="_blank" href="https://service-public.fr" aria-label="service-public.fr — Nouvelle fenêtre" rel="noopener">service-public.fr</a>
+                        </li>
+                        <li class="fr-footer__content-item">
+                            <a class="fr-footer__content-link" target="_blank" href="https://data.gouv.fr" aria-label="data.gouv.fr — Nouvelle fenêtre" rel="noopener">data.gouv.fr</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="fr-footer__bottom">
+                <ul class="fr-footer__bottom-list">
+                    <li class="fr-footer__bottom-item">
+                        <a class="fr-footer__bottom-link" href="./accessibilite.html">Accessibilité : non conforme</a>
+                    </li>
+                    <li class="fr-footer__bottom-item">
+                        <a class="fr-footer__bottom-link" href="./mentions-legales.html">Mentions légales</a>
+                    </li>
+                </ul>
+                <div class="fr-footer__bottom-copy">
+                    <p>Sauf mention contraire, tous les contenus de ce site sont sous <a href="https://github.com/etalab/licence-ouverte/blob/master/LO.md" target="_blank" aria-label="licence etalab-2.0 — Nouvelle fenêtre" rel="noopener">licence etalab-2.0</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modale Paramètres d'affichage (composant DSFR natif) -->
+    <dialog id="fr-theme-modal" class="fr-modal" role="dialog" aria-labelledby="fr-theme-modal-title">
+      <div class="fr-container fr-container--fluid fr-container-md">
+        <div class="fr-grid-row fr-grid-row--center">
+          <div class="fr-col-12 fr-col-md-6 fr-col-lg-4">
+            <div class="fr-modal__body">
+              <div class="fr-modal__header">
+                <button class="fr-btn--close fr-btn" aria-controls="fr-theme-modal" title="Fermer">Fermer</button>
+              </div>
+              <div class="fr-modal__content">
+                <h1 id="fr-theme-modal-title" class="fr-modal__title">Paramètres d'affichage</h1>
+                <div id="fr-display" class="fr-display">
+                  <div class="fr-form-group">
+                    <fieldset class="fr-fieldset">
+                      <legend class="fr-fieldset__legend fr-text--regular">Choisissez un thème pour personnaliser l'apparence du site.</legend>
+                      <div class="fr-fieldset__content">
+                        <div class="fr-radio-group fr-radio-rich">
+                          <input value="light" type="radio" id="fr-radios-theme-light" name="fr-radios-theme">
+                          <label class="fr-label" for="fr-radios-theme-light">Thème clair</label>
+                        </div>
+                        <div class="fr-radio-group fr-radio-rich">
+                          <input value="dark" type="radio" id="fr-radios-theme-dark" name="fr-radios-theme">
+                          <label class="fr-label" for="fr-radios-theme-dark">Thème sombre</label>
+                        </div>
+                        <div class="fr-radio-group fr-radio-rich">
+                          <input value="system" type="radio" id="fr-radios-theme-system" name="fr-radios-theme">
+                          <label class="fr-label" for="fr-radios-theme-system">Système
+                            <span class="fr-hint-text">Utilise les paramètres système.</span>
+                          </label>
+                        </div>
+                      </div>
+                    </fieldset>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- JSZip pour la génération de fichiers ZIP (mode batch) -->
+    <script src="./source/jszip.min.js"></script>
+    <script type="module" src="./source/app.js"></script>
+  </body>
+</html>
