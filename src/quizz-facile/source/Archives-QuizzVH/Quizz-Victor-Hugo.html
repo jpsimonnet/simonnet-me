@@ -1,0 +1,728 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Quiz Victor Hugo</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <style>
+    /* === VARIABLES === */
+    :root {
+      --primary-color: #2563eb;
+      --success-color: #16a34a;
+      --danger-color: #dc2626;
+      --light-bg: #f8fafc;
+      --dark-text: #1e293b;
+      --border-color: rgba(0, 0, 0, 0.1);
+    }
+
+    /* === RESET & BASE === */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* === LAYOUT === */
+    .quiz-container {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* === HEADER === */
+    .quiz-header {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 1.5rem 0;
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .status-text {
+      font-size: 0.95rem;
+      color: #64748b;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+
+    .progress {
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      background: linear-gradient(90deg, var(--primary-color), #7c3aed);
+      transition: width 0.4s ease;
+    }
+
+    .score-display {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--dark-text);
+      padding: 0.5rem 1rem;
+      background: #f1f5f9;
+      border-radius: 12px;
+      display: inline-block;
+    }
+
+    /* === MAIN CONTENT === */
+    .quiz-main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      padding: 2rem 0;
+    }
+
+    .screen-content {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* === START SCREEN === */
+    .start-screen {
+      text-align: center;
+      background: white;
+      padding: 3rem;
+      border-radius: 24px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .quiz-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--dark-text);
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .quiz-subtitle {
+      font-size: 1.1rem;
+      color: #64748b;
+      margin-bottom: 2rem;
+    }
+
+    .start-btn {
+      padding: 1rem 3rem;
+      font-size: 1.2rem;
+      font-weight: 700;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--primary-color), #7c3aed);
+      border: none;
+      color: white;
+      transition: all 0.3s ease;
+    }
+
+    .start-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(37, 99, 235, 0.4);
+    }
+
+    /* === QUESTION SCREEN === */
+    .question-container {
+      background: white;
+      border-radius: 24px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .question-content-col {
+      padding: 3rem;
+    }
+
+    .question-image-col {
+      background: #f8fafc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      min-height: 400px;
+    }
+
+    .q-image {
+      /*width: 100%;
+      height: 100%;*/
+      max-width: 100%;
+      object-fit: cover;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .question-text {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 700;
+      color: var(--dark-text);
+      line-height: 1.3;
+      margin-bottom: 2rem;
+    }
+
+    /* === ANSWERS === */
+    .answers {
+      margin-bottom: 2rem;
+    }
+
+    .answer-btn {
+      text-align: left;
+      padding: 1.25rem 1.5rem;
+      border: 2px solid var(--border-color);
+      background: #ffffff;
+      border-radius: 16px;
+      font-size: 1.1rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .answer-btn:hover:not(:disabled) {
+      transform: translateX(8px);
+      border-color: var(--primary-color);
+      background: #f0f9ff;
+    }
+
+    .answer-badge {
+      display: inline-block;
+      width: 32px;
+      height: 32px;
+      line-height: 32px;
+      text-align: center;
+      background: #e2e8f0;
+      border-radius: 8px;
+      margin-right: 1rem;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .answer-btn.correct {
+      border-color: var(--success-color);
+      background: #f0fdf4;
+      color: #166534;
+    }
+
+    .answer-btn.correct .answer-badge {
+      background: var(--success-color);
+      color: white;
+    }
+
+    .answer-btn.wrong {
+      border-color: var(--danger-color);
+      background: #fef2f2;
+      color: #991b1b;
+    }
+
+    .answer-btn.wrong .answer-badge {
+      background: var(--danger-color);
+      color: white;
+    }
+
+    /* === EXPLANATION BOX === */
+    .exp-box {
+      background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+      border: 2px solid var(--success-color);
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+      animation: slideIn 0.4s ease;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .exp-title {
+      font-weight: 700;
+      color: var(--success-color);
+      font-size: 1.1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .exp-text {
+      color: #166534;
+      line-height: 1.6;
+    }
+
+    .exp-img {
+     /* width: 100%;*/
+      max-width: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-top: 1rem;
+    }
+
+    /* === CONTROLS === */
+    .controls {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+
+    .btn-skip {
+      padding: 0.75rem 1.5rem;
+      border-radius: 12px;
+      font-weight: 600;
+    }
+
+    .btn-next {
+      padding: 0.75rem 2rem;
+      border-radius: 12px;
+      font-weight: 600;
+      background: linear-gradient(135deg, var(--primary-color), #7c3aed);
+      border: none;
+      color: white;
+    }
+
+    .btn-next:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(37, 99, 235, 0.3);
+    }
+
+    .btn-next:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .kbd-hint {
+      margin-left: auto;
+      color: #94a3b8;
+      font-size: 0.9rem;
+    }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 768px) {
+      .quiz-header {
+        padding: 1rem 0;
+      }
+      
+      .quiz-title {
+        font-size: 2rem;
+      }
+      
+      .start-screen {
+        padding: 2rem;
+        margin: 1rem;
+      }
+      
+      .question-content-col {
+        padding: 2rem 1.5rem;
+      }
+      
+      .question-text {
+        font-size: 1.25rem;
+      }
+      
+      .answer-btn {
+        padding: 1rem;
+        font-size: 1rem;
+      }
+      
+      .controls {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      
+      .kbd-hint {
+        margin-left: 0;
+        text-align: center;
+      }
+      
+      .score-display {
+        font-size: 1rem;
+      }
+    }
+
+    .final-score {
+      font-size: 3rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+    }
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <header class="quiz-header">
+      <div class="container-fluid px-4">
+        <div class="row align-items-center">
+          <div class="col-md-11">
+            <div id="status" class="status-text">Prêt à commencer</div>
+            <div class="progress">
+              <div id="bar" class="progress-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="col-md-1 text-md-end mt-2 mt-md-0">
+            <div id="scorebox" class="score-display">Score : 0</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="quiz-main">
+      <div class="container-fluid h-100">
+        <div id="screen" class="screen-content">
+          <div class="start-screen">
+            <h1 class="quiz-title">Quiz Victor Hugo</h1>
+            <p class="quiz-subtitle">Testez vos connaissances sur l'un des plus grands écrivains français</p>
+            <button class="btn start-btn" onclick="startQuiz()">🚀 Commencer le Quiz</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div class="modal fade" id="endModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">🎉 Quiz Terminé !</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body text-center" id="endBody"></div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary btn-lg" onclick="restartQuiz()">🔄 Recommencer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div aria-live="assertive" class="visually-hidden" id="sr"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // === QUESTIONS DATA ===
+    const QUESTIONS_MD = `
+### Question 1
+? Quelle habitude insolite aurait eu V. Hugo quand il rédigeait une grande partie de ses livres ?
+! question1.webp
+- Il écrivait toujours debout face à la mer.
+- Il écrivait nu, pour éviter les distractions. [x]
+- Il dictait ses textes en marchant dans son jardin.
+- Il écrivait uniquement la nuit, à la chandelle.
++ Victor Hugo avait effectivement l'habitude d'écrire nu pour se forcer à rester chez lui et éviter les distractions. Il donnait ses vêtements à son valet pour ne pas être tenté de sortir !
+@ explication1.webp
+
+### Question 2
+? Dans quelle religion V. Hugo est-il placé au rang de divinité ?
+! question2.webp
+- Dans une branche du bouddhisme tibétain.
+- Dans une secte littéraire française du XIXᵉ siècle.
+- Dans la religion caodaïste, au Vietnam. [x]
+- Dans le culte shintoïste japonais.
++ Le caodaïsme, religion syncrétique vietnamienne fondée en 1926, vénère Victor Hugo comme un saint aux côtés d'autres figures comme Jeanne d'Arc, Lénine ou Pasteur.
+@ explication2.webp
+
+### Question 3
+? Combien de temps V. Hugo a-t-il mis pour écrire *Les Misérables* ?
+! question3.webp
+- 5 ans.
+- 12 ans.
+- 20 ans. [x]
+- 30 ans.
++ Victor Hugo a commencé "Les Misérables" en 1845 et l'a terminé en 1862, avec une longue interruption pendant son exil. Au total, l'écriture s'est étalée sur près de 20 ans.
+@ explication3.webp
+
+### Question 4
+? Quel titre avait donné V. Hugo à son roman avant de l'intituler *Les Misérables* ?
+! question4.webp
+- "La Destinée des hommes".
+- "Jean Trejean", puis "Les Misères". [x]
+- "Les Pauvres de Paris".
+- "La Justice et la Grâce".
++ Le roman s'est d'abord appelé "Jean Trejean" (le nom original du héros), puis "Les Misères" avant de devenir "Les Misérables" lors de sa publication finale.
+@ explication4.webp
+
+### Question 5
+? Quel est le premier roman écrit par V. Hugo ?
+! question5.webp
+- Notre-Dame de Paris.
+- Han d'Islande.
+- Bug-Jargal, à 16 ans. [x]
+- Claude Gueux.
++ Victor Hugo a écrit "Bug-Jargal" à seulement 16 ans en 1818, un roman qui traite de la révolte des esclaves à Saint-Domingue. Il l'a ensuite révisé et publié en 1826.
+@ explication5.webp
+
+### Question 6
+? En exil, une des passions de V. Hugo consistait…
+! question6.webp
+- À collectionner des coquillages.
+- À écrire des pièces de théâtre pour ses enfants.
+- À faire tourner les tables (spiritisme). [x]
+- À apprendre la musique et jouer du violon.
++ Durant son exil, Victor Hugo s'est passionné pour le spiritisme et organisait régulièrement des séances de tables tournantes, notamment pour tenter de communiquer avec sa fille Léopoldine, décédée tragiquement.
+@ explication6.webp
+`;
+
+    // === STATE ===
+    const state = { questions: [], index: 0, score: 0 };
+    const dom = {
+      status: document.getElementById('status'),
+      bar: document.getElementById('bar'),
+      scorebox: document.getElementById('scorebox'),
+      screen: document.getElementById('screen'),
+      sr: document.getElementById('sr'),
+      endBody: document.getElementById('endBody'),
+      endModal: null
+    };
+
+    // === PARSE QUESTIONS ===
+    function parseQuestions(md) {
+      const blocks = md.split(/^###\s+/m).filter(b => b.trim().length > 0);
+      const questions = [];
+
+      for (const block of blocks) {
+        const lines = block.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+        let question = '', image = '', explain = '', explainImage = '';
+        const options = [];
+
+        for (const line of lines) {
+          if (line.startsWith('? ')) {
+            question = line.slice(2).trim();
+          } else if (line.startsWith('! ')) {
+            image = line.slice(2).trim();
+          } else if (line.startsWith('+ ')) {
+            explain += (explain ? '\n' : '') + line.slice(2).trim();
+          } else if (line.startsWith('@ ')) {
+            explainImage = line.slice(2).trim();
+          } else if (line.startsWith('- ')) {
+            const isCorrect = /\[\s*x\s*\]$/i.test(line);
+            const label = line.replace(/\s*\[\s*x\s*\]\s*$/i, '').slice(2).trim();
+            options.push({ label, correct: isCorrect });
+          }
+        }
+
+        if (question && options.length >= 2 && options.some(o => o.correct)) {
+          questions.push({ question, image, options, explain, explainImage });
+        }
+      }
+
+      return questions;
+    }
+
+    // === UPDATE PROGRESS ===
+    function updateProgress() {
+      const total = state.questions.length;
+      const progress = total ? (state.index / total) * 100 : 0;
+      
+      dom.bar.style.width = `${progress}%`;
+      dom.status.textContent = total ? `Question ${Math.min(state.index + 1, total)} / ${total}` : 'Aucune question';
+      dom.scorebox.textContent = `Score : ${state.score}`;
+    }
+
+    // === RENDER QUESTION ===
+    function renderQuestion() {
+      if (state.index >= state.questions.length) {
+        return renderEnd();
+      }
+
+      updateProgress();
+      const q = state.questions[state.index];
+
+      // Image column (toujours à droite si présente)
+      const imageCol = q.image ? `
+        <div class="col-lg-5 order-lg-2 question-image-col">
+          <img src="${q.image}" class="q-image" alt="Illustration de la question" onerror="this.parentElement.style.display='none'">
+        </div>
+      ` : '';
+
+      dom.screen.innerHTML = `
+        <div class="question-container">
+          <div class="row g-0">
+            <div class="col-lg-${q.image ? '7' : '12'} order-lg-1 question-content-col">
+              <div class="question-text">${q.question}</div>
+              
+              <div class="answers d-grid gap-3" id="answers">
+                ${q.options.map((option, index) => `
+                  <button class="answer-btn" data-index="${index}">
+                    <span class="answer-badge">${index + 1}</span>
+                    ${option.label}
+                  </button>
+                `).join('')}
+              </div>
+
+              <div class="exp-box" id="expBox" style="display: none;">
+                <div class="exp-title">✅ Bonne réponse !</div>
+                <div class="exp-text" id="expText"></div>
+                <img id="expImg" class="exp-img" alt="Illustration explicative" style="display: none;">
+              </div>
+
+              <div class="controls">
+                <button class="btn btn-outline-secondary btn-skip" id="skipBtn">⏭️ Passer</button>
+                <button class="btn btn-primary btn-next" id="nextBtn" disabled>Suivant →</button>
+                <div class="kbd-hint">💡 Touches 1, 2, 3, 4...</div>
+              </div>
+            </div>
+            ${imageCol}
+          </div>
+        </div>
+      `;
+
+      attachHandlers(q);
+    }
+
+   // === ATTACH HANDLERS ===
+    function attachHandlers(question) {
+      const answersContainer = document.getElementById('answers');
+      const nextBtn = document.getElementById('nextBtn');
+      const skipBtn = document.getElementById('skipBtn');
+      const expBox = document.getElementById('expBox');
+      const expText = document.getElementById('expText');
+      const expImg = document.getElementById('expImg');
+      
+      let firstAttempt = true; // Nouvelle variable pour tracker le premier essai
+
+      answersContainer.addEventListener('click', (e) => {
+        const btn = e.target.closest('.answer-btn');
+        if (!btn || btn.disabled) return;
+
+        const index = parseInt(btn.dataset.index);
+        const option = question.options[index];
+
+        if (option.correct) {
+          btn.classList.add('correct');
+          // Ne compter le point que si c'est le premier essai
+          if (firstAttempt) {
+            state.score++;
+            updateProgress();
+          }
+          dom.sr.textContent = 'Bonne réponse !';
+          if (question.explain) expText.textContent = question.explain;
+          if (question.explainImage) {
+            expImg.src = question.explainImage;
+            expImg.style.display = 'block';
+            expImg.onerror = () => expImg.style.display = 'none';
+          }
+          expBox.style.display = 'block';
+          nextBtn.disabled = false;
+          answersContainer.querySelectorAll('.answer-btn').forEach(b => b.disabled = true);
+        } else {
+          btn.classList.add('wrong');
+          btn.disabled = true;
+          firstAttempt = false; // Marquer qu'on n'est plus au premier essai
+          dom.sr.textContent = 'Mauvaise réponse, réessayez.';
+        }
+      });
+
+      skipBtn.addEventListener('click', () => {
+        const correctIndex = question.options.findIndex(o => o.correct);
+        const correctBtn = answersContainer.querySelector(`[data-index="${correctIndex}"]`);
+        if (correctBtn) correctBtn.classList.add('correct');
+        if (question.explain) expText.textContent = question.explain;
+        if (question.explainImage) {
+          expImg.src = question.explainImage;
+          expImg.style.display = 'block';
+          expImg.onerror = () => expImg.style.display = 'none';
+        }
+        expBox.style.display = 'block';
+        nextBtn.disabled = false;
+        answersContainer.querySelectorAll('.answer-btn').forEach(b => b.disabled = true);
+      });
+
+      nextBtn.addEventListener('click', () => {
+        state.index++;
+        renderQuestion();
+      });
+
+      document.onkeydown = (e) => {
+        const num = parseInt(e.key);
+        if (num >= 1 && num <= question.options.length) {
+          const btn = answersContainer.querySelector(`[data-index="${num - 1}"]`);
+          if (btn && !btn.disabled) btn.click();
+        }
+      };
+    }
+
+    // === RENDER END ===
+    function renderEnd() {
+      updateProgress();
+      dom.bar.style.width = '100%';
+      dom.status.textContent = 'Quiz terminé !';
+
+      const total = state.questions.length;
+      const score = state.score;
+      const percentage = total ? Math.round((score / total) * 100) : 0;
+
+      let message = '';
+      if (percentage === 100) message = '🏆 Parfait ! Vous êtes un expert de Victor Hugo !';
+      else if (percentage >= 80) message = '🎉 Excellent ! Très bonne connaissance de Victor Hugo !';
+      else if (percentage >= 60) message = '👍 Bien joué ! Vous connaissez bien Victor Hugo !';
+      else if (percentage >= 40) message = '📚 Pas mal, mais il y a encore à apprendre !';
+      else message = '💪 Continuez à découvrir l\'œuvre de Victor Hugo !';
+
+      dom.endBody.innerHTML = `
+        <div class="final-score">${score} / ${total}</div>
+        <div class="final-percentage">${percentage}%</div>
+        <p class="mt-3">${message}</p>
+      `;
+
+      if (dom.endModal) dom.endModal.show();
+      dom.screen.innerHTML = '<div class="text-center py-5"><h2>Quiz terminé !</h2></div>';
+    }
+
+    // === START QUIZ ===
+    function startQuiz() {
+      state.questions = parseQuestions(QUESTIONS_MD);
+      state.index = 0;
+      state.score = 0;
+      renderQuestion();
+    }
+
+    // === RESTART QUIZ ===
+    function restartQuiz() {
+      if (dom.endModal) dom.endModal.hide();
+      startQuiz();
+    }
+
+    // === INIT ===
+    document.addEventListener('DOMContentLoaded', () => {
+      const modalElement = document.getElementById('endModal');
+      if (window.bootstrap && modalElement) {
+        dom.endModal = new bootstrap.Modal(modalElement);
+      }
+    });
+  </script>
+</body>
+</html>
