@@ -24,6 +24,53 @@ const DEFAULT_CSS_VARS = {
   '--hr-color': '#ddd'
 };
 
+/* Modèle par défaut chargé depuis source/content/modele.md */
+var DEFAULT_CONTENT = '';
+var DEFAULT_FOOTER = '';
+var DEFAULT_BANNER = '';
+var DEFAULT_THEME = '';
+
+function parseModele(raw) {
+  var m = raw.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+  if (!m) return { content: raw.trim(), footer: '', banner: '', theme: '' };
+  var meta = m[1], body = m[2].trim();
+  var result = { content: body, footer: '', banner: '', theme: '' };
+  // Parser ligne par ligne le front matter
+  var lines = meta.split('\n'), i = 0;
+  while (i < lines.length) {
+    var line = lines[i];
+    var simple = line.match(/^(banner|theme):\s*(.+)$/);
+    if (simple) { result[simple[1]] = simple[2].trim(); i++; continue; }
+    // Bloc multi-ligne YAML (footer: |)
+    var block = line.match(/^(footer):\s*\|\s*$/);
+    if (block) {
+      var parts = []; i++;
+      while (i < lines.length && (lines[i] === '' || /^  /.test(lines[i]))) {
+        parts.push(lines[i].replace(/^  /, ''));
+        i++;
+      }
+      result[block[1]] = parts.join('\n').trim();
+      continue;
+    }
+    i++;
+  }
+  return result;
+}
+
+function loadModele() {
+  return fetch('./source/content/modele.md')
+    .then(function(r) { return r.ok ? r.text() : ''; })
+    .then(function(raw) {
+      if (!raw) return;
+      var parsed = parseModele(raw);
+      DEFAULT_CONTENT = parsed.content;
+      DEFAULT_FOOTER = parsed.footer;
+      DEFAULT_BANNER = parsed.banner;
+      DEFAULT_THEME = parsed.theme;
+    })
+    .catch(function() {});
+}
+
 function parseCssVars() {
   const el = $('#custom-css');
   const text = el ? el.value : '';
@@ -188,17 +235,19 @@ function clearAllData() {
     localStorage.removeItem('newsletter_saves');
     sessionStorage.removeItem('newsletter_autosave');
     
-    $('#content').value = '# Bonjour !\n\nBienvenue dans la **newsletter**.\n\n- Point 1 : nouveau site\n- Point 2 : ateliers\n- Point 3 : inscriptions ouvertes\n\n[Consultez le programme](https://example.org/agenda)';
+    $('#content').value = DEFAULT_CONTENT;
     $('#sender').value = '';
     $('#msgTitle').value = '';
     $('#campaign').value = 'sept-2025-actu';
-    $('#show-banner').checked = false;
+    $('#show-banner').checked = !!DEFAULT_BANNER;
     $('#banner-img-data').value = '';
     if ($('#banner-source')) $('#banner-source').value = '';
-    $('#show-footer').checked = false;
-    $('#footer-content-textarea').value = '---\n\n**Newsletter de l\'organisation**\n\nContact: contact@example.org\nSite web: https://example.org\n\nPour vous desabonner, [cliquez ici](https://example.org/unsubscribe)';
+    selectGalleryBanner(DEFAULT_BANNER || 'logo.webp');
+    $('#show-footer').checked = !!DEFAULT_FOOTER;
+    $('#footer-content-textarea').value = DEFAULT_FOOTER;
     $('#utms').checked = true;
     if ($('#custom-css')) $('#custom-css').value = getDefaultCssText();
+    if (DEFAULT_THEME && typeof window.applyTheme === 'function') window.applyTheme(DEFAULT_THEME);
 
     document.querySelector('input[name="footerType"][value="md"]').checked = true;
     document.querySelector('input[name="exportMode"][value="web"]').checked = true;
@@ -234,6 +283,34 @@ function markdownToHtml(md){
 
   // Supprimer le front matter YAML (bloc --- ... --- en debut de document)
   html = html.replace(/^\s*---\n[\s\S]*?\n---\s*\n?/, '');
+
+  // Extraire les blocs de code (``` ... ```) AVANT tout autre traitement
+  const codeBlocks = [];
+  let cbIndex = 0;
+  html = html.replace(/^```(\w*)\n([\s\S]*?)^```$/gm, function(_, lang, code) {
+    var raw = code.replace(/\n$/, '');
+    var escaped = raw.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    var block = '<div class="code-snippet">'
+      + '<button class="code-copy-btn" type="button">Copier</button>'
+      + '<pre><code>' + escaped + '</code></pre>'
+      + '</div>';
+    var placeholder = '___CODEBLOCK_' + cbIndex + '___';
+    codeBlocks[cbIndex] = block;
+    cbIndex++;
+    return placeholder;
+  });
+
+  // Extraire le code inline (`...`) AVANT l'échappement
+  const inlineCodes = [];
+  let icIndex = 0;
+  html = html.replace(/`([^`\n]+)`/g, function(_, code) {
+    var escaped = code.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    var tag = '<code style="background:#f5f5f5;padding:2px 6px;border-radius:4px;font-size:0.88em;">' + escaped + '</code>';
+    var placeholder = '___INLINECODE_' + icIndex + '___';
+    inlineCodes[icIndex] = tag;
+    icIndex++;
+    return placeholder;
+  });
 
   // Traiter les listes D'ABORD (avant tout échappement)
   html = parseNestedLists(html);
@@ -366,8 +443,18 @@ function markdownToHtml(md){
     .replace(/\*(.+?)\*/g,     function(_,t){ return '<em>'+t+'</em>'; })
     .replace(/\[([^\]]+)\]\((https?:[^\s)]+)(?:\s+"([^"]*)")?\)/g, function(_,txt,url,title){ return '<a href="'+url+'"' + (title ? ' title="'+title+'"' : '') + '>'+txt+'</a>'; });
 
-  html = html.replace(/^(?!<h\d|<ul|<li|<p|<\/|<blockquote|<img|<a|<div|<table|<tr|<td|<th|<hr|___TABLE|___ALERT)(.+)$/gm, '<p>$1</p>');
-  
+  html = html.replace(/^(?!<h\d|<ul|<li|<p|<\/|<blockquote|<img|<a|<div|<table|<tr|<td|<th|<hr|<pre|___TABLE|___ALERT|___CODEBLOCK)(.+)$/gm, '<p>$1</p>');
+
+  // Restaurer les blocs de code (après le wrapping en <p>)
+  codeBlocks.forEach((block, index) => {
+    html = html.replace(`___CODEBLOCK_${index}___`, block);
+  });
+
+  // Restaurer le code inline
+  inlineCodes.forEach((tag, index) => {
+    html = html.replace(`___INLINECODE_${index}___`, tag);
+  });
+
   return html;
 }
 
@@ -1045,10 +1132,10 @@ function imageToWebpDataUri(source, opts) {
 
 function loadBannerGallery() {
   var container = $('#banner-gallery');
-  if (!container) return;
+  if (!container) return Promise.resolve();
   container.innerHTML = '<p class="muted small">Chargement…</p>';
 
-  fetch('source/logos/logos.json', { cache: 'no-store' })
+  return fetch('source/logos/logos.json', { cache: 'no-store' })
     .then(function(r) {
       if (!r.ok) throw new Error('logos.json non trouve');
       return r.json();
@@ -1225,6 +1312,26 @@ $('#show-footer').addEventListener('change', function(){
   $('#preview-frame').srcdoc = result.html;
 });
 
+$('#btn-add-toc').addEventListener('click', function(){
+  var ta = $('#content');
+  if (ta.value.indexOf('[TOC]') !== -1) return;
+  // Insérer [TOC] après le premier titre (# ...)
+  var lines = ta.value.split('\n');
+  var inserted = false;
+  for (var i = 0; i < lines.length; i++) {
+    if (/^#\s/.test(lines[i])) {
+      lines.splice(i + 1, 0, '', '[TOC]', '');
+      inserted = true;
+      break;
+    }
+  }
+  if (!inserted) {
+    ta.value = '[TOC]\n\n' + ta.value;
+  } else {
+    ta.value = lines.join('\n');
+  }
+  update();
+});
 
 $('#banner-file').addEventListener('change', function(e){
   var f = e.target.files && e.target.files[0];
@@ -1314,28 +1421,126 @@ $$('input[name="footerType"], input[name="exportMode"], input[name="inputType"]'
 });
 
 window.addEventListener('DOMContentLoaded', function(){
-  loadAutoSave();
-  updateBannerVisibility();
-  updateFooterVisibility();
-  loadBannerGallery();
+  loadModele().then(function() {
+    loadAutoSave();
 
-  // Appliquer le bandeau par defaut si aucun n'est stocke
-  var sourceEl = $('#banner-source');
-  var imgDataEl = $('#banner-img-data');
-  if ((!sourceEl || !sourceEl.value) && (!imgDataEl || !imgDataEl.value)) {
-    selectGalleryBanner('logo.webp');
-  } else {
-    updateBannerPreview(imgDataEl ? imgDataEl.value : '');
-  }
+    // Si pas d'autosave, appliquer le modèle par défaut
+    if (!$('#content').value && DEFAULT_CONTENT) {
+      $('#content').value = DEFAULT_CONTENT;
+    }
+    if (!$('#footer-content-textarea').value && DEFAULT_FOOTER) {
+      $('#footer-content-textarea').value = DEFAULT_FOOTER;
+    }
 
-  try {
-    var result = buildHtmlAndText();
-    $('#preview-frame').srcdoc = result.html;
-  } catch(e){
-    var live = $('#copy-status');
-    if (live) { live.textContent = 'Erreur lors du rendu initial : ' + (e && e.message ? e.message : e); }
-    console.error(e);
-  }
+    // Déterminer si c'est un premier chargement (pas d'autosave)
+    var hadAutoSave = JSON.parse(sessionStorage.getItem('newsletter_autosave') || '{}');
+    var isFirstLoad = Object.keys(hadAutoSave).length === 0;
+
+    // Cocher automatiquement bannière et footer si définis dans le modèle
+    if (isFirstLoad) {
+      if (DEFAULT_BANNER) { $('#show-banner').checked = true; }
+      if (DEFAULT_FOOTER) { $('#show-footer').checked = true; }
+    }
+
+    updateBannerVisibility();
+    updateFooterVisibility();
+
+    // Charger la galerie puis appliquer le bandeau du modèle
+    loadBannerGallery().then(function() {
+      if (isFirstLoad && DEFAULT_BANNER) {
+        selectGalleryBanner(DEFAULT_BANNER);
+      } else {
+        var sourceEl = $('#banner-source');
+        var imgDataEl = $('#banner-img-data');
+        if ((!sourceEl || !sourceEl.value) && (!imgDataEl || !imgDataEl.value)) {
+          selectGalleryBanner(DEFAULT_BANNER || 'logo.webp');
+        } else {
+          updateBannerPreview(imgDataEl ? imgDataEl.value : '');
+        }
+      }
+    });
+
+    // Appliquer le thème du modèle si pas d'autosave
+    if (isFirstLoad && DEFAULT_THEME && typeof window.applyTheme === 'function') {
+      window.applyTheme(DEFAULT_THEME);
+    }
+
+    try {
+      var result = buildHtmlAndText();
+      $('#preview-frame').srcdoc = result.html;
+    } catch(e){
+      var live = $('#copy-status');
+      if (live) { live.textContent = 'Erreur lors du rendu initial : ' + (e && e.message ? e.message : e); }
+      console.error(e);
+    }
+  });
+
+  // Charger le contenu d'aide depuis README.md (rendu dans un iframe comme l'aperçu)
+  fetch('README.md').then(function(r){ return r.text(); }).then(function(md){
+    var frame = $('#help-frame');
+    if (!frame) return;
+    var body = markdownToHtml(md);
+    var helpCss = 'body{font-family:Marianne,system-ui,sans-serif;line-height:1.7;margin:0;padding:24px;color:#161616;background:#fff;max-width:800px}'
+      + 'h1{font-size:1.5rem;margin:0 0 1rem}'
+      + 'h2{font-size:1.25rem;margin:1.5rem 0 .5rem;padding-bottom:.25rem;border-bottom:1px solid #eee}'
+      + 'h3{font-size:1.05rem;margin:1rem 0 .4rem}'
+      + 'p{margin:.5rem 0}'
+      + 'table{border-collapse:collapse;width:100%;margin:.75rem 0;font-size:.92rem}'
+      + 'th,td{border:1px solid #ddd;padding:.4rem .6rem;text-align:left}'
+      + 'th{background:#f5f5f5;font-weight:600}'
+      + 'code{background:#f5f5f5;padding:2px 6px;border-radius:3px;font-size:.88em}'
+      + 'hr{border:0;border-top:1px solid #eee;margin:1.5rem 0}'
+      + '.code-snippet{position:relative;margin:12px 0}'
+      + '.code-snippet pre{margin:0}'
+      + '.code-snippet pre code{display:block;background:#f6f6f6;color:#242424;border:1px solid #ddd;border-radius:.25rem;padding:1em;font-size:.75rem;line-height:1.5;overflow-x:auto}'
+      + '.code-copy-btn{position:absolute;top:9px;right:9px;background:#fff;color:#242424;border:1px solid #ccc;border-radius:4px;padding:4px 12px;font-size:.78rem;cursor:pointer}'
+      + '.code-copy-btn:hover{background:#eee}';
+    var doc = frame.contentDocument;
+    doc.open();
+    doc.write('<!doctype html><html lang="fr"><head><meta charset="utf-8"><style>' + helpCss + '</style></head><body>' + body + '</body></html>');
+    doc.close();
+    // Boutons Copier dans l'iframe
+    doc.addEventListener('click', function(e){
+      var b = e.target;
+      if (!b.classList.contains('code-copy-btn')) return;
+      var t = b.parentNode.querySelector('code').textContent;
+      navigator.clipboard.writeText(t).then(function(){
+        b.textContent = 'Copie !';
+        setTimeout(function(){ b.textContent = 'Copier'; }, 1500);
+      });
+    });
+  }).catch(function(e){ console.warn('Chargement aide :', e); });
+
+  // Boutons Copier (délégation sur la page principale)
+  document.addEventListener('click', function(e){
+    var b = e.target;
+    if (!b.classList.contains('code-copy-btn')) return;
+    var t = b.parentNode.querySelector('code').textContent;
+    navigator.clipboard.writeText(t).then(function(){
+      b.textContent = 'Copie !';
+      setTimeout(function(){ b.textContent = 'Copier'; }, 1500);
+    });
+  });
+
+  // Plein écran aperçu
+  $('#btn-preview-fullscreen').addEventListener('click', function(){
+    var iframe = $('#preview-frame');
+    var overlay = document.createElement('div');
+    overlay.className = 'preview-fullscreen';
+    var closeBtn = document.createElement('button');
+    closeBtn.className = 'preview-close';
+    closeBtn.type = 'button';
+    closeBtn.textContent = '\u2715 Fermer';
+    var clone = iframe.cloneNode();
+    clone.srcdoc = iframe.srcdoc;
+    overlay.appendChild(closeBtn);
+    overlay.appendChild(clone);
+    document.body.appendChild(overlay);
+    function close(){ document.body.removeChild(overlay); }
+    closeBtn.addEventListener('click', close);
+    overlay.addEventListener('click', function(e){ if (e.target === overlay) close(); });
+    document.addEventListener('keydown', function esc(e){ if (e.key === 'Escape') { close(); document.removeEventListener('keydown', esc); } });
+  });
 });
 
 setInterval(function(){

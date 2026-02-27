@@ -100,6 +100,75 @@
       }
     });
 
+    // Convertir les marqueurs d'alerte et citations via le DOM
+    // Gère 2 cas : marqueurs sur ligne séparée OU inline dans le même <p>
+    // Ex: <p>[ATTENTION]Texte ici.[/ATTENTION]</p>  ou  <p>[INFO]</p> ... <p>[/INFO]</p>
+    var alertMap = { 'INFO': 'info', 'SUCCES': 'success', 'ATTENTION': 'warn', 'ERREUR': 'error' };
+    var alertTypes = 'INFO|SUCCES|ATTENTION|ERREUR';
+    var inlineAlertRe = new RegExp('^\\[(' + alertTypes + ')\\]([\\s\\S]*?)\\[\\/\\1\\]$');
+
+    Array.from(tempDiv.querySelectorAll('p')).forEach(function(p) {
+      var text = p.textContent.trim();
+
+      // Cas 1 : tout dans un seul <p> → [TYPE]contenu[/TYPE]
+      var inlineMatch = text.match(inlineAlertRe);
+      if (inlineMatch) {
+        var wrapper = document.createDocumentFragment();
+        var open = document.createElement('p');
+        open.textContent = '::: ' + alertMap[inlineMatch[1]];
+        var body = document.createElement('p');
+        body.textContent = inlineMatch[2].trim();
+        var close = document.createElement('p');
+        close.textContent = ':::';
+        wrapper.appendChild(open);
+        wrapper.appendChild(body);
+        wrapper.appendChild(close);
+        p.parentNode.replaceChild(wrapper, p);
+        return;
+      }
+
+      // Cas 2 : marqueur seul sur sa ligne
+      var openMatch = text.match(new RegExp('^\\[(' + alertTypes + ')\\]$'));
+      if (openMatch) { p.textContent = '::: ' + alertMap[openMatch[1]]; return; }
+      var closeMatch = text.match(new RegExp('^\\[\\/(' + alertTypes + ')\\]$'));
+      if (closeMatch) { p.textContent = ':::'; return; }
+
+      // Citations inline : [CITATION]contenu[/CITATION]
+      var citInline = text.match(/^\[CITATION\]([\s\S]*?)\[\/CITATION\]$/);
+      if (citInline) {
+        var bq = document.createElement('blockquote');
+        var bp = document.createElement('p');
+        bp.textContent = citInline[1].trim();
+        bq.appendChild(bp);
+        p.parentNode.replaceChild(bq, p);
+        return;
+      }
+    });
+
+    // Citations multi-<p> : <p>[CITATION]</p> ... <p>[/CITATION]</p>
+    var paragraphs = Array.from(tempDiv.querySelectorAll('p'));
+    for (var ci = 0; ci < paragraphs.length; ci++) {
+      if (paragraphs[ci].textContent.trim() === '[CITATION]') {
+        var openP = paragraphs[ci];
+        for (var cj = ci + 1; cj < paragraphs.length; cj++) {
+          if (paragraphs[cj].textContent.trim() === '[/CITATION]') {
+            var closeP = paragraphs[cj];
+            var bq = document.createElement('blockquote');
+            var next = openP.nextSibling;
+            while (next && next !== closeP) {
+              var toMove = next;
+              next = next.nextSibling;
+              bq.appendChild(toMove);
+            }
+            openP.parentNode.insertBefore(bq, openP);
+            openP.remove();
+            closeP.remove();
+            break;
+          }
+        }
+      }
+    }
+
     var fixedHtml = tempDiv.innerHTML;
 
     var td = new TurndownService({ headingStyle: 'atx', bulletListMarker: '-', emDelimiter: '*' });

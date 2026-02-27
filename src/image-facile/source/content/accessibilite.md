@@ -4,7 +4,7 @@ La DNUM s'engage à rendre ses sites internet accessibles conformément à l'art
 
 ## État de conformité
 
-Le site **Images-Facile** est **non conforme** avec le Référentiel Général d'Amélioration de l'Accessibilité (RGAA) version 4. Aucun audit d'accessibilité n'a encore été réalisé.
+Le site **Image-Facile** est **non conforme** avec le Référentiel Général d'Amélioration de l'Accessibilité (RGAA) version 4. Aucun audit d'accessibilité n'a encore été réalisé.
 
 ## Résultats des tests
 

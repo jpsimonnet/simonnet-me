@@ -1,0 +1,14 @@
+services:
+    nginx:
+        image:  registry.gitlab-forge.din.developpement-durable.gouv.fr/snum/uni/image-facile/image-nginx:#TAG#
+        environment:
+        - https_proxy=http://proxybl-m.edcs.fr:3128
+        - http_proxy=http://proxybl-m.edcs.fr:3128
+        - no_proxy=din.developpement-durable.gouv.fr,e2.rie.gouv.fr
+        ports:
+        - "#PORT#:80"
+        deploy:
+          mode: replicated
+          replicas: 1
+
+

@@ -120,32 +120,28 @@
       <div class="fr-tabs" style="grid-column:1/-1">
         <ul class="fr-tabs__list" role="tablist" aria-label="Contenu et aperçu">
           <li role="presentation">
-            <button id="tab-code" class="fr-tabs__tab" tabindex="0" role="tab" aria-selected="true" aria-controls="panel-code">Voir le code Markdown</button>
+            <button id="tab-code" class="fr-tabs__tab" tabindex="0" role="tab" aria-selected="true" aria-controls="panel-code">Voir le code</button>
           </li>
           <li role="presentation">
             <button id="tab-preview" class="fr-tabs__tab" tabindex="-1" role="tab" aria-selected="false" aria-controls="panel-preview">Voir l'aperçu de l'e-mail</button>
+          </li>
+          <li role="presentation">
+            <button id="tab-help" class="fr-tabs__tab" tabindex="-1" role="tab" aria-selected="false" aria-controls="panel-help">Aide</button>
           </li>
         </ul>
 
         <!-- Panel Code -->
         <div id="panel-code" class="fr-tabs__panel fr-tabs__panel--selected" role="tabpanel" aria-labelledby="tab-code">
+          <h1 class="fr-h5">Code Markdown</h1>
           <p class="muted">Collez votre contenu <strong>Markdown</strong> (ou basculez sur HTML). Les images doivent avoir un attribut <code>alt</code> en HTML, il sera ajoute si manquant lors de l'export e-mail.</p>
           <label for="content" class="sr-only">Zone de contenu</label>
-          <textarea id="content" aria-describedby="content-help"># Bonjour !
-
-Bienvenue dans la **newsletter**.
-
-- Point 1 : nouveau site
-- Point 2 : ateliers
-- Point 3 : inscriptions ouvertes
-
-[Consultez le programme](https://example.org/agenda)</textarea>
+          <textarea id="content" aria-describedby="content-help"></textarea>
           <p id="content-help" class="muted small">Astuce : les URLs seront automatiquement balisees avec Matomo si l'option est cochee.</p>
 
           <!-- Section Bandeau -->
           <div class="footer-section">
-            <div class="footer-toggle">
-              <label><input type="checkbox" id="show-banner"> Ajouter un bandeau personnalisé</label>
+            <div class="footer-toggle fr-h5">
+              <label><input type="checkbox" id="show-banner"> 1 - Ajouter un bandeau personnalisé</label>
             </div>
             <div class="banner-content" id="banner-content">
               <p class="fr-label fr-mb-1w" style="margin-top:8px">Choisir un bandeau</p>
@@ -166,10 +162,15 @@ Bienvenue dans la **newsletter**.
             </div>
           </div>
 
+          <!-- Bouton Sommaire -->
+          <div class="footer-section fr-h5">2 - 
+            <button type="button" class="fr-btn fr-btn--secondary fr-btn--sm" id="btn-add-toc">Ajouter un sommaire</button>
+          </div>
+
           <!-- Section Footer -->
           <div class="footer-section">
-            <div class="footer-toggle">
-              <label><input type="checkbox" id="show-footer"> Ajouter un footer personnalise</label>
+            <div class="footer-toggle fr-h5">
+              <label><input type="checkbox" id="show-footer"> 3 - Ajouter un footer personnalise</label>
             </div>
             <div class="footer-content" id="footer-content">
               <fieldset aria-labelledby="footer-type-label">
@@ -180,14 +181,7 @@ Bienvenue dans la **newsletter**.
                 </div>
               </fieldset>
               <label for="footer-content-textarea">Contenu du footer</label>
-              <textarea id="footer-content-textarea" placeholder="Votre contenu de footer en Markdown ou HTML...">---
-
-**Newsletter de l'organisation**
-
-Contact: contact@example.org
-Site web: https://example.org
-
-Pour vous desabonner, [cliquez ici](https://example.org/unsubscribe)</textarea>
+              <textarea id="footer-content-textarea" placeholder="Votre contenu de footer en Markdown ou HTML..."></textarea>
               <p class="muted small">Ce contenu apparaitra en bas de votre newsletter, apres le contenu principal.</p>
             </div>
           </div>
@@ -195,8 +189,18 @@ Pour vous desabonner, [cliquez ici](https://example.org/unsubscribe)</textarea>
 
         <!-- Panel Aperçu -->
         <div id="panel-preview" class="fr-tabs__panel" role="tabpanel" aria-labelledby="tab-preview">
+          <div style="text-align:right;margin-bottom:4px">
+            <button type="button" class="fr-btn fr-btn--tertiary-no-outline fr-btn--sm" id="btn-preview-fullscreen" title="Plein ecran">&#x26F6; Plein ecran</button>
+          </div>
           <div class="preview" role="region" aria-label="Apercu du rendu">
             <iframe id="preview-frame" title="Apercu" sandbox="allow-same-origin allow-scripts"></iframe>
+          </div>
+        </div>
+
+        <!-- Panel Aide -->
+        <div id="panel-help" class="fr-tabs__panel" role="tabpanel" aria-labelledby="tab-help">
+          <div class="preview" role="region" aria-label="Aide">
+            <iframe id="help-frame" title="Aide"></iframe>
           </div>
         </div>
       </div>
@@ -205,16 +209,16 @@ Pour vous desabonner, [cliquez ici](https://example.org/unsubscribe)</textarea>
       <div style="grid-column:1/-1" class="fr-pb-2w">
 
           <!-- Thèmes prêts à l'emploi -->
-          <p class="fr-label fr-mb-1w">Thèmes prêts à l'emploi</p>
+          <h2 class="fr-label fr-mb-1w fr-h5">Thèmes prêts à l'emploi</h2>
           <div id="theme-cards" role="group" aria-label="Sélection du thème"></div>
 
           <!-- Accordéon personnalisation couleurs (DSFR) -->
           <section class="fr-accordion fr-mt-2w">
-            <h3 class="fr-accordion__title">
-              <button class="fr-accordion__btn" aria-expanded="false" aria-controls="theme-customize-content">
+            <h2 class="fr-accordion__title">
+              <button class="fr-accordion__btn fr-h5" aria-expanded="false" aria-controls="theme-customize-content">
                 Personnaliser les couleurs
               </button>
-            </h3>
+            </h2>
             <div class="fr-collapse" id="theme-customize-content">
 
               <!-- Fond & texte général -->
@@ -370,7 +374,7 @@ Pour vous desabonner, [cliquez ici](https://example.org/unsubscribe)</textarea>
           <!-- Accordéon Gestion de Matomo -->
           <section class="fr-accordion fr-mt-2w" aria-labelledby="matomo-heading">
         <h2 class="fr-accordion__title" id="matomo-heading">
-          <button class="fr-accordion__btn" aria-expanded="false" aria-controls="matomo-content">
+          <button class="fr-accordion__btn fr-h5" aria-expanded="false" aria-controls="matomo-content">
             Gestion de Matomo
           </button>
         </h2>

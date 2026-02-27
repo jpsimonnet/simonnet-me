@@ -72,8 +72,14 @@ textarea {
   font: inherit;
 }
 
-textarea {
+
+
+#footer-content-textarea {
   min-height: 220px;
+}
+
+#content {
+  min-height: 420px;
 }
 
 .row {
@@ -147,6 +153,46 @@ legend {
   width: 100%;
   height: 100%;
   border: 0;
+}
+
+/* Plein écran aperçu */
+.preview-fullscreen {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: #e5e5e5;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 0;
+}
+
+.preview-fullscreen iframe {
+  width: 100%;
+  max-width: 800px;
+  height: 100%;
+  border: 0;
+  background: #fff;
+  box-shadow: 0 0 20px rgba(0,0,0,.15);
+}
+
+.preview-fullscreen .preview-close {
+  position: fixed;
+  top: 12px;
+  right: 16px;
+  z-index: 10001;
+  background: #fff;
+  color: #161616;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 6px 16px;
+  font-size: 0.85rem;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.preview-fullscreen .preview-close:hover {
+  background: #eee;
 }
 
 .small {
@@ -396,4 +442,49 @@ legend {
   font-size: 0.85rem;
 }
 
+/* ══════════════════════════════════════
+   Blocs de code avec bouton Copier
+══════════════════════════════════════ */
+
+.code-snippet {
+  position: relative;
+  margin: 12px 0;
+}
+
+.code-snippet pre {
+  margin: 0;
+}
+
+.code-snippet pre code {
+  display: block;
+  color: #242424;
+  background: #f6f6f6;
+  border: 1px solid #ddd;
+  border-radius: .25rem;
+  padding: 1em;
+  font-size: .75rem;
+  line-height: 1.5;
+  overflow-x: auto;
+}
+
+.code-copy-btn {
+  position: absolute;
+  top: 9px;
+  right: 9px;
+  z-index: 1;
+  background: #fff;
+  color: #242424;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 4px 12px;
+  font-size: 0.78rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.code-copy-btn:hover {
+  background: #eee;
+  border-color: #aaa;
+}
 

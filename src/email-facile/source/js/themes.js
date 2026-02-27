@@ -516,6 +516,9 @@
     });
   }
 
+  /* ── Exposer applyTheme globalement pour le modèle ── */
+  window.applyTheme = applyTheme;
+
   /* ── Init ── */
   document.addEventListener('DOMContentLoaded', function () {
     renderThemeCards();

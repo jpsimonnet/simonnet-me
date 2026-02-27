@@ -23,8 +23,8 @@
               </div>
             </div>
             <div class="fr-header__service">
-              <a href="./index.html" title="Accueil - Images-Facile">
-                <p class="fr-header__service-title">Images-Facile</p>
+              <a href="./index.html" title="Accueil - Image-Facile">
+                <p class="fr-header__service-title">Image-Facile</p>
               </a>
               <p class="fr-header__service-tagline">Un outil de compression d'image simple et pratique</p>
             </div>
@@ -40,7 +40,7 @@
     <div class="fr-container">
       <div class="fr-footer__body">
         <div class="fr-footer__brand fr-enlarge-link">
-          <a href="./index.html" title="Retour à l'accueil du site - Images-Facile">
+          <a href="./index.html" title="Retour à l'accueil du site - Image-Facile">
             <p class="fr-logo">République <br>Française</p>
           </a>
         </div>

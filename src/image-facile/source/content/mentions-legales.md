@@ -2,7 +2,7 @@
 
 ## Éditeur du site
 
-Le site Images-Facile est édité par la Direction du Numérique (DNUM).
+Le site Image-Facile est édité par la Direction du Numérique (DNUM).
 - Adresse : [Adresse de l'entité]
 - Téléphone : [Numéro de téléphone]
 - E-mail : [Adresse e-mail de contact]
