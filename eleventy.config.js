@@ -22,7 +22,7 @@ export default function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/rdv");
   eleventyConfig.addPassthroughCopy("src/gobelins");
   eleventyConfig.addPassthroughCopy("src/image-facile");
-   eleventyConfig.addPassthroughCopy("src/email-facile");
+  eleventyConfig.addPassthroughCopy("src/email-facile");
   eleventyConfig.addPassthroughCopy("src/robots.txt");
 
 
