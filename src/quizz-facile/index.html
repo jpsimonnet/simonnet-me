@@ -1,0 +1,1706 @@
+<!doctype html>
+<html lang="fr" data-fr-theme>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Quiz Facile</title>
+  <link rel="stylesheet" href="source/dsfr.min.css">
+  <link rel="stylesheet" href="source/icons.min.css">
+  <link rel="stylesheet" href="source/app.css">
+  <link rel="icon" href="source/favicon.ico">
+  <link rel="apple-touch-icon" href="source/apple-touch-icon.png">
+  <style>
+    @font-face { font-family: Marianne; src: url('source/fonts/Marianne-Light.woff2') format('woff2'), url('source/fonts/Marianne-Light.woff') format('woff'); font-weight: 300; font-style: normal; }
+    @font-face { font-family: Marianne; src: url('source/fonts/Marianne-Regular.woff2') format('woff2'), url('source/fonts/Marianne-Regular.woff') format('woff'); font-weight: 400; font-style: normal; }
+    @font-face { font-family: Marianne; src: url('source/fonts/Marianne-Medium.woff2') format('woff2'), url('source/fonts/Marianne-Medium.woff') format('woff'); font-weight: 500; font-style: normal; }
+    @font-face { font-family: Marianne; src: url('source/fonts/Marianne-Bold.woff2') format('woff2'), url('source/fonts/Marianne-Bold.woff') format('woff'); font-weight: 700; font-style: normal; }
+
+    body { font-family: Marianne, system-ui, -apple-system, Arial, sans-serif; background: var(--background-alt-grey); min-height: 100vh; }
+
+    /* NAV ONGLETS */
+    .app-nav { background: var(--background-default-grey); border-bottom: 1px solid var(--border-default-grey); }
+    .app-nav-inner { display: flex; }
+    .app-tab { display: flex; align-items: center; gap: .4rem; padding: .875rem 1.375rem; font-size: .9375rem; font-weight: 500; color: var(--text-mention-grey); text-decoration: none; border-bottom: 3px solid transparent; cursor: pointer; background: none; border-top: none; border-left: none; border-right: none; transition: color .15s, border-color .15s; font-family: inherit; }
+    .app-tab:hover { color: var(--text-title-blue-france); background: var(--background-alt-grey); }
+    .app-tab.active { color: var(--text-title-blue-france); border-bottom-color: var(--text-title-blue-france); font-weight: 700; }
+
+    /* LAYOUT 2 COLONNES */
+    .page-layout { display: grid; grid-template-columns: 1fr 320px; gap: 1.5rem; align-items: start; padding: 1.5rem 0 3rem; }
+    @media (max-width: 900px) { .page-layout { grid-template-columns: 1fr; } }
+    .page-layout.quiz-playing { grid-template-columns: 1fr; }
+    .page-layout.quiz-playing #play-sidebar { display: none; }
+
+    /* PANNEAUX */
+    .panel { background: var(--background-default-grey); border: 1px solid var(--border-default-grey); border-radius: .375rem; }
+    .panel-head { padding: 1rem 1.375rem .875rem; border-bottom: 1px solid var(--border-default-grey); }
+    .panel-head h2 { font-size: 1.0625rem; font-weight: 700; margin: 0; color: var(--text-title-grey); }
+    .panel-head p { font-size: .8125rem; color: var(--text-mention-grey); margin: .2rem 0 0; }
+    .panel-body { padding: 1.125rem 1.375rem; }
+
+    /* VUES */
+    .view { display: none; }
+    .view.active { display: block; }
+
+    /* DROPZONE */
+    .dropzone { width: 100%; border: 2px dashed var(--border-default-grey); border-radius: .5rem; padding: 1.75rem 1.25rem; background: var(--background-alt-grey); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .625rem; cursor: pointer; transition: border-color .2s, background .2s, box-shadow .2s; text-align: center; position: relative; }
+    .dropzone:hover, .dropzone.drag-over { border-color: var(--text-title-blue-france); background: #fff; box-shadow: 0 0 0 4px rgba(0,0,145,.1); }
+    .dropzone input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+    .dropzone-icon { font-size: 2rem; line-height: 1; }
+    .dropzone-label { font-weight: 600; color: var(--text-title-blue-france); font-size: .9375rem; }
+    .dropzone-hint { font-size: .8125rem; color: var(--text-mention-grey); }
+
+    /* BARRE PROGRESSION */
+    #quiz-progress-bar-wrap { background: var(--background-default-grey); border-bottom: 1px solid var(--border-default-grey); padding: .5rem 0; position: sticky; top: 0; z-index: 100; display: none; }
+    .progress-inner { display: flex; align-items: center; gap: .875rem; }
+    .progress-label { font-size: .8125rem; color: var(--text-mention-grey); white-space: nowrap; }
+    .progress-track { flex: 1; height: 5px; background: var(--border-default-grey); border-radius: 99px; overflow: hidden; }
+    .progress-fill { height: 100%; background: var(--text-title-blue-france); border-radius: 99px; transition: width .3s ease; width: 0%; }
+    .score-badge { background: var(--background-contrast-info); color: var(--text-default-info); border-radius: 99px; padding: .175rem .75rem; font-weight: 700; font-size: .875rem; white-space: nowrap; }
+
+    /* QUESTION */
+    .question-layout { display: grid; grid-template-columns: 1fr; }
+    @media (min-width: 768px) {
+      .question-layout.has-image { grid-template-columns: 1fr 360px; }
+      .question-layout.has-image.image-left { grid-template-columns: 360px 1fr; }
+      .question-layout.has-image.image-left .q-img-panel { order: -1; }
+    }
+    .question-type-tag { display: inline-block; font-size: .6875rem; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; padding: .2rem .55rem; border-radius: .25rem; background: var(--background-contrast-info); color: var(--text-default-info); margin-bottom: .875rem; }
+    .question-text { font-size: clamp(1rem, 2vw, 1.25rem); font-weight: 700; color: var(--text-title-grey); line-height: 1.4; margin-bottom: 1.375rem; }
+
+    /* RÉPONSES */
+    .answers-list { display: flex; flex-direction: column; gap: .5rem; }
+    .ans-btn { display: flex; align-items: flex-start; gap: .625rem; padding: .625rem .875rem; border: 2px solid var(--border-default-grey); border-radius: .375rem; background: var(--background-default-grey); cursor: pointer; font-size: .9375rem; text-align: left; width: 100%; line-height: 1.4; transition: border-color .15s, background .15s, transform .15s; font-family: inherit; }
+    .ans-btn:not(:disabled):hover { border-color: var(--text-title-blue-france); background: var(--background-alt-blue-france); transform: translateX(3px); }
+    .ans-btn:focus-visible { outline: 2px solid var(--text-title-blue-france); outline-offset: 2px; }
+    .ans-key { flex-shrink: 0; width: 1.5rem; height: 1.5rem; border-radius: .25rem; background: var(--background-contrast-grey); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: .75rem; color: var(--text-mention-grey); margin-top: .1rem; }
+    .ans-btn.correct { border-color: var(--border-plain-success); background: var(--background-contrast-success); }
+    .ans-btn.correct .ans-key { background: var(--background-flat-success); color: #fff; }
+    .ans-btn.wrong { border-color: var(--border-plain-error); background: var(--background-contrast-error); }
+    .ans-btn.wrong .ans-key { background: var(--background-flat-error); color: #fff; }
+    .ans-btn.selected { border-color: var(--text-title-blue-france); background: var(--background-alt-blue-france); }
+    .ans-btn.selected .ans-key { background: var(--text-title-blue-france); color: #fff; }
+
+    /* VRAI/FAUX */
+    .vf-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .625rem; }
+    .vf-btn { padding: .875rem; border: 2px solid var(--border-default-grey); border-radius: .375rem; background: var(--background-default-grey); font-size: 1rem; font-weight: 700; cursor: pointer; font-family: inherit; transition: border-color .15s, background .15s; }
+    .vf-btn:not(:disabled):hover { border-color: var(--text-title-blue-france); background: var(--background-alt-blue-france); }
+    .vf-btn.correct { border-color: var(--border-plain-success); background: var(--background-contrast-success); color: var(--text-default-success); }
+    .vf-btn.wrong { border-color: var(--border-plain-error); background: var(--background-contrast-error); color: var(--text-default-error); }
+
+    /* TEXTE LIBRE */
+    .tl-row { display: flex; gap: .5rem; margin-bottom: .5rem; }
+    .tl-row input { flex: 1; }
+
+    /* ORDRE */
+    .order-list { display: flex; flex-direction: column; gap: .375rem; }
+    .order-item { display: flex; align-items: center; gap: .625rem; padding: .5rem .75rem; border: 2px solid var(--border-default-grey); border-radius: .375rem; background: var(--background-default-grey); cursor: grab; font-size: .9375rem; user-select: none; transition: border-color .15s, background .15s, box-shadow .15s; }
+    .order-item.dragging { opacity: .4; box-shadow: 0 6px 20px rgba(0,0,0,.15); }
+    .order-item.drag-target { border-color: var(--text-title-blue-france); background: var(--background-alt-blue-france); }
+    .order-item.correct { border-color: var(--border-plain-success); background: var(--background-contrast-success); }
+    .order-item.wrong { border-color: var(--border-plain-error); background: var(--background-contrast-error); }
+    .order-handle { color: var(--text-mention-grey); font-size: .875rem; }
+    .order-pos { width: 1.25rem; height: 1.25rem; border-radius: 50%; background: var(--background-contrast-grey); display: flex; align-items: center; justify-content: center; font-size: .625rem; font-weight: 700; color: var(--text-mention-grey); flex-shrink: 0; }
+
+    /* EXPLICATION */
+    .exp-box { border-radius: .375rem; padding: .875rem 1rem; margin-top: 1.125rem; border-left: 4px solid; animation: slideDown .25s ease; display: none; }
+    @keyframes slideDown { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* ANIMATIONS TRANSITION QUESTIONS */
+    .q-enter { animation: var(--q-anim) .7s ease-out both; }
+    @keyframes fadeInUp    { from { opacity:0; transform:translateY(60px);  } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeInLeft  { from { opacity:0; transform:translateX(-80px); } to { opacity:1; transform:translateX(0); } }
+    @keyframes fadeInRight { from { opacity:0; transform:translateX(80px);  } to { opacity:1; transform:translateX(0); } }
+    @keyframes zoomIn      { from { opacity:0; transform:scale(.7);        } to { opacity:1; transform:scale(1); } }
+    @keyframes flipIn      { from { opacity:0; transform:perspective(600px) rotateX(25deg); } to { opacity:1; transform:perspective(600px) rotateX(0); } }
+
+    /* PLUIE D'ÉTOILES */
+    .star-particle { position:absolute; pointer-events:none; z-index:9999; animation:starBurst var(--star-dur,1.4s) ease-out both; }
+    @keyframes starBurst {
+      0%   { opacity:1; transform:translate(0,0) scale(1) rotate(0deg); }
+      60%  { opacity:.8; }
+      100% { opacity:0; transform:translate(var(--sx),var(--sy)) scale(.15) rotate(var(--sr,180deg)); }
+    }
+    #quiz-fullscreen-wrap:fullscreen .star-particle,
+    #quiz-fullscreen-wrap:-webkit-full-screen .star-particle {
+      font-size: clamp(1.5rem, 3vw, 4rem) !important;
+    }
+    .exp-box.success { background: var(--background-contrast-success); border-color: var(--border-plain-success); }
+    .exp-box.error { background: var(--background-contrast-error); border-color: var(--border-plain-error); }
+    .exp-title { font-weight: 700; font-size: .9375rem; margin-bottom: .3rem; }
+    .exp-text { font-size: .875rem; line-height: 1.6; color: var(--text-label-grey); }
+    .exp-img { margin-top: .75rem; max-width: 100%; border-radius: .375rem; display: none; }
+
+    /* CONTROLES */
+    .q-controls { display: flex; gap: .5rem; align-items: center; margin-top: 1.375rem; flex-wrap: wrap; }
+    .kbd-hint { font-size: .75rem; color: var(--text-mention-grey); margin-left: auto; }
+
+    /* IMAGE QUESTION */
+    .q-img-panel { border-left: 1px solid var(--border-default-grey); background: var(--background-default-grey); position: sticky; top: 52px; border-radius: 0 .375rem .375rem 0; overflow: hidden; margin: -1.375rem -1.375rem -1.375rem 1.375rem; }
+    .question-layout.image-left .q-img-panel { border-left: none; border-right: 1px solid var(--border-default-grey); border-radius: .375rem 0 0 .375rem; margin: -1.375rem 1.375rem -1.375rem -1.375rem; }
+    .q-img-panel img { width: 100%; height: auto; display: block; }
+    .q-img-caption { padding: .5rem .75rem; font-size: .75rem; color: var(--text-mention-grey); }
+
+    /* SIDEBAR INFO */
+    .si-item { display: flex; justify-content: space-between; align-items: center; padding: .5rem 0; border-bottom: 1px solid var(--border-default-grey); font-size: .875rem; }
+    .si-item:last-child { border-bottom: none; }
+    .si-label { color: var(--text-mention-grey); }
+    .si-value { font-weight: 700; color: var(--text-title-grey); text-align: right; font-size: .8125rem; }
+
+    /* RÉSULTATS */
+    .results-score-block { text-align: center; padding: 1.75rem 1rem; }
+    .res-headline { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: center; gap: .25rem .5rem; }
+    .res-score-big { font-size: 3.25rem; font-weight: 900; color: var(--text-title-blue-france); line-height: 1; }
+    .res-score-max { font-size: 1rem; color: var(--text-mention-grey); }
+    .res-sep { color: var(--text-mention-grey); }
+    .res-bar-track { height: 8px; background: var(--border-default-grey); border-radius: 99px; overflow: hidden; margin: 1rem 0 .625rem; }
+    .res-bar-fill { height: 100%; border-radius: 99px; background: var(--text-title-blue-france); transition: width 1.2s cubic-bezier(.4,0,.2,1); width: 0%; }
+    .res-message { font-weight: 700; font-size: 1.0625rem; }
+    .res-pct { font-size: .875rem; color: var(--text-mention-grey); }
+    .result-item { background: var(--background-default-grey); border: 1px solid var(--border-default-grey); border-left: 4px solid var(--border-default-grey); border-radius: .375rem; padding: .75rem .875rem; margin-bottom: .5rem; }
+    .result-item.ok { border-left-color: var(--border-plain-success); }
+    .result-item.ko { border-left-color: var(--border-plain-error); }
+    .result-item-head { display: flex; align-items: flex-start; gap: .5rem; margin-bottom: .25rem; }
+    .result-ico { flex-shrink: 0; }
+    .result-q { font-weight: 600; font-size: .875rem; flex: 1; }
+    .result-pts { font-size: .75rem; color: var(--text-mention-grey); white-space: nowrap; }
+    .result-meta { font-size: .8125rem; color: var(--text-label-grey); margin-top: .15rem; }
+    .result-exp { font-size: .75rem; color: var(--text-mention-grey); margin-top: .3rem; padding-top: .3rem; border-top: 1px solid var(--border-default-grey); }
+    .result-rimg { margin-top: .5rem; max-width: 160px; border-radius: .25rem; }
+
+    /* ÉDITEUR — LISTE QUESTIONS */
+    .editor-toolbar { display: flex; gap: .5rem; align-items: center; padding: .875rem 1.375rem; border-bottom: 1px solid var(--border-default-grey); background: var(--background-alt-grey); flex-wrap: wrap; }
+    .editor-toolbar h2 { font-size: 1rem; font-weight: 700; margin: 0; flex: 1; }
+    .eq-item { display: flex; align-items: center; gap: .625rem; padding: .625rem 1rem; border-bottom: 1px solid var(--border-default-grey); background: var(--background-default-grey); cursor: pointer; transition: background .15s; }
+    .eq-item:last-child { border-bottom: none; }
+    .eq-item:hover { background: var(--background-alt-grey); }
+    .eq-item.active { background: var(--background-alt-blue-france); border-left: 3px solid var(--text-title-blue-france); }
+    .eq-num { width: 1.375rem; height: 1.375rem; border-radius: 50%; background: var(--background-contrast-grey); display: flex; align-items: center; justify-content: center; font-size: .625rem; font-weight: 700; color: var(--text-mention-grey); flex-shrink: 0; }
+    .eq-text { flex: 1; font-size: .875rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text-label-grey); }
+    .eq-type-chip { font-size: .625rem; padding: .15rem .4rem; border-radius: .25rem; background: var(--background-contrast-info); color: var(--text-default-info); flex-shrink: 0; font-weight: 700; }
+    .eq-del { background: none; border: none; cursor: pointer; color: var(--text-mention-grey); font-size: .875rem; padding: .25rem .4rem; border-radius: .25rem; flex-shrink: 0; line-height: 1; }
+    .eq-del:hover { background: var(--background-contrast-error); color: var(--text-default-error); }
+
+    /* ÉDITEUR — FORMULAIRE */
+    #editor-form-wrap { padding: 1.25rem 1.375rem; border-top: 1px solid var(--border-default-grey); }
+    .ed-section-title { font-size: .6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--text-mention-grey); margin: 1.125rem 0 .5rem; padding-bottom: .25rem; border-bottom: 1px solid var(--border-default-grey); }
+    .ed-section-title:first-child { margin-top: 0; }
+
+    /* OPTIONS */
+    .option-row { display: flex; align-items: center; gap: .4rem; margin-bottom: .4rem; }
+    .option-row input[type="text"] { flex: 1; }
+    .option-correct-btn { width: 1.875rem; height: 1.875rem; border: 2px solid var(--border-default-grey); border-radius: 50%; background: var(--background-default-grey); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: .75rem; flex-shrink: 0; transition: border-color .15s, background .15s; }
+    .option-correct-btn.correct { border-color: var(--border-plain-success); background: var(--background-flat-success); color: #fff; }
+    .option-del-btn { background: none; border: none; cursor: pointer; color: var(--text-mention-grey); font-size: .875rem; padding: .2rem; flex-shrink: 0; }
+    .option-del-btn:hover { color: var(--text-default-error); }
+
+    /* IMAGE UPLOAD ZONE */
+    .img-upload-zone { border: 2px dashed var(--border-default-grey); border-radius: .375rem; padding: .75rem; display: flex; align-items: center; gap: .625rem; cursor: pointer; transition: border-color .15s, background .15s; background: var(--background-alt-grey); position: relative; }
+    .img-upload-zone:hover { border-color: var(--text-title-blue-france); background: var(--background-alt-blue-france); }
+    .img-upload-zone input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+    .img-preview-wrap { position: relative; display: inline-block; margin-top: .5rem; }
+    .img-preview-thumb { max-width: 180px; max-height: 100px; object-fit: cover; border-radius: .25rem; border: 1px solid var(--border-default-grey); display: block; }
+    .img-remove-btn { position: absolute; top: -.3rem; right: -.3rem; width: 1.25rem; height: 1.25rem; border-radius: 50%; background: var(--background-flat-error); color: #fff; border: none; cursor: pointer; font-size: .625rem; display: flex; align-items: center; justify-content: center; line-height: 1; }
+
+    /* ALERTES */
+    .load-alert { display: flex; align-items: center; gap: .5rem; padding: .5rem .75rem; border-radius: .375rem; font-size: .8125rem; font-weight: 600; }
+    .load-alert.success { background: var(--background-contrast-success); color: var(--text-default-success); }
+    .load-alert.error { background: var(--background-contrast-error); color: var(--text-default-error); }
+
+    /* DIVERS */
+    .hidden { display: none !important; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    .empty-state { text-align: center; padding: 1.75rem 1rem; color: var(--text-mention-grey); font-size: .875rem; }
+    .empty-state .ei { font-size: 2rem; display: block; margin-bottom: .5rem; }
+    .text-divider { display: flex; align-items: center; gap: .625rem; color: var(--text-mention-grey); font-size: .8125rem; margin: .875rem 0; }
+    .text-divider::before, .text-divider::after { content: ''; flex: 1; height: 1px; background: var(--border-default-grey); }
+    .eq-count-badge { background: var(--background-contrast-grey); border-radius: 99px; padding: .1rem .5rem; font-size: .75rem; font-weight: 700; color: var(--text-label-grey); }
+
+    /* PLEIN ÉCRAN */
+    #quiz-fullscreen-wrap:fullscreen,
+    #quiz-fullscreen-wrap:-webkit-full-screen {
+      background: var(--background-alt-grey);
+      overflow-y: auto;
+      padding: 0;
+    }
+    #quiz-fullscreen-wrap:fullscreen #quiz-progress-bar-wrap,
+    #quiz-fullscreen-wrap:-webkit-full-screen #quiz-progress-bar-wrap {
+      display: flex !important;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: clamp(.375rem, 1vh, .75rem) 0;
+    }
+    #quiz-fullscreen-wrap:fullscreen .progress-label,
+    #quiz-fullscreen-wrap:-webkit-full-screen .progress-label {
+      font-size: clamp(.8125rem, 2vw, 1.75rem);
+    }
+    #quiz-fullscreen-wrap:fullscreen .score-badge,
+    #quiz-fullscreen-wrap:-webkit-full-screen .score-badge {
+      font-size: clamp(.875rem, 2vw, 1.75rem);
+    }
+    #quiz-fullscreen-wrap:fullscreen .panel,
+    #quiz-fullscreen-wrap:-webkit-full-screen .panel {
+      width: 94vw;
+      max-width: none;
+      margin: clamp(.75rem, 2vh, 2rem) auto;
+      border-radius: .5rem;
+    }
+    #quiz-fullscreen-wrap:fullscreen .panel-body,
+    #quiz-fullscreen-wrap:-webkit-full-screen .panel-body {
+      padding: clamp(1rem, 4vw, 4rem);
+    }
+    #quiz-fullscreen-wrap:fullscreen .question-text,
+    #quiz-fullscreen-wrap:-webkit-full-screen .question-text {
+      font-size: clamp(1.25rem, 5vw, 5rem);
+      margin-bottom: clamp(1rem, 4vh, 4rem);
+      line-height: 1.3;
+    }
+    #quiz-fullscreen-wrap:fullscreen .question-type-tag,
+    #quiz-fullscreen-wrap:-webkit-full-screen .question-type-tag {
+      font-size: clamp(.6875rem, 1.5vw, 1.5rem);
+      padding: .25rem .75rem;
+      margin-bottom: clamp(.75rem, 2vh, 2rem);
+    }
+    #quiz-fullscreen-wrap:fullscreen .answers-list,
+    #quiz-fullscreen-wrap:-webkit-full-screen .answers-list {
+      gap: clamp(.5rem, 1.5vh, 2rem);
+    }
+    #quiz-fullscreen-wrap:fullscreen .ans-btn,
+    #quiz-fullscreen-wrap:-webkit-full-screen .ans-btn {
+      font-size: clamp(1rem, 3vw, 3rem);
+      padding: clamp(.625rem, 2vh, 2rem) clamp(.875rem, 3vw, 2rem);
+      border-radius: .5rem;
+    }
+    #quiz-fullscreen-wrap:fullscreen .ans-key,
+    #quiz-fullscreen-wrap:-webkit-full-screen .ans-key {
+      width: clamp(1.5rem, 3.5vw, 3rem);
+      height: clamp(1.5rem, 3.5vw, 3rem);
+      font-size: clamp(.75rem, 2vw, 2rem);
+    }
+    #quiz-fullscreen-wrap:fullscreen .vf-grid,
+    #quiz-fullscreen-wrap:-webkit-full-screen .vf-grid {
+      gap: clamp(.625rem, 2vw, 2rem);
+    }
+    #quiz-fullscreen-wrap:fullscreen .vf-btn,
+    #quiz-fullscreen-wrap:-webkit-full-screen .vf-btn {
+      font-size: clamp(1.125rem, 3vw, 3rem);
+      padding: clamp(.875rem, 3vh, 2.5rem);
+      border-radius: .5rem;
+    }
+    #quiz-fullscreen-wrap:fullscreen .q-controls,
+    #quiz-fullscreen-wrap:-webkit-full-screen .q-controls {
+      margin-top: clamp(1rem, 3vh, 4rem);
+      gap: clamp(.5rem, 1.5vw, 1.5rem);
+    }
+    #quiz-fullscreen-wrap:fullscreen .q-controls .fr-btn,
+    #quiz-fullscreen-wrap:-webkit-full-screen .q-controls .fr-btn {
+      font-size: clamp(.875rem, 2.5vw, 2.5rem);
+      padding: clamp(.5rem, 1.5vh, 1.5rem) clamp(1rem, 3vw, 3rem);
+      line-height: 1.4;
+    }
+    #quiz-fullscreen-wrap:fullscreen .exp-box,
+    #quiz-fullscreen-wrap:-webkit-full-screen .exp-box {
+      font-size: clamp(.9375rem, 2.5vw, 2.5rem);
+      padding: clamp(.875rem, 2vh, 2rem) clamp(1rem, 3vw, 2rem);
+      margin-top: clamp(1.125rem, 3vh, 3rem);
+      border-left-width: clamp(4px, .5vw, 8px);
+    }
+    #quiz-fullscreen-wrap:fullscreen .exp-title,
+    #quiz-fullscreen-wrap:-webkit-full-screen .exp-title {
+      font-size: clamp(1rem, 3vw, 3rem);
+      margin-bottom: clamp(.3rem, 1vh, 1rem);
+    }
+    /* Fullscreen : input texte libre */
+    #quiz-fullscreen-wrap:fullscreen .tl-row,
+    #quiz-fullscreen-wrap:-webkit-full-screen .tl-row {
+      gap: clamp(.5rem, 1.5vw, 1.5rem);
+    }
+    #quiz-fullscreen-wrap:fullscreen .tl-row .fr-input,
+    #quiz-fullscreen-wrap:-webkit-full-screen .tl-row .fr-input {
+      font-size: clamp(1rem, 3vw, 3rem);
+      padding: clamp(.5rem, 1.5vh, 1.5rem) clamp(.75rem, 2vw, 2rem);
+    }
+    #quiz-fullscreen-wrap:fullscreen .tl-row .fr-btn,
+    #quiz-fullscreen-wrap:-webkit-full-screen .tl-row .fr-btn {
+      font-size: clamp(.875rem, 2.5vw, 2.5rem);
+      padding: clamp(.5rem, 1.5vh, 1.5rem) clamp(1rem, 3vw, 3rem);
+      line-height: 1.4;
+    }
+    /* Fullscreen : remise en ordre */
+    #quiz-fullscreen-wrap:fullscreen .order-list,
+    #quiz-fullscreen-wrap:-webkit-full-screen .order-list {
+      gap: clamp(.375rem, 1vh, 1.25rem);
+    }
+    #quiz-fullscreen-wrap:fullscreen .order-item,
+    #quiz-fullscreen-wrap:-webkit-full-screen .order-item {
+      font-size: clamp(.9375rem, 2.5vw, 2.5rem);
+      padding: clamp(.5rem, 1.5vh, 1.5rem) clamp(.75rem, 2vw, 2rem);
+      gap: clamp(.625rem, 1.5vw, 1.5rem);
+      border-radius: .5rem;
+    }
+    #quiz-fullscreen-wrap:fullscreen .order-handle,
+    #quiz-fullscreen-wrap:-webkit-full-screen .order-handle {
+      font-size: clamp(.875rem, 2vw, 2rem);
+    }
+    #quiz-fullscreen-wrap:fullscreen .order-pos,
+    #quiz-fullscreen-wrap:-webkit-full-screen .order-pos {
+      width: clamp(1.25rem, 3vw, 2.5rem);
+      height: clamp(1.25rem, 3vw, 2.5rem);
+      font-size: clamp(.625rem, 1.5vw, 1.5rem);
+    }
+    #quiz-fullscreen-wrap:fullscreen #q-answers-area > p,
+    #quiz-fullscreen-wrap:-webkit-full-screen #q-answers-area > p {
+      font-size: clamp(.8125rem, 1.5vw, 1.5rem);
+      margin-bottom: clamp(.5rem, 1vh, 1rem);
+    }
+    /* Fullscreen : sans image — contenu centré avec largeur confortable */
+    #quiz-fullscreen-wrap:fullscreen .question-layout:not(.has-image),
+    #quiz-fullscreen-wrap:-webkit-full-screen .question-layout:not(.has-image) {
+      max-width: min(70vw, 960px);
+      margin: 0 auto;
+    }
+    /* Fullscreen : avec image — 1/3 écran pour l'image */
+    #quiz-fullscreen-wrap:fullscreen .question-layout.has-image,
+    #quiz-fullscreen-wrap:-webkit-full-screen .question-layout.has-image {
+      grid-template-columns: 1fr 33.333vw;
+    }
+    #quiz-fullscreen-wrap:fullscreen .question-layout.has-image.image-left,
+    #quiz-fullscreen-wrap:-webkit-full-screen .question-layout.has-image.image-left {
+      grid-template-columns: 33.333vw 1fr;
+    }
+    #quiz-fullscreen-wrap:fullscreen .question-layout.has-image.image-left .q-img-panel,
+    #quiz-fullscreen-wrap:-webkit-full-screen .question-layout.has-image.image-left .q-img-panel {
+      order: -1;
+    }
+    #quiz-fullscreen-wrap:fullscreen .q-img-panel,
+    #quiz-fullscreen-wrap:-webkit-full-screen .q-img-panel {
+      top: clamp(3rem, 7vh, 5rem);
+    }
+    #quiz-fullscreen-wrap:fullscreen .res-headline,
+    #quiz-fullscreen-wrap:-webkit-full-screen .res-headline {
+      gap: clamp(.25rem, 1vw, 1rem);
+    }
+    #quiz-fullscreen-wrap:fullscreen .res-score-big,
+    #quiz-fullscreen-wrap:-webkit-full-screen .res-score-big {
+      font-size: clamp(2rem, 5vw, 4rem);
+    }
+    #quiz-fullscreen-wrap:fullscreen .res-score-max,
+    #quiz-fullscreen-wrap:-webkit-full-screen .res-score-max {
+      font-size: clamp(1rem, 2.5vw, 2.5rem);
+    }
+    #quiz-fullscreen-wrap:fullscreen .res-sep,
+    #quiz-fullscreen-wrap:-webkit-full-screen .res-sep {
+      font-size: clamp(1rem, 2.5vw, 2.5rem);
+    }
+    #quiz-fullscreen-wrap:fullscreen .res-message,
+    #quiz-fullscreen-wrap:-webkit-full-screen .res-message {
+      font-size: clamp(1rem, 2.5vw, 2.5rem);
+    }
+    #quiz-fullscreen-wrap:fullscreen .res-pct,
+    #quiz-fullscreen-wrap:-webkit-full-screen .res-pct {
+      font-size: clamp(.875rem, 2vw, 2rem);
+    }
+    #quiz-fullscreen-wrap:fullscreen .res-bar-track,
+    #quiz-fullscreen-wrap:-webkit-full-screen .res-bar-track {
+      height: clamp(8px, 1vh, 12px);
+      margin: clamp(1rem, 2vh, 2rem) 0 clamp(.625rem, 1.5vh, 1.5rem);
+    }
+    #quiz-fullscreen-wrap:fullscreen .results-score-block,
+    #quiz-fullscreen-wrap:-webkit-full-screen .results-score-block {
+      padding: clamp(1.5rem, 3vh, 3rem) clamp(1rem, 4vw, 4rem);
+    }
+    #quiz-fullscreen-wrap:fullscreen .results-score-block .fr-btn,
+    #quiz-fullscreen-wrap:-webkit-full-screen .results-score-block .fr-btn {
+      font-size: clamp(.875rem, 1.5vw, 1.5rem);
+      padding: clamp(.5rem, 1vh, 1rem) clamp(1rem, 2vw, 2rem);
+    }
+    #quiz-fullscreen-wrap:fullscreen .panel-head h2,
+    #quiz-fullscreen-wrap:-webkit-full-screen .panel-head h2 {
+      font-size: clamp(1rem, 2vw, 2rem);
+    }
+    #quiz-fullscreen-wrap:fullscreen .result-item,
+    #quiz-fullscreen-wrap:-webkit-full-screen .result-item {
+      padding: clamp(.5rem, 1vh, 1rem) clamp(.625rem, 1.5vw, 1.25rem);
+      margin-bottom: clamp(.375rem, .75vh, .75rem);
+    }
+    #quiz-fullscreen-wrap:fullscreen .result-q,
+    #quiz-fullscreen-wrap:-webkit-full-screen .result-q {
+      font-size: clamp(.8125rem, 1.5vw, 1.5rem);
+    }
+    #quiz-fullscreen-wrap:fullscreen .result-ico,
+    #quiz-fullscreen-wrap:-webkit-full-screen .result-ico {
+      font-size: clamp(.875rem, 1.5vw, 1.5rem);
+    }
+    #quiz-fullscreen-wrap:fullscreen .result-pts,
+    #quiz-fullscreen-wrap:-webkit-full-screen .result-pts {
+      font-size: clamp(.6875rem, 1.2vw, 1.25rem);
+    }
+    #quiz-fullscreen-wrap:fullscreen .result-meta,
+    #quiz-fullscreen-wrap:-webkit-full-screen .result-meta {
+      font-size: clamp(.75rem, 1.2vw, 1.25rem);
+    }
+    #quiz-fullscreen-wrap:fullscreen .result-exp,
+    #quiz-fullscreen-wrap:-webkit-full-screen .result-exp {
+      font-size: clamp(.6875rem, 1.2vw, 1.25rem);
+    }
+    #quiz-fullscreen-wrap:fullscreen .result-rimg,
+    #quiz-fullscreen-wrap:-webkit-full-screen .result-rimg {
+      max-width: clamp(120px, 15vw, 240px);
+    }
+    #quiz-fullscreen-wrap:fullscreen .kbd-hint,
+    #quiz-fullscreen-wrap:-webkit-full-screen .kbd-hint {
+      font-size: clamp(.75rem, 1.5vw, 1.5rem);
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER DSFR -->
+<header role="banner" class="fr-header">
+  <div class="fr-header__body">
+    <div class="fr-container">
+      <div class="fr-header__body-row">
+        <div class="fr-header__brand fr-enlarge-link">
+          <div class="fr-header__brand-top">
+            <div class="fr-header__logo">
+              <p class="fr-logo">République<br>Française</p>
+            </div>
+          </div>
+          <div class="fr-header__service">
+            <a href="/" title="Accueil – Quiz Facile">
+              <p class="fr-header__service-title">Quiz Facile</p>
+            </a>
+            <p class="fr-header__service-tagline">Créez et partagez des quiz accessibles</p>
+          </div>
+        </div>
+        <div class="fr-header__tools">
+          <div class="fr-header__tools-links">
+            <ul class="fr-btns-group">
+              <li>
+                <button class="fr-btn--display fr-btn" aria-controls="fr-theme-modal" data-fr-opened="false">Paramètres d'affichage</button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Menu mobile (requis par DSFR HeaderLinks JS) -->
+  <div class="fr-header__menu fr-modal" id="modal-header-menu">
+    <div class="fr-container">
+      <button class="fr-btn--close fr-btn" aria-controls="modal-header-menu">Fermer</button>
+      <div class="fr-header__menu-links"></div>
+    </div>
+  </div>
+</header>
+
+<!-- NAV ONGLETS -->
+<div class="app-nav" role="navigation" aria-label="Sections">
+  <div class="fr-container">
+    <div class="app-nav-inner">
+      <button class="app-tab active" id="tab-jouer" aria-selected="true">📂 Charger un quiz</button>
+      <button class="app-tab" id="tab-creer" aria-selected="false">✏️ Créer / Modifier</button>
+      <button class="app-tab fr-icon-download-line" id="btn-export-header" disabled title="Exporter le quiz en ZIP">Télécharger le quiz</button>
+    </div>
+  </div>
+</div>
+
+<div class="sr-only" aria-live="assertive" id="sr-live"></div>
+
+<!-- ======================================================
+     VUE JOUER
+====================================================== -->
+<div id="view-jouer" class="view active">
+
+  <div class="fr-container">
+    <div class="page-layout">
+
+      <div><!-- Colonne principale -->
+
+        <!-- Écran accueil -->
+        <div id="play-screen-home" class="panel">
+          <div class="panel-head">
+            <h2>Chargez un quiz</h2>
+            <p>Sélectionnez un dossier <code>questions/</code>, ou utilisez les questions de l'onglet "Créer".</p>
+          </div>
+          <div class="panel-body">
+            <div class="dropzone" id="play-dropzone" tabindex="0" role="button" aria-label="Sélectionner un dossier de questions">
+              <input type="file" id="play-folder-input" webkitdirectory multiple accept=".md,.webp,.png,.jpg,.jpeg">
+              <span class="dropzone-icon" aria-hidden="true">📂</span>
+              <span class="dropzone-label">Cliquez ou glissez votre dossier <code>questions/</code></span>
+              <span class="dropzone-hint">Fichiers .md + images optionnelles — tout reste en local</span>
+            </div>
+            <div id="play-load-alert" class="load-alert hidden" style="margin-top:.75rem;"></div>
+            <div class="text-divider">ou</div>
+            <button class="fr-btn fr-btn--secondary fr-btn--sm" id="btn-play-from-editor">
+              Utiliser les questions de l'éditeur
+              <span class="eq-count-badge" id="editor-q-count-badge" style="margin-left:.375rem;">0</span>
+            </button>
+            <div style="margin-top:1.5rem;">
+              <button class="fr-btn fr-btn--lg" id="btn-start-quiz" disabled>Démarrer le quiz →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Conteneur plein écran (question + résultats + barre progression) -->
+        <div id="quiz-fullscreen-wrap">
+
+          <!-- BARRE PROGRESSION (sticky) -->
+          <div id="quiz-progress-bar-wrap">
+            <div class="fr-container">
+              <div class="progress-inner">
+                <span class="progress-label" id="prog-label">Question 1 / 1</span>
+                <div class="progress-track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                  <div class="progress-fill" id="prog-fill"></div>
+                </div>
+                <span class="score-badge" id="score-badge" aria-live="polite">Score : 0</span>
+                <button class="fr-btn fr-btn--tertiary-no-outline fr-btn--sm" id="btn-stop-quiz" title="Arrêter le quiz">✕ Arrêter</button>
+                <button class="fr-btn fr-btn--tertiary-no-outline fr-btn--sm" id="btn-fullscreen" title="Plein écran">
+                  <span id="fullscreen-label">⛶ Plein écran</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Écran question -->
+          <div id="play-screen-question" class="hidden">
+            <div class="panel">
+              <div class="panel-body" style="padding:1.375rem;">
+                <div id="q-layout" class="question-layout">
+                  <div id="q-main">
+                    <div id="q-type-tag" class="question-type-tag"></div>
+                    <div id="q-text" class="question-text" tabindex="-1"></div>
+                    <div id="q-answers-area"></div>
+                    <div class="exp-box" id="exp-box">
+                      <div class="exp-title" id="exp-title"></div>
+                      <div class="exp-text" id="exp-text"></div>
+                      <img id="exp-img" class="exp-img" alt="Illustration de la réponse">
+                    </div>
+                    <div class="q-controls">
+                      <button class="fr-btn fr-btn--secondary fr-btn--sm" id="btn-skip">⏭ Passer</button>
+                      <button class="fr-btn fr-btn--sm" id="btn-next" disabled>Suivant →</button>
+                      <span class="kbd-hint" id="kbd-hint"></span>
+                    </div>
+                  </div>
+                  <div id="q-img-panel" class="q-img-panel hidden">
+                    <img id="q-img" alt="">
+                    <div class="q-img-caption" id="q-img-caption"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Écran résultats -->
+          <div id="play-screen-results" class="hidden">
+            <div class="panel" style="margin-bottom:.875rem;">
+              <div class="results-score-block">
+                <div class="res-headline">
+                  <span class="res-score-big" id="res-score">0</span>
+                  <span class="res-score-max" id="res-max">/ 0 point</span>
+                  <span class="res-sep"> — </span>
+                  <span class="res-message" id="res-message"></span>
+                  <span class="res-sep"> — </span>
+                  <span class="res-pct" id="res-pct"></span>
+                </div>
+                <div class="res-bar-track"><div class="res-bar-fill" id="res-bar"></div></div>
+                <div style="margin-top:1.25rem; display:flex; gap:.5rem; justify-content:center; flex-wrap:wrap;">
+                  <button class="fr-btn" id="btn-restart">🔄 Recommencer</button>
+                  <button class="fr-btn fr-btn--secondary" id="btn-back-home">← Retour</button>
+                </div>
+              </div>
+            </div>
+            <div class="panel">
+              <div class="panel-head"><h2>Détail par question</h2></div>
+              <div class="panel-body" id="results-list"></div>
+            </div>
+          </div>
+
+        </div><!-- /quiz-fullscreen-wrap -->
+
+      </div><!-- /colonne principale -->
+
+      <!-- Sidebar -->
+      <div id="play-sidebar">
+        <div class="panel" style="margin-bottom:.875rem;" id="sidebar-quiz-info">
+          <div class="panel-head"><h2>Informations</h2></div>
+          <div class="panel-body" id="sidebar-info-body">
+            <div class="empty-state" style="padding:1.25rem .5rem;">
+              <span style="font-size:1.5rem; display:block; margin-bottom:.5rem;">ℹ️</span>
+              Chargez un quiz pour voir les informations ici.
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head">
+            <h2>Format des fichiers .md</h2>
+          </div>
+          <div class="panel-body" style="font-size:.8125rem;">
+
+            <details style="margin-bottom:.5rem; border:1px solid var(--border-default-grey); border-radius:.375rem; overflow:hidden;">
+              <summary style="padding:.625rem .875rem; font-weight:600; cursor:pointer; background:var(--background-alt-grey); font-size:.875rem; list-style:none; display:flex; align-items:center; justify-content:space-between;">QCM (une réponse) <span>▸</span></summary>
+              <div style="padding:.75rem .875rem;">
+<pre style="background:var(--background-alt-grey);padding:.625rem;border-radius:.25rem;overflow-x:auto;font-size:.6875rem;margin:0;"><code>---
+type: qcm
+question: "Votre question ?"
+points: 1
+explication: "Explication…"
+---
+
+- Mauvaise réponse
+- [x] Bonne réponse</code></pre>
+              </div>
+            </details>
+
+            <details style="margin-bottom:.5rem; border:1px solid var(--border-default-grey); border-radius:.375rem; overflow:hidden;">
+              <summary style="padding:.625rem .875rem; font-weight:600; cursor:pointer; background:var(--background-alt-grey); font-size:.875rem; list-style:none; display:flex; align-items:center; justify-content:space-between;">Vrai / Faux <span>▸</span></summary>
+              <div style="padding:.75rem .875rem;">
+<pre style="background:var(--background-alt-grey);padding:.625rem;border-radius:.25rem;overflow-x:auto;font-size:.6875rem;margin:0;"><code>---
+type: vrai-faux
+question: "Affirmation ?"
+---
+
+[x] Vrai
+Faux</code></pre>
+              </div>
+            </details>
+
+            <details style="margin-bottom:.5rem; border:1px solid var(--border-default-grey); border-radius:.375rem; overflow:hidden;">
+              <summary style="padding:.625rem .875rem; font-weight:600; cursor:pointer; background:var(--background-alt-grey); font-size:.875rem; list-style:none; display:flex; align-items:center; justify-content:space-between;">Texte libre <span>▸</span></summary>
+              <div style="padding:.75rem .875rem;">
+<pre style="background:var(--background-alt-grey);padding:.625rem;border-radius:.25rem;overflow-x:auto;font-size:.6875rem;margin:0;"><code>---
+type: texte-libre
+question: "Question ?"
+reponse: "1885"
+tolerance: exacte
+---</code></pre>
+              </div>
+            </details>
+
+            <details style="border:1px solid var(--border-default-grey); border-radius:.375rem; overflow:hidden;">
+              <summary style="padding:.625rem .875rem; font-weight:600; cursor:pointer; background:var(--background-alt-grey); font-size:.875rem; list-style:none; display:flex; align-items:center; justify-content:space-between;">Remise en ordre <span>▸</span></summary>
+              <div style="padding:.75rem .875rem;">
+<pre style="background:var(--background-alt-grey);padding:.625rem;border-radius:.25rem;overflow-x:auto;font-size:.6875rem;margin:0;"><code>---
+type: ordre
+question: "Remettez dans l'ordre."
+---
+
+- [3] Troisième
+- [1] Premier
+- [2] Deuxième</code></pre>
+              </div>
+            </details>
+
+            <p style="margin-top:.875rem; font-size:.75rem; color:var(--text-mention-grey);">
+              Images : <code>question-01.webp</code> et <code>question-01-reponse.webp</code>
+            </p>
+          </div>
+        </div>
+
+      </div><!-- /sidebar -->
+    </div>
+  </div>
+</div>
+
+<!-- ======================================================
+     VUE CRÉER
+====================================================== -->
+<div id="view-creer" class="view">
+  <div class="fr-container">
+    <div class="page-layout">
+
+      <div><!-- Colonne principale éditeur -->
+        <div class="panel">
+
+          <div class="editor-toolbar">
+            <h2>Questions <span class="eq-count-badge" id="eq-total-badge">0</span></h2>
+            <button class="fr-btn fr-btn--sm fr-btn--secondary" id="btn-add-question">+ Ajouter</button>
+          </div>
+
+          <div id="editor-questions-list">
+            <div class="empty-state" id="editor-empty">
+              <span class="ei">✏️</span>
+              Aucune question. Cliquez sur "Ajouter" pour commencer,<br>ou importez un dossier existant.
+            </div>
+          </div>
+
+          <!-- Formulaire édition -->
+          <div id="editor-form-wrap" class="hidden">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:.875rem;">
+              <strong id="ed-form-title" style="font-size:.9375rem;"></strong>
+              <button class="fr-btn fr-btn--tertiary-no-outline fr-btn--sm" id="btn-close-form">✕</button>
+            </div>
+
+            <div class="ed-section-title">Type de question</div>
+            <select class="fr-select" id="ed-type" style="max-width:260px;">
+              <option value="qcm">QCM – une seule réponse</option>
+              <option value="qcm-multiple">QCM – plusieurs réponses</option>
+              <option value="vrai-faux">Vrai / Faux</option>
+              <option value="texte-libre">Réponse libre</option>
+              <option value="ordre">Remise en ordre</option>
+            </select>
+
+            <div class="ed-section-title">Texte de la question</div>
+            <textarea class="fr-input" id="ed-question" rows="3" placeholder="Saisissez votre question…" style="resize:vertical;"></textarea>
+
+            <div style="display:flex; align-items:center; gap:.875rem; margin-top:.75rem;">
+              <label for="ed-points" style="font-size:.875rem; font-weight:600; white-space:nowrap;">Points :</label>
+              <input type="number" class="fr-input" id="ed-points" value="1" min="1" max="10" style="width:4.5rem;">
+            </div>
+
+            <div class="ed-section-title">Image de la question <span style="font-weight:400;color:var(--text-mention-grey);">(optionnelle)</span></div>
+            <div class="img-upload-zone" id="ed-img-q-zone">
+              <input type="file" id="ed-img-q-input" accept="image/*">
+              <span>🖼️</span>
+              <span style="font-size:.875rem; color:var(--text-title-blue-france); font-weight:500;">Choisir une image</span>
+            </div>
+            <div id="ed-img-q-preview" class="hidden">
+              <div class="img-preview-wrap">
+                <img id="ed-img-q-thumb" class="img-preview-thumb" alt="">
+                <button class="img-remove-btn" id="ed-img-q-remove" title="Supprimer">✕</button>
+              </div>
+            </div>
+            <div id="ed-img-position-wrap" class="hidden" style="margin-top:.5rem;">
+              <label for="ed-img-position" style="font-size:.8125rem; font-weight:600;">Position de l'image :</label>
+              <select class="fr-select" id="ed-img-position" style="max-width:180px; margin-top:.25rem;">
+                <option value="right">À droite</option>
+                <option value="left">À gauche</option>
+              </select>
+            </div>
+
+            <!-- Zone réponses -->
+            <div id="ed-options-wrap">
+              <div class="ed-section-title">
+                Réponses <span id="ed-options-hint" style="font-weight:400; font-size:.75rem; color:var(--text-mention-grey);"></span>
+              </div>
+              <div id="ed-options-list"></div>
+              <button class="fr-btn fr-btn--tertiary-no-outline fr-btn--sm" id="btn-add-option" style="margin-top:.375rem;">+ Ajouter une réponse</button>
+            </div>
+
+            <div id="ed-textlibre-wrap" class="hidden">
+              <div class="ed-section-title">Bonne réponse attendue</div>
+              <input type="text" class="fr-input" id="ed-reponse" placeholder="Ex : 1885" style="max-width:300px;">
+              <div style="margin-top:.625rem; display:flex; align-items:center; gap:.75rem; flex-wrap:wrap;">
+                <label for="ed-tolerance" style="font-size:.875rem; font-weight:600;">Tolérance :</label>
+                <select class="fr-select" id="ed-tolerance" style="max-width:220px;">
+                  <option value="exacte">Exacte</option>
+                  <option value="contient">Contient le mot</option>
+                  <option value="regex">Expression régulière</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="ed-section-title">Explication <span style="font-weight:400;color:var(--text-mention-grey);">(optionnelle)</span></div>
+            <textarea class="fr-input" id="ed-explication" rows="2" placeholder="Texte affiché après la réponse…" style="resize:vertical;"></textarea>
+
+            <div class="ed-section-title">Image de réponse <span style="font-weight:400;color:var(--text-mention-grey);">(optionnelle)</span></div>
+            <div class="img-upload-zone" id="ed-img-r-zone">
+              <input type="file" id="ed-img-r-input" accept="image/*">
+              <span>🖼️</span>
+              <span style="font-size:.875rem; color:var(--text-title-blue-france); font-weight:500;">Choisir une image pour la réponse</span>
+            </div>
+            <div id="ed-img-r-preview" class="hidden">
+              <div class="img-preview-wrap">
+                <img id="ed-img-r-thumb" class="img-preview-thumb" alt="">
+                <button class="img-remove-btn" id="ed-img-r-remove" title="Supprimer">✕</button>
+              </div>
+            </div>
+
+            <div style="margin-top:1.375rem; display:flex; gap:.5rem; flex-wrap:wrap;">
+              <button class="fr-btn" id="btn-save-question">Enregistrer</button>
+              <button class="fr-btn fr-btn--secondary" id="btn-discard-question">Annuler</button>
+            </div>
+          </div><!-- /form -->
+
+        </div>
+      </div><!-- /colonne principale -->
+
+      <!-- Sidebar éditeur -->
+      <div>
+
+        <div class="panel" style="margin-bottom:.875rem;">
+          <div class="panel-head"><h2>Informations du quiz</h2></div>
+          <div class="panel-body">
+            <div class="fr-input-group">
+              <label class="fr-label" for="meta-titre">Titre</label>
+              <input class="fr-input" type="text" id="meta-titre" placeholder="Ex : Quiz Victor Hugo">
+            </div>
+            <div class="fr-input-group" style="margin-top:.625rem;">
+              <label class="fr-label" for="meta-description">Description <span style="font-weight:400;color:var(--text-mention-grey);">(opt.)</span></label>
+              <textarea class="fr-input" id="meta-description" rows="2" placeholder="Courte description…" style="resize:vertical;"></textarea>
+            </div>
+            <div class="fr-input-group" style="margin-top:.625rem;">
+              <label class="fr-label" for="meta-auteur">Auteur <span style="font-weight:400;color:var(--text-mention-grey);">(opt.)</span></label>
+              <input class="fr-input" type="text" id="meta-auteur" placeholder="Votre nom">
+            </div>
+          </div>
+        </div>
+
+        <div class="panel" style="margin-bottom:.875rem;">
+          <div class="panel-head">
+            <h2>Exporter le quiz</h2>
+            <p>Archive ZIP autonome — s'ouvre sans serveur.</p>
+          </div>
+          <div class="panel-body">
+            <div class="fr-input-group">
+              <label class="fr-label" for="zip-name">Nom du ZIP</label>
+              <input class="fr-input" type="text" id="zip-name" value="mon-quiz">
+            </div>
+            <div style="margin-top:.875rem; display:flex; flex-direction:column; gap:.5rem;">
+              <button class="fr-btn" id="btn-export-zip">⬇ Télécharger le quiz (.zip)</button>
+              <button class="fr-btn fr-btn--secondary fr-btn--sm" id="btn-preview-quiz">📂 Prévisualiser le quiz</button>
+            </div>
+            <div id="export-alert" class="load-alert hidden" style="margin-top:.625rem;"></div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head">
+            <h2>Importer pour modifier</h2>
+            <p>Chargez un dossier existant dans l'éditeur.</p>
+          </div>
+          <div class="panel-body">
+            <div class="dropzone" id="editor-dropzone" tabindex="0" role="button" style="padding:1rem;" aria-label="Importer">
+              <input type="file" id="editor-folder-input" webkitdirectory multiple accept=".md,.webp,.png,.jpg,.jpeg">
+              <span>📂</span>
+              <span style="font-size:.875rem; color:var(--text-title-blue-france); font-weight:600;">Importer un dossier</span>
+            </div>
+            <div id="editor-load-alert" class="load-alert hidden" style="margin-top:.5rem;"></div>
+          </div>
+        </div>
+
+      </div><!-- /sidebar -->
+    </div>
+  </div>
+</div>
+
+<footer class="fr-footer" role="contentinfo" id="footer">
+    <div class="fr-container">
+        <div class="fr-footer__body">
+            <div class="fr-footer__brand fr-enlarge-link">
+                <a href="/" title="Retour à l'accueil du site - Quiz Facile">
+                    <p class="fr-logo">
+                        République <br>Française
+                    </p>
+                </a>
+            </div>
+            <div class="fr-footer__content">
+                <p class="fr-footer__content-desc">Ce site est géré par la DNUM</p>
+                <ul class="fr-footer__content-list">
+                    <li class="fr-footer__content-item">
+                        <a class="fr-footer__content-link" target="_blank" href="https://legifrance.gouv.fr" aria-label="legifrance.gouv.fr — Nouvelle fenêtre" rel="noopener">legifrance.gouv.fr</a>
+                    </li>
+                    <li class="fr-footer__content-item">
+                        <a class="fr-footer__content-link" target="_blank" href="https://gouvernement.fr" aria-label="gouvernement.fr — Nouvelle fenêtre" rel="noopener">gouvernement.fr</a>
+                    </li>
+                    <li class="fr-footer__content-item">
+                        <a class="fr-footer__content-link" target="_blank" href="https://service-public.fr" aria-label="service-public.fr — Nouvelle fenêtre" rel="noopener">service-public.fr</a>
+                    </li>
+                    <li class="fr-footer__content-item">
+                        <a class="fr-footer__content-link" target="_blank" href="https://data.gouv.fr" aria-label="data.gouv.fr — Nouvelle fenêtre" rel="noopener">data.gouv.fr</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="fr-footer__bottom">
+            <ul class="fr-footer__bottom-list">
+                <li class="fr-footer__bottom-item">
+                    <a class="fr-footer__bottom-link" href="./accessibilite.html">Accessibilité : non conforme</a>
+                </li>
+                <li class="fr-footer__bottom-item">
+                    <a class="fr-footer__bottom-link" href="./mentions-legales.html">Mentions légales</a>
+                </li>
+            </ul>
+            <div class="fr-footer__bottom-copy">
+                <p>Sauf mention contraire, tous les contenus de ce site sont sous <a href="https://github.com/etalab/licence-ouverte/blob/master/LO.md" target="_blank" aria-label="licence etalab-2.0 — Nouvelle fenêtre" rel="noopener">licence etalab-2.0</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- DSFR JS -->
+<script src="source/dsfr.module.min.js" type="module"></script>
+
+<!-- JSZip -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+<script>
+'use strict';
+
+/* ===============================================================
+   ÉTAT
+=============================================================== */
+const APP = {
+  playQuestions:[], playFiles:{}, playIndex:0, playScore:0, playMaxScore:0,
+  playResults:[], playSelectedMultiple:new Set(), playAnswered:false, playSource:'folder',
+  edQuestions:[], edCurrentIdx:null, edCurrentOptions:[],
+  edImgQBlob:null, edImgQName:null, edImgRBlob:null, edImgRName:null,
+  edImportedFiles:{},
+};
+
+/* ===============================================================
+   HELPERS
+=============================================================== */
+const $  = id => document.getElementById(id);
+const sr = t  => { $('sr-live').textContent=''; setTimeout(()=>$('sr-live').textContent=t, 50); };
+const show  = el => el.classList.remove('hidden');
+const hide  = el => el.classList.add('hidden');
+const showId = id => show($(id));
+const hideId = id => hide($(id));
+const alertEl = (id, msg, type) => { const el=$(id); el.className=`load-alert ${type}`; el.textContent=msg; show(el); };
+
+function shuffle(a) { for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; }
+function norm(s) { return s.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/['']/g,"'"); }
+function checkText(u,e,tol) { const un=norm(u),en=norm(e); if(tol==='contient') return un.includes(en)||en.includes(un); if(tol==='regex'){try{return new RegExp(e,'i').test(u.trim());}catch{return false;}} return un===en; }
+function uid() { return Date.now().toString(36)+Math.random().toString(36).slice(2,6); }
+
+/* ===============================================================
+   ONGLETS
+=============================================================== */
+$('tab-jouer').addEventListener('click', ()=>switchTab('jouer'));
+$('tab-creer').addEventListener('click', ()=>switchTab('creer'));
+function switchTab(n) {
+  ['jouer','creer'].forEach(t=>{
+    $(`tab-${t}`).classList.toggle('active',t===n);
+    $(`tab-${t}`).setAttribute('aria-selected',t===n?'true':'false');
+    $(`view-${t}`).classList.toggle('active',t===n);
+  });
+}
+
+/* ===============================================================
+   PARSER MD
+=============================================================== */
+function parseFM(raw) {
+  const m=raw.match(/^---\s*\n([\s\S]*?)\n---\s*\n?([\s\S]*)$/);
+  if(!m) return{meta:{},body:raw};
+  const meta={};
+  m[1].split('\n').forEach(l=>{const lm=l.match(/^([\w-]+):\s*"?(.*?)"?\s*$/);if(lm)meta[lm[1].trim()]=lm[2].trim();});
+  return{meta,body:m[2]};
+}
+
+function parseMD(filename, raw) {
+  const {meta,body}=parseFM(raw);
+  const type=((meta.type)||'qcm').toLowerCase(), question=meta.question||'',
+        explication=meta.explication||'', points=parseInt(meta.points||'1',10),
+        tolerance=meta.tolerance||'exacte', reponse=meta.reponse||'',
+        base=filename.replace(/\.md$/,'');
+  const options=[];
+  body.split('\n').map(l=>l.trim()).filter(Boolean).forEach(line=>{
+    if(!line.startsWith('-')) return;
+    const correct=/\[\s*x\s*\]/i.test(line);
+    const orderM=line.match(/\[\s*(\d+)\s*\]/);
+    const order=orderM?parseInt(orderM[1],10):null;
+    const label=line.replace(/^-\s*/,'').replace(/\[\s*x\s*\]/i,'').replace(/\[\s*\d+\s*\]/,'').trim();
+    if(label) options.push({label,correct,order});
+  });
+  const imgPosition=meta.imgPosition||meta.imgposition||'right';
+  return{id:base,type,question,options,explication,points,tolerance,reponse,base,imgPosition};
+}
+
+/* ===============================================================
+   CHARGEMENT FICHIERS (JOUER)
+=============================================================== */
+function loadPlayFiles(fileList) {
+  Object.values(APP.playFiles).forEach(v=>{if(v&&v.startsWith&&v.startsWith('blob:'))URL.revokeObjectURL(v);});
+  APP.playFiles={};
+  const mdFiles=[],readers=[],imgExts=['webp','png','jpg','jpeg'];
+  Array.from(fileList).forEach(file=>{
+    const ext=file.name.split('.').pop().toLowerCase();
+    if(ext==='md'){
+      const p=new Promise(res=>{const r=new FileReader();r.onload=e=>{APP.playFiles[file.name]=e.target.result;res();};r.readAsText(file,'utf-8');});
+      mdFiles.push(file.name); readers.push(p);
+    } else if(imgExts.includes(ext)) APP.playFiles[file.name]=URL.createObjectURL(file);
+  });
+  Promise.all(readers).then(()=>{
+    APP.playQuestions=mdFiles.sort((a,b)=>a.localeCompare(b,undefined,{numeric:true})).map(n=>parseMD(n,APP.playFiles[n])).filter(q=>q.question);
+    APP.playMaxScore=APP.playQuestions.reduce((s,q)=>s+q.points,0);
+    APP.playSource='folder';
+    onPlayLoaded();
+  });
+}
+
+function onPlayLoaded(){
+  const n=APP.playQuestions.length;
+  if(n>0){
+    alertEl('play-load-alert',`✅ ${n} question${n>1?'s':''} chargée${n>1?'s':''}  —  Score max : ${APP.playMaxScore} pt${APP.playMaxScore>1?'s':''}`, 'success');
+    $('btn-start-quiz').disabled=false;
+    updateSidebarInfo();
+    sr(`${n} questions chargées.`);
+  } else {
+    alertEl('play-load-alert','⚠️ Aucune question valide trouvée.','error');
+    $('btn-start-quiz').disabled=true;
+  }
+}
+
+function resolvePlayImg(base, suffix=''){
+  const key=suffix?`${base}${suffix}`:base;
+  if(APP.playFiles[key]) return APP.playFiles[key];
+  for(const e of['webp','png','jpg','jpeg']){const k=`${key}.${e}`;if(APP.playFiles[k])return APP.playFiles[k];}
+  return null;
+}
+
+function loadPlayFromEditor(){
+  APP.playFiles={};
+  APP.playQuestions=APP.edQuestions.filter(q=>q.question.trim()).map((eq,i)=>{
+    const base=`question-${String(i+1).padStart(2,'0')}`;
+    if(eq.imgQBlob) APP.playFiles[base+'._q']=URL.createObjectURL(eq.imgQBlob);
+    if(eq.imgRBlob) APP.playFiles[base+'-reponse._r']=URL.createObjectURL(eq.imgRBlob);
+    return{id:base,type:eq.type,question:eq.question,options:eq.options,explication:eq.explication,points:eq.points,tolerance:eq.tolerance,reponse:eq.reponse,base,_imgQ:eq.imgQBlob?base+'._q':null,_imgR:eq.imgRBlob?base+'-reponse._r':null,imgPosition:eq.imgPosition||'right'};
+  });
+  APP.playMaxScore=APP.playQuestions.reduce((s,q)=>s+q.points,0);
+  APP.playSource='editor';
+  onPlayLoaded();
+}
+
+function updateSidebarInfo(){
+  const n=APP.playQuestions.length; if(!n) return;
+  const types={}; APP.playQuestions.forEach(q=>{types[q.type]=(types[q.type]||0)+1;});
+  const typeStr=Object.entries(types).map(([t,c])=>`${c} ${t}`).join(', ');
+  const titre=$('meta-titre').value||'—';
+  $('sidebar-info-body').innerHTML=`
+    <div class="si-item"><span class="si-label">Titre</span><span class="si-value">${titre}</span></div>
+    <div class="si-item"><span class="si-label">Questions</span><span class="si-value">${n}</span></div>
+    <div class="si-item"><span class="si-label">Score max</span><span class="si-value">${APP.playMaxScore} pt${APP.playMaxScore>1?'s':''}</span></div>
+    <div class="si-item"><span class="si-label">Types</span><span class="si-value">${typeStr}</span></div>`;
+}
+
+/* ===============================================================
+   EVENTS CHARGEMENT
+=============================================================== */
+$('play-folder-input').addEventListener('change', e=>loadPlayFiles(e.target.files));
+$('btn-play-from-editor').addEventListener('click',()=>{
+  if(!APP.edQuestions.length){alertEl('play-load-alert','⚠️ Aucune question dans l\'éditeur.','error');show($('play-load-alert'));return;}
+  loadPlayFromEditor();
+});
+setupDropzone($('play-dropzone'), loadPlayFiles);
+$('btn-start-quiz').addEventListener('click', startQuiz);
+$('btn-restart').addEventListener('click', startQuiz);
+function stopQuiz(){
+  hideId('play-screen-question'); hideId('play-screen-results'); showId('play-screen-home');
+  $('quiz-progress-bar-wrap').style.display='none';
+  $('play-screen-home').closest('.page-layout').classList.remove('quiz-playing');
+  if(document.fullscreenElement) document.exitFullscreen();
+}
+$('btn-back-home').addEventListener('click', stopQuiz);
+$('btn-stop-quiz').addEventListener('click', stopQuiz);
+
+/* Plein écran */
+$('btn-fullscreen').addEventListener('click',()=>{
+  const wrap=$('quiz-fullscreen-wrap');
+  if(!document.fullscreenElement){
+    wrap.requestFullscreen().catch(()=>{});
+  } else {
+    document.exitFullscreen();
+  }
+});
+document.addEventListener('fullscreenchange',()=>{
+  const fs=!!document.fullscreenElement;
+  $('fullscreen-label').textContent=fs?'✕ Réduire':'⛶ Plein écran';
+  $('btn-fullscreen').title=fs?'Quitter le plein écran':'Plein écran';
+});
+
+function setupDropzone(zone, handler){
+  zone.addEventListener('dragover',e=>{e.preventDefault();zone.classList.add('drag-over');});
+  zone.addEventListener('dragleave',()=>zone.classList.remove('drag-over'));
+  zone.addEventListener('drop',e=>{
+    e.preventDefault(); zone.classList.remove('drag-over');
+    const allFiles=[],items=e.dataTransfer.items;
+    const traverse=entry=>new Promise(res=>{
+      if(entry.isFile){entry.file(f=>{allFiles.push(f);res();}); }
+      else if(entry.isDirectory){const rd=entry.createReader();const ra=()=>rd.readEntries(en=>{if(!en.length)return res();Promise.all(en.map(traverse)).then(ra);});ra();}
+    });
+    Promise.all(Array.from(items).map(item=>{const e2=item.webkitGetAsEntry?item.webkitGetAsEntry():null;return e2?traverse(e2):Promise.resolve();})).then(()=>handler(allFiles));
+  });
+}
+
+/* ===============================================================
+   QUIZ — DÉMARRAGE
+=============================================================== */
+function startQuiz(){
+  APP.playIndex=0; APP.playScore=0; APP.playResults=[];
+  hideId('play-screen-home'); hideId('play-screen-results'); showId('play-screen-question');
+  $('quiz-progress-bar-wrap').style.display='block';
+  $('play-screen-home').closest('.page-layout').classList.add('quiz-playing');
+  $('btn-skip').disabled=false; $('btn-next').textContent='Suivant →'; $('btn-next').onclick=nextQuestion;
+  renderQuestion();
+}
+
+function updateProgress(){
+  const total=APP.playQuestions.length, pct=total?Math.round(APP.playIndex/total*100):0;
+  $('prog-fill').style.width=pct+'%';
+  $('prog-fill').parentElement.setAttribute('aria-valuenow',pct);
+  $('prog-label').textContent=`Question ${Math.min(APP.playIndex+1,total)} / ${total}`;
+  $('score-badge').textContent=`Score : ${APP.playScore}`;
+}
+
+/* ===============================================================
+   RENDU QUESTION
+=============================================================== */
+function renderQuestion(){
+  if(APP.playIndex>=APP.playQuestions.length) return renderResults();
+  updateProgress(); APP.playAnswered=false; APP.playSelectedMultiple.clear();
+  const q=APP.playQuestions[APP.playIndex], area=$('q-answers-area');
+  const typeLabels={'qcm':'QCM — une réponse','qcm-multiple':'QCM — plusieurs réponses','vrai-faux':'Vrai / Faux','texte-libre':'Réponse libre','ordre':'Remise en ordre'};
+  $('q-type-tag').textContent=typeLabels[q.type]||q.type;
+  $('q-text').textContent=q.question;
+
+  const imgQUrl=q._imgQ?APP.playFiles[q._imgQ]:resolvePlayImg(q.base);
+  const ql=$('q-layout'), qip=$('q-img-panel');
+  ql.classList.remove('has-image','image-left');
+  if(imgQUrl){
+    $('q-img').src=imgQUrl;$('q-img').alt='Illustration';$('q-img-caption').textContent='Illustration de la question';
+    show(qip); ql.classList.add('has-image');
+    if(q.imgPosition==='left') ql.classList.add('image-left');
+  } else { hide(qip); }
+
+  const eb=$('exp-box'); eb.style.display='none'; eb.className='exp-box'; $('exp-img').style.display='none';
+  $('btn-next').disabled=true; $('btn-next').textContent='Suivant →'; $('btn-next').onclick=nextQuestion; $('btn-skip').disabled=false;
+
+  switch(q.type){
+    case 'qcm': renderQCM(q,area,false); break;
+    case 'qcm-multiple': renderQCM(q,area,true); break;
+    case 'vrai-faux': renderVF(q,area); break;
+    case 'texte-libre': renderTL(q,area); break;
+    case 'ordre': renderOrdre(q,area); break;
+    default: renderQCM(q,area,false);
+  }
+  $('kbd-hint').textContent=(q.type==='qcm'||q.type==='vrai-faux')?'💡 Touches 1, 2…':q.type==='qcm-multiple'?'💡 1–9 puis Entrée':'';
+  // Animation d'entrée aléatoire
+  const qAnims=['fadeInUp','fadeInLeft','fadeInRight','zoomIn','flipIn'];
+  const panel=$('play-screen-question').querySelector('.panel');
+  panel.classList.remove('q-enter');
+  void panel.offsetWidth; // force reflow
+  panel.style.setProperty('--q-anim',qAnims[Math.floor(Math.random()*qAnims.length)]);
+  panel.classList.add('q-enter');
+  panel.addEventListener('animationend',()=>panel.classList.remove('q-enter'),{once:true});
+  $('q-text').focus();
+}
+
+/* Pluie d'étoiles autour d'un élément correct */
+function spawnStars(el){
+  // Positionner relativement au parent scrollable pour fonctionner en fullscreen
+  el.style.position=el.style.position||'relative';
+  if(getComputedStyle(el).position==='static') el.style.position='relative';
+  const chars=['★','✦','✧','⭑','✶','🌟','⭐'];
+  const isFS=!!document.fullscreenElement;
+  const count=isFS?30:22;
+  const baseDist=isFS?80:50, extraDist=isFS?180:120;
+  for(let i=0;i<count;i++){
+    const s=document.createElement('span'); s.className='star-particle';
+    s.textContent=chars[Math.floor(Math.random()*chars.length)];
+    const angle=Math.random()*Math.PI*2, dist=baseDist+Math.random()*extraDist;
+    s.style.left='50%'; s.style.top='50%';
+    s.style.setProperty('--sx',Math.cos(angle)*dist+'px');
+    s.style.setProperty('--sy',Math.sin(angle)*dist+'px');
+    s.style.setProperty('--sr',Math.floor(Math.random()*360)+'deg');
+    s.style.setProperty('--star-dur',(1.2+Math.random()*1)+'s');
+    s.style.animationDelay=(Math.random()*.3)+'s';
+    s.style.fontSize=(isFS?(1.5+Math.random()*1.5):(1+Math.random()*1))+'rem';
+    s.style.color=['#e3a008','#f59e0b','#fbbf24','#fcd34d','#ff6b35'][Math.floor(Math.random()*5)];
+    el.appendChild(s);
+    s.addEventListener('animationend',()=>s.remove());
+  }
+}
+
+function renderQCM(q,area,multiple){
+  const list=document.createElement('div'); list.className='answers-list';
+  list.setAttribute('role',multiple?'group':'radiogroup'); list.setAttribute('aria-label','Réponses');
+  const opts=multiple?[...q.options]:shuffle([...q.options]);
+  opts.forEach((opt,i)=>{
+    const oi=q.options.indexOf(opt);
+    const btn=document.createElement('button'); btn.className='ans-btn'; btn.dataset.orig=oi;
+    btn.setAttribute('role',multiple?'checkbox':'radio'); btn.setAttribute('aria-checked','false');
+    btn.innerHTML=`<span class="ans-key" aria-hidden="true">${i+1}</span><span>${opt.label}</span>`;
+    if(multiple){
+      btn.addEventListener('click',()=>{
+        if(APP.playAnswered) return;
+        const oix=parseInt(btn.dataset.orig);
+        if(APP.playSelectedMultiple.has(oix)){APP.playSelectedMultiple.delete(oix);btn.classList.remove('selected');btn.setAttribute('aria-checked','false');}
+        else{APP.playSelectedMultiple.add(oix);btn.classList.add('selected');btn.setAttribute('aria-checked','true');}
+        $('btn-next').disabled=APP.playSelectedMultiple.size===0; $('btn-next').textContent='Valider ✓';
+      });
+    } else {
+      const fa={v:true};
+      btn.addEventListener('click',()=>{
+        if(APP.playAnswered) return;
+        if(q.options[parseInt(btn.dataset.orig)].correct){
+          btn.classList.add('correct'); spawnStars(btn);
+          list.querySelectorAll('.ans-btn').forEach(b=>b.disabled=true);
+          finalizeAnswer(q,true,fa.v?q.points:0,opt.label); sr('Bonne réponse !');
+        } else { btn.classList.add('wrong'); btn.disabled=true; fa.v=false; sr('Mauvaise réponse.'); }
+      });
+    }
+    list.appendChild(btn);
+  });
+  area.innerHTML=''; area.appendChild(list);
+  if(multiple){ $('btn-next').onclick=()=>{ if(!APP.playAnswered) validateMultiple(q,list); else nextQuestion(); }; }
+}
+
+function validateMultiple(q,list){
+  APP.playAnswered=true;
+  const cs=new Set(q.options.map((o,i)=>o.correct?i:-1).filter(i=>i>=0));
+  const sel=new Set(APP.playSelectedMultiple);
+  const perfect=sel.size===cs.size&&[...sel].every(i=>cs.has(i));
+  const partial=[...sel].some(i=>cs.has(i));
+  const pts=perfect?q.points:(partial?Math.floor(q.points/2):0);
+  list.querySelectorAll('.ans-btn').forEach(btn=>{const oi=parseInt(btn.dataset.orig);btn.disabled=true;if(cs.has(oi)){btn.classList.add('correct');spawnStars(btn);}else if(sel.has(oi))btn.classList.add('wrong');});
+  finalizeAnswer(q,perfect||partial,pts,[...sel].map(i=>q.options[i]?.label).filter(Boolean).join(', '));
+  $('btn-next').textContent='Suivant →'; $('btn-next').onclick=nextQuestion;
+  sr(perfect?'Parfait !':partial?'Partiellement correct.':'Aucune bonne réponse.');
+}
+
+function renderVF(q,area){
+  area.innerHTML=`<div class="vf-grid"><button class="vf-btn" data-idx="0">✅ Vrai</button><button class="vf-btn" data-idx="1">❌ Faux</button></div>`;
+  area.querySelectorAll('.vf-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      if(APP.playAnswered) return;
+      const idx=parseInt(btn.dataset.idx), opt=q.options[idx]||{}, ok=opt.correct||false;
+      btn.classList.add(ok?'correct':'wrong');
+      if(ok) spawnStars(btn);
+      area.querySelectorAll('.vf-btn').forEach(b=>b.disabled=true);
+      finalizeAnswer(q,ok,ok?q.points:0,opt.label||(idx===0?'Vrai':'Faux'));
+      sr(ok?'Bonne réponse !':'Mauvaise réponse.');
+    });
+  });
+}
+
+function renderTL(q,area){
+  area.innerHTML=`<div class="tl-row"><input type="text" class="fr-input" id="tl-input" placeholder="Votre réponse…" autocomplete="off"><button class="fr-btn fr-btn--sm" id="tl-validate">Valider</button></div>`;
+  const inp=$('tl-input'), val=$('tl-validate');
+  const go=()=>{
+    if(APP.playAnswered) return;
+    const ok=checkText(inp.value,q.reponse,q.tolerance);
+    inp.className=`fr-input ${ok?'correct':'wrong'}`; inp.disabled=true; val.disabled=true;
+    if(ok) spawnStars(inp.closest('.tl-row'));
+    finalizeAnswer(q,ok,ok?q.points:0,inp.value);
+    sr(ok?'Bonne réponse !':'Mauvaise réponse. Attendu : '+q.reponse);
+  };
+  val.addEventListener('click',go); inp.addEventListener('keydown',e=>{if(e.key==='Enter')go();});
+}
+
+function renderOrdre(q,area){
+  const items=shuffle(q.options.map(o=>({...o}))); let dragSrc=null;
+  const build=()=>{
+    const list=document.createElement('div'); list.className='order-list';
+    items.forEach((item,i)=>{
+      const el=document.createElement('div'); el.className='order-item'; el.draggable=true; el.dataset.i=i;
+      el.innerHTML=`<span class="order-handle">⠿</span><span class="order-pos">${i+1}</span><span>${item.label}</span>`;
+      el.addEventListener('dragstart',()=>{dragSrc=i;el.classList.add('dragging');});
+      el.addEventListener('dragend',()=>{el.classList.remove('dragging');list.querySelectorAll('.order-item').forEach(e=>e.classList.remove('drag-target'));});
+      el.addEventListener('dragover',e=>{e.preventDefault();el.classList.add('drag-target');});
+      el.addEventListener('dragleave',()=>el.classList.remove('drag-target'));
+      el.addEventListener('drop',e=>{e.preventDefault();if(dragSrc===null||dragSrc===i) return;[items[dragSrc],items[i]]=[items[i],items[dragSrc]];area.querySelector('.order-list').replaceWith(build());});
+      list.appendChild(el);
+    });
+    return list;
+  };
+  area.innerHTML='<p style="font-size:.8125rem;color:var(--text-mention-grey);margin-bottom:.5rem;">Glissez-déposez pour remettre dans l\'ordre.</p>';
+  area.appendChild(build());
+  $('btn-next').textContent='Valider ✓'; $('btn-next').disabled=false;
+  $('btn-next').onclick=()=>{
+    if(!APP.playAnswered){
+      APP.playAnswered=true; let ok=0;
+      document.querySelectorAll('.order-item').forEach((el,pos)=>{const isOk=items[pos].order===pos+1;if(isOk){ok++;spawnStars(el);}el.classList.add(isOk?'correct':'wrong');el.draggable=false;});
+      const perfect=ok===items.length, pts=perfect?q.points:Math.floor(q.points*ok/items.length);
+      finalizeAnswer(q,perfect,pts,items.map(it=>it.label).join(' → '));
+      $('btn-next').textContent='Suivant →'; $('btn-next').onclick=nextQuestion;
+      sr(perfect?'Ordre parfait !':ok+'/'+items.length+' bien placés.');
+    } else nextQuestion();
+  };
+}
+
+function finalizeAnswer(q,ok,pts,answerGiven){
+  APP.playAnswered=true; APP.playScore+=pts;
+  APP.playResults.push({q,status:ok?'ok':'ko',pointsEarned:pts,answerGiven});
+  updateProgress();
+  const eb=$('exp-box'); eb.className=`exp-box ${ok?'success':'error'}`;
+  $('exp-title').textContent=ok?`✅ Correct ! +${pts} point${pts>1?'s':''}`:(q.reponse?`❌ Incorrect. Réponse : ${q.reponse}`:'❌ Incorrect.');
+  $('exp-text').textContent=q.explication||''; $('exp-text').style.display=q.explication?'block':'none';
+  const imgRUrl=q._imgR?APP.playFiles[q._imgR]:resolvePlayImg(q.base,'-reponse');
+  if(imgRUrl){$('exp-img').src=imgRUrl;$('exp-img').alt='Illustration réponse';$('exp-img').style.display='block';}
+  eb.style.display='block'; $('btn-next').disabled=false; $('btn-skip').disabled=true;
+}
+
+$('btn-skip').addEventListener('click',()=>{
+  const q=APP.playQuestions[APP.playIndex];
+  const bonneRep=q.type==='texte-libre'?q.reponse:q.options?q.options.filter(o=>o.correct).map(o=>o.label).join(', '):'';
+  APP.playResults.push({q,status:'skip',pointsEarned:0,answerGiven:'—'});
+  const eb=$('exp-box'); eb.className='exp-box error';
+  $('exp-title').textContent=`⏭ Passé. Bonne réponse : ${bonneRep}`;
+  $('exp-text').textContent=q.explication||''; $('exp-text').style.display=q.explication?'block':'none';
+  eb.style.display='block'; APP.playAnswered=true; $('btn-next').disabled=false; $('btn-skip').disabled=true;
+  document.querySelectorAll('.ans-btn,.vf-btn').forEach(b=>b.disabled=true);
+  const tli=$('tl-input'); if(tli){tli.disabled=true;$('tl-validate').disabled=true;}
+  sr(`Passé. Bonne réponse : ${bonneRep}`);
+});
+
+function nextQuestion(){ APP.playIndex++; renderQuestion(); }
+
+document.addEventListener('keydown',e=>{
+  if(!$('view-jouer').classList.contains('active')) return;
+  const q=APP.playQuestions[APP.playIndex]; if(!q||APP.playAnswered) return;
+  if(['qcm','vrai-faux','qcm-multiple'].includes(q.type)){
+    const n=parseInt(e.key); if(!isNaN(n)&&n>=1) document.querySelectorAll('.ans-btn,.vf-btn')[n-1]?.click();
+    if(e.key==='Enter'&&q.type==='qcm-multiple'&&!$('btn-next').disabled) $('btn-next').click();
+  }
+});
+
+/* ===============================================================
+   RÉSULTATS
+=============================================================== */
+function renderResults(){
+  $('quiz-progress-bar-wrap').style.display='none';
+  hideId('play-screen-question'); showId('play-screen-results');
+  const total=APP.playMaxScore, score=APP.playScore, pct=total?Math.round(score/total*100):0;
+  $('res-score').textContent=score; $('res-max').textContent=`/ ${total} point${total>1?'s':''}`;
+  $('res-pct').textContent=`${pct} % de réussite`;
+  const msgs=[{min:90,txt:'🏆 Excellent !'},{min:70,txt:'🎉 Très bien !'},{min:50,txt:'👍 Bien, quelques points à revoir.'},{min:30,txt:'📚 Passable. Reprenez les explications.'},{min:0,txt:'💪 Continuez à apprendre !'}];
+  $('res-message').textContent=(msgs.find(m=>pct>=m.min)||msgs.at(-1)).txt;
+  const fill=$('res-bar'); fill.style.background=pct>=70?'var(--background-flat-success)':pct>=40?'#b34000':'var(--background-flat-error)';
+  setTimeout(()=>fill.style.width=pct+'%',100);
+  const list=$('results-list'); list.innerHTML='';
+  APP.playResults.forEach((r,i)=>{
+    const{q,status,pointsEarned,answerGiven}=r, icon={ok:'✅',ko:'❌',skip:'⏭'}[status];
+    const ca=q.type==='texte-libre'?q.reponse:q.options?q.options.filter(o=>o.correct).map(o=>o.label).join(', '):'';
+    const imgR=q._imgR?APP.playFiles[q._imgR]:resolvePlayImg(q.base,'-reponse');
+    const el=document.createElement('div'); el.className=`result-item ${status}`;
+    el.innerHTML=`<div class="result-item-head"><span class="result-ico">${icon}</span><span class="result-q">Q${i+1}. ${q.question}</span><span class="result-pts">${pointsEarned}/${q.points} pt</span></div>${answerGiven!=='—'?`<div class="result-meta">Votre réponse : <em>${answerGiven}</em></div>`:''}${status!=='ok'?`<div class="result-meta">Bonne réponse : <strong>${ca}</strong></div>`:''}${q.explication?`<div class="result-exp">${q.explication}</div>`:''}${imgR?`<img class="result-rimg" src="${imgR}" alt="">`:''}`; 
+    list.appendChild(el);
+  });
+  sr(`Quiz terminé. Score : ${score}/${total}, ${pct}%.`);
+}
+
+/* ===============================================================
+   ÉDITEUR
+=============================================================== */
+function renderEditorList(){
+  const container=$('editor-questions-list'); container.innerHTML='';
+  if(!APP.edQuestions.length){
+    const d=document.createElement('div'); d.id='editor-empty'; d.className='empty-state';
+    d.innerHTML='<span class="ei">✏️</span>Aucune question. Cliquez sur "Ajouter" pour commencer,<br>ou importez un dossier existant.';
+    container.appendChild(d);
+  } else {
+    const ts={'qcm':'QCM','qcm-multiple':'QCM+','vrai-faux':'V/F','texte-libre':'Libre','ordre':'Ordre'};
+    APP.edQuestions.forEach((q,i)=>{
+      const el=document.createElement('div'); el.className=`eq-item${APP.edCurrentIdx===i?' active':''}`;
+      el.innerHTML=`<span class="eq-num">${i+1}</span><span class="eq-text">${q.question||'(sans titre)'}</span><span class="eq-type-chip">${ts[q.type]||q.type}</span><button class="eq-del" data-i="${i}" title="Supprimer la question ${i+1}" aria-label="Supprimer la question ${i+1}">✕</button>`;
+      el.addEventListener('click',ev=>{if(ev.target.classList.contains('eq-del'))return;editQuestion(i);});
+      el.querySelector('.eq-del').addEventListener('click',ev=>{
+        ev.stopPropagation();
+        APP.edQuestions.splice(i,1);
+        if(APP.edCurrentIdx===i){APP.edCurrentIdx=null;hideId('editor-form-wrap');}
+        else if(APP.edCurrentIdx>i) APP.edCurrentIdx--;
+        renderEditorList(); updateEdBadge();
+      });
+      container.appendChild(el);
+    });
+  }
+  updateEdBadge();
+}
+
+function updateEdBadge(){
+  const n=APP.edQuestions.length;
+  $('eq-total-badge').textContent=n; $('editor-q-count-badge').textContent=n;
+  $('btn-export-header').disabled=n===0;
+}
+
+function editQuestion(idx){
+  APP.edCurrentIdx=idx; const q=APP.edQuestions[idx];
+  renderEditorList(); showId('editor-form-wrap');
+  $('ed-form-title').textContent=`Question ${idx+1}`;
+  $('ed-type').value=q.type; $('ed-question').value=q.question; $('ed-points').value=q.points;
+  $('ed-explication').value=q.explication||''; $('ed-reponse').value=q.reponse||'';
+  $('ed-tolerance').value=q.tolerance||'exacte';
+  APP.edCurrentOptions=q.options?q.options.map(o=>({...o})):[];
+  APP.edImgQBlob=q.imgQBlob||null; APP.edImgQName=q.imgQName||null;
+  APP.edImgRBlob=q.imgRBlob||null; APP.edImgRName=q.imgRName||null;
+  $('ed-img-position').value=q.imgPosition||'right';
+  syncEdTypeUI(); renderEdOptions(); renderEdImgQ(); renderEdImgR();
+  $('editor-form-wrap').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+$('btn-add-question').addEventListener('click',()=>{
+  APP.edQuestions.push({id:uid(),type:'qcm',question:'',options:[],reponse:'',tolerance:'exacte',explication:'',points:1,imgQBlob:null,imgQName:null,imgRBlob:null,imgRName:null,imgPosition:'right'});
+  editQuestion(APP.edQuestions.length-1);
+});
+
+$('btn-close-form').addEventListener('click',()=>{APP.edCurrentIdx=null;hideId('editor-form-wrap');renderEditorList();});
+$('btn-discard-question').addEventListener('click',()=>{APP.edCurrentIdx=null;hideId('editor-form-wrap');renderEditorList();});
+$('ed-type').addEventListener('change',()=>{syncEdTypeUI();renderEdOptions();});
+
+function syncEdTypeUI(){
+  const t=$('ed-type').value, isTL=t==='texte-libre';
+  $('ed-options-wrap').classList.toggle('hidden',isTL); $('ed-textlibre-wrap').classList.toggle('hidden',!isTL);
+  $('btn-add-option').classList.toggle('hidden',t==='vrai-faux');
+  const hints={'qcm':'— cochez ✓ la bonne réponse','qcm-multiple':'— cochez ✓ toutes les bonnes réponses','ordre':'— les éléments seront mélangés à l\'affichage'};
+  $('ed-options-hint').textContent=hints[t]||'';
+  if(t==='vrai-faux'&&APP.edCurrentOptions.length!==2){APP.edCurrentOptions=[{label:'Vrai',correct:false,order:null},{label:'Faux',correct:false,order:null}];renderEdOptions();}
+}
+
+function renderEdOptions(){
+  const t=$('ed-type').value, list=$('ed-options-list'); list.innerHTML='';
+  APP.edCurrentOptions.forEach((opt,i)=>{
+    const row=document.createElement('div'); row.className='option-row';
+    if(t==='vrai-faux'){
+      row.innerHTML=`<input type="text" class="fr-input" value="${opt.label}" disabled style="max-width:100px;"><button type="button" class="option-correct-btn${opt.correct?' correct':''}" data-i="${i}" aria-label="${opt.correct?'Bonne réponse':'Marquer comme bonne réponse'}">${opt.correct?'✓':''}</button>`;
+    } else if(t==='ordre'){
+      row.innerHTML=`<input type="number" class="fr-input" value="${opt.order||i+1}" min="1" max="20" style="width:3.25rem;" data-field="order" data-i="${i}" aria-label="Position"><input type="text" class="fr-input" value="${opt.label}" placeholder="Élément…" data-field="label" data-i="${i}"><button type="button" class="option-del-btn" data-i="${i}" aria-label="Supprimer">✕</button>`;
+    } else {
+      row.innerHTML=`<button type="button" class="option-correct-btn${opt.correct?' correct':''}" data-i="${i}" aria-label="${opt.correct?'Bonne réponse':'Marquer comme bonne réponse'}">${opt.correct?'✓':''}</button><input type="text" class="fr-input" value="${opt.label}" placeholder="Réponse…" data-field="label" data-i="${i}"><button type="button" class="option-del-btn" data-i="${i}" aria-label="Supprimer">✕</button>`;
+    }
+    list.appendChild(row);
+  });
+  list.querySelectorAll('.option-correct-btn').forEach(btn=>btn.addEventListener('click',()=>{
+    const i=parseInt(btn.dataset.i);
+    if(t==='qcm'||t==='vrai-faux') APP.edCurrentOptions.forEach((o,idx)=>o.correct=idx===i);
+    else APP.edCurrentOptions[i].correct=!APP.edCurrentOptions[i].correct;
+    renderEdOptions();
+  }));
+  list.querySelectorAll('input[data-field]').forEach(inp=>inp.addEventListener('input',()=>{
+    const i=parseInt(inp.dataset.i),f=inp.dataset.field;
+    APP.edCurrentOptions[i][f]=f==='order'?parseInt(inp.value)||i+1:inp.value;
+  }));
+  list.querySelectorAll('.option-del-btn').forEach(btn=>btn.addEventListener('click',()=>{APP.edCurrentOptions.splice(parseInt(btn.dataset.i),1);renderEdOptions();}));
+}
+
+$('btn-add-option').addEventListener('click',()=>{
+  APP.edCurrentOptions.push({label:'',correct:false,order:APP.edCurrentOptions.length+1});
+  renderEdOptions();
+  setTimeout(()=>{const ins=$('ed-options-list').querySelectorAll('input[data-field="label"]');ins[ins.length-1]?.focus();},50);
+});
+
+$('btn-save-question').addEventListener('click',()=>{
+  const idx=APP.edCurrentIdx; if(idx===null) return;
+  const q=APP.edQuestions[idx];
+  q.type=$('ed-type').value; q.question=$('ed-question').value.trim(); q.points=parseInt($('ed-points').value)||1;
+  q.explication=$('ed-explication').value.trim(); q.reponse=$('ed-reponse').value.trim(); q.tolerance=$('ed-tolerance').value;
+  q.options=APP.edCurrentOptions.map(o=>({...o}));
+  q.imgQBlob=APP.edImgQBlob; q.imgQName=APP.edImgQName; q.imgRBlob=APP.edImgRBlob; q.imgRName=APP.edImgRName;
+  q.imgPosition=APP.edImgQBlob?$('ed-img-position').value:'right';
+  APP.edCurrentIdx=null; hideId('editor-form-wrap'); renderEditorList(); sr('Question enregistrée.');
+});
+
+/* Images éditeur */
+function renderEdImgQ(){
+  if(APP.edImgQBlob){
+    $('ed-img-q-thumb').src=URL.createObjectURL(APP.edImgQBlob);
+    show($('ed-img-q-preview')); show($('ed-img-position-wrap'));
+  } else {
+    hide($('ed-img-q-preview')); hide($('ed-img-position-wrap'));
+  }
+}
+function renderEdImgR(){if(APP.edImgRBlob){$('ed-img-r-thumb').src=URL.createObjectURL(APP.edImgRBlob);show($('ed-img-r-preview'));}else hide($('ed-img-r-preview'));}
+$('ed-img-q-input').addEventListener('change',e=>{const f=e.target.files[0];if(!f)return;APP.edImgQBlob=f;APP.edImgQName=f.name;renderEdImgQ();});
+$('ed-img-r-input').addEventListener('change',e=>{const f=e.target.files[0];if(!f)return;APP.edImgRBlob=f;APP.edImgRName=f.name;renderEdImgR();});
+$('ed-img-q-remove').addEventListener('click',()=>{APP.edImgQBlob=null;APP.edImgQName=null;renderEdImgQ();$('ed-img-q-input').value='';});
+$('ed-img-r-remove').addEventListener('click',()=>{APP.edImgRBlob=null;APP.edImgRName=null;renderEdImgR();$('ed-img-r-input').value='';});
+
+/* Import éditeur */
+$('editor-folder-input').addEventListener('change',e=>importEditorFiles(e.target.files));
+setupDropzone($('editor-dropzone'),importEditorFiles);
+
+function importEditorFiles(fileList){
+  const mdFiles=[],readers=[]; APP.edImportedFiles={};
+  const imgExts=['webp','png','jpg','jpeg'];
+  Array.from(fileList).forEach(file=>{
+    const ext=file.name.split('.').pop().toLowerCase();
+    if(ext==='md'){const p=new Promise(res=>{const r=new FileReader();r.onload=e=>{APP.edImportedFiles[file.name]=e.target.result;mdFiles.push(file.name);res();};r.readAsText(file,'utf-8');});readers.push(p);}
+    else if(imgExts.includes(ext)) APP.edImportedFiles['_img_'+file.name]=file;
+  });
+  Promise.all(readers).then(()=>{
+    APP.edQuestions=mdFiles.sort((a,b)=>a.localeCompare(b,undefined,{numeric:true})).map(name=>{
+      const p=parseMD(name,APP.edImportedFiles[name]);
+      const iq=findImpImg(p.base), ir=findImpImg(p.base+'-reponse');
+      return{id:uid(),type:p.type,question:p.question,options:p.options,reponse:p.reponse,tolerance:p.tolerance,explication:p.explication,points:p.points,imgQBlob:iq?.blob||null,imgQName:iq?.name||null,imgRBlob:ir?.blob||null,imgRName:ir?.name||null,imgPosition:p.imgPosition||'right'};
+    }).filter(q=>q.question);
+    APP.edCurrentIdx=null; hideId('editor-form-wrap'); renderEditorList();
+    const n=APP.edQuestions.length;
+    alertEl('editor-load-alert',`✅ ${n} question${n>1?'s':''} importée${n>1?'s':''}`, 'success');
+    show($('editor-load-alert')); sr(`${n} questions importées.`);
+  });
+}
+
+function findImpImg(base){
+  for(const ext of['webp','png','jpg','jpeg']){const k='_img_'+base+'.'+ext;if(APP.edImportedFiles[k])return{blob:APP.edImportedFiles[k],name:base+'.'+ext};}
+  return null;
+}
+
+$('btn-preview-quiz').addEventListener('click',()=>{
+  if(!APP.edQuestions.length){alertEl('export-alert','⚠️ Aucune question à prévisualiser.','error');show($('export-alert'));return;}
+  loadPlayFromEditor(); switchTab('jouer');
+});
+
+/* ===============================================================
+   EXPORT ZIP
+=============================================================== */
+async function exportZip(){
+  if(!APP.edQuestions.length){alertEl('export-alert','⚠️ Aucune question à exporter.','error');show($('export-alert'));return;}
+  if(typeof JSZip==='undefined'){alertEl('export-alert','⚠️ JSZip indisponible (connexion requise pour le premier export).','error');show($('export-alert'));return;}
+
+  const zip=new JSZip(), zipName=($('zip-name').value.trim()||'mon-quiz').replace(/[^a-zA-Z0-9_-]/g,'-');
+  const qFolder=zip.folder('questions');
+
+  APP.edQuestions.forEach((eq,i)=>{
+    const num=String(i+1).padStart(2,'0'), base=`question-${num}`;
+    let md=`---\ntype: ${eq.type}\nquestion: "${eq.question.replace(/"/g,'\\"')}"\npoints: ${eq.points}\n`;
+    if(eq.explication) md+=`explication: "${eq.explication.replace(/"/g,'\\"')}"\n`;
+    if(eq.type==='texte-libre') md+=`reponse: "${eq.reponse.replace(/"/g,'\\"')}"\ntolerance: ${eq.tolerance}\n`;
+    if(eq.imgPosition && eq.imgPosition!=='right') md+=`imgPosition: ${eq.imgPosition}\n`;
+    md+=`---\n\n`;
+    if(eq.type!=='texte-libre') eq.options.forEach(opt=>{md+=eq.type==='ordre'?`- [${opt.order||1}] ${opt.label}\n`:`- ${opt.correct?'[x] ':''}${opt.label}\n`;});
+    qFolder.file(`${base}.md`,md);
+    if(eq.imgQBlob){const ext=(eq.imgQName||'img.webp').split('.').pop();qFolder.file(`${base}.${ext}`,eq.imgQBlob);}
+    if(eq.imgRBlob){const ext=(eq.imgRName||'img.webp').split('.').pop();qFolder.file(`${base}-reponse.${ext}`,eq.imgRBlob);}
+  });
+
+  // Moteur HTML
+  zip.file('index.html', document.documentElement.outerHTML);
+
+  // Assets locaux
+  const fetchA=async path=>{try{const r=await fetch(path);if(!r.ok)return;zip.file(path,await r.blob());}catch{}};
+  zip.folder('source/fonts');
+  await Promise.all([
+    'source/dsfr.min.css','source/dsfr.module.min.js','source/favicon.ico','source/favicon.svg','source/apple-touch-icon.png',
+    'source/fonts/Marianne-Bold.woff2','source/fonts/Marianne-Bold.woff','source/fonts/Marianne-Regular.woff2','source/fonts/Marianne-Regular.woff',
+    'source/fonts/Marianne-Medium.woff2','source/fonts/Marianne-Medium.woff','source/fonts/Marianne-Light.woff2','source/fonts/Marianne-Light.woff',
+    'source/fonts/Marianne-Bold_Italic.woff2','source/fonts/Marianne-Bold_Italic.woff','source/fonts/Marianne-Regular_Italic.woff2','source/fonts/Marianne-Regular_Italic.woff',
+    'source/fonts/Marianne-Light_Italic.woff2','source/fonts/Marianne-Light_Italic.woff','source/fonts/Marianne-Medium_Italic.woff2','source/fonts/Marianne-Medium_Italic.woff',
+    'source/fonts/Spectral-ExtraBold.woff2','source/fonts/Spectral-ExtraBold.woff','source/fonts/Spectral-Regular.woff2','source/fonts/Spectral-Regular.woff',
+  ].map(fetchA));
+
+  const titre=$('meta-titre').value.trim()||'Mon Quiz', desc=$('meta-description').value.trim(), auteur=$('meta-auteur').value.trim();
+  zip.file('README.md',`# ${titre}\n\n${desc?desc+'\n\n':''}${auteur?'Auteur : '+auteur+'\n\n':''}## Utilisation\n\n1. Décompressez l'archive\n2. Ouvrez \`index.html\` dans votre navigateur\n3. Dans l'onglet **Jouer**, chargez le dossier \`questions/\`\n\nAucun serveur requis.\n`);
+
+  const blob=await zip.generateAsync({type:'blob',compression:'DEFLATE',compressionOptions:{level:6}});
+  const url=URL.createObjectURL(blob), a=document.createElement('a');
+  a.href=url; a.download=zipName+'.zip'; a.click(); URL.revokeObjectURL(url);
+  alertEl('export-alert',`✅ "${zipName}.zip" téléchargé !`,'success'); show($('export-alert'));
+}
+
+/* Ouvrir la modale export (partagé par les deux boutons) */
+function openExportModal(){
+  if(!APP.edQuestions.length) return;
+  document.getElementById('export-modal-name').value=$('zip-name').value||'mon-quiz';
+  dsfr(document.getElementById('export-modal')).modal.disclose();
+}
+$('btn-export-zip').addEventListener('click',openExportModal);
+$('btn-export-header').addEventListener('click',openExportModal);
+document.addEventListener('DOMContentLoaded',()=>{
+  document.getElementById('export-modal-cancel').addEventListener('click',()=>{
+    dsfr(document.getElementById('export-modal')).modal.conceal();
+  });
+  document.getElementById('export-modal-confirm').addEventListener('click',()=>{
+    $('zip-name').value=document.getElementById('export-modal-name').value;
+    dsfr(document.getElementById('export-modal')).modal.conceal();
+    exportZip();
+  });
+});
+
+/* ===============================================================
+   CHARGEMENT QUESTIONS PAR DÉFAUT (source/questions/)
+=============================================================== */
+(async function loadDefaultQuestions(){
+  const base='./source/questions/';
+  try{
+    const res=await fetch(base+'manifest.json');
+    if(!res.ok) return;
+    const manifest=await res.json();
+    const imgExts=['webp','png','jpg','jpeg'];
+    const mdNames=manifest.files.filter(f=>f.endsWith('.md')).sort((a,b)=>a.localeCompare(b,undefined,{numeric:true}));
+    const imgNames=manifest.files.filter(f=>imgExts.includes(f.split('.').pop().toLowerCase()));
+
+    // Charger tous les fichiers en parallèle
+    const mdContents={}, imgBlobs={};
+    await Promise.all([
+      ...mdNames.map(async n=>{const r=await fetch(base+n);if(r.ok)mdContents[n]=await r.text();}),
+      ...imgNames.map(async n=>{const r=await fetch(base+n);if(r.ok){const b=await r.blob();imgBlobs[n]=new File([b],n,{type:b.type});}})
+    ]);
+
+    // Construire les questions
+    APP.edQuestions=mdNames.map(name=>{
+      if(!mdContents[name]) return null;
+      const p=parseMD(name,mdContents[name]);
+      const findImg=b=>{for(const ext of imgExts){const k=b+'.'+ext;if(imgBlobs[k])return{blob:imgBlobs[k],name:k};}return null;};
+      const iq=findImg(p.base), ir=findImg(p.base+'-reponse');
+      return{id:uid(),type:p.type,question:p.question,options:p.options,reponse:p.reponse,tolerance:p.tolerance,explication:p.explication,points:p.points,imgQBlob:iq?.blob||null,imgQName:iq?.name||null,imgRBlob:ir?.blob||null,imgRName:ir?.name||null,imgPosition:p.imgPosition||'right'};
+    }).filter(Boolean).filter(q=>q.question);
+
+    if(manifest.titre) $('meta-titre').value=manifest.titre;
+    renderEditorList();
+  }catch(e){console.warn('Chargement questions par défaut :',e);}
+})();
+</script>
+
+<!-- Modale Export quiz -->
+<dialog id="export-modal" class="fr-modal" role="dialog" aria-labelledby="export-modal-title">
+  <div class="fr-container fr-container--fluid fr-container-md">
+    <div class="fr-grid-row fr-grid-row--center">
+      <div class="fr-col-12 fr-col-md-6 fr-col-lg-4">
+        <div class="fr-modal__body">
+          <div class="fr-modal__header">
+            <button class="fr-btn--close fr-btn" aria-controls="export-modal" title="Fermer">Fermer</button>
+          </div>
+          <div class="fr-modal__content">
+            <h1 id="export-modal-title" class="fr-modal__title">Exporter le quiz</h1>
+            <p>Le quiz sera téléchargé en archive ZIP autonome.</p>
+            <div class="fr-input-group fr-mt-2w">
+              <label class="fr-label" for="export-modal-name">Nom du fichier</label>
+              <input class="fr-input" type="text" id="export-modal-name" value="mon-quiz">
+            </div>
+          </div>
+          <div class="fr-modal__footer">
+            <div class="fr-btns-group fr-btns-group--right fr-btns-group--inline-lg">
+              <button class="fr-btn" id="export-modal-confirm">Télécharger le quiz</button>
+              <button class="fr-btn fr-btn--secondary" id="export-modal-cancel">Annuler</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<!-- Modale Paramètres d'affichage (composant DSFR natif) -->
+<dialog id="fr-theme-modal" class="fr-modal" role="dialog" aria-labelledby="fr-theme-modal-title">
+  <div class="fr-container fr-container--fluid fr-container-md">
+    <div class="fr-grid-row fr-grid-row--center">
+      <div class="fr-col-12 fr-col-md-6 fr-col-lg-4">
+        <div class="fr-modal__body">
+          <div class="fr-modal__header">
+            <button class="fr-btn--close fr-btn" aria-controls="fr-theme-modal" title="Fermer">Fermer</button>
+          </div>
+          <div class="fr-modal__content">
+            <h1 id="fr-theme-modal-title" class="fr-modal__title">Paramètres d'affichage</h1>
+            <div id="fr-display" class="fr-display">
+              <div class="fr-form-group">
+                <fieldset class="fr-fieldset">
+                  <legend class="fr-fieldset__legend fr-text--regular">Choisissez un thème pour personnaliser l'apparence du site.</legend>
+                  <div class="fr-fieldset__content">
+                    <div class="fr-radio-group fr-radio-rich">
+                      <input value="light" type="radio" id="fr-radios-theme-light" name="fr-radios-theme">
+                      <label class="fr-label" for="fr-radios-theme-light">Thème clair</label>
+                    </div>
+                    <div class="fr-radio-group fr-radio-rich">
+                      <input value="dark" type="radio" id="fr-radios-theme-dark" name="fr-radios-theme">
+                      <label class="fr-label" for="fr-radios-theme-dark">Thème sombre</label>
+                    </div>
+                    <div class="fr-radio-group fr-radio-rich">
+                      <input value="system" type="radio" id="fr-radios-theme-system" name="fr-radios-theme">
+                      <label class="fr-label" for="fr-radios-theme-system">Système
+                        <span class="fr-hint-text">Utilise les paramètres système.</span>
+                      </label>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+</body>
+</html>
