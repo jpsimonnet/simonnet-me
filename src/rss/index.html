@@ -1,30 +1,435 @@
-
-<!DOCTYPE html>
-<html lang="fr">
+<!doctype html>
+<html lang="fr" data-fr-theme="light">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lecteur de flux RSS</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="utf-8">
+<link rel="icon" href="source/favicon/favicon.svg" type="image/svg+xml">
+<link rel="shortcut icon" href="source/favicon/favicon.ico">
+<link rel="apple-touch-icon" href="source/favicon/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lecteur RSS - Veille stratégique</title>
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="Lecteur de flux RSS/Atom en ligne, sans compte, avec sauvegarde locale.">
+
+  <!-- DSFR local -->
+  <link rel="stylesheet" href="./source/dsfr/dsfr.min.css" />
+  <script type="module" src="./source/dsfr/dsfr.module.min.js"></script>
+  <link rel="stylesheet" href="./source/dsfr/utility/icons/icons.min.css" />
+
+<link rel="stylesheet" href="./source/css/app.css">
 </head>
 <body>
-  <div class="container">
-    <div class="sidebar" id="sidebar">
-     <h2>Flux RSS</h2>
-     <a href="../" style="display:block; margin-bottom:20px; color:#fff;">Revenir à mon site web</a>
-      <ul id="feedList"></ul>
-     <h2>Importer votre fichier OPML</h2>
-      <input type="file" id="opmlFile" accept=".opml, .xml"><br>
-      <button id="importBtn">Importer un fichier OPML</button>
 
+  <header role="banner" class="fr-header">
+    <div class="fr-header__body">
+      <div class="fr-container">
+        <div class="fr-header__body-row">
+          <div class="fr-header__brand fr-enlarge-link">
+            <div class="fr-header__brand-top">
+              <div class="fr-header__logo">
+                <p class="fr-logo">République <br>Française</p>
+              </div>
+              <div class="fr-header__navbar">
+                <button class="fr-btn--menu fr-btn" data-fr-opened="false"
+                  aria-controls="modal-header-menu" aria-haspopup="menu"
+                  title="Menu">Menu</button>
+              </div>
+            </div>
+            <div class="fr-header__service">
+              <a href="index.html" title="Retour à l'accueil">
+                <p class="fr-header__service-title">Lecteur RSS</p>
+              </a>
+              <p class="fr-header__service-tagline">Veille stratégique &mdash; Lecteur de flux RSS/Atom</p>
+            </div>
+          </div>
+          <div class="fr-header__tools">
+            <div class="fr-header__tools-links">
+              <ul class="fr-btns-group">
+                <li>
+                  <button class="fr-btn fr-btn--sm fr-icon-refresh-line fr-btn--icon-left"
+                    id="btn-refresh-all" title="Actualiser tous les flux">Actualiser</button>
+                </li>
+                <li>
+                  <button class="fr-btn fr-btn--sm fr-icon-settings-5-line fr-btn--icon-left"
+                    id="btn-settings" aria-controls="settings-modal"
+                    data-fr-opened="false">Réglages</button>
+                </li>
+                <li>
+                  <button class="fr-btn--display fr-btn" aria-controls="fr-theme-modal"
+                    data-fr-opened="false">Paramètres d'affichage</button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <button id="toggleSidebar" class="toggle-btn">☰</button>
-    <div class="content" id="content">
-      <h2 id="feedTitle">Choisir une source pour voir les articles</h2>
-      <div id="feedContent"></div>
+    <div class="fr-header__menu fr-modal" id="modal-header-menu">
+      <div class="fr-container">
+        <button class="fr-btn--close fr-btn" aria-controls="modal-header-menu">Fermer</button>
+        <div class="fr-header__menu-links"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ====== ECRAN D'ACCUEIL (premier lancement) ====== -->
+  <main id="welcome-screen" class="fr-container fr-my-4w" style="display:none">
+    <div class="fr-grid-row fr-grid-row--center">
+      <div class="fr-col-12 fr-col-md-8 fr-col-lg-6">
+        <h1 class="fr-h2 fr-mb-2w">Bienvenue sur le Lecteur RSS</h1>
+        <p class="fr-text--lead fr-mb-3w">Choisissez une sélection de flux pour commencer votre veille, ou importez votre propre fichier OPML.</p>
+
+        <div class="fr-form-group fr-mb-3w">
+          <fieldset class="fr-fieldset">
+            <legend class="fr-fieldset__legend fr-text--regular">Sélection initiale de flux</legend>
+            <div class="fr-fieldset__content">
+              <div class="fr-radio-group">
+                <input type="radio" id="welcome-sel1" name="welcome-selection" value="selection1" checked>
+                <label class="fr-label" for="welcome-sel1">Veille Tech &amp; Accessibilité (49 flux)
+                  <span class="fr-hint-text">Accessibilité, Design, Tech, Outils, Médias numériques, Institutions</span>
+                </label>
+              </div>
+              <div class="fr-radio-group">
+                <input type="radio" id="welcome-custom" name="welcome-selection" value="custom">
+                <label class="fr-label" for="welcome-custom">Importer mon fichier OPML
+                  <span class="fr-hint-text">Utilisez votre propre liste de flux RSS</span>
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <div id="welcome-custom-upload" class="fr-upload-group fr-mb-3w" style="display:none">
+          <label class="fr-label" for="welcome-opml-file">Fichier OPML</label>
+          <input class="fr-upload" id="welcome-opml-file" type="file" accept=".opml,.xml">
+        </div>
+
+        <button class="fr-btn fr-btn--lg" id="btn-welcome-start">Commencer</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- ====== CONTENU PRINCIPAL (apres initialisation) ====== -->
+  <main id="main-app" class="three-panel-layout" style="display:none">
+
+    <!-- PANNEAU 1 : SIDEBAR FLUX -->
+    <aside class="panel-sidebar" id="sidebar-col">
+      <div class="panel-sidebar__toolbar fr-p-1w">
+        <div class="fr-btns-group fr-btns-group--sm fr-btns-group--inline-sm fr-btns-group--icon-left">
+          <button class="fr-btn fr-btn--sm fr-btn--tertiary fr-btn--icon-left fr-icon-settings-5-line fr-mb-0"
+            id="btn-feed-settings" title="Gestion des flux">Réglages</button>
+        </div>
+      </div>
+
+      <nav class="fr-sidemenu panel-sidebar__feeds fr-p-0 fr-pl-1w" aria-label="Catégories de flux">
+        <div class="fr-sidemenu__inner">
+          <button class="fr-sidemenu__btn" aria-controls="fr-sidemenu-wrapper"
+            aria-expanded="true">Flux RSS</button>
+          <div data-fr-group="false" class="fr-accordions-group" id="fr-sidemenu-wrapper">
+            <ul class="fr-sidemenu__list" id="feed-tree">
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- SEPARATEUR REDIMENSIONNABLE 1 -->
+    <div class="panel-divider" id="divider-1"></div>
+
+    <!-- PANNEAU 2 : LISTE D'ARTICLES -->
+    <section class="panel-list" id="panel-list">
+      <!-- Barre de recherche -->
+      <div class="panel-list__toolbar">
+        <div class="fr-search-bar fr-search-bar--sm" role="search" aria-label="Rechercher un article">
+          <label class="fr-label" for="search-input">Rechercher</label>
+          <input class="fr-input" placeholder="Rechercher…"
+            type="search" id="search-input">
+          <button class="fr-btn" title="Rechercher">Rechercher</button>
+        </div>
+        <div class="fr-btns-group fr-btns-group--inline fr-btns-group--sm fr-mt-1v" id="filter-bar">
+          <button class="fr-tag fr-tag--sm fr-m-1w" data-filter="all" aria-pressed="true">Tous</button>
+          <button class="fr-tag fr-tag--sm fr-m-1w" data-filter="unread" aria-pressed="false">Non lus</button>
+          <button class="fr-tag fr-tag--sm fr-m-1w" data-filter="starred" aria-pressed="false">Favoris</button>
+          <button class="fr-tag fr-btn--sm fr-m-1w"
+            id="btn-mark-all-read" title="Tout marquer comme lu">Tout marquer comme lu</button>
+        </div>
+      </div>
+
+      <!-- Progression actualisation (inline, non bloquante) -->
+      <div id="refresh-progress" class="refresh-progress" style="display:none">
+        <div class="refresh-progress__info">
+          <span id="progress-text" class="fr-text--xs">0/0 flux</span>
+          <button class="fr-btn fr-btn--sm fr-btn--tertiary" id="btn-cancel-refresh">Arrêter</button>
+        </div>
+        <div class="progress-bar-container">
+          <div class="progress-bar" id="progress-bar" style="width:0%"></div>
+        </div>
+        <p id="progress-detail" class="fr-text--xs fr-text--mention-grey fr-mb-0"></p>
+      </div>
+
+      <!-- Barre de statut -->
+      <p id="status-bar" class="fr-text--xs fr-text--mention-grey fr-px-1w fr-mb-0" aria-live="polite"></p>
+
+      <!-- Liste d'articles -->
+      <div id="article-list" class="article-list" role="feed" aria-label="Liste des articles">
+      </div>
+
+      <!-- Pagination -->
+      <nav class="fr-pagination fr-px-1w fr-py-1v" aria-label="Pagination" id="pagination-nav"
+        style="display:none">
+        <ul class="fr-pagination__list" id="pagination-list">
+        </ul>
+      </nav>
+    </section>
+
+    <!-- SEPARATEUR REDIMENSIONNABLE 2 -->
+    <div class="panel-divider" id="divider-2"></div>
+
+    <!-- PANNEAU 3 : LECTURE DE L'ARTICLE -->
+    <section class="panel-reading" id="reading-pane" aria-live="polite">
+      <div class="panel-reading__placeholder" id="reading-placeholder">
+        <p class="fr-text--lg fr-text--mention-grey">Sélectionnez un article pour le lire</p>
+      </div>
+      <div class="panel-reading__content-wrap" id="reading-content-wrap" style="display:none">
+        <div class="panel-reading__header fr-p-2w">
+          <p id="article-source" class="fr-text--xs fr-text--mention-grey fr-mb-1v"></p>
+          <h2 id="article-title" class="fr-h4 fr-mb-1v"></h2>
+          <p id="article-meta" class="fr-text--sm fr-text--mention-grey fr-mb-1w"></p>
+          <div class="fr-btns-group fr-btns-group--sm fr-btns-group--inline-sm fr-btns-group--icon-left">
+            <button class="fr-btn fr-btn--sm fr-btn--tertiary fr-btn--icon-left fr-icon-mail-open-line fr-mb-0"
+              id="btn-toggle-read">Marquer comme non lu</button>
+            <button class="fr-btn fr-btn--sm fr-btn--tertiary fr-btn--icon-left fr-icon-star-line fr-mb-0"
+              id="btn-toggle-star">Ajouter aux favoris</button>
+            <a class="fr-btn fr-btn--sm fr-btn--tertiary fr-btn--icon-left fr-icon-external-link-line fr-mb-0"
+              id="btn-open-original" href="#" target="_blank" rel="noopener noreferrer">Voir l'article original</a>
+          </div>
+        </div>
+        <div id="article-content" class="panel-reading__body fr-p-2w">
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ====== PAGE GESTION DES FLUX ====== -->
+  <div id="feed-settings-view" style="display:none">
+    <div class="fr-container fr-my-2w">
+      <div class="fr-grid-row fr-grid-row--middle fr-mb-2w">
+        <div class="fr-col">
+          <button class="fr-btn fr-btn--tertiary fr-btn--icon-left fr-icon-arrow-left-line fr-mb-0"
+            id="btn-back-from-settings">Retour au lecteur</button>
+        </div>
+        <div class="fr-col-auto">
+          <div class="fr-btns-group fr-btns-group--sm fr-btns-group--inline-sm fr-btns-group--icon-left">
+            <button class="fr-btn fr-btn--sm fr-btn--tertiary fr-btn--icon-left fr-icon-add-line fr-mb-0"
+              id="btn-add-feed" aria-controls="add-feed-modal" data-fr-opened="false">Ajouter un flux</button>
+            <button class="fr-btn fr-btn--sm fr-btn--tertiary fr-btn--icon-left fr-icon-upload-line fr-mb-0"
+              id="btn-import-opml">Importer OPML</button>
+            <button class="fr-btn fr-btn--sm fr-btn--tertiary fr-btn--icon-left fr-icon-download-line fr-mb-0"
+              id="btn-export-opml">Exporter OPML</button>
+            <button class="fr-btn fr-btn--sm fr-btn--tertiary fr-btn--icon-left fr-icon-file-download-line fr-mb-0"
+              id="btn-load-preconfig">Sélection préconfigurée</button>
+          </div>
+          <input type="file" id="opml-file-input" accept=".opml,.xml" style="display:none">
+        </div>
+      </div>
+
+      <h1 class="fr-h3 fr-mb-2w">Gestion des flux RSS</h1>
+
+      <div id="feed-settings-content" class="feed-settings-grid">
+        <!-- Rendu dynamique par ui.js -->
+      </div>
+
+      <!-- Zone selection preconfiguree (masquee par defaut) -->
+      <div id="preconfig-section" style="display:none" class="fr-mt-3w">
+        <h2 class="fr-h4 fr-mb-1w">Sélection préconfigurée</h2>
+        <p class="fr-text--sm fr-mb-2w">Cochez les flux à ajouter à votre lecteur. Les flux déjà présents sont pré-cochés.</p>
+        <div id="preconfig-content" class="feed-settings-grid"></div>
+        <div class="fr-btns-group fr-mt-2w">
+          <button class="fr-btn" id="btn-apply-preconfig">Appliquer la sélection</button>
+          <button class="fr-btn fr-btn--tertiary" id="btn-cancel-preconfig">Annuler</button>
+        </div>
+      </div>
     </div>
   </div>
 
-  <script src="app.js"></script>
+  <!-- ====== FOOTER ====== -->
+  <footer class="fr-footer" role="contentinfo" id="footer">
+    <div class="fr-container">
+      <div class="fr-footer__body">
+        <div class="fr-footer__brand fr-enlarge-link">
+          <a href="./index.html" title="Retour à l'accueil - Lecteur RSS">
+            <p class="fr-logo">République <br>Française</p>
+          </a>
+        </div>
+        <div class="fr-footer__content">
+          <p class="fr-footer__content-desc">Lecteur de flux RSS/Atom en ligne, sans compte.</p>
+          <ul class="fr-footer__content-list">
+            <li class="fr-footer__content-item">
+              <a class="fr-footer__content-link" target="_blank" href="https://legifrance.gouv.fr"
+                aria-label="legifrance.gouv.fr — Nouvelle fenêtre" rel="noopener">legifrance.gouv.fr</a>
+            </li>
+            <li class="fr-footer__content-item">
+              <a class="fr-footer__content-link" target="_blank" href="https://gouvernement.fr"
+                aria-label="gouvernement.fr — Nouvelle fenêtre" rel="noopener">gouvernement.fr</a>
+            </li>
+            <li class="fr-footer__content-item">
+              <a class="fr-footer__content-link" target="_blank" href="https://service-public.fr"
+                aria-label="service-public.fr — Nouvelle fenêtre" rel="noopener">service-public.fr</a>
+            </li>
+            <li class="fr-footer__content-item">
+              <a class="fr-footer__content-link" target="_blank" href="https://data.gouv.fr"
+                aria-label="data.gouv.fr — Nouvelle fenêtre" rel="noopener">data.gouv.fr</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="fr-footer__bottom">
+        <ul class="fr-footer__bottom-list">
+          <li class="fr-footer__bottom-item">
+            <a class="fr-footer__bottom-link" href="./accessibilite.html">Accessibilité : non conforme</a>
+          </li>
+          <li class="fr-footer__bottom-item">
+            <a class="fr-footer__bottom-link" href="./mentions-legales.html">Mentions légales</a>
+          </li>
+        </ul>
+        <div class="fr-footer__bottom-copy">
+          <p>Sauf mention contraire, tous les contenus de ce site sont sous
+            <a href="https://github.com/etalab/licence-ouverte/blob/master/LO.md" target="_blank"
+              aria-label="licence etalab-2.0 — Nouvelle fenêtre" rel="noopener">licence etalab-2.0</a></p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ====== MODALES ====== -->
+
+  <!-- Modale Paramètres d'affichage (composant DSFR natif) -->
+  <dialog id="fr-theme-modal" class="fr-modal" role="dialog" aria-labelledby="fr-theme-modal-title">
+    <div class="fr-container fr-container--fluid fr-container-md">
+      <div class="fr-grid-row fr-grid-row--center">
+        <div class="fr-col-12 fr-col-md-6 fr-col-lg-4">
+          <div class="fr-modal__body">
+            <div class="fr-modal__header">
+              <button class="fr-btn--close fr-btn" aria-controls="fr-theme-modal" title="Fermer">Fermer</button>
+            </div>
+            <div class="fr-modal__content">
+              <h1 id="fr-theme-modal-title" class="fr-modal__title">Paramètres d'affichage</h1>
+              <div id="fr-display" class="fr-display">
+                <div class="fr-form-group">
+                  <fieldset class="fr-fieldset">
+                    <legend class="fr-fieldset__legend fr-text--regular">Choisissez un thème pour personnaliser l'apparence du site.</legend>
+                    <div class="fr-fieldset__content">
+                      <div class="fr-radio-group fr-radio-rich">
+                        <input value="light" type="radio" id="fr-radios-theme-light" name="fr-radios-theme">
+                        <label class="fr-label" for="fr-radios-theme-light">Thème clair</label>
+                      </div>
+                      <div class="fr-radio-group fr-radio-rich">
+                        <input value="dark" type="radio" id="fr-radios-theme-dark" name="fr-radios-theme">
+                        <label class="fr-label" for="fr-radios-theme-dark">Thème sombre</label>
+                      </div>
+                      <div class="fr-radio-group fr-radio-rich">
+                        <input value="system" type="radio" id="fr-radios-theme-system" name="fr-radios-theme">
+                        <label class="fr-label" for="fr-radios-theme-system">Système
+                          <span class="fr-hint-text">Utilise les paramètres système.</span>
+                        </label>
+                      </div>
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Modale Ajouter un flux -->
+  <dialog id="add-feed-modal" class="fr-modal" role="dialog" aria-labelledby="add-feed-modal-title">
+    <div class="fr-container fr-container--fluid fr-container-md">
+      <div class="fr-grid-row fr-grid-row--center">
+        <div class="fr-col-12 fr-col-md-6">
+          <div class="fr-modal__body">
+            <div class="fr-modal__header">
+              <button class="fr-btn--close fr-btn" aria-controls="add-feed-modal">Fermer</button>
+            </div>
+            <div class="fr-modal__content">
+              <h1 id="add-feed-modal-title" class="fr-modal__title">Ajouter un flux RSS</h1>
+              <div class="fr-input-group">
+                <label class="fr-label" for="new-feed-url">URL du flux</label>
+                <input class="fr-input" id="new-feed-url" type="url"
+                  placeholder="https://example.com/rss.xml">
+              </div>
+              <div class="fr-select-group fr-mt-2w">
+                <label class="fr-label" for="new-feed-category">Catégorie</label>
+                <select class="fr-select" id="new-feed-category">
+                  <option value="">Sans catégorie</option>
+                  <option value="__new__">+ Nouvelle catégorie</option>
+                </select>
+              </div>
+              <div class="fr-input-group fr-mt-1w" id="new-category-group" style="display:none">
+                <label class="fr-label" for="new-category-name">Nom de la nouvelle catégorie</label>
+                <input class="fr-input" id="new-category-name" type="text">
+              </div>
+              <div class="fr-btns-group fr-mt-2w">
+                <button class="fr-btn" id="btn-confirm-add-feed">Ajouter</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Modale Réglages -->
+  <dialog id="settings-modal" class="fr-modal" role="dialog" aria-labelledby="settings-modal-title">
+    <div class="fr-container fr-container--fluid fr-container-md">
+      <div class="fr-grid-row fr-grid-row--center">
+        <div class="fr-col-12 fr-col-md-8 fr-col-lg-6">
+          <div class="fr-modal__body">
+            <div class="fr-modal__header">
+              <button class="fr-btn--close fr-btn" aria-controls="settings-modal">Fermer</button>
+            </div>
+            <div class="fr-modal__content">
+              <h1 id="settings-modal-title" class="fr-modal__title">Réglages</h1>
+
+              <div class="fr-input-group fr-mb-2w">
+                <label class="fr-label" for="pref-articles-per-page">Articles par page</label>
+                <input class="fr-input" id="pref-articles-per-page" type="number" min="10" max="100" value="25">
+              </div>
+
+              <div class="fr-input-group fr-mb-2w">
+                <label class="fr-label" for="pref-max-age">Supprimer les articles de plus de (jours)</label>
+                <input class="fr-input" id="pref-max-age" type="number" min="7" max="365" value="90">
+              </div>
+
+              <h2 class="fr-h5 fr-mt-3w fr-mb-1w">Sauvegarde / Restauration</h2>
+              <p class="fr-text--sm fr-mb-2w">Exportez toutes vos données (flux, articles, préférences) ou restaurez depuis un fichier de sauvegarde.</p>
+
+              <div class="fr-btns-group fr-btns-group--inline">
+                <button class="fr-btn fr-btn--tertiary fr-icon-download-line fr-btn--icon-left"
+                  id="btn-backup">Sauvegarder</button>
+                <button class="fr-btn fr-btn--tertiary fr-icon-upload-line fr-btn--icon-left"
+                  id="btn-restore">Restaurer</button>
+                <button class="fr-btn fr-btn--tertiary fr-btn--tertiary--no-outline"
+                  id="btn-clear-data">Effacer toutes les données</button>
+              </div>
+              <input type="file" id="restore-file-input" accept=".json" style="display:none">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+
+  <!-- ====== SCRIPTS ====== -->
+  <script src="./source/js/sanitizer.js"></script>
+  <script src="./source/js/storage.js"></script>
+  <script src="./source/js/feed-parser.js"></script>
+  <script src="./source/js/feed-fetcher.js"></script>
+  <script src="./source/js/opml.js"></script>
+  <script src="./source/js/ui.js"></script>
+  <script src="./source/js/app.js"></script>
 </body>
 </html>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>Veille Tech, Accessibilité, Design &amp; Outils</title>
+    <dateCreated>Tue, 04 Mar 2026 00:00:00 GMT</dateCreated>
+  </head>
+  <body>
+
+    <outline text="Accessibilité &amp; Qualité web" title="Accessibilité &amp; Qualité web">
+      <outline type="rss" text="Access42" title="Access42" xmlUrl="https://access42.net/blog/feed/" htmlUrl="https://access42.net"/>
+      <outline type="rss" text="Ideance" title="Ideance" xmlUrl="https://ideance.net/blog/feed/" htmlUrl="https://ideance.net"/>
+      <outline type="rss" text="INSHEA" title="INSHEA" xmlUrl="https://inshea.fr/fr/flux-rss-global.xml" htmlUrl="https://inshea.fr"/>
+      <outline type="rss" text="Koena" title="Koena" xmlUrl="https://koena.net/feed/" htmlUrl="https://koena.net"/>
+      <outline type="rss" text="Opquast" title="Opquast" xmlUrl="https://www.opquast.com/rss" htmlUrl="https://www.opquast.com"/>
+      <outline type="rss" text="Tanaguru" title="Tanaguru" xmlUrl="https://www.tanaguru.com/blog/feed/" htmlUrl="https://www.tanaguru.com"/>
+      <outline type="rss" text="Temesis" title="Temesis" xmlUrl="https://www.temesis.com/index.xml" htmlUrl="https://www.temesis.com"/>
+    </outline>
+
+    <outline text="Design &amp; UX" title="Design &amp; UX">
+      <outline type="rss" text="Alsacreations" title="Alsacreations" xmlUrl="https://www.alsacreations.com/rss/actualites.xml" htmlUrl="https://www.alsacreations.com"/>
+      <outline type="rss" text="Blog Du Webdesign" title="Blog Du Webdesign" xmlUrl="https://www.blogduwebdesign.com/blog/do/rss.xml" htmlUrl="https://www.blogduwebdesign.com"/>
+      <outline type="rss" text="Geoffrey Dorne" title="Geoffrey Dorne" xmlUrl="https://graphism.fr/feed/" htmlUrl="https://graphism.fr"/>
+      <outline type="rss" text="Usabilis" title="Usabilis" xmlUrl="https://www.usabilis.com/blog/feed/" htmlUrl="https://www.usabilis.com"/>
+      <outline type="rss" text="UX Republic" title="UX Republic" xmlUrl="https://www.ux-republic.com/feed/" htmlUrl="https://www.ux-republic.com"/>
+      <outline type="rss" text="Webdesignertrends" title="Webdesignertrends" xmlUrl="https://www.webdesignertrends.com/feed/" htmlUrl="https://www.webdesignertrends.com"/>
+    </outline>
+
+    <outline text="Tech &amp; Numérique" title="Tech &amp; Numérique">
+      <outline type="rss" text="01net" title="01net" xmlUrl="https://www.01net.com/feed/" htmlUrl="https://www.01net.com"/>
+      <outline type="rss" text="BlogNT" title="BlogNT" xmlUrl="https://www.blog-nouvelles-technologies.fr/feed/" htmlUrl="https://www.blog-nouvelles-technologies.fr"/>
+      <outline type="rss" text="Clubic" title="Clubic" xmlUrl="https://www.clubic.com/feed/news.rss" htmlUrl="https://www.clubic.com"/>
+      <outline type="rss" text="Frandroid" title="Frandroid" xmlUrl="https://www.frandroid.com/feed" htmlUrl="https://www.frandroid.com"/>
+      <outline type="rss" text="Fredzone" title="Fredzone" xmlUrl="https://www.fredzone.org/feed/" htmlUrl="https://www.fredzone.org"/>
+      <outline type="rss" text="Geeko" title="Geeko" xmlUrl="https://geeko.lesoir.be/feed/" htmlUrl="https://geeko.lesoir.be"/>
+      <outline type="rss" text="Infos Du Net" title="Infos Du Net" xmlUrl="https://www.infos-du-net.com/feed/" htmlUrl="https://www.infos-du-net.com"/>
+      <outline type="rss" text="Journal du Geek" title="Journal du Geek" xmlUrl="https://www.journaldugeek.com/feed/" htmlUrl="https://www.journaldugeek.com"/>
+      <outline type="rss" text="Korben" title="Korben" xmlUrl="https://korben.info/feed" htmlUrl="https://korben.info"/>
+      <outline type="rss" text="Le Monde Informatique" title="Le Monde Informatique" xmlUrl="https://www.lemondeinformatique.fr/flux-rss/thematique/toutes-les-actualites/rss.xml" htmlUrl="https://www.lemondeinformatique.fr"/>
+      <outline type="rss" text="Les Numériques" title="Les Numériques" xmlUrl="https://www.lesnumeriques.com/rss.xml" htmlUrl="https://www.lesnumeriques.com"/>
+      <outline type="rss" text="Next" title="Next" xmlUrl="https://next.ink/feed/" htmlUrl="https://next.ink"/>
+      <outline type="rss" text="Numerama" title="Numerama" xmlUrl="https://www.numerama.com/feed/" htmlUrl="https://www.numerama.com"/>
+      <outline type="rss" text="Presse Citron" title="Presse Citron" xmlUrl="https://www.presse-citron.net/feed/" htmlUrl="https://www.presse-citron.net"/>
+      <outline type="rss" text="Siècle Digital" title="Siècle Digital" xmlUrl="https://siecledigital.fr/feed/" htmlUrl="https://siecledigital.fr"/>
+    </outline>
+
+    <outline text="Veille &amp; Outils" title="Veille &amp; Outils">
+      <outline type="rss" text="Archimag" title="Archimag" xmlUrl="https://www.archimag.com/rss" htmlUrl="https://www.archimag.com"/>
+      <outline type="rss" text="Les Outils Collaboratifs" title="Les Outils Collaboratifs" xmlUrl="https://outilscollaboratifs.com/feed/" htmlUrl="https://outilscollaboratifs.com"/>
+      <outline type="rss" text="Les Outils de Veille" title="Les Outils de Veille" xmlUrl="https://outilsveille.com/feed/" htmlUrl="https://outilsveille.com"/>
+      <outline type="rss" text="Les Outils du Web" title="Les Outils du Web" xmlUrl="https://allweb2.com/feed/" htmlUrl="https://allweb2.com"/>
+      <outline type="rss" text="Les Outils Productivité" title="Les Outils Productivité" xmlUrl="https://outilsproductivite.com/feed/" htmlUrl="https://outilsproductivite.com"/>
+      <outline type="rss" text="Les Outils Tice" title="Les Outils Tice" xmlUrl="https://outilstice.com/feed/" htmlUrl="https://outilstice.com"/>
+      <outline type="rss" text="Outilsemail" title="Outilsemail" xmlUrl="https://outilsemail.com/feed/" htmlUrl="https://outilsemail.com"/>
+    </outline>
+
+    <outline text="Médias &amp; Société numérique" title="Médias &amp; Société numérique">
+      <outline type="rss" text="BDM" title="BDM" xmlUrl="https://www.blogdumoderateur.com/feed/" htmlUrl="https://www.blogdumoderateur.com"/>
+      <outline type="rss" text="Cafétech" title="Cafétech" xmlUrl="https://cafetech.fr/feed/" htmlUrl="https://cafetech.fr"/>
+      <outline type="rss" text="France Info Internet" title="France Info Internet" xmlUrl="https://www.francetvinfo.fr/internet.rss" htmlUrl="https://www.francetvinfo.fr"/>
+      <outline type="rss" text="InternetActu" title="InternetActu" xmlUrl="https://www.internetactu.net/feed/" htmlUrl="https://www.internetactu.net"/>
+      <outline type="rss" text="Journal Du Net" title="Journal Du Net" xmlUrl="https://www.journaldunet.com/rss/" htmlUrl="https://www.journaldunet.com"/>
+      <outline type="rss" text="La Quadrature du Net" title="La Quadrature du Net" xmlUrl="https://www.laquadrature.net/feed/" htmlUrl="https://www.laquadrature.net"/>
+      <outline type="rss" text="La Revue du Digital" title="La Revue du Digital" xmlUrl="https://www.larevuedudigital.com/feed/" htmlUrl="https://www.larevuedudigital.com"/>
+      <outline type="rss" text="Le Big Data" title="Le Big Data" xmlUrl="https://www.lebigdata.fr/feed" htmlUrl="https://www.lebigdata.fr"/>
+      <outline type="rss" text="Open Culture" title="Open Culture" xmlUrl="https://www.openculture.com/feed" htmlUrl="https://www.openculture.com"/>
+      <outline type="rss" text="Pixels - Le Monde" title="Pixels - Le Monde" xmlUrl="https://www.lemonde.fr/pixels/rss_full.xml" htmlUrl="https://www.lemonde.fr/pixels/"/>
+      <outline type="rss" text="Usbek &amp; Rica" title="Usbek &amp; Rica" xmlUrl="https://usbeketrica.com/fr/rss" htmlUrl="https://usbeketrica.com"/>
+      <outline type="rss" text="Usine Digitale" title="Usine Digitale" xmlUrl="https://www.usine-digitale.fr/rss" htmlUrl="https://www.usine-digitale.fr"/>
+    </outline>
+
+    <outline text="Institutions" title="Institutions">
+      <outline type="rss" text="France Num" title="France Num" xmlUrl="https://www.francenum.gouv.fr/flux-rss-principal" htmlUrl="https://www.francenum.gouv.fr"/>
+      <outline type="rss" text="Numérique Gouv" title="Numérique Gouv" xmlUrl="https://www.numerique.gouv.fr/feed.actualites.xml" htmlUrl="https://www.numerique.gouv.fr"/>
+    </outline>
+
+  </body>
+</opml>

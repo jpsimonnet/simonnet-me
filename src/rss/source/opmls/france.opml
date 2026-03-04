@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="1.0">
+<head>
+  <title>Médias - Actualité FR</title>
+</head>
+<body>
+  <outline text="Médias Actualité FR">
+    <outline text="Le Monde" type="rss" xmlUrl="https://www.lemonde.fr/rss/une.xml"/>
+    <outline text="Le Figaro" type="rss" xmlUrl="https://www.lefigaro.fr/rss/figaro_actualites.xml"/>
+    <outline text="Libération" type="rss" xmlUrl="https://www.liberation.fr/arc/outboundfeeds/rss-all/"/>
+    <outline text="France Info" type="rss" xmlUrl="https://www.francetvinfo.fr/titres.rss"/>
+    <outline text="Mediapart" type="rss" xmlUrl="https://www.mediapart.fr/articles/feed"/>
+    <outline text="20 Minutes" type="rss" xmlUrl="https://www.20minutes.fr/feeds/rss-une.xml"/>
+    <outline text="Ouest-France" type="rss" xmlUrl="https://www.ouest-france.fr/rss/une.xml"/>
+    <outline text="La Croix" type="rss" xmlUrl="https://www.la-croix.com/RSS/UNIVERS"/>
+    <outline text="Les Echos" type="rss" xmlUrl="https://www.lesechos.fr/rss/rss_une.xml"/>
+    <outline text="L'Obs" type="rss" xmlUrl="https://www.nouvelobs.com/rss.xml"/>
+    <outline text="BFMTV" type="rss" xmlUrl="https://www.bfmtv.com/rss/news-24-7/"/>
+    <outline text="RFI" type="rss" xmlUrl="https://www.rfi.fr/fr/rss"/>
+    <outline text="Courrier International" type="rss" xmlUrl="https://www.courrierinternational.com/feed/all/rss.xml"/>
+    <outline text="France Culture - Actualités" type="rss" xmlUrl="https://www.radiofrance.fr/franceculture/rss"/>
+    <outline text="Huffington Post France" type="rss" xmlUrl="https://www.huffingtonpost.fr/feeds/index.xml"/>
+  </outline>
+</body>
+</opml>
