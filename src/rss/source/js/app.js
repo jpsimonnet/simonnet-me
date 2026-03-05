@@ -24,13 +24,19 @@
     // Detecter le proxy PHP en parallele
     RSS.fetcher.init();
 
+    // Toujours brancher les evenements, meme si le chargement des donnees echoue
+    wireEvents();
+
     RSS.db.open().then(function () {
       return RSS.db.getAllCategories();
     }).then(function (cats) {
       if (cats.length === 0) {
-        // Premier lancement : afficher ecran d'accueil
-        RSS.ui.showWelcome();
-        wireWelcomeEvents();
+        // Premier lancement : importer la selection preconfiguree
+        return RSS.opml.loadBundled('selection.opml').then(function (data) {
+          return importOPMLData(data);
+        }).then(function () {
+          return startApp();
+        });
       } else {
         // Lancement normal
         RSS.ui.showApp();
@@ -40,49 +46,11 @@
           return RSS.db.deleteOldArticles(maxAge);
         });
       }
-    }).then(function () {
-      wireEvents();
     }).catch(function (err) {
       console.error('Erreur initialisation :', err);
       RSS.ui.showToast('Erreur lors du chargement', 'error');
     });
   });
-
-  /* ── Ecran d'accueil ────────────────────────────────── */
-
-  function wireWelcomeEvents() {
-    // Afficher/masquer le champ upload OPML
-    $$('input[name="welcome-selection"]').forEach(function (radio) {
-      radio.addEventListener('change', function () {
-        $('#welcome-custom-upload').style.display =
-          radio.value === 'custom' ? '' : 'none';
-      });
-    });
-
-    $('#btn-welcome-start').addEventListener('click', function () {
-      var selection = $('input[name="welcome-selection"]:checked').value;
-
-      if (selection === 'custom') {
-        var file = $('#welcome-opml-file').files[0];
-        if (!file) {
-          RSS.ui.showToast('Veuillez sélectionner un fichier OPML', 'error');
-          return;
-        }
-        readFileAsText(file).then(function (text) {
-          return importOPMLData(RSS.opml.parse(text));
-        }).then(startApp);
-        return;
-      }
-
-      var filename = 'selection.opml';
-      RSS.opml.loadBundled(filename).then(function (data) {
-        return importOPMLData(data);
-      }).then(startApp).catch(function (err) {
-        console.error(err);
-        RSS.ui.showToast('Erreur lors du chargement OPML : ' + err.message, 'error');
-      });
-    });
-  }
 
   function startApp() {
     RSS.ui.showApp();
@@ -246,7 +214,7 @@
           if (r.error || !r.parsed) {
             errors++;
             savePromises.push(RSS.db.updateFeedMeta(r.feed.id, {
-              lastError: r.error || 'Erreur inconnue',
+              lastError: RSS.fetcher.friendlyError({ message: r.error || 'Erreur inconnue' }),
               lastFetched: Date.now()
             }));
             return;
@@ -460,6 +428,128 @@
     // Ajouter un flux
     $('#btn-confirm-add-feed').addEventListener('click', handleAddFeed);
 
+    // Ajouter une categorie
+    $('#btn-add-category').addEventListener('click', function () {
+      openModal('add-category-modal');
+    });
+    $('#btn-confirm-add-category').addEventListener('click', function () {
+      var name = $('#add-category-name').value.trim();
+      if (!name) {
+        RSS.ui.showToast('Veuillez saisir un nom', 'error');
+        return;
+      }
+      RSS.db.getAllCategories().then(function (cats) {
+        return RSS.db.saveCategory({
+          id: generateId(),
+          name: name,
+          order: cats.length,
+          collapsed: false
+        });
+      }).then(function () {
+        RSS.ui.showToast('Catégorie ajoutée', 'success');
+        $('#add-category-name').value = '';
+        closeModal('add-category-modal');
+        openFeedSettings();
+        return refreshUI();
+      });
+    });
+
+    // Importer flux TXT
+    $('#btn-import-txt').addEventListener('click', function () {
+      // Peupler le select des categories
+      RSS.db.getAllCategories().then(function (cats) {
+        var select = $('#import-txt-category');
+        select.innerHTML = '<option value="">Sans catégorie</option>';
+        cats.forEach(function (c) {
+          select.innerHTML += '<option value="' + c.id + '">' + RSS.ui.escHtml(c.name) + '</option>';
+        });
+        select.innerHTML += '<option value="__new__">+ Nouvelle catégorie</option>';
+      });
+      openModal('import-txt-modal');
+    });
+    $('#import-txt-category').addEventListener('change', function () {
+      $('#import-txt-new-cat-group').style.display =
+        this.value === '__new__' ? '' : 'none';
+    });
+    $('#btn-import-txt-file').addEventListener('click', function () {
+      $('#txt-file-input').click();
+    });
+    $('#txt-file-input').addEventListener('change', function () {
+      var file = this.files[0];
+      if (!file) return;
+      readFileAsText(file).then(function (text) {
+        $('#import-txt-content').value = text;
+      });
+      this.value = '';
+    });
+    $('#btn-confirm-import-txt').addEventListener('click', handleImportTxt);
+
+    // Tout supprimer
+    $('#btn-delete-all-feeds').addEventListener('click', function () {
+      if (!confirm('Supprimer tous les flux et tous les articles ? Cette action est irréversible.')) return;
+      RSS.db.clearAllData().then(function () {
+        RSS.ui.showToast('Toutes les données supprimées', 'success');
+        openFeedSettings();
+        return refreshUI();
+      });
+    });
+
+    // Editer un flux (delegation)
+    $('#feed-settings-view').addEventListener('click', function (e) {
+      var editBtn = e.target.closest('[data-feed-edit]');
+      if (!editBtn) return;
+      var feedId = editBtn.dataset.feedEdit;
+      RSS.db.getAllFeeds().then(function (feeds) {
+        var feed = feeds.filter(function (f) { return f.id === feedId; })[0];
+        if (!feed) return;
+        $('#edit-feed-id').value = feed.id;
+        $('#edit-feed-title').value = feed.title || '';
+        $('#edit-feed-url').value = feed.xmlUrl || '';
+        $('#edit-feed-site').value = feed.htmlUrl || '';
+        // Peupler le select categorie
+        return RSS.db.getAllCategories().then(function (cats) {
+          var select = $('#edit-feed-category');
+          select.innerHTML = '<option value="">Sans catégorie</option>';
+          cats.forEach(function (c) {
+            var sel = c.id === feed.categoryId ? ' selected' : '';
+            select.innerHTML += '<option value="' + c.id + '"' + sel + '>' + RSS.ui.escHtml(c.name) + '</option>';
+          });
+          openModal('edit-feed-modal');
+        });
+      });
+    });
+    $('#btn-confirm-edit-feed').addEventListener('click', function () {
+      var feedId = $('#edit-feed-id').value;
+      var title = $('#edit-feed-title').value.trim();
+      var xmlUrl = $('#edit-feed-url').value.trim();
+      var htmlUrl = $('#edit-feed-site').value.trim();
+      var catId = $('#edit-feed-category').value;
+      var catName = '';
+      if (catId) {
+        var opt = $('#edit-feed-category').selectedOptions[0];
+        if (opt) catName = opt.textContent;
+      }
+      if (!xmlUrl) {
+        RSS.ui.showToast('L\'URL du flux est obligatoire', 'error');
+        return;
+      }
+      RSS.db.getAllFeeds().then(function (feeds) {
+        var feed = feeds.filter(function (f) { return f.id === feedId; })[0];
+        if (!feed) return;
+        feed.title = title || feed.title;
+        feed.xmlUrl = xmlUrl;
+        feed.htmlUrl = htmlUrl;
+        feed.categoryId = catId;
+        feed.categoryName = catName;
+        return RSS.db.saveFeed(feed);
+      }).then(function () {
+        RSS.ui.showToast('Flux modifié', 'success');
+        closeModal('edit-feed-modal');
+        openFeedSettings();
+        return refreshUI();
+      });
+    });
+
     // Reglages
     $('#btn-backup').addEventListener('click', function () {
       RSS.db.exportAllData().then(function (json) {
@@ -560,50 +650,20 @@
       }
     });
 
-    // Selection preconfiguree
+    // Revenir aux flux par defaut
     $('#btn-load-preconfig').addEventListener('click', function () {
-      RSS.opml.loadBundled('selection.opml').then(function (text) {
-        var data = RSS.opml.parse(text);
-        return RSS.db.getAllFeeds().then(function (existingFeeds) {
-          var existingUrls = existingFeeds.map(function (f) { return f.xmlUrl; });
-          RSS.ui.renderPreconfigList(data.feeds, existingUrls);
-          $('#preconfig-section').style.display = '';
-        });
-      }).catch(function (err) {
-        RSS.ui.showToast('Erreur chargement sélection : ' + err.message, 'error');
-      });
-    });
-
-    $('#btn-apply-preconfig').addEventListener('click', function () {
-      var checkboxes = $$('#preconfig-content [data-preconfig-feed]:checked:not(:disabled)');
-      if (checkboxes.length === 0) {
-        RSS.ui.showToast('Aucun nouveau flux sélectionné', 'info');
-        return;
-      }
-      RSS.opml.loadBundled('selection.opml').then(function (text) {
-        var data = RSS.opml.parse(text);
-        var selectedUrls = [];
-        checkboxes.forEach(function (cb) { selectedUrls.push(cb.value); });
-        // Filtrer les flux selectionnes
-        data.feeds = data.feeds.filter(function (f) {
-          return selectedUrls.indexOf(f.xmlUrl) !== -1;
-        });
-        // Filtrer les categories qui ont au moins un flux
-        var usedCats = {};
-        data.feeds.forEach(function (f) { usedCats[f.categoryName] = true; });
-        data.categories = data.categories.filter(function (c) { return usedCats[c]; });
-        return importOPMLMerge(data);
-      }).then(function (result) {
-        RSS.ui.showToast(result.added + ' flux ajoutés', 'success');
-        $('#preconfig-section').style.display = 'none';
-        openFeedSettings(); // Rafraichir la page
+      if (!confirm('Supprimer tous les flux actuels et réimporter la sélection par défaut ?')) return;
+      RSS.db.clearAllData().then(function () {
+        return RSS.opml.loadBundled('selection.opml');
+      }).then(function (data) {
+        return importOPMLData(data);
+      }).then(function () {
+        RSS.ui.showToast('Flux par défaut restaurés', 'success');
+        openFeedSettings();
+        return refreshUI();
       }).catch(function (err) {
         RSS.ui.showToast('Erreur : ' + err.message, 'error');
       });
-    });
-
-    $('#btn-cancel-preconfig').addEventListener('click', function () {
-      $('#preconfig-section').style.display = 'none';
     });
 
     // Sauver les preferences au changement
@@ -756,6 +816,87 @@
 
   /* ── Ajout d'un flux ────────────────────────────────── */
 
+  function handleImportTxt() {
+    var text = $('#import-txt-content').value.trim();
+    if (!text) {
+      RSS.ui.showToast('Veuillez saisir ou importer des URLs', 'error');
+      return;
+    }
+
+    var urls = text.split('\n').map(function (l) { return l.trim(); }).filter(function (l) {
+      return l && /^https?:\/\//i.test(l);
+    });
+
+    if (urls.length === 0) {
+      RSS.ui.showToast('Aucune URL valide trouvée', 'error');
+      return;
+    }
+
+    var catSelect = $('#import-txt-category');
+    var catId = catSelect.value;
+    var catName = '';
+
+    var catPromise;
+    if (catId === '__new__') {
+      catName = $('#import-txt-new-cat').value.trim();
+      if (!catName) {
+        RSS.ui.showToast('Veuillez saisir un nom de catégorie', 'error');
+        return;
+      }
+      var newCatId = generateId();
+      catPromise = RSS.db.getAllCategories().then(function (cats) {
+        return RSS.db.saveCategory({
+          id: newCatId, name: catName, order: cats.length, collapsed: false
+        }).then(function () { return { id: newCatId, name: catName }; });
+      });
+    } else if (catId) {
+      catName = catSelect.selectedOptions[0] ? catSelect.selectedOptions[0].textContent : '';
+      catPromise = Promise.resolve({ id: catId, name: catName });
+    } else {
+      catPromise = Promise.resolve({ id: '', name: '' });
+    }
+
+    catPromise.then(function (cat) {
+      var added = 0;
+      var skipped = 0;
+      var promises = [];
+      return RSS.db.getAllFeeds().then(function (existingFeeds) {
+        var existingUrls = {};
+        existingFeeds.forEach(function (f) { existingUrls[f.xmlUrl] = true; });
+
+        urls.forEach(function (url) {
+          if (existingUrls[url]) {
+            skipped++;
+            return;
+          }
+          added++;
+          promises.push(RSS.db.saveFeed({
+            id: generateId(),
+            title: url,
+            xmlUrl: url,
+            htmlUrl: '',
+            categoryId: cat.id,
+            categoryName: cat.name,
+            lastFetched: 0,
+            lastError: null,
+            articleCount: 0,
+            unreadCount: 0
+          }));
+        });
+
+        return Promise.all(promises).then(function () {
+          RSS.ui.showToast(added + ' flux ajoutés (' + skipped + ' doublons ignorés)', 'success');
+          $('#import-txt-content').value = '';
+          closeModal('import-txt-modal');
+          openFeedSettings();
+          return refreshUI();
+        });
+      });
+    }).catch(function (err) {
+      RSS.ui.showToast('Erreur : ' + err.message, 'error');
+    });
+  }
+
   function handleAddFeed() {
     var url = $('#new-feed-url').value.trim();
     if (!url) {
@@ -810,8 +951,7 @@
           $('#new-feed-url').value = '';
           $('#new-category-name').value = '';
           // Fermer la modale
-          var modal = $('#add-feed-modal');
-          if (modal.close) modal.close();
+          closeModal('add-feed-modal');
           // Rafraichir la page reglages si ouverte
           if ($('#feed-settings-view').style.display !== 'none') {
             openFeedSettings();
@@ -880,6 +1020,26 @@
         }
         break;
     }
+  }
+
+  /* ── Utilitaires modales DSFR ──────────────────────── */
+
+  function openModal(id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    if (typeof dsfr === 'function') {
+      try { dsfr(el).modal.disclose(); return; } catch (e) {}
+    }
+    if (el.showModal) el.showModal();
+  }
+
+  function closeModal(id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    if (typeof dsfr === 'function') {
+      try { dsfr(el).modal.conceal(); return; } catch (e) {}
+    }
+    if (el.close) el.close();
   }
 
   /* ── Utilitaires ────────────────────────────────────── */

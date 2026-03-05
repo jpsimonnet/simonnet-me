@@ -41,9 +41,25 @@
     return tryProxyChain(url, chain, 0);
   }
 
+  function friendlyError(err) {
+    var msg = err.message || String(err);
+    if (err.name === 'AbortError' || msg.indexOf('abort') !== -1) return 'Délai d\'attente dépassé (15s)';
+    if (msg.indexOf('Failed to fetch') !== -1 || msg.indexOf('NetworkError') !== -1) return 'Serveur inaccessible';
+    if (msg.indexOf('HTTP 404') !== -1) return 'Flux introuvable (404)';
+    if (msg.indexOf('HTTP 403') !== -1) return 'Accès refusé (403)';
+    if (msg.indexOf('HTTP 401') !== -1) return 'Authentification requise (401)';
+    if (msg.indexOf('HTTP 5') !== -1) return 'Erreur serveur (' + msg.replace('HTTP ', '') + ')';
+    if (msg.indexOf('HTTP 4') !== -1) return 'Requête refusée (' + msg.replace('HTTP ', '') + ')';
+    if (msg.indexOf('non-XML') !== -1) return 'Le flux ne renvoie pas du XML valide';
+    if (msg.indexOf('Impossible') !== -1) return 'Aucun proxy n\'a pu atteindre le flux';
+    return msg;
+  }
+
   function tryProxyChain(url, chain, index) {
     if (index >= chain.length) {
-      return Promise.reject(new Error('Impossible de récupérer le flux : ' + url));
+      var e = new Error('Aucun proxy n\'a pu atteindre le flux');
+      e.friendly = true;
+      return Promise.reject(e);
     }
 
     var proxy = chain[index];
@@ -55,11 +71,9 @@
       .then(function (res) {
         clearTimeout(timeoutId);
         if (!res.ok) {
-          // 4xx = URL probablement cassee, ne pas essayer les autres proxies
-          if (res.status >= 400 && res.status < 500 && proxy.name !== 'direct') {
-            throw new Error('HTTP ' + res.status);
-          }
-          throw new Error('HTTP ' + res.status);
+          var err = new Error('HTTP ' + res.status);
+          if (proxy.name === 'php') err.fatal = true;
+          throw err;
         }
         return res.text();
       })
@@ -74,7 +88,11 @@
       })
       .catch(function (err) {
         clearTimeout(timeoutId);
-        // Essayer le proxy suivant
+        // Arreter si erreur fatale (proxy PHP a deja tout essaye)
+        if (err.fatal) {
+          return Promise.reject(err);
+        }
+        // Sinon essayer le proxy suivant
         return tryProxyChain(url, chain, index + 1);
       });
   }
@@ -172,6 +190,7 @@
     fetchFeed: fetchFeed,
     fetchAllFeeds: fetchAllFeeds,
     cancelFetch: cancelFetch,
+    friendlyError: friendlyError,
     hasPhpProxy: function () { return hasPhpProxy; }
   };
 })();

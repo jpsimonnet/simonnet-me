@@ -9,14 +9,9 @@
 
   /* ── Ecran d'accueil ────────────────────────────────── */
 
-  function showWelcome() {
-    $('#welcome-screen').style.display = '';
-    $('#main-app').style.display = 'none';
-  }
-
   function showApp() {
-    $('#welcome-screen').style.display = 'none';
-    $('#main-app').style.display = 'grid';
+    var el = $('#main-app');
+    if (el) el.style.display = 'grid';
   }
 
   /* ── Sidebar ────────────────────────────────────────── */
@@ -38,6 +33,7 @@
 
     categories.forEach(function (cat) {
       var catFeeds = feeds.filter(function (f) { return f.categoryId === cat.id; });
+      catFeeds.sort(function (a, b) { return (a.title || '').localeCompare(b.title || ''); });
       if (catFeeds.length === 0) return;
 
       var li = document.createElement('li');
@@ -83,9 +79,12 @@
         var feedIconHtml = feed.icon
           ? '<img class="feed-icon" src="' + escHtml(feed.icon) + '" alt="" width="16" height="16" loading="lazy" onerror="this.style.display=\'none\'">'
           : '';
+        var errorHtml = feed.lastError
+          ? ' <span class="fr-icon-warning-line feed-error-icon" aria-hidden="true" title="' + escHtml(feed.lastError) + '"></span>'
+          : '';
         feedLi.innerHTML = '<a class="fr-sidemenu__link" href="#" data-view="feed:' + feed.id + '"'
           + ' title="' + escHtml(feed.title) + '">'
-          + feedIconHtml + escHtml(truncate(feed.title, 30)) + feedBadge + '</a>';
+          + feedIconHtml + escHtml(truncate(feed.title, 30)) + errorHtml + feedBadge + '</a>';
         ul.appendChild(feedLi);
       });
 
@@ -445,8 +444,9 @@
       return feeds.some(function (f) { return f.categoryId === cat.id; });
     });
 
-    categories.forEach(function (cat, idx) {
+    categories.forEach(function (cat) {
       var catFeeds = feeds.filter(function (f) { return f.categoryId === cat.id; });
+      catFeeds.sort(function (a, b) { return (a.title || '').localeCompare(b.title || ''); });
       if (catFeeds.length === 0) return;
 
       var visibleIdx = visibleCats.indexOf(cat);
@@ -487,13 +487,19 @@
         html += '<td>' + iconHtml + escHtml(feed.title) + '<br><span class="feed-url">' + escHtml(feed.xmlUrl) + '</span></td>';
         html += '<td>';
         if (feed.htmlUrl) {
+          var hostname = feed.htmlUrl;
+          try { hostname = new URL(feed.htmlUrl).hostname; } catch (e) {}
           html += '<a href="' + escHtml(feed.htmlUrl) + '" target="_blank" rel="noopener noreferrer" '
             + 'class="fr-link fr-link--sm" title="Visiter le site">'
-            + escHtml(new URL(feed.htmlUrl).hostname) + '</a>';
+            + escHtml(hostname) + '</a>';
         }
         html += '</td>';
-        html += '<td><button class="fr-btn fr-btn--sm fr-btn--tertiary fr-icon-delete-line fr-m-0" '
-          + 'data-feed-delete="' + feed.id + '" title="Supprimer ce flux"></button></td>';
+        html += '<td>'
+          + '<button class="fr-btn fr-btn--sm fr-btn--tertiary fr-icon-edit-line fr-m-0" '
+          + 'data-feed-edit="' + feed.id + '" title="Modifier ce flux"></button>'
+          + '<button class="fr-btn fr-btn--sm fr-btn--tertiary fr-icon-delete-line fr-m-0" '
+          + 'data-feed-delete="' + feed.id + '" title="Supprimer ce flux"></button>'
+          + '</td>';
         html += '</tr>';
       });
       html += '</table>';
@@ -531,12 +537,18 @@
         html += '<td>' + iconHtml2 + escHtml(feed.title) + '<br><span class="feed-url">' + escHtml(feed.xmlUrl) + '</span></td>';
         html += '<td>';
         if (feed.htmlUrl) {
+          var hostname2 = feed.htmlUrl;
+          try { hostname2 = new URL(feed.htmlUrl).hostname; } catch (e) {}
           html += '<a href="' + escHtml(feed.htmlUrl) + '" target="_blank" rel="noopener noreferrer" '
-            + 'class="fr-link fr-link--sm">' + escHtml(new URL(feed.htmlUrl).hostname) + '</a>';
+            + 'class="fr-link fr-link--sm">' + escHtml(hostname2) + '</a>';
         }
         html += '</td>';
-        html += '<td><button class="fr-btn fr-btn--sm fr-btn--tertiary fr-icon-delete-line fr-m-0" '
-          + 'data-feed-delete="' + feed.id + '" title="Supprimer ce flux"></button></td>';
+        html += '<td>'
+          + '<button class="fr-btn fr-btn--sm fr-btn--tertiary fr-icon-edit-line fr-m-0" '
+          + 'data-feed-edit="' + feed.id + '" title="Modifier ce flux"></button>'
+          + '<button class="fr-btn fr-btn--sm fr-btn--tertiary fr-icon-delete-line fr-m-0" '
+          + 'data-feed-delete="' + feed.id + '" title="Supprimer ce flux"></button>'
+          + '</td>';
         html += '</tr>';
       });
       html += '</table>';
@@ -597,7 +609,6 @@
 
   window.RSS = window.RSS || {};
   window.RSS.ui = {
-    showWelcome: showWelcome,
     showApp: showApp,
     renderSidebar: renderSidebar,
     updateUnreadBadges: updateUnreadBadges,

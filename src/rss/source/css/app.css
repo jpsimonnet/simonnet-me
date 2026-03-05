@@ -78,6 +78,23 @@
   margin-left: auto;
 }
 
+.feed-error-icon {
+  flex-shrink: 0;
+  color: var(--text-mention-grey);
+  font-size: 0.65rem;
+  cursor: help;
+  opacity: 0.6;
+}
+
+.feed-error-icon:hover {
+  opacity: 1;
+  color: var(--text-default-warning);
+}
+
+.feed-error-icon:first-of-type {
+  margin-left: auto;
+}
+
 /* ── Panneau 2 : Liste d'articles ─────────────────────── */
 
 .panel-list {
@@ -432,6 +449,7 @@
   padding: 0.5rem 0;
   border-bottom: 2px solid var(--border-default-grey);
   margin-bottom: 0.5rem;
+  background-color: var(--background-alt-blue-france);
 }
 
 .feed-settings-category__order {
@@ -479,8 +497,9 @@
 }
 
 .feed-settings-table td:last-child {
-  width: 40px;
+  width: 70px;
   text-align: center;
+  white-space: nowrap;
 }
 
 .feed-settings-table .feed-url {

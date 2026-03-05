@@ -45,13 +45,9 @@
             <div class="fr-header__tools-links">
               <ul class="fr-btns-group">
                 <li>
-                  <button class="fr-btn fr-btn--sm fr-icon-refresh-line fr-btn--icon-left"
-                    id="btn-refresh-all" title="Actualiser tous les flux">Actualiser</button>
-                </li>
-                <li>
-                  <button class="fr-btn fr-btn--sm fr-icon-settings-5-line fr-btn--icon-left"
+                  <button class="fr-btn fr-btn--sm fr-icon-equalizer-line fr-btn--icon-left"
                     id="btn-settings" aria-controls="settings-modal"
-                    data-fr-opened="false">Réglages</button>
+                    data-fr-opened="false">Préférences</button>
                 </li>
                 <li>
                   <button class="fr-btn--display fr-btn" aria-controls="fr-theme-modal"
@@ -71,52 +67,17 @@
     </div>
   </header>
 
-  <!-- ====== ECRAN D'ACCUEIL (premier lancement) ====== -->
-  <main id="welcome-screen" class="fr-container fr-my-4w" style="display:none">
-    <div class="fr-grid-row fr-grid-row--center">
-      <div class="fr-col-12 fr-col-md-8 fr-col-lg-6">
-        <h1 class="fr-h2 fr-mb-2w">Bienvenue sur le Lecteur RSS</h1>
-        <p class="fr-text--lead fr-mb-3w">Choisissez une sélection de flux pour commencer votre veille, ou importez votre propre fichier OPML.</p>
-
-        <div class="fr-form-group fr-mb-3w">
-          <fieldset class="fr-fieldset">
-            <legend class="fr-fieldset__legend fr-text--regular">Sélection initiale de flux</legend>
-            <div class="fr-fieldset__content">
-              <div class="fr-radio-group">
-                <input type="radio" id="welcome-sel1" name="welcome-selection" value="selection1" checked>
-                <label class="fr-label" for="welcome-sel1">Veille Tech &amp; Accessibilité (49 flux)
-                  <span class="fr-hint-text">Accessibilité, Design, Tech, Outils, Médias numériques, Institutions</span>
-                </label>
-              </div>
-              <div class="fr-radio-group">
-                <input type="radio" id="welcome-custom" name="welcome-selection" value="custom">
-                <label class="fr-label" for="welcome-custom">Importer mon fichier OPML
-                  <span class="fr-hint-text">Utilisez votre propre liste de flux RSS</span>
-                </label>
-              </div>
-            </div>
-          </fieldset>
-        </div>
-
-        <div id="welcome-custom-upload" class="fr-upload-group fr-mb-3w" style="display:none">
-          <label class="fr-label" for="welcome-opml-file">Fichier OPML</label>
-          <input class="fr-upload" id="welcome-opml-file" type="file" accept=".opml,.xml">
-        </div>
-
-        <button class="fr-btn fr-btn--lg" id="btn-welcome-start">Commencer</button>
-      </div>
-    </div>
-  </main>
-
-  <!-- ====== CONTENU PRINCIPAL (apres initialisation) ====== -->
+  <!-- ====== CONTENU PRINCIPAL ====== -->
   <main id="main-app" class="three-panel-layout" style="display:none">
 
     <!-- PANNEAU 1 : SIDEBAR FLUX -->
     <aside class="panel-sidebar" id="sidebar-col">
       <div class="panel-sidebar__toolbar fr-p-1w">
         <div class="fr-btns-group fr-btns-group--sm fr-btns-group--inline-sm fr-btns-group--icon-left">
+          <button class="fr-btn fr-btn--sm fr-btn--primary fr-btn--icon-left fr-icon-refresh-line fr-mb-0"
+            id="btn-refresh-all" title="Actualiser tous les flux">Actualiser</button>
           <button class="fr-btn fr-btn--sm fr-btn--tertiary fr-btn--icon-left fr-icon-settings-5-line fr-mb-0"
-            id="btn-feed-settings" title="Gestion des flux">Réglages</button>
+            id="btn-feed-settings" title="Gérer les flux RSS">Gérer les flux RSS</button>
         </div>
       </div>
 
@@ -220,22 +181,34 @@
         </div>
         <div class="fr-col-auto">
           <div class="fr-btns-group fr-btns-group--sm fr-btns-group--inline-sm fr-btns-group--icon-left">
-            <button class="fr-btn fr-btn--sm fr-btn--tertiary fr-btn--icon-left fr-icon-add-line fr-mb-0"
-              id="btn-add-feed" aria-controls="add-feed-modal" data-fr-opened="false">Ajouter un flux</button>
-            <button class="fr-btn fr-btn--sm fr-btn--tertiary fr-btn--icon-left fr-icon-upload-line fr-mb-0"
-              id="btn-import-opml">Importer OPML</button>
-            <button class="fr-btn fr-btn--sm fr-btn--tertiary fr-btn--icon-left fr-icon-download-line fr-mb-0"
-              id="btn-export-opml">Exporter OPML</button>
-            <button class="fr-btn fr-btn--sm fr-btn--tertiary fr-btn--icon-left fr-icon-file-download-line fr-mb-0"
-              id="btn-load-preconfig">Sélection préconfigurée</button>
+            <button class="fr-btn fr-btn--sm fr-btn--tertiary fr-btn--icon-left fr-icon-delete-line fr-mb-0"
+              id="btn-delete-all-feeds">Tout supprimer</button>
+            <button class="fr-btn fr-btn--sm fr-btn--tertiary fr-btn--icon-left fr-icon-refresh-line fr-mb-0"
+              id="btn-load-preconfig">Revenir aux flux par défaut</button>
           </div>
-          <input type="file" id="opml-file-input" accept=".opml,.xml" style="display:none">
         </div>
       </div>
 
-      <h1 class="fr-h3 fr-mb-2w">Gestion des flux RSS</h1>
+      <h1 class="fr-h3 fr-mb-1w">Gérer les flux RSS</h1>
 
-      <div id="feed-settings-content" class="feed-settings-grid">
+     
+      <div class="fr-btns-group fr-btns-group--sm fr-btns-group--inline-sm fr-btns-group--icon-left">
+        <button class="fr-btn fr-btn--sm fr-btn--tertiary fr-btn--icon-left fr-icon-upload-line fr-mb-0"
+          id="btn-import-opml">Importer OPML</button>
+        <button class="fr-btn fr-btn--sm fr-btn--tertiary fr-btn--icon-left fr-icon-download-line fr-mb-0"
+          id="btn-export-opml">Exporter OPML</button>
+        <button class="fr-btn fr-btn--sm fr-btn--tertiary fr-btn--icon-left fr-icon-folder-2-line fr-mb-0"
+          id="btn-add-category">Ajouter une catégorie</button>
+        <button class="fr-btn fr-btn--sm fr-btn--tertiary fr-btn--icon-left fr-icon-add-line fr-mb-0"
+          id="btn-add-feed" aria-controls="add-feed-modal" data-fr-opened="false">Ajouter un flux RSS</button>
+        <button class="fr-btn fr-btn--sm fr-btn--tertiary fr-btn--icon-left fr-icon-file-text-line fr-mb-0"
+          id="btn-import-txt">Importer flux TXT</button>
+      </div>
+      <input type="file" id="opml-file-input" accept=".opml,.xml" style="display:none">
+      <input type="file" id="txt-file-input" accept=".txt,.text" style="display:none">
+       
+
+      <div id="feed-settings-content" class="feed-settings-grid fr-py-4w">
         <!-- Rendu dynamique par ui.js -->
       </div>
 
@@ -381,7 +354,113 @@
     </div>
   </dialog>
 
-  <!-- Modale Réglages -->
+  <!-- Modale Ajouter une categorie -->
+  <dialog id="add-category-modal" class="fr-modal" role="dialog" aria-labelledby="add-category-modal-title">
+    <div class="fr-container fr-container--fluid fr-container-md">
+      <div class="fr-grid-row fr-grid-row--center">
+        <div class="fr-col-12 fr-col-md-6">
+          <div class="fr-modal__body">
+            <div class="fr-modal__header">
+              <button class="fr-btn--close fr-btn" aria-controls="add-category-modal">Fermer</button>
+            </div>
+            <div class="fr-modal__content">
+              <h1 id="add-category-modal-title" class="fr-modal__title">Ajouter une catégorie</h1>
+              <div class="fr-input-group">
+                <label class="fr-label" for="add-category-name">Nom de la catégorie</label>
+                <input class="fr-input" id="add-category-name" type="text" placeholder="Ma catégorie">
+              </div>
+              <div class="fr-btns-group fr-mt-2w">
+                <button class="fr-btn" id="btn-confirm-add-category">Ajouter</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Modale Importer flux TXT -->
+  <dialog id="import-txt-modal" class="fr-modal" role="dialog" aria-labelledby="import-txt-modal-title">
+    <div class="fr-container fr-container--fluid fr-container-md">
+      <div class="fr-grid-row fr-grid-row--center">
+        <div class="fr-col-12 fr-col-md-6">
+          <div class="fr-modal__body">
+            <div class="fr-modal__header">
+              <button class="fr-btn--close fr-btn" aria-controls="import-txt-modal">Fermer</button>
+            </div>
+            <div class="fr-modal__content">
+              <h1 id="import-txt-modal-title" class="fr-modal__title">Importer des flux au format texte</h1>
+              <p class="fr-text--sm fr-mb-2w">Collez une liste d'URLs de flux RSS, une par ligne.</p>
+              <div class="fr-input-group">
+                <label class="fr-label" for="import-txt-content">Liste des flux</label>
+                <textarea class="fr-input" id="import-txt-content" rows="8"
+                  placeholder="https://example.com/rss.xml&#10;https://autre-site.fr/feed/"></textarea>
+              </div>
+              <div class="fr-select-group fr-mt-2w">
+                <label class="fr-label" for="import-txt-category">Catégorie</label>
+                <select class="fr-select" id="import-txt-category">
+                  <option value="">Sans catégorie</option>
+                  <option value="__new__">+ Nouvelle catégorie</option>
+                </select>
+              </div>
+              <div class="fr-input-group fr-mt-1w" id="import-txt-new-cat-group" style="display:none">
+                <label class="fr-label" for="import-txt-new-cat">Nom de la nouvelle catégorie</label>
+                <input class="fr-input" id="import-txt-new-cat" type="text">
+              </div>
+              <p class="fr-text--xs fr-mt-1w">Ou importez depuis un fichier texte :</p>
+              <div class="fr-btns-group fr-btns-group--inline fr-mt-1v">
+                <button class="fr-btn fr-btn--sm fr-btn--tertiary" id="btn-import-txt-file">Choisir un fichier .txt</button>
+              </div>
+              <div class="fr-btns-group fr-mt-2w">
+                <button class="fr-btn" id="btn-confirm-import-txt">Importer</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Modale Editer un flux -->
+  <dialog id="edit-feed-modal" class="fr-modal" role="dialog" aria-labelledby="edit-feed-modal-title">
+    <div class="fr-container fr-container--fluid fr-container-md">
+      <div class="fr-grid-row fr-grid-row--center">
+        <div class="fr-col-12 fr-col-md-6">
+          <div class="fr-modal__body">
+            <div class="fr-modal__header">
+              <button class="fr-btn--close fr-btn" aria-controls="edit-feed-modal">Fermer</button>
+            </div>
+            <div class="fr-modal__content">
+              <h1 id="edit-feed-modal-title" class="fr-modal__title">Modifier le flux</h1>
+              <input type="hidden" id="edit-feed-id">
+              <div class="fr-input-group">
+                <label class="fr-label" for="edit-feed-title">Nom</label>
+                <input class="fr-input" id="edit-feed-title" type="text">
+              </div>
+              <div class="fr-input-group fr-mt-2w">
+                <label class="fr-label" for="edit-feed-url">URL du flux</label>
+                <input class="fr-input" id="edit-feed-url" type="url">
+              </div>
+              <div class="fr-input-group fr-mt-2w">
+                <label class="fr-label" for="edit-feed-site">URL du site</label>
+                <input class="fr-input" id="edit-feed-site" type="url">
+              </div>
+              <div class="fr-select-group fr-mt-2w">
+                <label class="fr-label" for="edit-feed-category">Catégorie</label>
+                <select class="fr-select" id="edit-feed-category">
+                </select>
+              </div>
+              <div class="fr-btns-group fr-mt-2w">
+                <button class="fr-btn" id="btn-confirm-edit-feed">Enregistrer</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Modale Préférences -->
   <dialog id="settings-modal" class="fr-modal" role="dialog" aria-labelledby="settings-modal-title">
     <div class="fr-container fr-container--fluid fr-container-md">
       <div class="fr-grid-row fr-grid-row--center">
@@ -391,7 +470,7 @@
               <button class="fr-btn--close fr-btn" aria-controls="settings-modal">Fermer</button>
             </div>
             <div class="fr-modal__content">
-              <h1 id="settings-modal-title" class="fr-modal__title">Réglages</h1>
+              <h1 id="settings-modal-title" class="fr-modal__title">Préférences</h1>
 
               <div class="fr-input-group fr-mb-2w">
                 <label class="fr-label" for="pref-articles-per-page">Articles par page</label>
