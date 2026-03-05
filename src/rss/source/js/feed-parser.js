@@ -5,6 +5,9 @@
   'use strict';
 
   function parse(xmlText, feedUrl) {
+    // Nettoyer les espaces/BOM avant la declaration XML
+    xmlText = xmlText.replace(/^[\s\uFEFF]+(<\?xml|<rss|<feed|<rdf)/i, '$1');
+
     var parser = new DOMParser();
     var doc = parser.parseFromString(xmlText, 'text/xml');
 
