@@ -49,7 +49,7 @@ object{max-width:100%}
 .nav-link{border-bottom:3px solid transparent!important}
 .nav-link:hover,.nav-link:focus{border-bottom:3px solid #e6025d!important}
 [data-bs-theme="dark"] .nav-link:hover,[data-bs-theme="dark"] .nav-link:focus{border-bottom:3px solid #e6025d}
-.navbar-nav .nav-link{color:#767676!important}
+.navbar-nav .nav-link{color:#595959!important}
 [data-bs-theme="dark"] .navbar-nav .nav-link{color:#fff!important}
 .navbar-nav .nav-link.active{color:#e6025d!important;border-bottom:3px solid #e6025d!important}
 ol.breadcrumb a,.footer a,h1, h2,.maliste a,.rose,.contenu h3{color:#e6025d!important}
@@ -70,9 +70,9 @@ h3.card-title,h3.card-title a:link{color:#e6025d;text-decoration:none}
 .spip_documents_right{padding:0 0 0 2em}
 .spip_doc_titre{text-align:center}
 hr{display:block!important;margin:0!important;padding:1em 0!important;width:100%!important;background:url(../assets/images/oxyhr.svg) no-repeat center top transparent!important;border:0!important;opacity:1!important}
-.skip-link a{position:fixed;top:-200px;z-index:1;font-size:1.2rem;display:inline-block;padding:.5em;background:#000;color:#fff;text-decoration:underline;color:#e6025d!important}
-.skip-link a:focus{top:0;color:#e6025d!important}
-.skip-link a:active{top:0;color:#e6025d!important}
+.skip-link a{position:fixed;top:-200px;z-index:1;font-size:1.2rem;display:inline-block;padding:.5em;background:#000;color:#fff!important;text-decoration:underline}
+.skip-link a:focus{top:0;color:#fff!important}
+.skip-link a:active{top:0;color:#fff!important}
 .skip-link li{padding:0;margin:0;list-style:none}
 .footer a{margin-right:1em}
 .footer a:hover,#nav a:hover{text-decoration:none!important}

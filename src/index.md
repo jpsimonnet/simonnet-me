@@ -14,7 +14,7 @@ pagination:
 
      <div class="jumbotron my-3 p-4">
         <div class="container-fluid py-2">
-           <img class="rounded float-end img-thumbnail" src="/assets/images/jp.jpg" type="image/svg+xml" width="350" height="350" alt="Bienvenue sur mon site">
+           <img class="rounded float-end img-thumbnail" src="/assets/images/jp.jpg" width="350" height="350" alt="Photo de Jean-Philippe Simonnet">
 
 
 ### Jean-Philippe Simonnet
@@ -38,8 +38,8 @@ pagination:
 
 <hr>
 
-<section aria-labelledby="titre-actualite" class="actualite-a-la-une my-5 container">
-  <h3 id="titre-actualite" class=" mb-3">Mes dernieres lectures </h3>
+<section aria-labelledby="titre-lectures" class="actualite-a-la-une my-5 container">
+  <h3 id="titre-lectures" class=" mb-3">Mes dernieres lectures </h3>
 
 {% set derniers3Livres = collections.livresTries | slice(0, 3) %}{% if derniers3Livres and derniers3Livres.length > 0 %}<div class="row">{% for livre in derniers3Livres %}<div class="col-lg-4 col-sm-6 mb-3"><div class="card shadow-sm h-100">{% if livre.id %}<img src="/assets/images/lectures/{{ livre.id }}.webp" alt="Couverture de {{ livre.Nom }}" class="card-img-top">{% endif %}<div class="card-body"><h4 class="card-title"><a href="/livre/{{ livre.id }}/" title="{{ livre.Nom }}" class="stretched-link">{{ livre.Nom }}</a></h4>{% if livre.Auteur %}<p class="card-text"><strong>{{ livre.Auteur }}</strong></p>{% endif %}{% if livre.Résumé %}<p class="card-text">{{ livre.Résumé | truncate(100) }}</p>{% endif %}<p class="card-text fw-bold">Lu le {{ livre["Lu le"] | formatDateFr }}</p></div></div></div>{% endfor %}</div>{% else %}<p>Aucun livre pour le moment.</p>{% endif %}
 

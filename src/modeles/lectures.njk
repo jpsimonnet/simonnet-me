@@ -4,9 +4,6 @@ rubriquenom : "Mes dernières lectures"
 rubriqueurl : "/lectures/0/"
 ---
 
-
-  <main id="main" data-pagefind-body>
- 
       <div id="content" class="col-lg-9 mx-auto my-5">
  
 
@@ -47,7 +44,7 @@ rubriqueurl : "/lectures/0/"
     {% if livre["En ligne"]  %}
       <p class="mt-5">
         <a href="{{ livre["En ligne"] }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-          Voir sur Babelio
+          Voir sur Babelio <span class="visually-hidden">(nouvelle fenêtre)</span>
         </a>
       </p>
     {% endif %}
@@ -64,9 +61,9 @@ rubriqueurl : "/lectures/0/"
 
   </div>
 
-    <nav class="mt-5">
+    <p class="mt-5">
     <a href="/lectures/0/" class="btn btn-primary">← Retour à la bibliothèque</a>
-  </nav>
+  </p>
 
   </div>
   
@@ -74,7 +71,3 @@ rubriqueurl : "/lectures/0/"
 </article>
 
       </div>
-
- 
-
-  </main>

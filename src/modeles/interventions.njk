@@ -10,7 +10,7 @@
       {% include "header.njk" %}
 
   <main id="main" data-pagefind-body>
-    <div class="container py-4">
+    <div id="content" class="container py-4">
 
       <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
@@ -31,7 +31,7 @@
   
   <div class="  col-lg-4 col-sm-6 mb-3 " >
     <div class="card shadow-sm h-100">
-      <img src="{{ post.data.image }}" class="card-img-top" alt=" ">
+      <img src="{{ post.data.image }}" class="card-img-top" alt="{{ post.data.title }}">
   <div class="card-body">
     <h3 class="card-title"><a href="{{post.url}}" class=" stretched-link">{{ post.data.title }}</a></h3>
     <p class="card-text">{{ post.data.description }}</p>

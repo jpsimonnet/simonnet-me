@@ -3,6 +3,7 @@
     <head>
       <title>{{ site.title }} - {{ title or meta.title }}</title>
        {% include "meta.njk" %}
+      <link rel="stylesheet" href="{{ '/css/rss.css' }}">
       </head>
 <body>
   <div class="container">
@@ -24,8 +25,6 @@
 
       <h2>Flux RSS</h2>
 
-    <link rel="stylesheet" href="{{ '/css/rss.css' }} ">
-
    <div class="row">
     <div class="sidebar col-3" id="sidebar">
      
@@ -34,7 +33,7 @@
   
 
     </div>
-    <button id="toggleSidebar" class="toggle-btn">☰</button>
+    <button id="toggleSidebar" class="toggle-btn" aria-label="Afficher ou masquer la liste des flux" aria-expanded="true" aria-controls="sidebar">☰</button>
     <div class="content col-9" id="content">
       <h3 id="feedTitle">Choisir une source pour voir les articles</h3>
       <div id="feedContent"></div>
@@ -46,10 +45,11 @@
 
        <h2>Importer votre fichier OPML</h2>
 
-      <input class="btn btn-light" type="file" id="opmlFile" accept=".opml, .xml"> 
+      <label for="opmlFile" class="visually-hidden">Choisir un fichier OPML à importer</label>
+      <input class="btn btn-light" type="file" id="opmlFile" accept=".opml, .xml">
       <button class="btn btn-primary"  id="importBtn">Importer un fichier OPML</button>
 
-  <script language="JavaScript" type="text/javascript" src="{{ '/js/app.js' }}"></script>
+  <script src="{{ '/js/app.js' }}"></script>
 
   </div>
 
