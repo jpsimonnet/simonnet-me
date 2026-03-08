@@ -544,18 +544,15 @@ Audit réalisé le 8 mars 2026 sur un échantillon de pages représentatives du 
 - [Un plan du site](/plan)
 - Un moteur de recherche
 
-**Liens externes :** les liens ouvrant une nouvelle fenêtre sont signalés (attribut `title` ou mention visually-hidden).
-
-
 
 ## Qualité web
 Les test automatiques ne remplacent jamais [un bon audit opquast](https://checklists.opquast.com/fr/assurance-qualite-web/) bien évidemment ...
 
-- [Mon test Google Page Speed (Lighthouse)](https://pagespeed.web.dev/analysis/https-simonnet-me/zcrxiszl38?form_factor=desktop) :
+- [Mon test Google Page Speed (Lighthouse)](https://pagespeed.web.dev/analysis/https-simonnet-me/oi50lrefg6?form_factor=desktop) :
     - **Performances :** 100
-    - **Accessibilité :** 92
+    - **Accessibilité :** 100
     - **Bonnes pratiques :** 100
-    - **SEO :** 82
+    - **SEO :** 100
 
 ## Éco-conception
 
@@ -563,4 +560,4 @@ Les test automatiques ne remplacent jamais [un bon audit opquast](https://checkl
 - Maitriser les poids et chargements des images de chaque page.
 - Faire des audits réguliers et surtout cela me permet de vérifier quelques erreurs.
 - [Test du websitecarbon : note A+](https://www.websitecarbon.com/website/simonnet-me/) : <span lang="en">"This is cleaner than 97% of all web pages globally"</span>
-- [Test ecoindex (89 / 100 - A)](https://www.ecoindex.fr/resultat/?id=e7bf4db0-4c34-4d0b-bbef-08bfb77caf98) - Le top. On se rapproche dangereusement de la perfection (selon eux).
+- [Test ecoindex (82 / 100 - A)](https://www.ecoindex.fr/resultat/?id=56465000-a148-427c-b776-d2c04585e230) - Le top. On se rapproche dangereusement de la perfection (selon eux).
