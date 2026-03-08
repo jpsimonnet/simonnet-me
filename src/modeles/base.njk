@@ -12,13 +12,15 @@
   <main id="main" data-pagefind-body>
     <div id="content" class="container py-4">
 
-        <nav aria-label="breadcrumb">
+        {% if title != "Accueil" %}
+        <nav aria-label="Fil d'Ariane">
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/">Accueil</a></li>
             {% if rubriqueurl %}<li class="breadcrumb-item"><a href="{{rubriqueurl}}">{{rubriquenom}}</a></li>{% endif %}
             <li class="breadcrumb-item active" aria-current="page">{{title}}</li>
         </ol>
       </nav>
+      {% endif %}
  
       {{ content | safe }}
 

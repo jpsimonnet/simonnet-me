@@ -28,7 +28,7 @@ Webinaire du 14 mars 2019 organisé par l’équipe du programme de développeme
 
 ### La présentation
 
-<iframe frameborder="0" width="100%" height="450" src="https://www.dailymotion.com/embed/video/x74yoj5" allowfullscreen="" allow="autoplay"></iframe>
+<iframe frameborder="0" width="100%" height="450" src="https://www.dailymotion.com/embed/video/x74yoj5" title="Vidéo Dailymotion : Webinaire DCANT #18 - L'écoconception web" allowfullscreen="" allow="autoplay"></iframe>
         
  
 

@@ -22,7 +22,7 @@ eleventyNavigation:
 
 <div class="float-end ms-3"> 
 
-![poc-1.webp](/assets/images/eformation.webp)
+![](/assets/images/eformation.webp)
 
 </div>
 
@@ -37,7 +37,7 @@ Témoignage au rencontres **eformation**  le 22 octobre 2025 à l’Ecole Nation
 
 <div class="float-end ms-5"> 
 
-![image.png](/assets/images/eformation-1.webp)
+![](/assets/images/eformation-1.webp)
 
 </div>
 
@@ -55,11 +55,11 @@ Le numérique est LA chance de pouvoir répondre à tous les publics.
 
 <div class="float-end ms-5"> 
 
-![image.png](/assets/images/eformation-2.webp)
+![](/assets/images/eformation-2.webp)
 
 </div>
 
-![image.png](/assets/images/eformation-3.webp)
+![](/assets/images/eformation-3.webp)
 
 - **Enseignement à distance** (mobilité)
 - **Possibilité de formation asynchrone** (qui permet de s’adapter au charges mentales de chacun)
@@ -69,7 +69,7 @@ Le numérique est LA chance de pouvoir répondre à tous les publics.
 
 <div class="float-end ms-5"> 
 
-![image.png](/assets/images/eformation-4.webp)
+![](/assets/images/eformation-4.webp)
 
 </div>
 
@@ -81,11 +81,11 @@ Le numérique est LA chance de pouvoir répondre à tous les publics.
 
 <div class="float-end ms-5"> 
 
-![image.png](/assets/images/eformation-5.webp)
+![](/assets/images/eformation-5.webp)
 
 </div>
 
-![image.png](/assets/images/eformation-6.webp)
+![](/assets/images/eformation-6.webp)
 
 Comme dans le design de projet l’accessibilité des apprentissages se pense dès la conception
 
@@ -95,7 +95,7 @@ Comme dans le design de projet l’accessibilité des apprentissages se pense d�
 
 <div class="float-end ms-5"> 
 
-![image.png](/assets/images/eformation-7.webp)
+![](/assets/images/eformation-7.webp)
 
 </div>
 
@@ -110,7 +110,7 @@ Vous noterez que la plupart de ces arguments se valent aussi bien pour les valid
 
 <div class="float-end ms-5"> 
 
-![image.png](/assets/images/eformation-8.webp)
+![](/assets/images/eformation-8.webp)
 
 </div>
 
@@ -132,7 +132,7 @@ Vous noterez que la plupart de ces arguments se valent aussi bien pour les valid
 
 <div class="float-end ms-5"> 
 
-![image.png](/assets/images/eformation-9.webp)
+![](/assets/images/eformation-9.webp)
 
 </div>
 
@@ -155,7 +155,7 @@ Vous noterez que la plupart de ces arguments se valent aussi bien pour les valid
 
 <div class="float-end ms-5"> 
 
-![image.png](/assets/images/eformation-10.webp)
+![](/assets/images/eformation-10.webp)
 
 </div>
 
@@ -175,7 +175,7 @@ Vous noterez que la plupart de ces arguments se valent aussi bien pour les valid
 
 <div class="float-end ms-5"> 
 
-![image.png](/assets/images/eformation-11.webp)
+![](/assets/images/eformation-11.webp)
 
 </div>
 
