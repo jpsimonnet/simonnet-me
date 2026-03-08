@@ -372,3 +372,152 @@ mark {
     font-size: 1.1rem;
   }
 }
+
+/***** Tableaux d'audit RGAA ***/
+
+.table-audit {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0 2rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.table-audit caption {
+  caption-side: top;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #6c757d;
+  padding: 0.5rem 0;
+  text-align: left;
+}
+
+.table-audit thead th {
+  background: #e6025d;
+  color: #fff;
+  font-weight: 600;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border: 1px solid #d4024f;
+}
+
+.table-audit tbody td {
+  padding: 0.6rem 1rem;
+  border: 1px solid #dee2e6;
+  vertical-align: top;
+}
+
+.table-audit tbody tr:nth-child(even) {
+  background: #f8f9fa;
+}
+
+.table-audit tbody tr:hover {
+  background: #fce4ec;
+}
+
+.table-audit td:first-child {
+  font-weight: 600;
+  white-space: nowrap;
+  width: 5rem;
+}
+
+.table-audit td:last-child {
+  white-space: nowrap;
+  width: 9rem;
+  text-align: center;
+}
+
+.badge-conforme,
+.badge-nc,
+.badge-na {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 0.25rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.badge-conforme {
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.badge-nc {
+  background: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.badge-na {
+  background: #e2e3e5;
+  color: #495057;
+  border: 1px solid #d6d8db;
+}
+
+/* Dark mode */
+[data-bs-theme="dark"] .table-audit thead th {
+  background: #c0024e;
+  border-color: #a0023f;
+}
+
+[data-bs-theme="dark"] .table-audit tbody td {
+  border-color: #495057;
+}
+
+[data-bs-theme="dark"] .table-audit tbody tr:nth-child(even) {
+  background: rgba(255,255,255,0.05);
+}
+
+[data-bs-theme="dark"] .table-audit tbody tr:hover {
+  background: rgba(230,2,93,0.15);
+}
+
+[data-bs-theme="dark"] .table-audit caption {
+  color: #adb5bd;
+}
+
+[data-bs-theme="dark"] .badge-conforme {
+  background: #1b4332;
+  color: #95d5b2;
+  border-color: #2d6a4f;
+}
+
+[data-bs-theme="dark"] .badge-nc {
+  background: #4a1520;
+  color: #f5a3b0;
+  border-color: #6b1d2e;
+}
+
+[data-bs-theme="dark"] .badge-na {
+  background: #343a40;
+  color: #adb5bd;
+  border-color: #495057;
+}
+
+/* Responsive */
+@media (max-width: 575.98px) {
+  .table-audit {
+    font-size: 0.85rem;
+  }
+
+  .table-audit thead th,
+  .table-audit tbody td {
+    padding: 0.4rem 0.5rem;
+  }
+
+  .table-audit td:first-child {
+    width: 3.5rem;
+  }
+
+  .table-audit td:last-child {
+    width: auto;
+  }
+
+  .badge-conforme,
+  .badge-nc,
+  .badge-na {
+    font-size: 0.75rem;
+    padding: 0.15rem 0.4rem;
+  }
+}
