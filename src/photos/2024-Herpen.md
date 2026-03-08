@@ -21,7 +21,7 @@ Elle a exposé ses créations dans de nombreux musées prestigieux dans le monde
   <iframe src="https://www.playbook.com/e/oxymore/Bhwj2aBNaPvVwkVEG1pdYtK2?theme=gallery"
     title="Iris van Herpen. Sculpting the Senses"
     sandbox="allow-same-origin allow-scripts"
-    frameborder="0"
+    style="border:0"
     width="100%"
     height="100%"
   ></iframe>

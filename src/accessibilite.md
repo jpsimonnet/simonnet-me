@@ -11,15 +11,15 @@ date: 2025-07-31
 J’essaye de m’appliquer plusieurs référentiels, bien sur j’essaye d’améliorer l’**accessibilité** de mon site, mais j’essaie aussi de m’appliquer d’autres référentiels comme la **Qualité Web** (opquast) ou **l’éco-conception web**.
 
 
-## Audit RGAA 4.1 - Mars 2026
+## Audit <abbr title="Référentiel Général d’Amélioration de l’Accessibilité">RGAA</abbr> 4.1 - Mars 2026
 
 Audit réalisé le 8 mars 2026 sur un échantillon de pages représentatives du site simonnet.me, selon le [Référentiel Général d’Amélioration de l’Accessibilité (RGAA 4.1)](https://accessibilite.numerique.gouv.fr/).
 
-**Pages auditées :** Accueil, Qui suis-je, Interventions (liste et détail), Actualités, Lectures (liste et détail livre), Photos, Veille RSS, Recherche, Plan du site, Mentions légales, Accessibilité.
+**Pages auditées :** Accueil, Qui suis-je, Interventions (liste et détail), Actualités, Lectures (liste et détail livre), Photos, Veille <abbr title="Really Simple Syndication" lang="en">RSS</abbr>, Recherche, Plan du site, Mentions légales, Accessibilité.
 
 ### Résultat global
 
-**Taux de conformité : 87 %** (74 critères conformes sur 85 applicables)
+**Taux de conformité : 91 %** (77 critères conformes sur 85 applicables)
 
 ### Thématique 1 — Images
 
@@ -81,17 +81,15 @@ Non applicable (aucun tableau de données sur le site).
 | Critère | Intitulé | Statut |
 |---------|----------|--------|
 | 8.1 | Chaque page a-t-elle un type de document ? | Conforme |
-| 8.2 | Le code source de chaque page est-il valide selon le type de document spécifié ? | Non conforme |
+| 8.2 | Le code source de chaque page est-il valide selon le type de document spécifié ? | Conforme |
 | 8.3 | La langue par défaut de chaque page est-elle présente ? | Conforme |
 | 8.4 | La langue par défaut de chaque page est-elle pertinente ? | Conforme |
 | 8.5 | Chaque page a-t-elle un titre pertinent ? | Conforme |
 | 8.6 | Chaque page a-t-elle une indication de langue dans le code source ? | Conforme |
-| 8.7 | Les changements de langue dans le texte sont-ils indiqués ? | Non conforme |
+| 8.7 | Les changements de langue dans le texte sont-ils indiqués ? | Conforme |
 | 8.9 | Chaque page n’a pas de balises utilisées uniquement à des fins de présentation. | Conforme |
 
-**Notes :**
-- Critère 8.2 : Quelques attributs obsolètes subsistent sur les iframes intégrées (`frameborder`, `marginwidth`). L’impact est mineur.
-- Critère 8.7 : Certaines citations en anglais dans les articles ne sont pas balisées avec `lang="en"` (ex. : citation de Tim Berners-Lee, termes techniques).
+**Note :** Les attributs obsolètes des iframes (`frameborder`, `marginwidth`, etc.) ont été supprimés et remplacés par du CSS. Les passages en anglais sont balisés avec `lang="en"`.
 
 ### Thématique 9 — Structuration de l’information
 
@@ -100,9 +98,9 @@ Non applicable (aucun tableau de données sur le site).
 | 9.1 | La hiérarchie des titres est-elle pertinente ? | Conforme |
 | 9.2 | La structure du document est-elle cohérente ? | Conforme |
 | 9.3 | Chaque liste est-elle correctement structurée ? | Conforme |
-| 9.4 | La première occurrence de chaque abréviation est-elle explicitée ? | Non conforme |
+| 9.4 | La première occurrence de chaque abréviation est-elle explicitée ? | Conforme |
 
-**Note :** Critère 9.4 : Certaines abréviations techniques (RGAA, WCAG, OPML, RSS, CSV, etc.) ne sont pas toujours explicitées avec la balise `<abbr>`.
+**Note :** Les principales abréviations (RGAA, RSS, CSV, OPML, LDAP, W3C, ENPC, BNUM, etc.) sont explicitées avec la balise `<abbr>` à leur première occurrence.
 
 ### Thématique 10 — Présentation de l’information
 
@@ -152,10 +150,7 @@ Non applicable (aucun tableau de données sur le site).
 | # | Critère | Description | Priorité |
 |---|---------|-------------|----------|
 | 1 | 4.1 | Vidéos tierces sans transcription textuelle systématique | Moyenne |
-| 2 | 8.2 | Attributs obsolètes sur quelques iframes intégrées | Faible |
-| 3 | 8.7 | Passages en anglais non balisés avec `lang="en"` | Faible |
-| 4 | 9.4 | Abréviations techniques non explicitées | Faible |
-| 5 | 13.7/13.8 | Documents téléchargeables (PDF/PPTX) non vérifiés | Moyenne |
+| 2 | 13.7/13.8 | Documents téléchargeables (PDF/PPTX) non vérifiés | Moyenne |
 
 ### Améliorations réalisées (mars 2026)
 
@@ -175,6 +170,9 @@ Non applicable (aucun tableau de données sur le site).
 - Contraste des liens de navigation amélioré (passage de `#767676` à `#595959`, ratio 7:1)
 - Feuilles de styles et scripts correctement placés dans le `<head>`
 - Suppression de l’attribut obsolète `language="JavaScript"`
+- Suppression des attributs HTML obsolètes sur les iframes (`frameborder`, `marginwidth`, `marginheight`, `scrolling`, `webkitallowfullscreen`, `mozallowfullscreen`) remplacés par du CSS
+- Ajout de `lang="en"` sur les passages en anglais (citations, résultats d’outils)
+- Abréviations explicitées avec `<abbr>` à leur première occurrence (RGAA, RSS, CSV, OPML, LDAP, W3C, ENPC, BNUM, POC)
 
 ---
 
@@ -205,7 +203,6 @@ Les test automatiques ne remplacent jamais [un bon audit opquast](https://checkl
 - Utiliser des images quand c'est nécessaire et proposer des images en svg et en webp
 - Maitriser les poids et chargements des images de chaque page.
 - Faire des audits réguliers et surtout cela me permet de vérifier quelques erreurs.
-- [Test du websitecarbon : note A+](https://www.websitecarbon.com/website/simonnet-me/) : "This is cleaner than 
-97% of all web pages globally"
+- [Test du websitecarbon : note A+](https://www.websitecarbon.com/website/simonnet-me/) : <span lang="en">"This is cleaner than 97% of all web pages globally"</span>
 - [Test ecoindex (89 / 100 - A)](https://www.ecoindex.fr/resultat/?id=e7bf4db0-4c34-4d0b-bbef-08bfb77caf98) - Le top. On se rapproche dangereusement de la perfection (selon eux). 
 

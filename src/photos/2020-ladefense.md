@@ -18,7 +18,7 @@ J’aime bien cette vue que l’on peut avoir sur Paris, cet alignement de l’A
 
 
 <div style="height: 800px; margin-bottom:2em">
-<iframe src="https://www.playbook.com/e/oxymore/qaELTbcQ2Q1vGg3qDKDn9rRW?theme=gallery" title="La défense - Playbook.com" sandbox="allow-same-origin allow-scripts" frameborder="0" width="100%" height="100%" ></iframe> </div>
+<iframe src="https://www.playbook.com/e/oxymore/qaELTbcQ2Q1vGg3qDKDn9rRW?theme=gallery" title="La défense - Playbook.com" sandbox="allow-same-origin allow-scripts" style="border:0" width="100%" height="100%" ></iframe> </div>
 
 
 

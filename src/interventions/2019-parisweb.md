@@ -26,7 +26,7 @@ Retour d’expérience sur une mise en place à grande échelle d’une diffusio
 ### La vidéo
 
 
-<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/377176266" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen="" data-ready="true"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/377176266" style="border:0; position:absolute;top:0;left:0;width:100%;height:100%;" allow="autoplay; fullscreen" allowfullscreen="" data-ready="true"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
 <p><a href="https://vimeo.com/377176266">Et si Tim avait toujours raison&nbsp;? L’avenir du web est celui de la publication&nbsp;!</a> from <a href="https://vimeo.com/parisweb">Paris Web</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
 
 

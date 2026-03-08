@@ -27,7 +27,7 @@ par Jean-Philippe Simonnet
 
 * * *
 
-<iframe width="853" height="480" src="https://www.youtube-nocookie.com/embed/videoseries?list=PLA9494D75417592A9" title="Playlist YouTube : Accessibilité numérique et formation - FFFOD Centre Inffo" frameborder="0" allowfullscreen=""></iframe>
+<iframe width="853" height="480" src="https://www.youtube-nocookie.com/embed/videoseries?list=PLA9494D75417592A9" title="Playlist YouTube : Accessibilité numérique et formation - FFFOD Centre Inffo" style="border:0" allowfullscreen=""></iframe>
 
 * * *
 

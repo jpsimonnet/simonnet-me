@@ -19,7 +19,7 @@ rubriquenom: "Mes interventions"
 
 ### La présentation
 
-<iframe src="//www.slideshare.net/slideshow/embed_code/key/f78dg3gLyyHzr6" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:35px; max-width: 100%;" allowfullscreen=""> </iframe>
+<iframe src="//www.slideshare.net/slideshow/embed_code/key/f78dg3gLyyHzr6" width="595" height="485" style="border:0; border:1px solid #CCC; border-width:1px; margin-bottom:35px; max-width: 100%;" allowfullscreen=""> </iframe>
 
  
 

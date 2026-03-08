@@ -28,7 +28,7 @@ eleventyNavigation:
 
 
 
-Témoignage au rencontres **eformation**  le 22 octobre 2025 à l’Ecole Nationale des Ponts et Chaussées (ENPC) de Champs-sur-marne :  **Le numérique en formation : objet de compensation ou levier d’innovation ?**
+Témoignage au rencontres **eformation**  le 22 octobre 2025 à l’Ecole Nationale des Ponts et Chaussées (<abbr title="École Nationale des Ponts et Chaussées">ENPC</abbr>) de Champs-sur-marne :  **Le numérique en formation : objet de compensation ou levier d’innovation ?**
 
 ---
 
@@ -75,7 +75,7 @@ Le numérique est LA chance de pouvoir répondre à tous les publics.
 
 « Mettre le web et ses services à la disposition de tous les individus, quels que soient leur matériel ou logiciel, leur infrastructure réseau, leur langue maternelle, leur culture, leur localisation géographique, ou leurs aptitudes physiques ou mentales. »
 
-**Tim Berners-Lee, Fondateur du W3C**
+**Tim Berners-Lee, Fondateur du <abbr title="World Wide Web Consortium" lang="en">W3C</abbr>**
 
 ## **Une réponse simple : OUI mais …**
 

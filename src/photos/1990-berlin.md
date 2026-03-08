@@ -25,7 +25,7 @@ J’accompagnais un photographe japonais dans ma 1er vie d’assistant photo : S
   <iframe src="https://www.playbook.com/e/oxymore/AgjFV5YPVBcs1jQZp6nSMRrd?theme=gallery"
     title="Berlin - Playbook.com"
     sandbox="allow-same-origin allow-scripts"
-    frameborder="0"
+    style="border:0"
     width="100%"
     height="100%"
   ></iframe>

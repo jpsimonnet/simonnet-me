@@ -25,7 +25,7 @@ Voila les quelques photos que j’ai faites d’eux : Jacques et Bilou Plasse le
   <iframe src="https://www.playbook.com/e/oxymore/vs6gt1AgY7ZhSTPkHuaQVZiY?theme=gallery"
     title="Plasse Le Caisne - Playbook.com"
     sandbox="allow-same-origin allow-scripts"
-    frameborder="0"
+    style="border:0"
     width="100%"
     height="100%"
   ></iframe>

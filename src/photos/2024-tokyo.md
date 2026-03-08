@@ -17,7 +17,7 @@ Petit voyage au Japon et en particulier à Tokyo.
   <iframe src="https://www.playbook.com/e/oxymore/pyUJnnBZVJ9oLcVD6x2n2fre?theme=gallery"
     title="Japon - Playbook.com"
     sandbox="allow-same-origin allow-scripts"
-    frameborder="0"
+    style="border:0"
     width="100%"
     height="100%"
   ></iframe>

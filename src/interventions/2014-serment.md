@@ -22,7 +22,7 @@ eleventyNavigation:
 
 ### Vidéo
 
-<iframe class="my-4" src="//player.vimeo.com/video/113939766" title="Vidéo Vimeo : Petits secrets entre amis - Le serment du Beffroi" width="100%" height="475" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+<iframe class="my-4" src="//player.vimeo.com/video/113939766" title="Vidéo Vimeo : Petits secrets entre amis - Le serment du Beffroi" width="100%" height="475" style="border:0" allowfullscreen=""></iframe>
 
 ### Résumé
 
@@ -43,7 +43,7 @@ Pourtant combien d’entre nous ont une clause de confidentialité dans leurs co
 
 ### Les slides de la présentation
 
-<iframe class="my-4" src="https://www.slideshare.net/slideshow/embed_code/40375243?rel=0" title="Présentation Slideshare : Petits secrets entre amis - Le serment du Beffroi" width="597" height="486" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen=""> </iframe>
+<iframe class="my-4" src="https://www.slideshare.net/slideshow/embed_code/40375243?rel=0" title="Présentation Slideshare : Petits secrets entre amis - Le serment du Beffroi" width="597" height="486" style="border:0; border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen=""> </iframe>
 
 * * *
 
