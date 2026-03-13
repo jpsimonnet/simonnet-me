@@ -12,19 +12,31 @@
   var header = '\
   <header role="banner" class="fr-header">\
     <div class="fr-header__body">\
-      <div class="fr-container">\
+      <div class="fr-container--fluid">\
         <div class="fr-header__body-row">\
           <div class="fr-header__brand fr-enlarge-link">\
             <div class="fr-header__brand-top">\
               <div class="fr-header__logo">\
-                <p class="fr-logo">République <br>Française</p>\
+                <span class="fr-icon-rss-line" aria-hidden="true"></span>\
               </div>\
             </div>\
             <div class="fr-header__service">\
               <a href="./index.html" title="Accueil - Lecteur RSS">\
-                <p class="fr-header__service-title">Lecteur RSS</p>\
+                <p class="fr-header__service-title">RSS-Facile</p>\
               </a>\
-              <p class="fr-header__service-tagline">Veille stratégique — Lecteur de flux RSS/Atom</p>\
+              <p class="fr-header__service-tagline">Veille &mdash; Lecteur de flux RSS/Atom</p>\
+            </div>\
+          </div>\
+          <div class="fr-header__tools">\
+            <div class="fr-header__tools-links">\
+              <ul class="fr-btns-group">\
+                <li>\
+                  <a class="fr-btn fr-btn--sm fr-icon-eye-line" href="./accessibilite.html">Accessibilité</a>\
+                </li>\
+                <li>\
+                  <a class="fr-btn fr-btn--sm fr-icon-scales-3-line" href="./mentions-legales.html">Mentions légales</a>\
+                </li>\
+              </ul>\
             </div>\
           </div>\
         </div>\
@@ -32,54 +44,6 @@
     </div>\
   </header>';
 
-  var footer = '\
-  <footer class="fr-footer" role="contentinfo" id="footer">\
-    <div class="fr-container">\
-      <div class="fr-footer__body">\
-        <div class="fr-footer__brand fr-enlarge-link">\
-          <a href="./index.html" title="Retour à l\'accueil - Lecteur RSS">\
-            <p class="fr-logo">République <br>Française</p>\
-          </a>\
-        </div>\
-        <div class="fr-footer__content">\
-          <p class="fr-footer__content-desc">Lecteur de flux RSS/Atom en ligne, sans compte.</p>\
-          <ul class="fr-footer__content-list">\
-            <li class="fr-footer__content-item">\
-              <a class="fr-footer__content-link" target="_blank" href="https://legifrance.gouv.fr"\
-                 aria-label="legifrance.gouv.fr — Nouvelle fenêtre" rel="noopener">legifrance.gouv.fr</a>\
-            </li>\
-            <li class="fr-footer__content-item">\
-              <a class="fr-footer__content-link" target="_blank" href="https://gouvernement.fr"\
-                 aria-label="gouvernement.fr — Nouvelle fenêtre" rel="noopener">gouvernement.fr</a>\
-            </li>\
-            <li class="fr-footer__content-item">\
-              <a class="fr-footer__content-link" target="_blank" href="https://service-public.fr"\
-                 aria-label="service-public.fr — Nouvelle fenêtre" rel="noopener">service-public.fr</a>\
-            </li>\
-            <li class="fr-footer__content-item">\
-              <a class="fr-footer__content-link" target="_blank" href="https://data.gouv.fr"\
-                 aria-label="data.gouv.fr — Nouvelle fenêtre" rel="noopener">data.gouv.fr</a>\
-            </li>\
-          </ul>\
-        </div>\
-      </div>\
-      <div class="fr-footer__bottom">\
-        <ul class="fr-footer__bottom-list">\
-          <li class="fr-footer__bottom-item">\
-            <a class="fr-footer__bottom-link" href="./accessibilite.html">Accessibilité : non conforme</a>\
-          </li>\
-          <li class="fr-footer__bottom-item">\
-            <a class="fr-footer__bottom-link" href="./mentions-legales.html">Mentions légales</a>\
-          </li>\
-        </ul>\
-        <div class="fr-footer__bottom-copy">\
-          <p>Sauf mention contraire, tous les contenus de ce site sont sous\
-            <a href="https://github.com/etalab/licence-ouverte/blob/master/LO.md" target="_blank"\
-               aria-label="licence etalab-2.0 — Nouvelle fenêtre" rel="noopener">licence etalab-2.0</a></p>\
-        </div>\
-      </div>\
-    </div>\
-  </footer>';
 
   var container = document.getElementById("content");
   if (!container) return;
@@ -122,12 +86,4 @@
         '<div class="fr-callout fr-callout--red-marianne"><p>' + err.message + "</p></div>";
     });
 
-  main.insertAdjacentHTML("afterend", footer);
-
-  var currentPage = location.pathname.split("/").pop();
-  document.querySelectorAll(".fr-footer__bottom-link").forEach(function (link) {
-    if (link.getAttribute("href").indexOf(currentPage) !== -1) {
-      link.setAttribute("aria-current", "page");
-    }
-  });
 })();
