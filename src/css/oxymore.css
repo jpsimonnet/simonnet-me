@@ -522,6 +522,18 @@ mark {
   }
 }
 
+/* === Page listing galeries === */
+
+.card .card-img-top {
+  aspect-ratio: 1;
+  object-fit: contain;
+  background-color: #fff;
+}
+
+[data-bs-theme="dark"] .card .card-img-top {
+  background-color: #212529;
+}
+
 /* === Galerie photo === */
 
 .galerie-grid .galerie-item {
@@ -535,7 +547,12 @@ mark {
   transition: transform 0.3s ease, opacity 0.3s ease;
   width: 100%;
   aspect-ratio: 1;
-  object-fit: cover;
+  object-fit: contain;
+  background-color: #fff;
+}
+
+[data-bs-theme="dark"] .galerie-grid .galerie-item img {
+  background-color: #212529;
 }
 
 .galerie-grid .galerie-item:hover img,

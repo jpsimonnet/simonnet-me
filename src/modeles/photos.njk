@@ -30,20 +30,20 @@
 
  
 
-  {%- for post in collections.photos | reverse-%}
-  
-  <div class="  col-lg-4 col-sm-6 mb-3 " >
+  {%- for galerie in galeries -%}
+
+  <div class="col-lg-4 col-sm-6 mb-3">
     <div class="card shadow-sm h-100">
-      <img src="{{ post.data.image }}" class="card-img-top" alt="{{ post.data.title }}" loading="lazy">
+      <img src="{{ galerie.thumbnail }}" class="card-img-top" alt="{{ galerie.title }}" loading="lazy">
   <div class="card-body">
-    <h3 class="card-title"><a href="{{post.url}}" class=" stretched-link">{{ post.data.title }}</a></h3>
-    <p class="card-text">{{ post.data.description }}</p>
-   <p class="card-text fw-bold"> {{ post.data.date | formatDateFr }}</p>
+    <h3 class="card-title"><a href="{{ galerie.url }}" class="stretched-link">{{ galerie.title }}</a></h3>
+    <p class="card-text">{{ galerie.description }}</p>
+   <p class="card-text fw-bold">{{ galerie.date | formatDateFr }}</p>
   </div>
 
 </div>
 </div>
-  
+
   {%- endfor -%}
 
 
