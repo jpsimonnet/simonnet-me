@@ -10,6 +10,9 @@ const __dirname = path.dirname(__filename);
 
 export default function(eleventyConfig) {
 
+  // Ignorer les index.md dans les dossiers photos (lus par le data file, pas par Eleventy)
+  eleventyConfig.ignores.add("src/assets/photos/**/*.md");
+
   // Ressources statiques
   eleventyConfig.addPassthroughCopy("./src/css");
   eleventyConfig.addPassthroughCopy("./src/js");
