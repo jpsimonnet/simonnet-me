@@ -1,5 +1,5 @@
 ---
-title: "Exposition : Iris van Herpen"
+title: "2024 - Exposition : Iris van Herpen"
 description: "Musée des Arts Décoratifs : exposition « Iris van Herpen. Sculpting the Senses »"
 date: 2024-02-25
 thumbnail: "Iris van Herpen - 1.webp"
