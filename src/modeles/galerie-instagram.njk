@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="fr" data-bs-theme="light">
+    <head>
+      <title>{{ site.title }} - {{ title or meta.title }}</title>
+       {% include "meta.njk" %}
+      <style>
+        .galerie-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+          gap: 8px;
+        }
+        .galerie-grid a {
+          display: block;
+          aspect-ratio: 1;
+          overflow: hidden;
+          border-radius: 4px;
+        }
+        .galerie-grid img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.3s ease;
+        }
+        .galerie-grid a:hover img,
+        .galerie-grid a:focus img {
+          transform: scale(1.05);
+        }
+        .galerie-lightbox {
+          position: fixed;
+          inset: 0;
+          z-index: 1060;
+          background: rgba(0, 0, 0, 0.9);
+          display: none;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+        }
+        .galerie-lightbox.active {
+          display: flex;
+        }
+        .galerie-lightbox img {
+          max-width: 90vw;
+          max-height: 80vh;
+          object-fit: contain;
+          border-radius: 4px;
+        }
+        .galerie-lightbox-caption {
+          color: #fff;
+          text-align: center;
+          padding: 1rem;
+          max-width: 600px;
+        }
+        .galerie-lightbox-caption a {
+          color: #e6025d;
+        }
+        .galerie-lightbox-close {
+          position: absolute;
+          top: 1rem;
+          right: 1rem;
+          background: none;
+          border: none;
+          color: #fff;
+          font-size: 2rem;
+          cursor: pointer;
+          padding: 0.5rem;
+          line-height: 1;
+        }
+        .galerie-lightbox-close:hover,
+        .galerie-lightbox-close:focus {
+          color: #e6025d;
+        }
+        .galerie-lightbox-nav {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          background: none;
+          border: none;
+          color: #fff;
+          font-size: 3rem;
+          cursor: pointer;
+          padding: 1rem;
+          line-height: 1;
+        }
+        .galerie-lightbox-nav:hover,
+        .galerie-lightbox-nav:focus {
+          color: #e6025d;
+        }
+        .galerie-lightbox-prev { left: 0.5rem; }
+        .galerie-lightbox-next { right: 0.5rem; }
+        .album-section {
+          scroll-margin-top: 80px;
+        }
+        .album-nav .btn {
+          text-transform: lowercase;
+        }
+      </style>
+      </head>
+<body>
+  <div class="container">
+
+      {% include "header.njk" %}
+
+  <main id="main" data-pagefind-body>
+    <div id="content" class="container py-4">
+
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/">Accueil</a></li>
+          <li class="breadcrumb-item active" aria-current="page">{{title}}</li>
+        </ol>
+      </nav>
+
+      {{ content | safe }}
+
+      {# Navigation rapide par album #}
+      {% if instagram | length %}
+      <nav class="album-nav mb-4" aria-label="Navigation par album">
+        <div class="d-flex flex-wrap gap-2">
+          {% for album in instagram %}
+            <a href="#album-{{ album.hashtag }}" class="btn btn-outline-secondary">
+              {{ album.label }} <span class="badge text-bg-secondary">{{ album.photos | length }}</span>
+            </a>
+          {% endfor %}
+        </div>
+      </nav>
+      {% endif %}
+
+      {# Albums groupés par hashtag #}
+      {% for album in instagram %}
+      <section class="album-section mb-5" id="album-{{ album.hashtag }}">
+        <h3 class="mb-3">{{ album.label }}</h3>
+        <div class="galerie-grid" data-album="{{ album.hashtag }}">
+          {% for photo in album.photos %}
+            <a href="{{ photo.url }}"
+               data-caption="{{ photo.caption }}"
+               data-permalink="{{ photo.permalink }}"
+               data-album="{{ album.hashtag }}"
+               role="button"
+               aria-label="Voir la photo : {{ photo.caption or 'Photo Instagram' }}">
+              <img src="{{ photo.thumbnail }}"
+                   alt="{{ photo.caption or 'Photo Instagram' }}"
+                   loading="lazy"
+                   decoding="async">
+            </a>
+          {% endfor %}
+        </div>
+        <p class="text-end mt-2">
+          <small><a href="https://www.instagram.com/explore/tags/{{ album.hashtag }}/" rel="external" class="text-secondary">Voir {{ album.label }} sur Instagram</a></small>
+        </p>
+      </section>
+      {% endfor %}
+
+      {% if not instagram or instagram | length == 0 %}
+      <div class="alert alert-info">
+        <p>Aucune photo à afficher pour le moment.</p>
+        <p>Les photos seront récupérées depuis Instagram lors de la prochaine mise à jour du site.</p>
+      </div>
+      {% endif %}
+
+    </div>
+  </main>
+
+  {# Lightbox #}
+  <div class="galerie-lightbox" id="galerie-lightbox" role="dialog" aria-label="Visionneuse de photos" aria-modal="true">
+    <button class="galerie-lightbox-close" aria-label="Fermer" id="lightbox-close">&times;</button>
+    <button class="galerie-lightbox-nav galerie-lightbox-prev" aria-label="Photo précédente" id="lightbox-prev">&lsaquo;</button>
+    <button class="galerie-lightbox-nav galerie-lightbox-next" aria-label="Photo suivante" id="lightbox-next">&rsaquo;</button>
+    <img src="" alt="" id="lightbox-img">
+    <div class="galerie-lightbox-caption" id="lightbox-caption"></div>
+  </div>
+
+  <script>
+  (function() {
+    const lightbox = document.getElementById('galerie-lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    const btnClose = document.getElementById('lightbox-close');
+    const btnPrev = document.getElementById('lightbox-prev');
+    const btnNext = document.getElementById('lightbox-next');
+
+    let currentPhotos = [];
+    let currentIndex = 0;
+    let previousFocus = null;
+
+    function getAllPhotos(albumHashtag) {
+      const selector = albumHashtag
+        ? `.galerie-grid[data-album="${albumHashtag}"] a`
+        : '.galerie-grid a';
+      return Array.from(document.querySelectorAll(selector));
+    }
+
+    function openLightbox(link) {
+      previousFocus = document.activeElement;
+      const album = link.getAttribute('data-album');
+      currentPhotos = getAllPhotos(album);
+      currentIndex = currentPhotos.indexOf(link);
+      showPhoto(currentIndex);
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      btnClose.focus();
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+      if (previousFocus) previousFocus.focus();
+    }
+
+    function showPhoto(index) {
+      if (index < 0 || index >= currentPhotos.length) return;
+      currentIndex = index;
+      const link = currentPhotos[index];
+      lightboxImg.src = link.href;
+      lightboxImg.alt = link.getAttribute('data-caption') || 'Photo Instagram';
+
+      const caption = link.getAttribute('data-caption') || '';
+      const permalink = link.getAttribute('data-permalink') || '';
+      lightboxCaption.innerHTML = caption +
+        (permalink ? ' — <a href="' + permalink + '" rel="external">Voir sur Instagram</a>' : '');
+
+      btnPrev.style.display = currentIndex > 0 ? '' : 'none';
+      btnNext.style.display = currentIndex < currentPhotos.length - 1 ? '' : 'none';
+    }
+
+    // Événements
+    document.querySelectorAll('.galerie-grid a').forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        openLightbox(this);
+      });
+    });
+
+    btnClose.addEventListener('click', closeLightbox);
+    btnPrev.addEventListener('click', function() { showPhoto(currentIndex - 1); });
+    btnNext.addEventListener('click', function() { showPhoto(currentIndex + 1); });
+
+    lightbox.addEventListener('click', function(e) {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (!lightbox.classList.contains('active')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') showPhoto(currentIndex - 1);
+      if (e.key === 'ArrowRight') showPhoto(currentIndex + 1);
+    });
+  })();
+  </script>
+
+  {% include "footer.njk" %}
+
+  </div>
+
+</body>
+</html>

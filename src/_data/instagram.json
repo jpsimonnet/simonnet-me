@@ -1,0 +1,68 @@
+[
+  {
+    "hashtag": "tokyo",
+    "label": "#tokyo",
+    "photos": [
+      {
+        "id": "exemple-1",
+        "url": "https://via.placeholder.com/800x800/e6025d/ffffff?text=Tokyo+1",
+        "thumbnail": "https://via.placeholder.com/400x400/e6025d/ffffff?text=Tokyo+1",
+        "permalink": "https://www.instagram.com/oxymore93/",
+        "caption": "Vue sur le mont Fuji depuis Tokyo",
+        "date": "2023-02-25T10:00:00+0000"
+      },
+      {
+        "id": "exemple-2",
+        "url": "https://via.placeholder.com/800x800/e6025d/ffffff?text=Tokyo+2",
+        "thumbnail": "https://via.placeholder.com/400x400/e6025d/ffffff?text=Tokyo+2",
+        "permalink": "https://www.instagram.com/oxymore93/",
+        "caption": "Shibuya crossing de nuit",
+        "date": "2023-02-24T14:00:00+0000"
+      },
+      {
+        "id": "exemple-3",
+        "url": "https://via.placeholder.com/800x800/e6025d/ffffff?text=Tokyo+3",
+        "thumbnail": "https://via.placeholder.com/400x400/e6025d/ffffff?text=Tokyo+3",
+        "permalink": "https://www.instagram.com/oxymore93/",
+        "caption": "Temple Senso-ji à Asakusa",
+        "date": "2023-02-23T09:00:00+0000"
+      }
+    ]
+  },
+  {
+    "hashtag": "architecture",
+    "label": "#architecture",
+    "photos": [
+      {
+        "id": "exemple-4",
+        "url": "https://via.placeholder.com/800x800/333333/ffffff?text=Archi+1",
+        "thumbnail": "https://via.placeholder.com/400x400/333333/ffffff?text=Archi+1",
+        "permalink": "https://www.instagram.com/oxymore93/",
+        "caption": "La Défense sous un angle différent",
+        "date": "2024-06-15T16:00:00+0000"
+      },
+      {
+        "id": "exemple-5",
+        "url": "https://via.placeholder.com/800x800/333333/ffffff?text=Archi+2",
+        "thumbnail": "https://via.placeholder.com/400x400/333333/ffffff?text=Archi+2",
+        "permalink": "https://www.instagram.com/oxymore93/",
+        "caption": "Lignes et courbes",
+        "date": "2024-05-10T11:00:00+0000"
+      }
+    ]
+  },
+  {
+    "hashtag": "streetart",
+    "label": "#streetart",
+    "photos": [
+      {
+        "id": "exemple-6",
+        "url": "https://via.placeholder.com/800x800/2d6a4f/ffffff?text=Street+1",
+        "thumbnail": "https://via.placeholder.com/400x400/2d6a4f/ffffff?text=Street+1",
+        "permalink": "https://www.instagram.com/oxymore93/",
+        "caption": "Fresque murale à Belleville",
+        "date": "2024-03-20T13:00:00+0000"
+      }
+    ]
+  }
+]

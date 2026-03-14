@@ -5,7 +5,8 @@
   "scripts": {
     "build": "eleventy",
     "serve": "eleventy --serve",
-    "search": "npx pagefind --site public --output-subdir pagefind"
+    "search": "npx pagefind --site public --output-subdir pagefind",
+    "fetch:instagram": "node scripts/fetch-instagram-photos.cjs"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0",
