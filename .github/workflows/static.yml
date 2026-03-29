@@ -6,6 +6,10 @@ on:
   push:
     branches: ["main"]
 
+  # Rebuild daily to pick up Notion changes
+  schedule:
+    - cron: '0 6 * * *'
+
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -44,11 +48,17 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Fetch Notion data
+      - name: Fetch Notion actualités
         env:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
           NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
         run: node scripts/fetch-notion-actualite.cjs
+        continue-on-error: true
+
+      - name: Fetch Notion livres
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+        run: node scripts/fetch-notion-livres.cjs
         continue-on-error: true
 
       - name: Build Eleventy site
