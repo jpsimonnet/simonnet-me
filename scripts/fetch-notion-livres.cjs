@@ -4,10 +4,53 @@ require('dotenv').config();
 const { Client } = require('@notionhq/client');
 const fs = require('fs');
 const path = require('path');
+const https = require('https');
+const http = require('http');
 
 const notion = new Client({ auth: process.env.NOTION_TOKEN });
 
 const NOTION_LIVRES_DATABASE_ID = 'ffff9c97e6ff80f795a5d8a5f0faa8e3';
+const IMAGES_DIR = path.join(__dirname, '../src/assets/images/lectures');
+
+// Ensure images directory exists
+if (!fs.existsSync(IMAGES_DIR)) {
+  fs.mkdirSync(IMAGES_DIR, { recursive: true });
+}
+
+function downloadFile(url, destPath) {
+  return new Promise((resolve, reject) => {
+    const client = url.startsWith('https') ? https : http;
+    client.get(url, (response) => {
+      if (response.statusCode >= 300 && response.statusCode < 400 && response.headers.location) {
+        return downloadFile(response.headers.location, destPath).then(resolve).catch(reject);
+      }
+      if (response.statusCode !== 200) {
+        reject(new Error(`Failed to download: ${response.statusCode}`));
+        return;
+      }
+      const file = fs.createWriteStream(destPath);
+      response.pipe(file);
+      file.on('finish', () => { file.close(); resolve(); });
+      file.on('error', reject);
+    }).on('error', reject);
+  });
+}
+
+async function fetchPageImage(pageId) {
+  try {
+    const blocks = await notion.blocks.children.list({ block_id: pageId });
+    const imageBlock = blocks.results.find((block) => block.type === 'image');
+    if (!imageBlock) return null;
+
+    const image = imageBlock.image;
+    if (image.type === 'file') return image.file.url;
+    if (image.type === 'external') return image.external.url;
+    return null;
+  } catch (error) {
+    console.warn(`⚠️ Impossible de récupérer l'image pour ${pageId}:`, error.message);
+    return null;
+  }
+}
 
 async function fetchAllPages() {
   const pages = [];
@@ -41,18 +84,35 @@ async function fetchLivres() {
       return;
     }
 
-    const livres = pages.map((page, index) => {
+    const livres = [];
+
+    for (const page of pages) {
       const properties = page.properties;
-      return {
+      const notionId = page.id.replace(/-/g, '');
+
+      // Fetch cover image from page content
+      const imageUrl = await fetchPageImage(page.id);
+      const imagePath = path.join(IMAGES_DIR, `${notionId}.webp`);
+
+      if (imageUrl && !fs.existsSync(imagePath)) {
+        try {
+          await downloadFile(imageUrl, imagePath);
+          console.log(`📷 Image téléchargée pour: ${properties.Nom?.title?.[0]?.plain_text}`);
+        } catch (err) {
+          console.warn(`⚠️ Échec téléchargement image: ${err.message}`);
+        }
+      }
+
+      livres.push({
         Nom: properties.Nom?.title?.[0]?.plain_text || '',
         Auteur: properties.Auteur?.rich_text?.[0]?.plain_text || '',
         'En ligne': properties['En ligne']?.url || '',
         'Lu le': properties['Lu le']?.date?.start || '',
         Résumé: properties['Résumé']?.rich_text?.[0]?.plain_text || '',
         Type: properties.Type?.select?.name || '',
-        id: index + 1,
-      };
-    });
+        id: notionId,
+      });
+    }
 
     const outputPath = path.join(__dirname, '../src/_data/livres.json');
     fs.writeFileSync(outputPath, JSON.stringify(livres, null, 2));

@@ -15,6 +15,9 @@ node_modules/
 public/
 _site/
 
+# Notion-fetched book covers (re-downloaded at build time)
+src/assets/images/lectures/
+
 # IDE
 .vscode/
 .idea/
