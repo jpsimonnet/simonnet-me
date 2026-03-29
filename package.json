@@ -147,6 +147,7 @@
     "semver-compare": "^1.0.0",
     "send": "^1.2.0",
     "setprototypeof": "^1.2.0",
+    "sharp": "^0.34.5",
     "shebang-command": "^2.0.0",
     "shebang-regex": "^3.0.0",
     "signal-exit": "^4.1.0",
