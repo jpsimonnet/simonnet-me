@@ -180,7 +180,7 @@ a:hover { color: var(--color-accent); }
 .kicker::before {
   content: "";
   width: 28px;
-  height: 1px;
+  height: 15px;
   background: currentColor;
 }
 
@@ -191,7 +191,8 @@ a:hover { color: var(--color-accent); }
   font-size: clamp(1.125rem, 1.6vw, 1.375rem);
   color: var(--color-text-muted);
   line-height: 1.55;
-  max-width: 58ch;
+  max-width: 100%;
+  margin-bottom: 2rem;
 }
 
 .meta {
