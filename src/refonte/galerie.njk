@@ -1,0 +1,49 @@
+---
+layout: refonte
+pagination:
+  data: galeries
+  size: 1
+  alias: galerie
+permalink: "refonte/photos/{{ galerie.slug }}/"
+eleventyComputed:
+  title: "{{ galerie.title }}"
+  description: "{{ galerie.description }}"
+---
+
+<section class="hero">
+  <div class="container">
+    <nav aria-label="Fil d'Ariane">
+      <ol class="breadcrumb">
+        <li><a href="/refonte/">Accueil</a></li>
+        <li><a href="/refonte/photos/">Photos</a></li>
+        <li aria-current="page">{{ galerie.title | e }}</li>
+      </ol>
+    </nav>
+
+    <p class="kicker">Galerie</p>
+    <h1>{{ galerie.title | e }}</h1>
+    {% if galerie.description %}
+    <p class="lede">{{ galerie.description }}</p>
+    {% endif %}
+    <p class="meta" style="margin-top: var(--space-md);">
+      {{ galerie.images.length }} photos ·
+      <time datetime="{{ galerie.date }}">{{ galerie.date | formatDateFr }}</time>
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="container-wide">
+    <div class="galerie-masonry">
+      {% for img in galerie.images %}
+      <a href="{{ img.src }}" target="_blank" rel="noopener">
+        <img src="{{ img.src }}" alt="{{ img.alt }}" loading="lazy" decoding="async">
+      </a>
+      {% endfor %}
+    </div>
+
+    <p style="margin-top: var(--space-xl); text-align: center;">
+      <a href="/refonte/photos/">← Toutes les galeries</a>
+    </p>
+  </div>
+</section>

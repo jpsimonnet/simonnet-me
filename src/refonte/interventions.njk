@@ -1,0 +1,44 @@
+---
+layout: refonte
+title: Interventions
+permalink: /refonte/interventions/
+---
+
+<section class="hero">
+  <div class="container">
+    <nav aria-label="Fil d'Ariane">
+      <ol class="breadcrumb">
+        <li><a href="/refonte/">Accueil</a></li>
+        <li aria-current="page">Interventions</li>
+      </ol>
+    </nav>
+
+    <p class="kicker">Conférences, formations</p>
+    <h1>Mes <em>interventions</em></h1>
+    <p class="lede">
+      Conférences, formations et ateliers autour de l'accessibilité numérique,
+      de l'IA et de la qualité web — depuis 2010.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <ul class="interventions-list">
+      {% for post in collections.interventions | reverse %}
+      <li>
+        <a href="{{ post.url }}">
+          <span class="interventions-list__year">{{ post.data.date.getFullYear() }}</span>
+          <span>
+            <span class="interventions-list__title">{{ post.data.title | e }}</span>
+            {% if post.data.description %}
+            <span class="interventions-list__title-desc">{{ post.data.description }}</span>
+            {% endif %}
+          </span>
+          <span class="interventions-list__arrow" aria-hidden="true">→</span>
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>

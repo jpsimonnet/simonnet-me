@@ -1,0 +1,41 @@
+---
+layout: refonte
+title: Photos
+permalink: /refonte/photos/
+---
+
+<section class="hero">
+  <div class="container">
+    <nav aria-label="Fil d'Ariane">
+      <ol class="breadcrumb">
+        <li><a href="/refonte/">Accueil</a></li>
+        <li aria-current="page">Photos</li>
+      </ol>
+    </nav>
+
+    <p class="kicker">Galeries</p>
+    <h1>Mes <em>photos</em></h1>
+    <p class="lede">
+      Quelques instantanés, entre voyages et quotidien. Chaque galerie raconte un lieu, un moment.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="grid-galeries">
+      {% for galerie in galeries %}
+      <a href="/refonte/photos/{{ galerie.slug }}/" class="card-galerie">
+        <div class="card-galerie__image">
+          <img src="{{ galerie.thumbnail }}" alt="" loading="lazy">
+        </div>
+        <div class="card-galerie__title">{{ galerie.title | e }}</div>
+        <div class="card-galerie__meta">
+          {{ galerie.images.length }} photos ·
+          <time datetime="{{ galerie.date }}">{{ galerie.date | formatDateFr }}</time>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>

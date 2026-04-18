@@ -6,9 +6,11 @@ permalink: false
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ title }} — Jean-Philippe Simonnet (refonte)</title>
-  <meta name="description" content="{{ description or 'Site personnel de Jean-Philippe Simonnet, expert accessibilité numérique.' }}">
+  <title>{{ title }} — Oxymore (refonte)</title>
+  <meta name="description" content="{{ description or 'Jean-Philippe Simonnet — expert accessibilité numérique.' }}">
   <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="/css/refonte.css">
   <link rel="icon" href="/favicon.ico">
 </head>
@@ -18,7 +20,7 @@ permalink: false
   <header class="site-header">
     <div class="site-header__inner">
       <a class="site-logo" href="/refonte/" aria-label="Oxymore — accueil">
-        <svg class="logo_oxymore" role="img" aria-label="Oxymore - Un silence assourdissant"
+        <svg class="logo_oxymore" role="img" aria-label="Oxymore — un silence assourdissant"
              viewBox="0 0 598 199" xmlns="http://www.w3.org/2000/svg"
              style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
           <g transform="matrix(1,0,0,1,-17,0)">
@@ -27,20 +29,24 @@ permalink: false
             </g>
             <g transform="matrix(1,0,0,1,12,117)">
               <text class="logo-title" x="0" y="0"
-                    style="font-family:'Didot-Bold','Didot',serif;font-weight:700;font-size:136.813px;">Oxymore</text>
+                    style="font-family:'Fraunces','Didot',serif;font-weight:700;font-size:136.813px;font-style:italic;">Oxymore</text>
             </g>
             <g transform="matrix(1.33868,0,0,1.33868,125.092,46.3567)">
               <text class="logo-subtitle" x="0" y="0"
-                    style="font-family:'Didot-Bold','Didot',serif;font-weight:700;font-size:30px;">un silence assourdissant</text>
+                    style="font-family:'Fraunces','Didot',serif;font-weight:400;font-size:30px;font-style:italic;">un silence assourdissant</text>
             </g>
           </g>
         </svg>
       </a>
+
       <nav class="site-nav" aria-label="Navigation principale">
         <ul>
           <li><a href="/refonte/" {% if page.url == '/refonte/' %}aria-current="page"{% endif %}>Accueil</a></li>
-          <li><a href="/refonte/lectures/" {% if page.url == '/refonte/lectures/' %}aria-current="page"{% endif %}>Lectures</a></li>
-          <li><a href="/">← Site actuel</a></li>
+          <li><a href="/refonte/qui-suis-je/" {% if page.url == '/refonte/qui-suis-je/' %}aria-current="page"{% endif %}>À propos</a></li>
+          <li><a href="/refonte/a-la-une/" {% if '/refonte/a-la-une' in page.url %}aria-current="page"{% endif %}>À la une</a></li>
+          <li><a href="/refonte/lectures/" {% if '/refonte/lectures' in page.url %}aria-current="page"{% endif %}>Lectures</a></li>
+          <li><a href="/refonte/interventions/" {% if page.url == '/refonte/interventions/' %}aria-current="page"{% endif %}>Interventions</a></li>
+          <li><a href="/refonte/photos/" {% if '/refonte/photos' in page.url %}aria-current="page"{% endif %}>Photos</a></li>
         </ul>
       </nav>
     </div>
@@ -51,9 +57,34 @@ permalink: false
   </main>
 
   <footer class="site-footer">
-    <div class="container site-footer__inner">
+    <div class="site-footer__grid">
+      <div class="site-footer__brand">
+        <h4>Oxymore</h4>
+        <p>Le site personnel de Jean-Philippe Simonnet, expert accessibilité numérique depuis 2011. Ici, mes lectures, interventions et réflexions autour d'un numérique plus inclusif.</p>
+      </div>
+      <div class="site-footer__col">
+        <h5>Naviguer</h5>
+        <ul>
+          <li><a href="/refonte/qui-suis-je/">À propos</a></li>
+          <li><a href="/refonte/a-la-une/">À la une</a></li>
+          <li><a href="/refonte/lectures/">Lectures</a></li>
+          <li><a href="/refonte/interventions/">Interventions</a></li>
+          <li><a href="/refonte/photos/">Photos</a></li>
+        </ul>
+      </div>
+      <div class="site-footer__col">
+        <h5>Informations</h5>
+        <ul>
+          <li><a href="/refonte/accessibilite/">Accessibilité</a></li>
+          <li><a href="/refonte/mentions/">Mentions légales</a></li>
+          <li><a href="/refonte/plan/">Plan du site</a></li>
+          <li><a href="/">← Site actuel</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="site-footer__bottom">
       <p>© {% year %} Jean-Philippe Simonnet — Prototype de refonte</p>
-      <p><a href="/">Retour au site actuel</a></p>
+      <p>Un silence assourdissant</p>
     </div>
   </footer>
 </body>
