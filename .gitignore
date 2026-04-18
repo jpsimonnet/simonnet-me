@@ -24,6 +24,10 @@ src/assets/images/lectures/
 *.swp
 *.swo
 
+# Python
+__pycache__/
+*.pyc
+
 # Logs
 npm-debug.log*
 yarn-debug.log*
