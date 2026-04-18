@@ -29,17 +29,22 @@ permalink: false
             </g>
             <g transform="matrix(1,0,0,1,12,117)">
               <text class="logo-title" x="0" y="0"
-                    style="font-family:'Fraunces','Didot',serif;font-weight:700;font-size:136.813px;font-style:italic;">Oxymore</text>
+                    style="font-family:'Playfair Display','Didot',serif;font-weight:700;font-size:136.813px;font-style:italic;">Oxymore</text>
             </g>
             <g transform="matrix(1.33868,0,0,1.33868,125.092,46.3567)">
               <text class="logo-subtitle" x="0" y="0"
-                    style="font-family:'Fraunces','Didot',serif;font-weight:400;font-size:30px;font-style:italic;">un silence assourdissant</text>
+                    style="font-family:'Playfair Display','Didot',serif;font-weight:400;font-size:30px;font-style:italic;">un silence assourdissant</text>
             </g>
           </g>
         </svg>
       </a>
 
-      <nav class="site-nav" aria-label="Navigation principale">
+      <button class="menu-toggle" aria-expanded="false" aria-controls="nav-main" aria-label="Menu">
+        <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+
+      <nav class="site-nav" id="nav-main" aria-label="Navigation principale">
         <ul>
           <li><a href="/refonte/" {% if page.url == '/refonte/' %}aria-current="page"{% endif %}>Accueil</a></li>
           <li><a href="/refonte/qui-suis-je/" {% if page.url == '/refonte/qui-suis-je/' %}aria-current="page"{% endif %}>À propos</a></li>
@@ -55,6 +60,19 @@ permalink: false
   <main id="main">
     {{ content | safe }}
   </main>
+
+  <script>
+  (function(){
+    var btn = document.querySelector('.menu-toggle');
+    var nav = document.getElementById('nav-main');
+    if (!btn || !nav) return;
+    btn.addEventListener('click', function() {
+      var open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!open));
+      nav.setAttribute('data-open', String(!open));
+    });
+  })();
+  </script>
 
   <footer class="site-footer">
     <div class="site-footer__grid">
