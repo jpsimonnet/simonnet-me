@@ -12,7 +12,7 @@
   --color-paper: #FFFFFF;
   --color-text: #1A1A1A;
   --color-text-muted: #5B5B5B;
-  --color-text-subtle: #8C8C8C;
+  --color-text-subtle: #6B6B6B;
   --color-border: #E5E2DB;
   --color-border-soft: #EFECE4;
   --color-accent: rgb(229, 0, 93);
@@ -110,7 +110,7 @@ img { max-width: 100%; height: auto; display: block; }
   z-index: 100;
   transition: top var(--transition);
 }
-.skip-link:focus { top: 1rem; }
+.skip-link:focus-visible { top: 1rem; }
 
 /* ========== TYPOGRAPHIE ========== */
 
@@ -950,7 +950,7 @@ section + section { border-top: 1px solid var(--color-border-soft); }
 @media (max-width: 720px) {
   .site-footer__grid { grid-template-columns: 1fr; gap: var(--space-md); }
 }
-.site-footer__brand h4 {
+.site-footer__title {
   font-family: var(--font-display);
   font-size: 1.5rem;
   font-weight: 500;
@@ -958,7 +958,7 @@ section + section { border-top: 1px solid var(--color-border-soft); }
   color: var(--color-text);
 }
 .site-footer__brand p { max-width: 40ch; color: var(--color-text-muted); }
-.site-footer__col h5 {
+.site-footer__col-title {
   font-family: var(--font-sans);
   font-size: 0.75rem;
   font-weight: 600;

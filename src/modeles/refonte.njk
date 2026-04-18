@@ -40,8 +40,8 @@ permalink: false
       </a>
 
       <button class="menu-toggle" aria-expanded="false" aria-controls="nav-main" aria-label="Menu">
-        <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-        <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        <svg class="icon-open" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        <svg class="icon-close" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
 
       <nav class="site-nav" id="nav-main" aria-label="Navigation principale">
@@ -77,11 +77,11 @@ permalink: false
   <footer class="site-footer">
     <div class="site-footer__grid">
       <div class="site-footer__brand">
-        <h4>Oxymore</h4>
+        <p class="site-footer__title">Oxymore</p>
         <p>Le site personnel de Jean-Philippe Simonnet, expert accessibilité numérique depuis 2011. Ici, mes lectures, interventions et réflexions autour d'un numérique plus inclusif.</p>
       </div>
-      <div class="site-footer__col">
-        <h5>Naviguer</h5>
+      <nav class="site-footer__col" aria-label="Navigation du pied de page">
+        <p class="site-footer__col-title">Naviguer</p>
         <ul>
           <li><a href="/refonte/qui-suis-je/">À propos</a></li>
           <li><a href="/refonte/a-la-une/">À la une</a></li>
@@ -89,16 +89,16 @@ permalink: false
           <li><a href="/refonte/interventions/">Interventions</a></li>
           <li><a href="/refonte/photos/">Photos</a></li>
         </ul>
-      </div>
-      <div class="site-footer__col">
-        <h5>Informations</h5>
+      </nav>
+      <nav class="site-footer__col" aria-label="Informations légales">
+        <p class="site-footer__col-title">Informations</p>
         <ul>
           <li><a href="/refonte/accessibilite/">Accessibilité</a></li>
           <li><a href="/refonte/mentions/">Mentions légales</a></li>
           <li><a href="/refonte/plan/">Plan du site</a></li>
           <li><a href="/">← Site actuel</a></li>
         </ul>
-      </div>
+      </nav>
     </div>
     <div class="site-footer__bottom">
       <p>© {% year %} Jean-Philippe Simonnet — Prototype de refonte</p>
