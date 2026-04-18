@@ -1,0 +1,107 @@
+---
+layout: refonte
+title: Accueil
+permalink: /refonte/
+---
+{% set actualiteRefonte = actualite | slice(0, 4) %}
+
+<section class="hero container">
+  <p class="hero__kicker fade-in">Expert accessibilité numérique</p>
+  <h1 class="fade-in" data-delay="1">Rendre le web plus ouvert, pour tout le monde.</h1>
+  <p class="hero__lede fade-in" data-delay="2">
+    Je suis Jean-Philippe Simonnet, chargé de mission « hospitalité numérique » à la DNUM
+    et expert accessibilité depuis 2011. Ici, je partage mes lectures, mes réflexions
+    et mes interventions autour d'un numérique plus inclusif.
+  </p>
+  <div class="hero__meta fade-in" data-delay="3">
+    <div><strong>Mission actuelle</strong> DNUM — Usages numériques & innovation</div>
+    <div><strong>Spécialité</strong> RGAA, audit, formation</div>
+    <div><strong>Depuis</strong> 2011</div>
+  </div>
+</section>
+
+<section class="container" aria-labelledby="actualite-titre">
+  <div class="section-heading">
+    <h2 id="actualite-titre">À la une</h2>
+    <a href="/a-la-une/0/">Toutes les actualités →</a>
+  </div>
+
+  {% if actualiteRefonte and actualiteRefonte.length > 0 %}
+  <div class="grid-editorial">
+    {% for item in actualiteRefonte %}
+    <article class="card-editorial">
+      {% if item.image %}
+      <div class="card-editorial__image">
+        <img src="{{ item.image }}" alt="" loading="lazy">
+      </div>
+      {% endif %}
+      <p class="card-editorial__meta">
+        <time datetime="{{ item.created }}">{{ item.created | formatDateFr }}</time>
+      </p>
+      <h3>
+        <a href="{{ item.url }}" rel="noopener noreferrer">
+          {{ item.title | e }}
+          <span class="visually-hidden">(nouvelle fenêtre)</span>
+        </a>
+      </h3>
+      {% if item.summary %}
+      <p>{{ item.summary | truncate(140) }}</p>
+      {% endif %}
+    </article>
+    {% endfor %}
+  </div>
+  {% endif %}
+</section>
+
+<section class="container" aria-labelledby="lectures-titre">
+  <div class="section-heading">
+    <h2 id="lectures-titre">Mes lectures récentes</h2>
+    <a href="/refonte/lectures/">Voir toutes les lectures →</a>
+  </div>
+
+  {% set livresRecents = collections.livresTries | slice(0, 6) %}
+  <div class="grid-livres">
+    {% for livre in livresRecents %}
+    <a class="card-livre" href="/livre/{{ livre.id }}/">
+      <div class="card-livre__cover">
+        <img src="/assets/images/lectures/{{ livre.id }}.webp" alt="" loading="lazy">
+      </div>
+      <div>
+        <div class="card-livre__title">{{ livre.Nom | e }}</div>
+        {% if livre.Auteur %}<div class="card-livre__author">{{ livre.Auteur }}</div>{% endif %}
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="container" aria-labelledby="profil-titre">
+  <div class="section-heading">
+    <h2 id="profil-titre">À propos</h2>
+  </div>
+
+  <div class="profil">
+    <div class="profil__image">
+      <img src="/assets/images/jp.jpg" alt="Portrait de Jean-Philippe Simonnet">
+    </div>
+    <div>
+      <p>
+        Je suis actuellement chargé de mission « hospitalité numérique » à la DNUM
+        (Usages Numériques et Innovation), au ministère de l'Aménagement du territoire
+        et de la Décentralisation et au ministère de la Transition écologique.
+      </p>
+      <p>
+        Expert accessibilité depuis 2011, j'accompagne équipes et décideurs pour rendre
+        leurs services numériques accessibles à toutes et tous. J'interviens régulièrement
+        en conférence et en formation.
+      </p>
+
+      <ul class="profil__liens">
+        <li><a href="https://www.linkedin.com/in/simonnet/fr" rel="external noopener">LinkedIn</a></li>
+        <li><a href="https://github.com/jpsimonnet" rel="external noopener">GitHub</a></li>
+        <li><a href="https://www.instagram.com/oxymore93/" rel="external noopener">Instagram</a></li>
+        <li><a href="https://www.doyoubuzz.com/jean-philippe-simonnet" rel="external noopener">CV</a></li>
+      </ul>
+    </div>
+  </div>
+</section>

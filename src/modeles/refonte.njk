@@ -1,0 +1,60 @@
+---
+permalink: false
+---
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title }} — Jean-Philippe Simonnet (refonte)</title>
+  <meta name="description" content="{{ description or 'Site personnel de Jean-Philippe Simonnet, expert accessibilité numérique.' }}">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="/css/refonte.css">
+  <link rel="icon" href="/favicon.ico">
+</head>
+<body>
+  <a class="skip-link" href="#main">Aller au contenu</a>
+
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="site-logo" href="/refonte/" aria-label="Oxymore — accueil">
+        <svg class="logo_oxymore" role="img" aria-label="Oxymore - Un silence assourdissant"
+             viewBox="0 0 598 199" xmlns="http://www.w3.org/2000/svg"
+             style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+          <g transform="matrix(1,0,0,1,-17,0)">
+            <g transform="matrix(1,0,0,1,-136.127,-86.0034)">
+              <path class="logo-swoosh" d="M191,213.128C191,213.128 337.945,158.83 430.99,213C542.829,278.112 681.235,212 681.235,212C681.235,212 574.259,317.376 423,247.251C333.393,205.709 191,213.128 191,213.128Z"/>
+            </g>
+            <g transform="matrix(1,0,0,1,12,117)">
+              <text class="logo-title" x="0" y="0"
+                    style="font-family:'Didot-Bold','Didot',serif;font-weight:700;font-size:136.813px;">Oxymore</text>
+            </g>
+            <g transform="matrix(1.33868,0,0,1.33868,125.092,46.3567)">
+              <text class="logo-subtitle" x="0" y="0"
+                    style="font-family:'Didot-Bold','Didot',serif;font-weight:700;font-size:30px;">un silence assourdissant</text>
+            </g>
+          </g>
+        </svg>
+      </a>
+      <nav class="site-nav" aria-label="Navigation principale">
+        <ul>
+          <li><a href="/refonte/" {% if page.url == '/refonte/' %}aria-current="page"{% endif %}>Accueil</a></li>
+          <li><a href="/refonte/lectures/" {% if page.url == '/refonte/lectures/' %}aria-current="page"{% endif %}>Lectures</a></li>
+          <li><a href="/">← Site actuel</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    {{ content | safe }}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <p>© {% year %} Jean-Philippe Simonnet — Prototype de refonte</p>
+      <p><a href="/">Retour au site actuel</a></p>
+    </div>
+  </footer>
+</body>
+</html>

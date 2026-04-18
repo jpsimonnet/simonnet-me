@@ -1,0 +1,36 @@
+---
+layout: refonte
+title: Lectures
+permalink: /refonte/lectures/
+---
+
+<section class="hero container">
+  <p class="hero__kicker fade-in">Bibliothèque</p>
+  <h1 class="fade-in" data-delay="1">Mes lectures</h1>
+  <p class="hero__lede fade-in" data-delay="2">
+    Une sélection des livres que j'ai lus ces dernières années.
+    Romans, essais, ouvrages techniques — un panorama de ce qui m'anime.
+  </p>
+</section>
+
+<section class="container" aria-labelledby="liste-livres">
+  <h2 id="liste-livres" class="visually-hidden">Liste des livres</h2>
+  <div class="grid-livres">
+    {% for livre in collections.livresTries %}
+    <a class="card-livre" href="/livre/{{ livre.id }}/">
+      <div class="card-livre__cover">
+        <img src="/assets/images/lectures/{{ livre.id }}.webp" alt="" loading="lazy">
+      </div>
+      <div>
+        <div class="card-livre__title">{{ livre.Nom | e }}</div>
+        {% if livre.Auteur %}<div class="card-livre__author">{{ livre.Auteur }}</div>{% endif %}
+        {% if livre["Lu le"] %}
+        <div class="card-livre__author">
+          <time datetime="{{ livre['Lu le'] }}">{{ livre["Lu le"] | formatDateFr }}</time>
+        </div>
+        {% endif %}
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</section>
