@@ -24,18 +24,20 @@ permalink: /refonte/interventions/
 
 <section>
   <div class="container">
-    <ul class="interventions-list">
+    <ul class="interventions-grid">
       {% for post in collections.interventions | reverse %}
       <li>
-        <a href="{{ post.url }}">
-          <span class="interventions-list__year">{{ post.data.date.getFullYear() }}</span>
-          <span>
-            <span class="interventions-list__title">{{ post.data.title | e }}</span>
-            {% if post.data.description %}
-            <span class="interventions-list__title-desc">{{ post.data.description }}</span>
+        <a class="card-intervention" href="/refonte/intervention/{{ post.fileSlug }}/">
+          <div class="card-intervention__image">
+            {% if post.data.image %}
+            <img src="{{ post.data.image }}" alt="" loading="lazy">
             {% endif %}
-          </span>
-          <span class="interventions-list__arrow" aria-hidden="true">→</span>
+            <span class="card-intervention__year">{{ post.data.date.getFullYear() }}</span>
+          </div>
+          <h2 class="card-intervention__title">{{ post.data.title | e }}</h2>
+          {% if post.data.description %}
+          <p class="card-intervention__desc">{{ post.data.description | truncate(140) }}</p>
+          {% endif %}
         </a>
       </li>
       {% endfor %}

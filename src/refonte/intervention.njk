@@ -1,0 +1,46 @@
+---
+layout: refonte
+pagination:
+  data: collections.interventions
+  size: 1
+  alias: post
+permalink: "refonte/intervention/{{ post.fileSlug }}/"
+eleventyComputed:
+  title: "{{ post.data.title }}"
+  description: "{{ post.data.description }}"
+---
+
+<section class="hero">
+  <div class="container">
+    <nav aria-label="Fil d'Ariane">
+      <ol class="breadcrumb">
+        <li><a href="/refonte/">Accueil</a></li>
+        <li><a href="/refonte/interventions/">Interventions</a></li>
+        <li aria-current="page">{{ post.data.title | e }}</li>
+      </ol>
+    </nav>
+
+    <p class="kicker">Intervention</p>
+    <h1>{{ post.data.title | e }}</h1>
+    {% if post.data.description %}
+    <p class="lede">{{ post.data.description }}</p>
+    {% endif %}
+    <p class="meta" style="margin-top: var(--space-md);">
+      <time datetime="{{ post.data.date.toISOString() }}">{{ post.data.date | formatDateFr }}</time>
+    </p>
+  </div>
+</section>
+
+{% if post.data.image %}
+<div class="article-hero">
+  <img src="{{ post.data.image }}" alt="" loading="lazy">
+</div>
+{% endif %}
+
+<div class="article-body">
+  {{ post.templateContent | safe }}
+</div>
+
+<nav class="article-nav" aria-label="Navigation entre interventions">
+  <a href="/refonte/interventions/">← Toutes les interventions</a>
+</nav>

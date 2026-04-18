@@ -46,7 +46,7 @@ permalink: /refonte/plan/
       <ul>
         {% for post in collections.interventions | reverse %}
         <li>
-          <a href="{{ post.url }}">{{ post.data.title | e }}</a>
+          <a href="/refonte/intervention/{{ post.fileSlug }}/">{{ post.data.title | e }}</a>
         </li>
         {% endfor %}
       </ul>
