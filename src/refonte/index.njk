@@ -3,8 +3,8 @@ layout: refonte
 title: Accueil
 permalink: /refonte/
 ---
-{% set actualiteRefonte = actualite | slice(0, 4) %}
-{% set livresRecents = collections.livresTries | slice(0, 6) %}
+{% set actualiteRefonte = actualite | slice(0, 6) %}
+{% set livresRecents = collections.livresTries | slice(0, 5) %}
 
 <section class="hero">
   <div class="container">
@@ -81,7 +81,7 @@ permalink: /refonte/
       <a href="/refonte/lectures/">Voir toutes les lectures →</a>
     </div>
 
-    <div class="grid-livres">
+    <div class="grid-livres grid-livres--5">
       {% for livre in livresRecents %}
       <a class="card-livre" href="/refonte/livre/{{ livre.id }}/">
         <div class="card-livre__cover">
@@ -90,6 +90,7 @@ permalink: /refonte/
         <div>
           <div class="card-livre__title">{{ livre.Nom | e }}</div>
           {% if livre.Auteur %}<div class="card-livre__author">{{ livre.Auteur }}</div>{% endif %}
+          {% if livre.Résumé %}<p class="card-livre__resume">{{ livre.Résumé | truncate(120) }}</p>{% endif %}
         </div>
       </a>
       {% endfor %}
