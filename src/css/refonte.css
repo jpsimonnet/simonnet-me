@@ -941,7 +941,7 @@ section + section { border-top: 1px solid var(--color-border-soft); }
 /* ========== PROSE / ARTICLES (mentions, accessibilité, etc) ========== */
 
 .prose {
-  max-width: 68ch;
+  max-width: 800px;
   font-size: 1.0625rem;
   line-height: 1.75;
   color: var(--color-text);
