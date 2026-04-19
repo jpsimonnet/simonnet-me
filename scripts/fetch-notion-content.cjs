@@ -63,8 +63,8 @@ function toEmbedUrl(url) {
   // Dailymotion
   m = url.match(/dailymotion\.com\/video\/([\w]+)/);
   if (m) return `https://www.dailymotion.com/embed/video/${m[1]}`;
-  // Vimeo
-  m = url.match(/vimeo\.com\/(\d+)/);
+  // Vimeo (supports vimeo.com/ID, vimeo.com/video/ID, player.vimeo.com/video/ID)
+  m = url.match(/vimeo\.com\/(?:video\/)?(\d+)/);
   if (m) return `https://player.vimeo.com/video/${m[1]}`;
   // PeerTube-style or other iframe-ready URLs
   if (url.includes('/embed/') || url.includes('/player/')) return url;
