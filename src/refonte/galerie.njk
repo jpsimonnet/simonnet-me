@@ -36,7 +36,7 @@ eleventyComputed:
   <div class="container-wide">
     <div class="galerie-masonry">
       {% for img in galerie.images %}
-      <a href="{{ img.src }}" target="_blank" rel="noopener">
+      <a href="{{ img.src }}" class="galerie-item" data-index="{{ loop.index0 }}" aria-label="Agrandir {{ img.alt }}">
         <img src="{{ img.src }}" alt="{{ img.alt }}" loading="lazy" decoding="async">
       </a>
       {% endfor %}
@@ -47,3 +47,16 @@ eleventyComputed:
     </p>
   </div>
 </section>
+
+<div id="lightbox" class="galerie-lightbox" role="dialog" aria-label="Visionneuse de photos" aria-modal="true" hidden>
+  <div class="galerie-lightbox-overlay"></div>
+  <button class="galerie-lightbox-close" aria-label="Fermer">&times;</button>
+  <button class="galerie-lightbox-prev" aria-label="Photo précédente">&#10094;</button>
+  <button class="galerie-lightbox-next" aria-label="Photo suivante">&#10095;</button>
+  <div class="galerie-lightbox-content">
+    <img src="" alt="" class="galerie-lightbox-img">
+    <p class="galerie-lightbox-counter"></p>
+  </div>
+</div>
+
+<script src="/js/galerie.js" defer></script>
