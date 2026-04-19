@@ -151,7 +151,8 @@ async function fetchPageBody(pageId) {
   try {
     const mdBlocks = await n2m.pageToMarkdown(pageId);
     const mdString = n2m.toMarkdownString(mdBlocks);
-    return mdString.parent || mdString;
+    if (typeof mdString === 'string') return mdString;
+    return (mdString && typeof mdString.parent === 'string') ? mdString.parent : '';
   } catch (err) {
     console.warn(`⚠️ Body: ${err.message}`);
     return '';

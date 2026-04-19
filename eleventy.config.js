@@ -99,7 +99,7 @@ export default function(eleventyConfig) {
   // Markdown filter for Notion content
   const md = markdownit({ html: true, linkify: true, breaks: false, typographer: true });
   eleventyConfig.addFilter("markdownify", (content) => {
-    if (!content) return '';
+    if (!content || typeof content !== 'string') return '';
     return md.render(content);
   });
 
