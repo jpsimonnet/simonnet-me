@@ -787,8 +787,39 @@ section + section { border-top: 1px solid var(--color-border-soft); }
   text-underline-offset: 3px;
   cursor: help;
 }
-.article-body .float-end,
-.article-body .float-start { float: none; margin: 2rem 0; }
+/* Image floats (via Notion caption directive ":right:" / ":left:" / ":center:") */
+.article-body figure { margin: 2rem 0; }
+.article-body figure img { margin: 0; }
+.article-body figcaption {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  color: var(--color-text-subtle);
+  text-align: center;
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+.article-body figure.float-right {
+  float: right;
+  margin: 0.25rem 0 1.5rem 2rem;
+  max-width: 45%;
+}
+.article-body figure.float-left {
+  float: left;
+  margin: 0.25rem 2rem 1.5rem 0;
+  max-width: 45%;
+}
+.article-body figure.float-center {
+  margin: 2rem auto;
+  text-align: center;
+}
+@media (max-width: 640px) {
+  .article-body figure.float-right,
+  .article-body figure.float-left {
+    float: none;
+    margin: 2rem 0;
+    max-width: 100%;
+  }
+}
 .article-nav {
   max-width: var(--max-width-prose);
   margin: var(--space-xl) auto 0;

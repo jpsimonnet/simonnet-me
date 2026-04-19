@@ -22,6 +22,47 @@ const n2m = new NotionToMarkdown({
 });
 
 // Custom transformers for blocks not supported by default
+// Image transformer: download image locally + parse caption directives
+// Directives: ":right:", ":left:", ":center:" at start of caption
+n2m.setCustomTransformer('image', async (block) => {
+  const img = block.image;
+  const url = img.type === 'file' ? img.file.url : img.external?.url;
+  if (!url) return '';
+
+  const captionArr = img.caption || [];
+  const rawCaption = captionArr.map((t) => t.plain_text).join('');
+
+  let floatClass = '';
+  let caption = rawCaption;
+  const match = caption.match(/^:(right|left|center)(?::\s*(.*))?$/s);
+  if (match) {
+    floatClass = `float-${match[1]}`;
+    caption = match[2] || '';
+  }
+
+  // Download image locally (Notion URLs expire after ~1h)
+  const ext = sharp ? 'webp' : (url.match(/\.(jpe?g|png|gif|webp)(\?|$)/i)?.[1] || 'jpg');
+  const filename = `${block.id.replace(/-/g, '')}.${ext}`;
+  const destPath = path.join(INLINE_IMAGES_DIR, filename);
+  let localUrl = '';
+  try {
+    if (!fs.existsSync(destPath)) {
+      await downloadImage(url, destPath);
+    }
+    localUrl = `/assets/images/notion-inline/${filename}`;
+  } catch (err) {
+    console.warn(`⚠️ Inline image: ${err.message}`);
+    return '';
+  }
+
+  const alt = caption || '';
+  const imgHtml = `<img src="${localUrl}" alt="${alt.replace(/"/g, '&quot;')}" loading="lazy">`;
+  const figClass = floatClass ? ` class="${floatClass}"` : '';
+  const figCaption = caption ? `<figcaption>${caption}</figcaption>` : '';
+
+  return `\n<figure${figClass}>${imgHtml}${figCaption}</figure>\n`;
+});
+
 n2m.setCustomTransformer('callout', async (block) => {
   const text = (block.callout.rich_text || [])
     .map((t) => t.plain_text)
@@ -89,9 +130,13 @@ n2m.setCustomTransformer('toggle', async (block) => {
 
 const DB_ID = '347f9c97e6ff80b29ff1caff138f55a1';
 const IMAGES_DIR = path.join(__dirname, '../src/assets/images/notion');
+const INLINE_IMAGES_DIR = path.join(__dirname, '../src/assets/images/notion-inline');
 
 if (!fs.existsSync(IMAGES_DIR)) {
   fs.mkdirSync(IMAGES_DIR, { recursive: true });
+}
+if (!fs.existsSync(INLINE_IMAGES_DIR)) {
+  fs.mkdirSync(INLINE_IMAGES_DIR, { recursive: true });
 }
 
 function downloadBuffer(url) {
