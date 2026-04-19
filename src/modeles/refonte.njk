@@ -54,6 +54,26 @@ permalink: false
           <li><a href="/refonte/photos/" {% if '/refonte/photos' in page.url %}aria-current="page"{% endif %}>Photos</a></li>
         </ul>
       </nav>
+
+      <div class="site-tools">
+        {# Theme switcher #}
+        <div class="theme-switcher" role="group" aria-label="Mode d'affichage">
+          <button type="button" class="theme-btn" data-theme="light" aria-label="Mode clair" title="Clair">
+            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"><path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6m0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0m9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/></svg>
+          </button>
+          <button type="button" class="theme-btn" data-theme="dark" aria-label="Mode sombre" title="Sombre">
+            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"><path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278"/></svg>
+          </button>
+          <button type="button" class="theme-btn" data-theme="auto" aria-label="Mode automatique" title="Auto">
+            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"><path d="M8 15A7 7 0 1 0 8 1zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16"/></svg>
+          </button>
+        </div>
+
+        {# Search button #}
+        <button type="button" class="search-toggle" aria-label="Rechercher" aria-expanded="false" aria-controls="search-panel">
+          <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" fill="currentColor"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/></svg>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -61,16 +81,89 @@ permalink: false
     {{ content | safe }}
   </main>
 
+  {# Search panel #}
+  <div id="search-panel" class="search-panel" hidden>
+    <div class="search-panel__inner container">
+      <div id="search-results"></div>
+      <button type="button" class="search-panel__close" aria-label="Fermer la recherche">&times;</button>
+    </div>
+  </div>
+
+  <script src="{{ '/pagefind/pagefind-ui.js' | url }}"></script>
   <script>
   (function(){
+    // Mobile menu toggle
     var btn = document.querySelector('.menu-toggle');
     var nav = document.getElementById('nav-main');
-    if (!btn || !nav) return;
-    btn.addEventListener('click', function() {
-      var open = btn.getAttribute('aria-expanded') === 'true';
-      btn.setAttribute('aria-expanded', String(!open));
-      nav.setAttribute('data-open', String(!open));
+    if (btn && nav) {
+      btn.addEventListener('click', function() {
+        var open = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!open));
+        nav.setAttribute('data-open', String(!open));
+      });
+    }
+
+    // Theme switcher
+    var root = document.documentElement;
+    var themeBtns = document.querySelectorAll('.theme-btn');
+    var stored = localStorage.getItem('theme') || 'auto';
+
+    function applyTheme(t) {
+      root.setAttribute('data-theme', t);
+      if (t === 'auto') {
+        root.style.colorScheme = '';
+        root.removeAttribute('data-force-theme');
+      } else {
+        root.style.colorScheme = t;
+        root.setAttribute('data-force-theme', t);
+      }
+      themeBtns.forEach(function(b) {
+        b.setAttribute('aria-pressed', b.dataset.theme === t ? 'true' : 'false');
+      });
+      localStorage.setItem('theme', t);
+    }
+
+    themeBtns.forEach(function(b) {
+      b.addEventListener('click', function() { applyTheme(b.dataset.theme); });
     });
+    applyTheme(stored);
+
+    // Search
+    var searchBtn = document.querySelector('.search-toggle');
+    var searchPanel = document.getElementById('search-panel');
+    var searchClose = document.querySelector('.search-panel__close');
+    var searchInit = false;
+
+    function openSearch() {
+      searchPanel.hidden = false;
+      searchBtn.setAttribute('aria-expanded', 'true');
+      if (!searchInit && typeof PagefindUI !== 'undefined') {
+        new PagefindUI({
+          element: '#search-results',
+          showEmptyResults: false,
+          resetStyles: false,
+          snippetLength: 30,
+          translations: { placeholder: 'Rechercher sur le site\u2026', results: 'r\u00e9sultat(s)', clear_search: 'Effacer', load_more: 'Charger plus' }
+        });
+        searchInit = true;
+      }
+      var input = searchPanel.querySelector('input');
+      if (input) input.focus();
+    }
+
+    function closeSearch() {
+      searchPanel.hidden = true;
+      searchBtn.setAttribute('aria-expanded', 'false');
+      searchBtn.focus();
+    }
+
+    if (searchBtn && searchPanel) {
+      searchBtn.addEventListener('click', openSearch);
+      searchClose.addEventListener('click', closeSearch);
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && !searchPanel.hidden) closeSearch();
+      });
+    }
   })();
   </script>
 
@@ -101,8 +194,8 @@ permalink: false
       </nav>
     </div>
     <div class="site-footer__bottom">
-      <p>© {% year %} Jean-Philippe Simonnet — Prototype de refonte</p>
-      <p>Un silence assourdissant</p>
+      <p><a rel="license" href="https://creativecommons.org/licenses/by-sa/3.0/fr/">CC BY-SA 3.0 FR - {% year %}</a></p>
+      <p><a href="/feed.xml">Flux <abbr title="Really Simple Syndication" lang="en">RSS</abbr></a></p>
     </div>
   </footer>
 </body>
