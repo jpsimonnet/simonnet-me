@@ -31,12 +31,6 @@ eleventyComputed:
   </div>
 </section>
 
-{% if post.data.image %}
-<div class="article-hero">
-  <img src="{{ post.data.image }}" alt="" loading="lazy">
-</div>
-{% endif %}
-
 <div class="article-body">
   {{ post.templateContent | safe }}
 </div>
