@@ -25,36 +25,21 @@ permalink: /refonte/accessibilite/
 <section>
   <div class="container">
     <article class="prose">
+      {% if notionPages and notionPages['accessibilite'] and notionPages['accessibilite'].content %}
+        {{ notionPages['accessibilite'].content | markdownify | safe }}
+      {% else %}
       <h2>Déclaration d'accessibilité</h2>
       <p>
         Jean-Philippe Simonnet s'engage à rendre son site internet accessible
         conformément à l'article 47 de la loi n° 2005-102 du 11 février 2005.
       </p>
-
       <h2>État de conformité</h2>
       <p>
         <strong>simonnet.me</strong> est <strong>partiellement conforme</strong>
-        avec le <a href="https://accessibilite.numerique.gouv.fr/" rel="external noopener">
-        Référentiel général d'amélioration de l'accessibilité (RGAA) version 4.1</a>.
+        avec le <a href="https://accessibilite.numerique.gouv.fr/">RGAA version 4.1</a>.
       </p>
-
-      <blockquote>
-        Taux de conformité global : 93 % (80 critères conformes sur 86 applicables).
-      </blockquote>
-
-      <h2>Référentiels appliqués</h2>
-      <ul>
-        <li><strong>RGAA 4.1</strong> — accessibilité numérique</li>
-        <li><strong>Opquast</strong> — qualité web</li>
-        <li><strong>GR491 / Green IT</strong> — éco-conception</li>
-      </ul>
-
-      <h2>Contact</h2>
-      <p>
-        Si vous constatez un défaut d'accessibilité vous empêchant d'accéder à un contenu,
-        n'hésitez pas à me le signaler via
-        <a href="https://www.linkedin.com/in/simonnet/fr" rel="external noopener">LinkedIn</a>.
-      </p>
+      <blockquote>Taux de conformité global : 93 %</blockquote>
+      {% endif %}
     </article>
   </div>
 </section>

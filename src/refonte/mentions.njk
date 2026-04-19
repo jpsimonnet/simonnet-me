@@ -21,23 +21,20 @@ permalink: /refonte/mentions/
 <section>
   <div class="container">
     <article class="prose">
+      {% if notionPages and notionPages['mentions'] and notionPages['mentions'].content %}
+        {{ notionPages['mentions'].content | markdownify | safe }}
+      {% else %}
       <h2>Éditeur</h2>
       <p>Ce site est la propriété de Jean-Philippe Simonnet.</p>
-
       <h2>Hébergement</h2>
       <p>Ce site est hébergé par GitHub, Inc.</p>
-
       <h2>Licence</h2>
       <p>
         Cette œuvre, disponible sur <a href="https://www.simonnet.me">simonnet.me</a>,
         est mise à disposition selon les termes de la licence
         <strong>Creative Commons Attribution — Partage dans les mêmes conditions 3.0 France</strong>.
       </p>
-
-      <h2>Données personnelles</h2>
-      <p>
-        Ce site ne collecte aucune donnée personnelle et n'utilise pas de cookies de suivi.
-      </p>
+      {% endif %}
     </article>
   </div>
 </section>

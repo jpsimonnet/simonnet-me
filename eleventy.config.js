@@ -4,6 +4,7 @@ import fs from "fs";
 import { fileURLToPath } from 'url';
 import { HtmlBasePlugin } from "@11ty/eleventy";
 import { feedPlugin } from "@11ty/eleventy-plugin-rss";
+import markdownit from "markdown-it";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -93,6 +94,13 @@ export default function(eleventyConfig) {
         name: "Jean-Philippe Simonnet"
       }
     }
+  });
+
+  // Markdown filter for Notion content
+  const md = markdownit({ html: true, linkify: true });
+  eleventyConfig.addFilter("markdownify", (content) => {
+    if (!content) return '';
+    return md.render(content);
   });
 
   // Shortcodes

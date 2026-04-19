@@ -1,13 +1,13 @@
 ---
 layout: refonte
 pagination:
-  data: collections.interventions
+  data: notionInterventions
   size: 1
-  alias: post
-permalink: "refonte/intervention/{{ post.fileSlug }}/"
+  alias: item
+permalink: "refonte/intervention/{{ item.slug }}/"
 eleventyComputed:
-  title: "{{ post.data.title }}"
-  description: "{{ post.data.description }}"
+  title: "{{ item.title }}"
+  description: "{{ item.description }}"
 ---
 
 <section class="hero">
@@ -16,23 +16,25 @@ eleventyComputed:
       <ol class="breadcrumb">
         <li><a href="/refonte/">Accueil</a></li>
         <li><a href="/refonte/interventions/">Interventions</a></li>
-        <li aria-current="page">{{ post.data.title | e }}</li>
+        <li aria-current="page">{{ item.title | e }}</li>
       </ol>
     </nav>
 
     <p class="kicker">Intervention</p>
-    <h1>{{ post.data.title | e }}</h1>
-    {% if post.data.description %}
-    <p class="lede">{{ post.data.description }}</p>
+    <h1>{{ item.title | e }}</h1>
+    {% if item.description %}
+    <p class="lede">{{ item.description }}</p>
     {% endif %}
+    {% if item.date %}
     <p class="meta" style="margin-top: var(--space-md);">
-      <time datetime="{{ post.data.date.toISOString() }}">{{ post.data.date | formatDateFr }}</time>
+      <time datetime="{{ item.date }}">{{ item.date | formatDateFr }}</time>
     </p>
+    {% endif %}
   </div>
 </section>
 
 <div class="article-body">
-  {{ post.templateContent | safe }}
+  {{ item.body | markdownify | safe }}
 </div>
 
 <nav class="article-nav" aria-label="Navigation entre interventions">
