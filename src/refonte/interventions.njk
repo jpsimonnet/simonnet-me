@@ -24,10 +24,9 @@ permalink: /refonte/interventions/
 
 <section>
   <div class="container">
-    {%- set items = notionInterventions -%}
-    {% if items and items.length > 0 %}
+    {% if notionInterventions and notionInterventions.length > 0 %}
     <ul class="interventions-grid">
-      {% for item in items %}
+      {% for item in notionInterventions %}
       <li>
         <a class="card-intervention" href="/refonte/intervention/{{ item.slug }}/">
           <div class="card-intervention__image">
@@ -47,25 +46,7 @@ permalink: /refonte/interventions/
       {% endfor %}
     </ul>
     {% else %}
-    {# Fallback: use markdown-based interventions if Notion data not available #}
-    <ul class="interventions-grid">
-      {% for post in collections.interventions | reverse %}
-      <li>
-        <a class="card-intervention" href="/refonte/intervention/{{ post.fileSlug }}/">
-          <div class="card-intervention__image">
-            {% if post.data.image %}
-            <img src="{{ post.data.image }}" alt="" loading="lazy">
-            {% endif %}
-            <span class="card-intervention__year">{{ post.data.date.getFullYear() }}</span>
-          </div>
-          <h2 class="card-intervention__title">{{ post.data.title | e }}</h2>
-          {% if post.data.description %}
-          <p class="card-intervention__desc">{{ post.data.description | truncate(140) }}</p>
-          {% endif %}
-        </a>
-      </li>
-      {% endfor %}
-    </ul>
+    <p>Aucune intervention publiée pour le moment.</p>
     {% endif %}
   </div>
 </section>

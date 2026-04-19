@@ -102,12 +102,27 @@ async function fetchInterventions() {
 
     for (const page of pages) {
       const props = page.properties;
-      const title = props.Nom?.title?.[0]?.plain_text || '';
+
+      // Debug : afficher les noms de propriétés disponibles
+      if (interventions.length === 0) {
+        console.log('🔍 Propriétés détectées dans la base:', Object.keys(props));
+      }
+
+      const title = props.Nom?.title?.[0]?.plain_text
+                 || props.Name?.title?.[0]?.plain_text
+                 || props.Title?.title?.[0]?.plain_text
+                 || '';
       const date = props.Date?.date?.start || '';
-      const description = props.Description?.rich_text?.[0]?.plain_text || '';
+      const description = props.Description?.rich_text?.[0]?.plain_text
+                       || props.Résumé?.rich_text?.[0]?.plain_text
+                       || '';
       const slugProp = props.Slug?.rich_text?.[0]?.plain_text || '';
       const slug = slugProp || slugify(title);
-      const imageUrlProp = props.Image?.url || props.Image?.files?.[0]?.file?.url || '';
+      const imageUrlProp = props.Image?.url
+                        || props.Image?.files?.[0]?.file?.url
+                        || props.Image?.files?.[0]?.external?.url
+                        || props['URL image']?.url
+                        || '';
 
       // Fetch page body as Markdown
       let body = '';
