@@ -13,7 +13,79 @@ let sharp;
 try { sharp = require('sharp'); } catch (e) { sharp = null; }
 
 const notion = new Client({ auth: process.env.NOTION_TOKEN });
-const n2m = new NotionToMarkdown({ notionClient: notion });
+const n2m = new NotionToMarkdown({
+  notionClient: notion,
+  config: {
+    parseChildPages: false,
+    convertImagesToBase64: false,
+  },
+});
+
+// Custom transformers for blocks not supported by default
+n2m.setCustomTransformer('callout', async (block) => {
+  const text = (block.callout.rich_text || [])
+    .map((t) => t.plain_text)
+    .join('');
+  const emoji = block.callout.icon?.emoji || '💡';
+  return `> ${emoji} ${text}`;
+});
+
+n2m.setCustomTransformer('column_list', async (block) => {
+  try {
+    const children = await notion.blocks.children.list({ block_id: block.id });
+    const cols = [];
+    for (const col of children.results) {
+      const colChildren = await n2m.blocksToMarkdown([col]);
+      cols.push(n2m.toMarkdownString(colChildren).parent || '');
+    }
+    return cols.join('\n\n');
+  } catch (e) {
+    return '';
+  }
+});
+
+n2m.setCustomTransformer('table', async (block) => {
+  try {
+    const children = await notion.blocks.children.list({ block_id: block.id });
+    const rows = children.results.filter((c) => c.type === 'table_row');
+    if (rows.length === 0) return '';
+    const hasHeader = block.table?.has_column_header;
+
+    const renderRow = (row) =>
+      '| ' + (row.table_row.cells || [])
+        .map((cell) => (cell || []).map((t) => t.plain_text).join('').replace(/\|/g, '\\|') || ' ')
+        .join(' | ') + ' |';
+
+    let out = '\n' + renderRow(rows[0]) + '\n';
+    const colCount = rows[0].table_row.cells?.length || 0;
+    if (hasHeader) {
+      out += '|' + ' --- |'.repeat(colCount) + '\n';
+    } else {
+      out = '|' + ' --- |'.repeat(colCount) + '\n' + renderRow(rows[0]) + '\n' + '|' + ' --- |'.repeat(colCount) + '\n';
+    }
+    for (const row of rows.slice(1)) {
+      out += renderRow(row) + '\n';
+    }
+    return out;
+  } catch (e) {
+    console.warn('⚠️ Table conversion failed:', e.message);
+    return '';
+  }
+});
+
+n2m.setCustomTransformer('toggle', async (block) => {
+  const text = (block.toggle.rich_text || [])
+    .map((t) => t.plain_text)
+    .join('');
+  try {
+    const children = await notion.blocks.children.list({ block_id: block.id });
+    const childMd = await n2m.blocksToMarkdown(children.results);
+    const content = n2m.toMarkdownString(childMd).parent || '';
+    return `<details><summary>${text}</summary>\n\n${content}\n\n</details>`;
+  } catch (e) {
+    return `**${text}**`;
+  }
+});
 
 const DB_ID = '347f9c97e6ff80b29ff1caff138f55a1';
 const IMAGES_DIR = path.join(__dirname, '../src/assets/images/notion');
@@ -110,8 +182,14 @@ async function processEntry(page) {
   const description = props.Description?.rich_text?.[0]?.plain_text || '';
   const slugProp = props.Slug?.rich_text?.[0]?.plain_text || '';
   const slug = slugProp || slugify(title);
-  const rubrique = props.Rubrique?.select?.name
-                || props.rubrique?.select?.name
+  // Extract rubrique from various possible field names and types
+  const rubriqueField = props.Rubrique || props.Rubriques
+                     || props.rubrique || props.rubriques
+                     || props.Category || props.Categorie
+                     || {};
+  const rubrique = rubriqueField.select?.name
+                || rubriqueField.multi_select?.[0]?.name
+                || rubriqueField.rich_text?.[0]?.plain_text
                 || '';
   const imageUrlProp = props.Image?.url
                     || props.Image?.files?.[0]?.file?.url
@@ -147,9 +225,12 @@ async function main() {
       return;
     }
 
-    // Log detected properties for debugging
+    // Log detected properties and their types for debugging
     const props = pages[0].properties;
-    console.log('🔍 Propriétés détectées:', Object.keys(props));
+    console.log('🔍 Propriétés détectées:');
+    for (const [name, value] of Object.entries(props)) {
+      console.log(`   - ${name} (${value.type})`);
+    }
 
     const interventions = [];
     const pagesData = {};
@@ -158,12 +239,12 @@ async function main() {
       const entry = await processEntry(page);
       const rubNorm = entry.rubrique.toLowerCase().trim();
 
-      if (rubNorm === 'intervention') {
+      console.log(`➡️  "${entry.title}" | slug=${entry.slug} | rubrique="${entry.rubrique}" | body=${entry.body.length} chars`);
+
+      if (rubNorm === 'intervention' || rubNorm === 'interventions') {
         interventions.push(entry);
-        console.log(`📋 Intervention: ${entry.title}`);
       } else {
         pagesData[entry.slug] = { title: entry.title, content: entry.body };
-        console.log(`📄 Page: ${entry.title} (slug: ${entry.slug})`);
       }
     }
 
