@@ -894,6 +894,7 @@ section + section { border-top: 1px solid var(--color-border-soft); }
 .galerie-masonry {
   columns: 3;
   column-gap: var(--space-md);
+  margin: 1rem 0;
 }
 .galerie-masonry > * {
   break-inside: avoid;
