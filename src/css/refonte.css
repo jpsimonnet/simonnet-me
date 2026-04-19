@@ -657,7 +657,7 @@ section + section { border-top: 1px solid var(--color-border-soft); }
   color: inherit;
 }
 .card-intervention__image {
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 1 / 1;
   overflow: hidden;
   border-radius: var(--radius-md);
   background: var(--color-bg-alt);
