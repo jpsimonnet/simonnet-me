@@ -4,7 +4,7 @@ pagination:
   data: galeries
   size: 1
   alias: galerie
-permalink: "refonte/photos/{{ galerie.slug }}/"
+permalink: "photos/{{ galerie.slug }}/"
 eleventyComputed:
   title: "{{ galerie.title }}"
   description: "{{ galerie.description }}"
@@ -14,8 +14,8 @@ eleventyComputed:
   <div class="container">
     <nav aria-label="Fil d'Ariane">
       <ol class="breadcrumb">
-        <li><a href="/refonte/">Accueil</a></li>
-        <li><a href="/refonte/photos/">Photos</a></li>
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/photos/">Photos</a></li>
         <li aria-current="page">{{ galerie.title | e }}</li>
       </ol>
     </nav>
@@ -43,7 +43,7 @@ eleventyComputed:
     </div>
 
     <p style="margin-top: var(--space-xl); text-align: center;">
-      <a href="/refonte/photos/">← Toutes les galeries</a>
+      <a href="/photos/">← Toutes les galeries</a>
     </p>
   </div>
 </section>

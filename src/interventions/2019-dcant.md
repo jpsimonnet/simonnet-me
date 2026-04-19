@@ -7,7 +7,7 @@ title: "2019 - Webinaire DCANT #18 - L’écoconception web"
 date: 2019-03-14
 image: /assets/images/2019-dcant.jpg
 description: "Comment rendre le numérique plus responsable, en consommant moins de bande passante, moins de serveurs, moins d’électronique, moins d’énergie, tout en assurant une qualité de service optimale ?"
-rubriqueurl: /interventions/
+rubriqueurl: /2025/interventions/
 rubriquenom: "Mes interventions"
 eleventyNavigation:
   key: interventions

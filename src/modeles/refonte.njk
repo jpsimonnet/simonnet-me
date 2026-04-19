@@ -6,9 +6,8 @@ permalink: false
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ title }} — Oxymore (refonte)</title>
+  <title>{{ title }} — Oxymore</title>
   <meta name="description" content="{{ description or 'Jean-Philippe Simonnet — expert accessibilité numérique.' }}">
-  <meta name="robots" content="noindex, nofollow">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="/css/refonte.css">
@@ -19,7 +18,7 @@ permalink: false
 
   <header class="site-header">
     <div class="site-header__inner">
-      <a class="site-logo" href="/refonte/" aria-label="Oxymore — accueil">
+      <a class="site-logo" href="/" aria-label="Oxymore — accueil">
         <svg class="logo_oxymore" role="img" aria-label="Oxymore — un silence assourdissant"
              viewBox="0 0 598 220" xmlns="http://www.w3.org/2000/svg"
              style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
@@ -46,12 +45,12 @@ permalink: false
 
       <nav class="site-nav" id="nav-main" aria-label="Navigation principale">
         <ul>
-          <li><a href="/refonte/" {% if page.url == '/refonte/' %}aria-current="page"{% endif %}>Accueil</a></li>
-          <li><a href="/refonte/qui-suis-je/" {% if page.url == '/refonte/qui-suis-je/' %}aria-current="page"{% endif %}>À propos</a></li>
-          <li><a href="/refonte/a-la-une/" {% if '/refonte/a-la-une' in page.url %}aria-current="page"{% endif %}>À la une</a></li>
-          <li><a href="/refonte/lectures/" {% if '/refonte/lectures' in page.url %}aria-current="page"{% endif %}>Lectures</a></li>
-          <li><a href="/refonte/interventions/" {% if page.url == '/refonte/interventions/' %}aria-current="page"{% endif %}>Interventions</a></li>
-          <li><a href="/refonte/photos/" {% if '/refonte/photos' in page.url %}aria-current="page"{% endif %}>Photos</a></li>
+          <li><a href="/" {% if page.url == '/' %}aria-current="page"{% endif %}>Accueil</a></li>
+          <li><a href="/qui-suis-je/" {% if page.url == '/qui-suis-je/' %}aria-current="page"{% endif %}>À propos</a></li>
+          <li><a href="/a-la-une/" {% if '/a-la-une' in page.url %}aria-current="page"{% endif %}>À la une</a></li>
+          <li><a href="/lectures/" {% if '/lectures' in page.url %}aria-current="page"{% endif %}>Lectures</a></li>
+          <li><a href="/interventions/" {% if '/intervention' in page.url %}aria-current="page"{% endif %}>Interventions</a></li>
+          <li><a href="/photos/" {% if '/photos' in page.url %}aria-current="page"{% endif %}>Photos</a></li>
         </ul>
       </nav>
 
@@ -176,20 +175,19 @@ permalink: false
       <nav class="site-footer__col" aria-label="Navigation du pied de page">
         <p class="site-footer__col-title">Naviguer</p>
         <ul>
-          <li><a href="/refonte/qui-suis-je/">À propos</a></li>
-          <li><a href="/refonte/a-la-une/">À la une</a></li>
-          <li><a href="/refonte/lectures/">Lectures</a></li>
-          <li><a href="/refonte/interventions/">Interventions</a></li>
-          <li><a href="/refonte/photos/">Photos</a></li>
+          <li><a href="/qui-suis-je/">À propos</a></li>
+          <li><a href="/a-la-une/">À la une</a></li>
+          <li><a href="/lectures/">Lectures</a></li>
+          <li><a href="/interventions/">Interventions</a></li>
+          <li><a href="/photos/">Photos</a></li>
         </ul>
       </nav>
       <nav class="site-footer__col" aria-label="Informations légales">
         <p class="site-footer__col-title">Informations</p>
         <ul>
-          <li><a href="/refonte/accessibilite/">Accessibilité</a></li>
-          <li><a href="/refonte/mentions/">Mentions légales</a></li>
-          <li><a href="/refonte/plan/">Plan du site</a></li>
-          <li><a href="/">← Site actuel</a></li>
+          <li><a href="/accessibilite/">Accessibilité</a></li>
+          <li><a href="/mentions/">Mentions légales</a></li>
+          <li><a href="/plan/">Plan du site</a></li>
         </ul>
       </nav>
     </div>

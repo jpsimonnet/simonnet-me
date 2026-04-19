@@ -1,14 +1,14 @@
 ---
 layout: refonte
 title: Interventions
-permalink: /refonte/interventions/
+permalink: /interventions/
 ---
 
 <section class="hero">
   <div class="container">
     <nav aria-label="Fil d'Ariane">
       <ol class="breadcrumb">
-        <li><a href="/refonte/">Accueil</a></li>
+        <li><a href="/">Accueil</a></li>
         <li aria-current="page">Interventions</li>
       </ol>
     </nav>
@@ -28,7 +28,7 @@ permalink: /refonte/interventions/
     <ul class="interventions-grid">
       {% for item in notionInterventions %}
       <li>
-        <a class="card-intervention" href="/refonte/intervention/{{ item.slug }}/">
+        <a class="card-intervention" href="/intervention/{{ item.slug }}/">
           <div class="card-intervention__image">
             {% if item.image %}
             <img src="{{ item.image }}" alt="" loading="lazy">

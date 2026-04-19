@@ -4,7 +4,7 @@ pagination:
   data: livres
   size: 1
   alias: livre
-permalink: "refonte/livre/{{ livre.id }}/index.html"
+permalink: "livre/{{ livre.id }}/index.html"
 eleventyComputed:
   title: "{{ livre.Nom }}"
 ---
@@ -13,8 +13,8 @@ eleventyComputed:
   <div class="container">
     <nav aria-label="Fil d'Ariane">
       <ol class="breadcrumb">
-        <li><a href="/refonte/">Accueil</a></li>
-        <li><a href="/refonte/lectures/">Lectures</a></li>
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/lectures/">Lectures</a></li>
         <li aria-current="page">{{ livre.Nom | e }}</li>
       </ol>
     </nav>
@@ -58,7 +58,7 @@ eleventyComputed:
         {% endif %}
 
         <p style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--color-border);">
-          <a href="/refonte/lectures/">← Retour à la bibliothèque</a>
+          <a href="/lectures/">← Retour à la bibliothèque</a>
         </p>
       </div>
     </div>

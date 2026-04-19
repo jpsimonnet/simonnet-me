@@ -1,7 +1,7 @@
 ---
 layout: refonte
 title: Accueil
-permalink: /refonte/
+permalink: /
 ---
 {% set actualiteRefonte = actualite | slice(0, 6) %}
 {% set livresRecents = collections.livresTries | slice(0, 5) %}
@@ -40,7 +40,7 @@ permalink: /refonte/
         <p class="section-heading__kicker">Veille</p>
         <h2 id="actualite-titre">À la <em>une</em></h2>
       </div>
-      <a href="/refonte/a-la-une/">Toutes les actualités →</a>
+      <a href="/a-la-une/">Toutes les actualités →</a>
     </div>
 
     {% if actualiteRefonte and actualiteRefonte.length > 0 %}
@@ -78,12 +78,12 @@ permalink: /refonte/
         <p class="section-heading__kicker">Bibliothèque</p>
         <h2 id="lectures-titre">Lectures <em>récentes</em></h2>
       </div>
-      <a href="/refonte/lectures/">Voir toutes les lectures →</a>
+      <a href="/lectures/">Voir toutes les lectures →</a>
     </div>
 
     <div class="grid-livres grid-livres--5">
       {% for livre in livresRecents %}
-      <a class="card-livre" href="/refonte/livre/{{ livre.id }}/">
+      <a class="card-livre" href="/livre/{{ livre.id }}/">
         <div class="card-livre__cover">
           <img src="/assets/images/lectures/{{ livre.id }}.webp" alt="" loading="lazy">
         </div>
@@ -105,7 +105,7 @@ permalink: /refonte/
         <p class="section-heading__kicker">Portrait</p>
         <h2 id="profil-titre">À <em>propos</em></h2>
       </div>
-      <a href="/refonte/qui-suis-je/">Lire la bio complète →</a>
+      <a href="/qui-suis-je/">Lire la bio complète →</a>
     </div>
 
     <div class="profil">

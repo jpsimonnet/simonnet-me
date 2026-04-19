@@ -7,7 +7,7 @@ title: "2011 - Vidéo industrielle accessible sur le Web"
 date: 2011-06-01
 image: /assets/images/2011-video.jpg
 description: 'Présentation du mémoire "Vidéo industrielle accessible sur le Web" de Jean-Philippe Simonnet dans le cadre de la formation longue d’expert accessibilité Temesis'
-rubriqueurl: /interventions/
+rubriqueurl: /2025/interventions/
 rubriquenom: "Mes interventions"
 eleventyNavigation:
   key: interventions

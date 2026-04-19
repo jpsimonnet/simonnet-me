@@ -1,14 +1,14 @@
 ---
 layout: refonte
 title: Photos
-permalink: /refonte/photos/
+permalink: /photos/
 ---
 
 <section class="hero">
   <div class="container">
     <nav aria-label="Fil d'Ariane">
       <ol class="breadcrumb">
-        <li><a href="/refonte/">Accueil</a></li>
+        <li><a href="/">Accueil</a></li>
         <li aria-current="page">Photos</li>
       </ol>
     </nav>
@@ -25,7 +25,7 @@ permalink: /refonte/photos/
   <div class="container">
     <div class="grid-galeries">
       {% for galerie in galeries %}
-      <a href="/refonte/photos/{{ galerie.slug }}/" class="card-galerie">
+      <a href="/photos/{{ galerie.slug }}/" class="card-galerie">
         <div class="card-galerie__image">
           <img src="{{ galerie.thumbnail }}" alt="" loading="lazy">
         </div>

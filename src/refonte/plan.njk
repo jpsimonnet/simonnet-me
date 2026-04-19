@@ -1,14 +1,14 @@
 ---
 layout: refonte
 title: Plan du site
-permalink: /refonte/plan/
+permalink: /plan/
 ---
 
 <section class="hero">
   <div class="container">
     <nav aria-label="Fil d'Ariane">
       <ol class="breadcrumb">
-        <li><a href="/refonte/">Accueil</a></li>
+        <li><a href="/">Accueil</a></li>
         <li aria-current="page">Plan du site</li>
       </ol>
     </nav>
@@ -24,19 +24,19 @@ permalink: /refonte/plan/
     <div class="prose">
       <h2>Pages principales</h2>
       <ul>
-        <li><a href="/refonte/">Accueil</a></li>
-        <li><a href="/refonte/qui-suis-je/">À propos</a></li>
-        <li><a href="/refonte/a-la-une/">À la une</a></li>
-        <li><a href="/refonte/lectures/">Lectures</a></li>
-        <li><a href="/refonte/interventions/">Interventions</a></li>
-        <li><a href="/refonte/photos/">Photos</a></li>
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/qui-suis-je/">À propos</a></li>
+        <li><a href="/a-la-une/">À la une</a></li>
+        <li><a href="/lectures/">Lectures</a></li>
+        <li><a href="/interventions/">Interventions</a></li>
+        <li><a href="/photos/">Photos</a></li>
       </ul>
 
       <h2>Lectures</h2>
       <ul>
         {% for livre in collections.livresTries %}
         <li>
-          <a href="/refonte/livre/{{ livre.id }}/">{{ livre.Nom | e }}</a>
+          <a href="/livre/{{ livre.id }}/">{{ livre.Nom | e }}</a>
           {% if livre.Auteur %}— <em>{{ livre.Auteur }}</em>{% endif %}
         </li>
         {% endfor %}
@@ -46,7 +46,7 @@ permalink: /refonte/plan/
       <ul>
         {% for post in collections.interventions | reverse %}
         <li>
-          <a href="/refonte/intervention/{{ post.fileSlug }}/">{{ post.data.title | e }}</a>
+          <a href="/intervention/{{ post.fileSlug }}/">{{ post.data.title | e }}</a>
         </li>
         {% endfor %}
       </ul>
@@ -54,14 +54,14 @@ permalink: /refonte/plan/
       <h2>Galeries photos</h2>
       <ul>
         {% for galerie in galeries %}
-        <li><a href="/refonte/photos/{{ galerie.slug }}/">{{ galerie.title | e }}</a></li>
+        <li><a href="/photos/{{ galerie.slug }}/">{{ galerie.title | e }}</a></li>
         {% endfor %}
       </ul>
 
       <h2>Informations</h2>
       <ul>
-        <li><a href="/refonte/accessibilite/">Accessibilité</a></li>
-        <li><a href="/refonte/mentions/">Mentions légales</a></li>
+        <li><a href="/accessibilite/">Accessibilité</a></li>
+        <li><a href="/mentions/">Mentions légales</a></li>
       </ul>
     </div>
   </div>

@@ -7,7 +7,7 @@ title: "2014 - Petits secrets entre amis : les acteurs du web doivent ils prête
 date: 2014-10-17
 image: /assets/images/2014-serment.jpg
 description: "Mini-conf Paris web"
-rubriqueurl: /interventions/
+rubriqueurl: /2025/interventions/
 rubriquenom: "Mes interventions"
 eleventyNavigation:
   key: interventions

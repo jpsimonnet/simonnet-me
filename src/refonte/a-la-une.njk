@@ -5,14 +5,14 @@ pagination:
   data: actualite
   size: 9
   alias: actualitePage
-permalink: "refonte/a-la-une/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber }}/{% endif %}index.html"
+permalink: "a-la-une/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber }}/{% endif %}index.html"
 ---
 
 <section class="hero">
   <div class="container">
     <nav aria-label="Fil d'Ariane">
       <ol class="breadcrumb">
-        <li><a href="/refonte/">Accueil</a></li>
+        <li><a href="/">Accueil</a></li>
         <li aria-current="page">À la une</li>
       </ol>
     </nav>

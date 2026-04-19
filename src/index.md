@@ -2,7 +2,7 @@
 layout: base
 title: Accueil
 date: 2026-03-09
-
+permalink: "/2025/{% if pagination.pageNumber > 0 %}page-{{ pagination.pageNumber }}/{% endif %}index.html"
 pagination:
   data: actualite
   size: 6
@@ -33,7 +33,7 @@ pagination:
   <h3 id="titre-actualite" class=" mb-3">À la une </h3>{% if actualitePage and actualitePage.length > 0 %}
     <div class="row">{% for item in actualitePage %}<div class="col-lg-4 col-sm-6 mb-3"><div class="card shadow-sm h-100">{% if item.image %}<img src="{{ item.image }}" alt="Illustration de l’article '{{ item.title }}'" class="card-img-top">{% endif %}<div class="card-body"><h4 class="card-title"><a href="{{ item.url }}" target="_blank" rel="noopener noreferrer" title="{{ item.title }} - (nouvelle fenêtre)" class="stretched-link">{{ item.title }}</a></h4>{% if item.summary %}<p class="card-text">{{ item.summary }}</p>{% endif %}<p class="card-text fw-bold">Publié le {{ item.created | formatDateFr }}</p></div></div></div>{% endfor %}</div>{% else %}<p>Aucune actualité à la une pour le moment.</p>{% endif %}
 
- <p><a class="btn btn-outline-secondary mt-2" href="/a-la-une/0/">Toutes les actualité à la une</a></p>
+ <p><a class="btn btn-outline-secondary mt-2" href="/2025/a-la-une/0/">Toutes les actualité à la une</a></p>
 </section>
 
 <hr>
@@ -41,7 +41,7 @@ pagination:
 <section aria-labelledby="titre-lectures" class="actualite-a-la-une my-5 container">
   <h3 id="titre-lectures" class=" mb-3">Mes dernières lectures</h3>
 
-{% set derniers3Livres = collections.livresTries | slice(0, 3) %}{% if derniers3Livres and derniers3Livres.length > 0 %}<div class="row">{% for livre in derniers3Livres %}<div class="col-lg-4 col-sm-6 mb-3"><div class="card shadow-sm h-100">{% if livre.id %}<img src="/assets/images/lectures/{{ livre.id }}.webp" alt="Couverture de {{ livre.Nom }}" class="card-img-top">{% endif %}<div class="card-body"><h4 class="card-title"><a href="/livre/{{ livre.id }}/" title="{{ livre.Nom }}" class="stretched-link">{{ livre.Nom }}</a></h4>{% if livre.Auteur %}<p class="card-text"><strong>{{ livre.Auteur }}</strong></p>{% endif %}{% if livre.Résumé %}<p class="card-text">{{ livre.Résumé | truncate(100) }}</p>{% endif %}<p class="card-text fw-bold">Lu le {{ livre["Lu le"] | formatDateFr }}</p></div></div></div>{% endfor %}</div>{% else %}<p>Aucun livre pour le moment.</p>{% endif %}
+{% set derniers3Livres = collections.livresTries | slice(0, 3) %}{% if derniers3Livres and derniers3Livres.length > 0 %}<div class="row">{% for livre in derniers3Livres %}<div class="col-lg-4 col-sm-6 mb-3"><div class="card shadow-sm h-100">{% if livre.id %}<img src="/assets/images/lectures/{{ livre.id }}.webp" alt="Couverture de {{ livre.Nom }}" class="card-img-top">{% endif %}<div class="card-body"><h4 class="card-title"><a href="/2025/livre/{{ livre.id }}/" title="{{ livre.Nom }}" class="stretched-link">{{ livre.Nom }}</a></h4>{% if livre.Auteur %}<p class="card-text"><strong>{{ livre.Auteur }}</strong></p>{% endif %}{% if livre.Résumé %}<p class="card-text">{{ livre.Résumé | truncate(100) }}</p>{% endif %}<p class="card-text fw-bold">Lu le {{ livre["Lu le"] | formatDateFr }}</p></div></div></div>{% endfor %}</div>{% else %}<p>Aucun livre pour le moment.</p>{% endif %}
 
- <p><a class="btn btn-outline-secondary mt-2" href="/lectures/0/">Toutes mes lectures</a></p>
+ <p><a class="btn btn-outline-secondary mt-2" href="/2025/lectures/0/">Toutes mes lectures</a></p>
 </section>

@@ -5,14 +5,14 @@ pagination:
   data: collections.livresTries
   size: 24
   alias: livresPage
-permalink: "refonte/lectures/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber }}/{% endif %}index.html"
+permalink: "lectures/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber }}/{% endif %}index.html"
 ---
 
 <section class="hero">
   <div class="container">
     <nav aria-label="Fil d'Ariane">
       <ol class="breadcrumb">
-        <li><a href="/refonte/">Accueil</a></li>
+        <li><a href="/">Accueil</a></li>
         <li aria-current="page">Lectures</li>
       </ol>
     </nav>
@@ -30,7 +30,7 @@ permalink: "refonte/lectures/{% if pagination.pageNumber > 0 %}{{ pagination.pag
   <div class="container">
     <div class="grid-livres">
       {% for livre in livresPage %}
-      <a class="card-livre" href="/refonte/livre/{{ livre.id }}/">
+      <a class="card-livre" href="/livre/{{ livre.id }}/">
         <div class="card-livre__cover">
           <img src="/assets/images/lectures/{{ livre.id }}.webp" alt="" loading="lazy">
         </div>

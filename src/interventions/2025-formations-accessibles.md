@@ -7,7 +7,7 @@ title: "2025 - Accessibilité : le numérique rend-il forcément les apprentissa
 date: 2025-10-22
 image: /assets/images/eformation.webp
 description: "Témoignage au rencontres eformation le 22 octobre 2025 à l’Ecole Nationale des Ponts et Chaussées (ENPC) de Champs-sur-marne :  Le numérique en formation : objet de compensation ou levier d’innovation ?"
-rubriqueurl: /interventions/
+rubriqueurl: /2025/interventions/
 rubriquenom: "Mes interventions"
 eleventyNavigation:
   key: interventions

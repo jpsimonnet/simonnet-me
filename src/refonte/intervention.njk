@@ -4,7 +4,7 @@ pagination:
   data: notionInterventions
   size: 1
   alias: item
-permalink: "refonte/intervention/{{ item.slug }}/"
+permalink: "intervention/{{ item.slug }}/"
 eleventyComputed:
   title: "{{ item.title }}"
   description: "{{ item.description }}"
@@ -14,8 +14,8 @@ eleventyComputed:
   <div class="container">
     <nav aria-label="Fil d'Ariane">
       <ol class="breadcrumb">
-        <li><a href="/refonte/">Accueil</a></li>
-        <li><a href="/refonte/interventions/">Interventions</a></li>
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/interventions/">Interventions</a></li>
         <li aria-current="page">{{ item.title | e }}</li>
       </ol>
     </nav>
@@ -38,5 +38,5 @@ eleventyComputed:
 </div>
 
 <nav class="article-nav" aria-label="Navigation entre interventions">
-  <a href="/refonte/interventions/">← Toutes les interventions</a>
+  <a href="/interventions/">← Toutes les interventions</a>
 </nav>

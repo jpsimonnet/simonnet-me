@@ -3,7 +3,7 @@ pagination:
   data: collections.livresTries
   size: 20
   alias: livresPage
-permalink: "lectures/{{ pagination.pageNumber }}/index.html"
+permalink: "2025/lectures/{{ pagination.pageNumber }}/index.html"
 layout: base
 title: "Mes dernières lectures"
 name : JP Simonnet
@@ -27,7 +27,7 @@ name : JP Simonnet
       {% for livre in livresPage %}
         <div class="col-lg-3 col-sm-6 mb-3">
           <div class="card shadow-sm h-100">{% if livre.id %}<img src="/assets/images/lectures/{{ livre.id }}.webp" alt="Couverture du livre '{{ livre.Nom }}'" class="card-img-top">{% endif %}
-            <div class="card-body"><h4 class="card-title"><a href="/livre/{{ livre.id }}/" title="{{ livre.Nom }}" class="stretched-link">{{ livre.Nom }}</a></h4>{% if livre.Auteur %}<p class="card-text"><strong>{{ livre.Auteur }}</strong></p>{% endif %}{% if livre["Lu le"] %}<p class="card-text">Lu le {{ livre["Lu le"] | formatDateFr }}</p>{% endif %}</div></div></div>{% endfor %}</div>
+            <div class="card-body"><h4 class="card-title"><a href="/2025/livre/{{ livre.id }}/" title="{{ livre.Nom }}" class="stretched-link">{{ livre.Nom }}</a></h4>{% if livre.Auteur %}<p class="card-text"><strong>{{ livre.Auteur }}</strong></p>{% endif %}{% if livre["Lu le"] %}<p class="card-text">Lu le {{ livre["Lu le"] | formatDateFr }}</p>{% endif %}</div></div></div>{% endfor %}</div>
 
     <!-- Pagination nav -->
     <nav aria-label="Pagination des livres" class="mt-4">
