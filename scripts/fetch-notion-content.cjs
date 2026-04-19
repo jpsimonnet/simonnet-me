@@ -22,6 +22,55 @@ const n2m = new NotionToMarkdown({
 });
 
 // Custom transformers for blocks not supported by default
+// Video/embed transformer: convert Notion video and embed blocks to HTML
+n2m.setCustomTransformer('video', async (block) => {
+  const video = block.video;
+  const url = video.type === 'external' ? video.external?.url : video.file?.url;
+  if (!url) return '';
+
+  const captionArr = video.caption || [];
+  const caption = captionArr.map((t) => t.plain_text).join('');
+
+  const embedUrl = toEmbedUrl(url);
+  if (embedUrl) {
+    const figCaption = caption ? `<figcaption>${caption}</figcaption>` : '';
+    return `\n<figure class="video-embed"><iframe src="${embedUrl}" frameborder="0" allowfullscreen loading="lazy" title="${caption || 'Vidéo'}"></iframe>${figCaption}</figure>\n`;
+  }
+
+  return `\n<p><a href="${url}">${caption || url}</a></p>\n`;
+});
+
+n2m.setCustomTransformer('embed', async (block) => {
+  const url = block.embed?.url;
+  if (!url) return '';
+
+  const captionArr = block.embed?.caption || [];
+  const caption = captionArr.map((t) => t.plain_text).join('');
+
+  const embedUrl = toEmbedUrl(url);
+  if (embedUrl) {
+    const figCaption = caption ? `<figcaption>${caption}</figcaption>` : '';
+    return `\n<figure class="video-embed"><iframe src="${embedUrl}" frameborder="0" allowfullscreen loading="lazy" title="${caption || 'Contenu embarqué'}"></iframe>${figCaption}</figure>\n`;
+  }
+
+  return `\n<p><a href="${url}">${caption || url}</a></p>\n`;
+});
+
+function toEmbedUrl(url) {
+  // YouTube
+  let m = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([\w-]+)/);
+  if (m) return `https://www.youtube-nocookie.com/embed/${m[1]}`;
+  // Dailymotion
+  m = url.match(/dailymotion\.com\/video\/([\w]+)/);
+  if (m) return `https://www.dailymotion.com/embed/video/${m[1]}`;
+  // Vimeo
+  m = url.match(/vimeo\.com\/(\d+)/);
+  if (m) return `https://player.vimeo.com/video/${m[1]}`;
+  // PeerTube-style or other iframe-ready URLs
+  if (url.includes('/embed/') || url.includes('/player/')) return url;
+  return null;
+}
+
 // Image transformer: download image locally + parse caption directives
 // Directives: ":right:", ":left:", ":center:" at start of caption
 n2m.setCustomTransformer('image', async (block) => {
