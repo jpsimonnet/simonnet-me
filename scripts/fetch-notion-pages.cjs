@@ -11,9 +11,9 @@ const notion = new Client({ auth: process.env.NOTION_TOKEN });
 const n2m = new NotionToMarkdown({ notionClient: notion });
 
 const PAGES = [
-  { id: '347f9c97e6ff8073a0b2d64492275404', slug: 'qui-suis-je' },
+  { id: '347f9c97e6ff80e29f6fcaeb224dd850', slug: 'qui-suis-je' },
   { id: '347f9c97e6ff80558f69e63121857e12', slug: 'mentions' },
-  { id: '347f9c97e6ff80e29f6fcaeb224dd850', slug: 'accessibilite' },
+  { id: '347f9c97e6ff8073a0b2d64492275404', slug: 'accessibilite' },
 ];
 
 async function fetchPage(pageId) {
