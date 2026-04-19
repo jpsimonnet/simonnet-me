@@ -732,7 +732,7 @@ section + section { border-top: 1px solid var(--color-border-soft); }
   line-height: 1.75;
 }
 .article-body img {
-  width: 100%;
+  max-width: 100%;
   height: auto;
   border-radius: var(--radius-md);
   margin: 2rem 0;
