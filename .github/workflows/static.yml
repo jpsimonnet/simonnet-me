@@ -61,16 +61,10 @@ jobs:
         run: node scripts/fetch-notion-livres.cjs
         continue-on-error: true
 
-      - name: Fetch Notion interventions
+      - name: Fetch Notion content (interventions + pages)
         env:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
-        run: node scripts/fetch-notion-interventions.cjs
-        continue-on-error: true
-
-      - name: Fetch Notion pages
-        env:
-          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
-        run: node scripts/fetch-notion-pages.cjs
+        run: node scripts/fetch-notion-content.cjs
         continue-on-error: true
 
       - name: Build Eleventy site

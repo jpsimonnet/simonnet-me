@@ -23,33 +23,12 @@ permalink: /refonte/qui-suis-je/
 
 <section>
   <div class="container">
-    <div class="profil">
-      <div class="profil__image">
-        <img src="/assets/images/jp.jpg" alt="Portrait de Jean-Philippe Simonnet">
-      </div>
-      <div class="profil__body prose">
-        {% if notionPages and notionPages['qui-suis-je'] and notionPages['qui-suis-je'].content %}
-          {{ notionPages['qui-suis-je'].content | markdownify | safe }}
-        {% else %}
-        <p class="dropcap">
-          Je suis actuellement Chargé de mission « hospitalité numérique » à la DNUM
-          (Usages Numériques et Innovation), au ministère de l'Aménagement du territoire
-          et de la Décentralisation et au ministère de la Transition écologique,
-          de la Biodiversité, de la Forêt, de la Mer et de la Pêche.
-        </p>
-        <p>Je suis également expert accessibilité depuis 2011.</p>
-        {% endif %}
-      </div>
-    </div>
-
-    <div style="margin-top: var(--space-xl);">
-      <h2 style="margin-bottom: var(--space-md);">Me contacter</h2>
-      <ul class="profil__liens">
-        <li><a href="https://www.linkedin.com/in/simonnet/fr" rel="external noopener">LinkedIn</a></li>
-        <li><a href="https://github.com/jpsimonnet" rel="external noopener">GitHub</a></li>
-        <li><a href="https://www.instagram.com/oxymore93/" rel="external noopener">Instagram</a></li>
-        <li><a href="https://www.doyoubuzz.com/jean-philippe-simonnet" rel="external noopener">CV Doyoubuzz</a></li>
-      </ul>
-    </div>
+    <article class="prose">
+      {% if notionPages and notionPages['qui-suis-je'] and notionPages['qui-suis-je'].content %}
+        {{ notionPages['qui-suis-je'].content | markdownify | safe }}
+      {% else %}
+      <p>Contenu en cours de chargement depuis Notion.</p>
+      {% endif %}
+    </article>
   </div>
 </section>
