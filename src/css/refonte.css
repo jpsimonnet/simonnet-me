@@ -109,8 +109,13 @@ img { max-width: 100%; height: auto; display: block; }
   font-weight: 600;
   z-index: 100;
   transition: top var(--transition);
+  text-decoration: none;
 }
 .skip-link:focus-visible { top: 1rem; }
+.skip-link:focus-visible + .skip-link:focus-visible { top: 3.5rem; }
+.skip-link:nth-of-type(2):focus-visible { top: 1rem; }
+.skip-link:nth-of-type(3):focus-visible { top: 1rem; }
+.skip-link:nth-of-type(4):focus-visible { top: 1rem; }
 
 /* ========== TYPOGRAPHIE ========== */
 

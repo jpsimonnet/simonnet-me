@@ -14,7 +14,10 @@ permalink: false
   <link rel="icon" href="/favicon.ico">
 </head>
 <body>
+  <a class="skip-link" href="#nav-main">Aller au menu</a>
   <a class="skip-link" href="#main">Aller au contenu</a>
+  <a class="skip-link" href="#search-panel" onclick="event.preventDefault();document.querySelector('.search-toggle').click();">Aller à la recherche</a>
+  <a class="skip-link" href="#footer">Aller au pied de page</a>
 
   <header class="site-header">
     <div class="site-header__inner">
@@ -166,7 +169,7 @@ permalink: false
   })();
   </script>
 
-  <footer class="site-footer">
+  <footer id="footer" class="site-footer">
     <div class="site-footer__grid">
       <div class="site-footer__brand">
         <p class="site-footer__title">Oxymore</p>
