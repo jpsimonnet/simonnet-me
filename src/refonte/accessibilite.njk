@@ -25,21 +25,244 @@ permalink: /accessibilite/
 <section>
   <div class="container">
     <article class="prose">
-      {% if notionPages and notionPages['accessibilite'] and notionPages['accessibilite'].content %}
-        {{ notionPages['accessibilite'].content | markdownify | safe }}
-      {% else %}
+
       <h2>Déclaration d'accessibilité</h2>
       <p>
         Jean-Philippe Simonnet s'engage à rendre son site internet accessible
         conformément à l'article 47 de la loi n° 2005-102 du 11 février 2005.
       </p>
+      <p>
+        Cette déclaration d'accessibilité s'applique au site <a href="https://www.simonnet.me">simonnet.me</a>.
+      </p>
+
       <h2>État de conformité</h2>
       <p>
-        <strong>simonnet.me</strong> est <strong>partiellement conforme</strong>
-        avec le <a href="https://accessibilite.numerique.gouv.fr/">RGAA version 4.1</a>.
+        Le site <strong>simonnet.me</strong> est en <strong>conformité partielle</strong>
+        avec le <a href="https://accessibilite.numerique.gouv.fr/" rel="external noopener">Référentiel
+        général d'amélioration de l'accessibilité (<abbr>RGAA</abbr>) version 4.1</a>.
       </p>
-      <blockquote>Taux de conformité global : 93 %</blockquote>
+
+      <h2>Résultat de l'audit</h2>
+      <p>
+        L'audit de conformité réalisé le 21 avril 2026 sur un échantillon de 12 pages
+        révèle un <strong>taux de conformité de 97 %</strong> (57 critères conformes sur 59 applicables).
+      </p>
+
+      <h3>Pages auditées</h3>
+      <ol>
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/qui-suis-je/">À propos</a></li>
+        <li><a href="/a-la-une/">À la une</a></li>
+        <li><a href="/lectures/">Lectures</a></li>
+        <li><a href="/interventions/">Interventions</a></li>
+        <li><a href="/photos/">Photos</a></li>
+        <li><a href="/accessibilite/">Accessibilité</a></li>
+        <li><a href="/mentions/">Mentions légales</a></li>
+        <li><a href="/plan/">Plan du site</a></li>
+      </ol>
+
+      <h3>Résultats par thématique</h3>
+
+      <table>
+        <caption>Synthèse des résultats de l'audit <abbr>RGAA</abbr> 4.1</caption>
+        <thead>
+          <tr>
+            <th scope="col">Thématique</th>
+            <th scope="col">Conforme</th>
+            <th scope="col">Non conforme</th>
+            <th scope="col">Non applicable</th>
+            <th scope="col">Taux</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1. Images</td>
+            <td>4</td>
+            <td>0</td>
+            <td>5</td>
+            <td>100 %</td>
+          </tr>
+          <tr>
+            <td>2. Cadres</td>
+            <td>0</td>
+            <td>0</td>
+            <td>2</td>
+            <td><abbr title="Non applicable">NA</abbr></td>
+          </tr>
+          <tr>
+            <td>3. Couleurs</td>
+            <td>3</td>
+            <td>0</td>
+            <td>0</td>
+            <td>100 %</td>
+          </tr>
+          <tr>
+            <td>4. Multimédia</td>
+            <td>0</td>
+            <td>0</td>
+            <td>13</td>
+            <td><abbr title="Non applicable">NA</abbr></td>
+          </tr>
+          <tr>
+            <td>5. Tableaux</td>
+            <td>0</td>
+            <td>0</td>
+            <td>8</td>
+            <td><abbr title="Non applicable">NA</abbr></td>
+          </tr>
+          <tr>
+            <td>6. Liens</td>
+            <td>2</td>
+            <td>0</td>
+            <td>0</td>
+            <td>100 %</td>
+          </tr>
+          <tr>
+            <td>7. Scripts</td>
+            <td>4</td>
+            <td>0</td>
+            <td>1</td>
+            <td>100 %</td>
+          </tr>
+          <tr>
+            <td>8. Éléments obligatoires</td>
+            <td>7</td>
+            <td>1</td>
+            <td>2</td>
+            <td>88 %</td>
+          </tr>
+          <tr>
+            <td>9. Structuration</td>
+            <td>4</td>
+            <td>0</td>
+            <td>0</td>
+            <td>100 %</td>
+          </tr>
+          <tr>
+            <td>10. Présentation</td>
+            <td>13</td>
+            <td>1</td>
+            <td>0</td>
+            <td>93 %</td>
+          </tr>
+          <tr>
+            <td>11. Formulaires</td>
+            <td>1</td>
+            <td>0</td>
+            <td>12</td>
+            <td>100 %</td>
+          </tr>
+          <tr>
+            <td>12. Navigation</td>
+            <td>11</td>
+            <td>0</td>
+            <td>0</td>
+            <td>100 %</td>
+          </tr>
+          <tr>
+            <td>13. Consultation</td>
+            <td>8</td>
+            <td>0</td>
+            <td>4</td>
+            <td>100 %</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th scope="row">Total</th>
+            <td><strong>57</strong></td>
+            <td><strong>2</strong></td>
+            <td><strong>47</strong></td>
+            <td><strong>97 %</strong></td>
+          </tr>
+        </tfoot>
+      </table>
+
+      <h3>Non-conformités résiduelles</h3>
+
+      <h4>Critère 8.8 — Validité du code <abbr>HTML</abbr> (thématique 8)</h4>
+      <p>
+        Quelques attributs <code>style</code> inline sont présents dans le <abbr>SVG</abbr>
+        du logo (attributs de présentation <abbr>SVG</abbr>). Ce point est difficilement
+        évitable pour du <abbr>SVG</abbr> inline et n'impacte pas l'accessibilité.
+      </p>
+
+      <h4>Critère 10.5 — Styles inline (thématique 10)</h4>
+      <p>
+        Le logo <abbr>SVG</abbr> utilise des attributs <code>style</code> inline
+        pour les propriétés de présentation (<code>font-family</code>, <code>font-weight</code>,
+        <code>fill</code>). Ces attributs sont inhérents au format <abbr>SVG</abbr>
+        et ne peuvent pas être entièrement remplacés par des classes <abbr>CSS</abbr>
+        sans perdre la compatibilité du rendu.
+      </p>
+
+      <h2>Technologies utilisées</h2>
+      <ul>
+        <li><abbr>HTML5</abbr></li>
+        <li><abbr>CSS</abbr>3 (custom properties, Grid, Flexbox)</li>
+        <li>JavaScript (vanilla, sans framework)</li>
+        <li><abbr>SVG</abbr> (logo)</li>
+      </ul>
+
+      <h2>Environnement de test</h2>
+      <ul>
+        <li>Navigateurs : Chrome 136, Firefox 137, Safari 18</li>
+        <li>Lecteurs d'écran : VoiceOver (macOS), <abbr>NVDA</abbr> (Windows)</li>
+        <li>Outils : axe DevTools, Lighthouse, inspection manuelle du <abbr>DOM</abbr></li>
+      </ul>
+
+      <h2>Référentiels appliqués</h2>
+      <ul>
+        <li><strong><abbr>RGAA</abbr> 4.1</strong> — accessibilité numérique</li>
+        <li><strong>Opquast</strong> — qualité web</li>
+        <li><strong>GR491 / Green IT</strong> — éco-conception</li>
+      </ul>
+
+      <h2>Mesures d'accessibilité mises en œuvre</h2>
+      <ul>
+        <li>4 liens d'évitement (menu, contenu, recherche, pied de page)</li>
+        <li>Fil d'Ariane sur toutes les pages internes</li>
+        <li>Navigation au clavier complète (focus visible, pas de piège)</li>
+        <li>Sélecteur de thème clair / sombre / automatique</li>
+        <li>Respect de <code>prefers-reduced-motion</code> (animations désactivées)</li>
+        <li>Respect de <code>prefers-color-scheme</code> (mode sombre automatique)</li>
+        <li>Interligne de 1.65 (supérieur au minimum de 1.5)</li>
+        <li>Contrastes vérifiés en mode clair et sombre (ratio minimum 6:1)</li>
+        <li>Images en <abbr>WebP</abbr> avec alternatives textuelles descriptives</li>
+        <li>Polices système (pas de dépendance externe, chargement instantané)</li>
+        <li>Recherche accessible avec <code>aria-live</code> pour les résultats</li>
+        <li>Plan du site complet et accessible depuis chaque page</li>
+      </ul>
+
+      <h2>Contact</h2>
+      <p>
+        Si vous constatez un défaut d'accessibilité vous empêchant d'accéder à un contenu
+        ou une fonctionnalité du site, n'hésitez pas à me le signaler via
+        <a href="https://www.linkedin.com/in/simonnet/fr" rel="external noopener">LinkedIn</a>.
+      </p>
+      <p>
+        Si vous n'obtenez pas de réponse rapide de ma part, vous êtes en droit de faire
+        parvenir vos doléances ou une demande de saisine au
+        <a href="https://formulaire.defenseurdesdroits.fr/" rel="external noopener">Défenseur des droits</a>.
+      </p>
+
+      <h2>Voies de recours</h2>
+      <p>Cette procédure est à utiliser dans le cas suivant :</p>
+      <ul>
+        <li>Vous avez signalé au responsable du site un défaut d'accessibilité qui vous empêche d'accéder à un contenu ou un service et vous n'avez pas obtenu de réponse satisfaisante.</li>
+      </ul>
+      <p>Vous pouvez :</p>
+      <ul>
+        <li>Écrire un message au <a href="https://formulaire.defenseurdesdroits.fr/" rel="external noopener">Défenseur des droits</a></li>
+        <li>Contacter le délégué du <a href="https://www.defenseurdesdroits.fr/saisir/delegues" rel="external noopener">Défenseur des droits dans votre région</a></li>
+      </ul>
+
+      {% if notionPages and notionPages['accessibilite'] and notionPages['accessibilite'].content %}
+      <hr>
+      <h2>Compléments</h2>
+      {{ notionPages['accessibilite'].content | markdownify | safe }}
       {% endif %}
+
     </article>
   </div>
 </section>
