@@ -32,6 +32,15 @@ permalink: /plan/
         <li><a href="/photos/">Photos</a></li>
       </ul>
 
+      <h2>À la une</h2>
+      <ul>
+        {% for item in actualite %}
+        <li>
+          <a href="/actualite/{{ item.slug or (item.title | slugify) }}/">{{ item.title | e }}</a>
+        </li>
+        {% endfor %}
+      </ul>
+
       <h2>Lectures</h2>
       <ul>
         {% for livre in collections.livresTries %}
