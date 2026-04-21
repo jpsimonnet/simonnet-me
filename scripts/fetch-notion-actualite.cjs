@@ -125,12 +125,14 @@ async function fetchActualite() {
 
       const slug = slugify(title) || page.id.replace(/-/g, '').substring(0, 12);
 
-      // Download image — skip if already cached
+      // Download image — skip if already cached as valid webp
       let localImage = imageUrl;
       if (imageUrl) {
         const filename = `${slug}.webp`;
         const destPath = path.join(IMAGES_DIR, filename);
-        if (fs.existsSync(destPath) && fs.statSync(destPath).size > 100) {
+        const cached = fs.existsSync(destPath) && fs.statSync(destPath).size > 100;
+        const isWebp = cached && (() => { try { const h = Buffer.alloc(4); const fd = fs.openSync(destPath, 'r'); fs.readSync(fd, h, 0, 4, 0); fs.closeSync(fd); return h.toString('ascii', 0, 4) === 'RIFF'; } catch(e) { return false; } })();
+        if (cached && isWebp) {
           localImage = `/assets/images/actualites/${filename}`;
         } else {
           try {
