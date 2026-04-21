@@ -105,6 +105,7 @@ async function fetchActualite() {
     console.log(`🔍 Propriétés détectées:`, Object.keys(pages[0].properties));
 
     const actualites = [];
+    let count = 0;
 
     for (const page of pages) {
       const props = page.properties;
@@ -113,7 +114,6 @@ async function fetchActualite() {
       const created = props.Created?.created_time || '';
       const summary = props['Résumé']?.rich_text?.[0]?.plain_text || '';
 
-      // Image: try "URL image" (url), then "Image" (files), then "image" (files)
       let imageUrl = props['URL image']?.url || '';
       if (!imageUrl) {
         const filesField = props.Image || props.image;
@@ -125,8 +125,8 @@ async function fetchActualite() {
 
       const slug = slugify(title) || page.id.replace(/-/g, '').substring(0, 12);
 
-      // Download and compress image locally
-      let localImage = '';
+      // Download image — keep original URL as fallback
+      let localImage = imageUrl;
       if (imageUrl) {
         const filename = `${slug}.webp`;
         const destPath = path.join(IMAGES_DIR, filename);
@@ -134,30 +134,26 @@ async function fetchActualite() {
           await downloadAndCompressImage(imageUrl, destPath);
           localImage = `/assets/images/actualites/${filename}`;
         } catch (err) {
-          console.warn(`⚠️ Image "${title}": ${err.message}`);
-          localImage = imageUrl;
+          // Keep original URL silently
         }
       }
 
-      // Fetch body from Notion page
+      // Only fetch body for recent articles (last 20) to avoid 105 API calls
       let body = '';
-      try {
-        const mdBlocks = await n2m.pageToMarkdown(page.id);
-        const mdString = n2m.toMarkdownString(mdBlocks);
-        body = (typeof mdString === 'string') ? mdString : (mdString?.parent || '');
-      } catch (err) {
-        // No body is fine
+      if (count < 20) {
+        try {
+          const blocks = await notion.blocks.children.list({ block_id: page.id, page_size: 1 });
+          if (blocks.results.length > 0) {
+            const mdBlocks = await n2m.pageToMarkdown(page.id);
+            const mdString = n2m.toMarkdownString(mdBlocks);
+            body = (typeof mdString === 'string') ? mdString : (mdString?.parent || '');
+          }
+        } catch (err) { /* no body */ }
       }
 
-      actualites.push({
-        title,
-        url,
-        created,
-        summary,
-        image: localImage,
-        slug,
-        body,
-      });
+      actualites.push({ title, url, created, summary, image: localImage, slug, body });
+      count++;
+      if (count % 20 === 0) console.log(`📥 ${count}/${pages.length} articles traités...`);
     }
 
     const outputPath = path.join(__dirname, '../src/_data/actualite.json');
