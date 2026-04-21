@@ -125,16 +125,20 @@ async function fetchActualite() {
 
       const slug = slugify(title) || page.id.replace(/-/g, '').substring(0, 12);
 
-      // Download image — keep original URL as fallback
+      // Download image — skip if already cached
       let localImage = imageUrl;
       if (imageUrl) {
         const filename = `${slug}.webp`;
         const destPath = path.join(IMAGES_DIR, filename);
-        try {
-          await downloadAndCompressImage(imageUrl, destPath);
+        if (fs.existsSync(destPath) && fs.statSync(destPath).size > 100) {
           localImage = `/assets/images/actualites/${filename}`;
-        } catch (err) {
-          // Keep original URL silently
+        } else {
+          try {
+            await downloadAndCompressImage(imageUrl, destPath);
+            localImage = `/assets/images/actualites/${filename}`;
+          } catch (err) {
+            // Keep original URL silently
+          }
         }
       }
 

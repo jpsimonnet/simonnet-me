@@ -103,12 +103,12 @@ async function fetchLivres() {
       const imageUrl = await fetchPageImage(page.id);
       const imagePath = path.join(IMAGES_DIR, `${notionId}.webp`);
 
-      if (imageUrl) {
+      if (imageUrl && !(fs.existsSync(imagePath) && fs.statSync(imagePath).size > 100)) {
         try {
           await downloadAndCompressImage(imageUrl, imagePath);
-          console.log(`📷 Image téléchargée et compressée pour: ${properties.Nom?.title?.[0]?.plain_text}`);
+          console.log(`📷 Image: ${properties.Nom?.title?.[0]?.plain_text}`);
         } catch (err) {
-          console.warn(`⚠️ Échec téléchargement image: ${err.message}`);
+          console.warn(`⚠️ Image: ${err.message}`);
         }
       }
 

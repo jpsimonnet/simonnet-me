@@ -95,7 +95,7 @@ n2m.setCustomTransformer('image', async (block) => {
   const destPath = path.join(INLINE_IMAGES_DIR, filename);
   let localUrl = '';
   try {
-    if (!fs.existsSync(destPath)) {
+    if (!(fs.existsSync(destPath) && fs.statSync(destPath).size > 100)) {
       await downloadImage(url, destPath);
     }
     localUrl = `/assets/images/notion-inline/${filename}`;

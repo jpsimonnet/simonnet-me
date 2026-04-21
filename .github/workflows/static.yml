@@ -48,6 +48,18 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Cache Notion images
+        uses: actions/cache@v4
+        with:
+          path: |
+            src/assets/images/actualites
+            src/assets/images/lectures
+            src/assets/images/notion
+            src/assets/images/notion-inline
+          key: notion-images-${{ github.run_number }}
+          restore-keys: |
+            notion-images-
+
       - name: Fetch Notion actualités
         env:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
