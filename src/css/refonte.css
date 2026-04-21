@@ -1482,3 +1482,6 @@ html[data-force-theme="light"] {
 
 /* Cursor zoom on gallery images */
 .galerie-masonry a { cursor: zoom-in; display: block; }
+
+/* Padding before breadcrumb on detail pages */
+.detail-top { padding-top: 2.5rem; }
