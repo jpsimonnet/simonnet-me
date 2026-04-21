@@ -32,14 +32,14 @@ permalink: "lectures/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber 
       {% for livre in livresPage %}
       <a class="card-livre" href="/livre/{{ livre.id }}/">
         <div class="card-livre__cover">
-          <img src="/assets/images/lectures/{{ livre.id }}.webp" alt="" loading="lazy">
+          <img src="/assets/images/lectures/{{ livre.id }}.webp" alt="Couverture de {{ livre.Nom | e }}" loading="lazy">
         </div>
         <div>
           <div class="card-livre__title">{{ livre.Nom | e }}</div>
           {% if livre.Auteur %}<div class="card-livre__author">{{ livre.Auteur }}</div>{% endif %}
           {% if livre["Lu le"] %}
           <div class="card-livre__date">
-            <time datetime="{{ livre['Lu le'] }}">{{ livre["Lu le"] | formatDateFr }}</time>
+            <time datetime="{{ livre['Lu le'] | isoDate }}">{{ livre["Lu le"] | formatDateFr }}</time>
           </div>
           {% endif %}
         </div>

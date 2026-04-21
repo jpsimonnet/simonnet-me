@@ -31,7 +31,7 @@ permalink: /interventions/
         <a class="card-intervention" href="/intervention/{{ item.slug }}/">
           <div class="card-intervention__image">
             {% if item.image %}
-            <img src="{{ item.image }}" alt="" loading="lazy">
+            <img src="{{ item.image }}" alt="Illustration de {{ item.title | e }}" loading="lazy">
             {% endif %}
             {% if item.date %}
             <span class="card-intervention__year">{{ item.date | truncate(4, true, "") }}</span>

@@ -37,7 +37,7 @@ eleventyComputed:
 
         {% if livre["Lu le"] %}
         <p class="livre-detail__date">
-          Lu le <time datetime="{{ livre['Lu le'] }}">{{ livre["Lu le"] | formatDateFr }}</time>
+          Lu le <time datetime="{{ livre['Lu le'] | isoDate }}">{{ livre["Lu le"] | formatDateFr }}</time>
         </p>
         {% endif %}
 

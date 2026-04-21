@@ -27,7 +27,7 @@ permalink: /photos/
       {% for galerie in galeries %}
       <a href="/photos/{{ galerie.slug }}/" class="card-galerie">
         <div class="card-galerie__image">
-          <img src="{{ galerie.thumbnail }}" alt="" loading="lazy">
+          <img src="{{ galerie.thumbnail }}" alt="Aperçu de la galerie {{ galerie.title | e }}" loading="lazy">
         </div>
         <div class="card-galerie__title">{{ galerie.title | e }}</div>
         <div class="card-galerie__meta">

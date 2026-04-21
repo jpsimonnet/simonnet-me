@@ -34,17 +34,17 @@ permalink: "a-la-une/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber 
       <article class="card-editorial">
         {% if item.image %}
         <div class="card-editorial__image">
-          <img src="{{ item.image }}" alt="" loading="lazy">
+          <img src="{{ item.image }}" alt="Illustration de {{ item.title | e }}" loading="lazy">
         </div>
         {% endif %}
         <p class="card-editorial__meta">
           <time datetime="{{ item.created }}">{{ item.created | formatDateFr }}</time>
         </p>
-        <h3>
+        <h2 class="card-editorial__title">
           <a href="/actualite/{{ item.slug or (item.title | slugify) }}/">
             {{ item.title | e }}
           </a>
-        </h3>
+        </h2>
         {% if item.summary %}
         <p>{{ item.summary | truncate(160) }}</p>
         {% endif %}
