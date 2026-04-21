@@ -427,10 +427,17 @@ section + section { border-top: 1px solid var(--color-border-soft); }
   font-weight: 500;
   white-space: nowrap;
   text-decoration: none;
-  color: var(--color-text-muted);
-  transition: color var(--transition), transform var(--transition);
+  color: var(--color-accent);
+  padding: 0.625rem 1.25rem;
+  border: 1px solid var(--color-accent);
+  border-radius: 999px;
+  transition: background var(--transition), color var(--transition), transform var(--transition);
 }
-.section-heading a:hover { color: var(--color-accent); transform: translateX(4px); }
+.section-heading a:hover {
+  background: var(--color-accent);
+  color: #fff;
+  transform: translateY(-1px);
+}
 
 /* ========== EDITORIAL GRID (actualités) ========== */
 
