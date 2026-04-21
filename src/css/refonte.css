@@ -400,11 +400,11 @@ section + section { border-top: 1px solid var(--color-border-soft); }
 
 .section-heading {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   gap: var(--space-md);
   margin-bottom: var(--space-lg);
-  padding-bottom: var(--space-sm);
+  padding: var(--space-md) 0;
   border-bottom: 1px solid var(--color-border);
 }
 .section-heading__kicker {
