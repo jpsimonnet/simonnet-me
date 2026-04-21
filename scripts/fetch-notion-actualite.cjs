@@ -2,6 +2,7 @@
 
 require('dotenv').config();
 const { Client } = require('@notionhq/client');
+const { NotionToMarkdown } = require('notion-to-md');
 const fs = require('fs');
 const path = require('path');
 const https = require('https');
@@ -11,6 +12,7 @@ let sharp;
 try { sharp = require('sharp'); } catch (e) { sharp = null; }
 
 const notion = new Client({ auth: process.env.NOTION_TOKEN });
+const n2m = new NotionToMarkdown({ notionClient: notion, config: { parseChildPages: false } });
 
 const IMAGES_DIR = path.join(__dirname, '../src/assets/images/actualites');
 if (!fs.existsSync(IMAGES_DIR)) {
@@ -104,10 +106,11 @@ async function fetchActualite() {
         }
       }
 
+      const slug = slugify(title) || page.id.replace(/-/g, '').substring(0, 12);
+
       // Download and compress image locally
       let localImage = '';
       if (imageUrl) {
-        const slug = slugify(title) || page.id.replace(/-/g, '').substring(0, 12);
         const filename = `${slug}.webp`;
         const destPath = path.join(IMAGES_DIR, filename);
         try {
@@ -119,12 +122,24 @@ async function fetchActualite() {
         }
       }
 
+      // Fetch body from Notion page
+      let body = '';
+      try {
+        const mdBlocks = await n2m.pageToMarkdown(page.id);
+        const mdString = n2m.toMarkdownString(mdBlocks);
+        body = (typeof mdString === 'string') ? mdString : (mdString?.parent || '');
+      } catch (err) {
+        // No body is fine
+      }
+
       actualites.push({
         title,
         url,
         created,
         summary,
         image: localImage,
+        slug,
+        body,
       });
     }
 

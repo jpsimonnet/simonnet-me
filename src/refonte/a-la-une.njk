@@ -41,9 +41,8 @@ permalink: "a-la-une/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber 
           <time datetime="{{ item.created }}">{{ item.created | formatDateFr }}</time>
         </p>
         <h3>
-          <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">
+          <a href="/actualite/{{ item.slug or (item.title | slugify) }}/">
             {{ item.title | e }}
-            <span class="visually-hidden">(nouvelle fenêtre)</span>
           </a>
         </h3>
         {% if item.summary %}

@@ -1,0 +1,66 @@
+---
+layout: refonte
+pagination:
+  data: actualite
+  size: 1
+  alias: item
+permalink: "actualite/{{ item.slug or (item.title | slugify) }}/index.html"
+eleventyComputed:
+  title: "{{ item.title }}"
+---
+
+<section>
+  <div class="container">
+    <nav aria-label="Fil d'Ariane">
+      <ol class="breadcrumb">
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/a-la-une/">À la une</a></li>
+        <li aria-current="page">{{ item.title | e }}</li>
+      </ol>
+    </nav>
+
+    <div class="livre-detail">
+      {% if item.image %}
+      <div class="livre-detail__cover" style="aspect-ratio: 16 / 10;">
+        <img src="{{ item.image }}" alt="" style="object-fit: cover;">
+      </div>
+      {% endif %}
+
+      <div>
+        <p class="livre-detail__type">À la une</p>
+
+        <h1 class="livre-detail__title">{{ item.title | e }}</h1>
+
+        {% if item.created %}
+        <p class="livre-detail__date">
+          Publié le <time datetime="{{ item.created }}">{{ item.created | formatDateFr }}</time>
+        </p>
+        {% endif %}
+
+        {% if item.summary %}
+        <p class="lede" style="max-width: 100%; margin-bottom: 2rem;">{{ item.summary }}</p>
+        {% endif %}
+
+        {% if item.body %}
+        <div class="livre-detail__resume">
+          {{ item.body | markdownify | safe }}
+        </div>
+        {% endif %}
+
+        {% if item.url %}
+        <p style="margin-top: 2rem;">
+          <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">
+            Lire l'article original
+            <span class="visually-hidden">(nouvelle fenêtre)</span>
+            →
+          </a>
+        </p>
+        {% endif %}
+
+        <p style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--color-border);">
+          <a href="/a-la-une/">← Retour aux actualités</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

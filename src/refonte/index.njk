@@ -56,9 +56,8 @@ permalink: /
           <time datetime="{{ item.created }}">{{ item.created | formatDateFr }}</time>
         </p>
         <h3>
-          <a href="{{ item.url }}" rel="noopener noreferrer" target="_blank">
+          <a href="/actualite/{{ item.slug or (item.title | slugify) }}/">
             {{ item.title | e }}
-            <span class="visually-hidden">(nouvelle fenêtre)</span>
           </a>
         </h3>
         {% if item.summary %}
