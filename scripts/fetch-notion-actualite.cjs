@@ -125,16 +125,22 @@ async function fetchActualite() {
 
       const slug = slugify(title) || page.id.replace(/-/g, '').substring(0, 12);
 
-      // Download image — keep original URL as fallback
+      // Download image — skip if already cached as valid webp
       let localImage = imageUrl;
       if (imageUrl) {
         const filename = `${slug}.webp`;
         const destPath = path.join(IMAGES_DIR, filename);
-        try {
-          await downloadAndCompressImage(imageUrl, destPath);
+        const cached = fs.existsSync(destPath) && fs.statSync(destPath).size > 100;
+        const isWebp = cached && (() => { try { const h = Buffer.alloc(4); const fd = fs.openSync(destPath, 'r'); fs.readSync(fd, h, 0, 4, 0); fs.closeSync(fd); return h.toString('ascii', 0, 4) === 'RIFF'; } catch(e) { return false; } })();
+        if (cached && isWebp) {
           localImage = `/assets/images/actualites/${filename}`;
-        } catch (err) {
-          // Keep original URL silently
+        } else {
+          try {
+            await downloadAndCompressImage(imageUrl, destPath);
+            localImage = `/assets/images/actualites/${filename}`;
+          } catch (err) {
+            // Keep original URL silently
+          }
         }
       }
 

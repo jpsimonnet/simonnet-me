@@ -14,7 +14,7 @@ pagination:
 
      <div class="jumbotron my-3 p-4">
         <div class="container-fluid py-2">
-           <img class="rounded float-end img-thumbnail" src="/assets/images/jp.jpg" width="350" height="350" alt="Photo de Jean-Philippe Simonnet">
+           <img class="rounded float-end img-thumbnail" src="/assets/images/jp.webp" width="350" height="350" alt="Photo de Jean-Philippe Simonnet">
 
 
 ### Jean-Philippe Simonnet
