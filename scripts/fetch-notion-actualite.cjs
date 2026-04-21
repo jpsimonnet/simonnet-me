@@ -63,7 +63,7 @@ async function downloadAndCompressImage(url, destPath) {
     try {
       await sharp(buffer, { failOn: 'none' })
         .resize(800, null, { withoutEnlargement: true })
-        .webp({ quality: 85 })
+        .webp({ quality: 75 })
         .toFile(destPath);
     } catch (sharpErr) {
       throw new Error(`sharp: ${sharpErr.message}`);

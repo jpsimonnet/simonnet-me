@@ -210,7 +210,7 @@ function downloadBuffer(url) {
 async function downloadImage(url, destPath) {
   const buffer = await downloadBuffer(url);
   if (sharp) {
-    await sharp(buffer).webp({ quality: 85 }).toFile(destPath);
+    await sharp(buffer).webp({ quality: 75 }).toFile(destPath);
   } else {
     fs.writeFileSync(destPath, buffer);
   }
