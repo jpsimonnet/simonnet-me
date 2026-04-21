@@ -5,7 +5,7 @@
   "scripts": {
     "build": "eleventy",
     "postbuild": "npm run minify:css && npm run minify:js",
-    "minify:css": "cleancss -o public/css/refonte.css public/css/refonte.css && cleancss -o public/css/oxymore.css public/css/oxymore.css 2>/dev/null; true",
+    "minify:css": "cleancss -o public/css/refonte.css public/css/refonte.css && cleancss -o public/css/print.css public/css/print.css && cleancss -o public/css/oxymore.css public/css/oxymore.css 2>/dev/null; true",
     "minify:js": "find public/js -name '*.js' -exec terser {} -o {} -c -m \\;",
     "serve": "eleventy --serve",
     "search": "npx pagefind --site public --output-subdir pagefind"
