@@ -989,6 +989,14 @@ section + section { border-top: 1px solid var(--color-border-soft); }
   color: var(--color-text);
   max-width: 62ch;
 }
+.livre-detail__resume h2,
+.livre-detail__resume h3,
+.livre-detail__resume h4,
+.livre-detail__resume h5,
+.livre-detail__resume h6 {
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
 
 /* ========== PROSE / ARTICLES (mentions, accessibilité, etc) ========== */
 
