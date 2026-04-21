@@ -10,7 +10,7 @@ name : JP Simonnet
 
 ### Jean-Philippe Simonnet
 
-{% imageResponsive "src/assets/images/jp.jpg", "Jean-Philippe", "right", [500, 500], ["webp", "jpeg"], "Jean-Philippe Simonnet en 2025" %}
+{% imageResponsive "src/assets/images/jp.webp", "Jean-Philippe", "right", [500, 500], ["webp", "jpeg"], "Jean-Philippe Simonnet en 2025" %}
 
 
 

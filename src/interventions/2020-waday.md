@@ -4,7 +4,7 @@ tags: interventions
 title: "2020 - #WAday : Lier performance et écologie"
 date: 2020-01-28
 description: "#WAday : événement annuel de Webassoc"
-image: /assets/images/waday.jpg
+image: /assets/images/waday.webp
 Présentation globale de la pollution liée au numérique : activités et impacts. Focus sur l’éco-conception des sites web avec des recommandations concrètes."
 rubriqueurl: /2025/interventions/
 rubriquenom: "Mes interventions"
@@ -18,7 +18,7 @@ maj : 28 janvier 2020
 <div class="float-end ms-5"> 
 
  
- ![WADAYS](/assets/images/waday.jpg)
+ ![WADAYS](/assets/images/waday.webp)
 
 
 </div >
