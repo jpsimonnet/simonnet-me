@@ -17,6 +17,9 @@ _site/
 
 # Notion-fetched book covers (re-downloaded at build time)
 src/assets/images/lectures/
+src/assets/images/actualites/
+src/assets/images/notion/
+src/assets/images/notion-inline/
 
 # IDE
 .vscode/
