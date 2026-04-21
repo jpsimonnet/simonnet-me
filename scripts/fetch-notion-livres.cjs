@@ -131,4 +131,4 @@ async function fetchLivres() {
   }
 }
 
-fetchLivres();
+fetchLivres().then(() => process.exit(0)).catch(() => process.exit(1));
