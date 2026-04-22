@@ -98,6 +98,13 @@ export default function(eleventyConfig) {
 
   // Markdown filter for Notion content
   const md = markdownit({ html: true, linkify: true, breaks: false, typographer: true });
+  eleventyConfig.addFilter("isoDate", (dateObj) => {
+    if (!dateObj) return '';
+    const d = new Date(dateObj);
+    if (isNaN(d)) return String(dateObj).replace(/\//g, '-');
+    return d.toISOString().split('T')[0];
+  });
+
   eleventyConfig.addFilter("markdownify", (content) => {
     if (!content || typeof content !== 'string') return '';
     return md.render(content);

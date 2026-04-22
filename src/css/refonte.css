@@ -10,7 +10,7 @@
   --color-paper: #FFFFFF;
   --color-text: #1A1A1A;
   --color-text-muted: #5B5B5B;
-  --color-text-subtle: #6B6B6B;
+  --color-text-subtle: #595959;
   --color-border: #E5E2DB;
   --color-border-soft: #EFECE4;
   --color-accent: rgb(229, 0, 93);
@@ -479,12 +479,11 @@ section + section { border-top: 1px solid var(--color-border-soft); padding-bott
   letter-spacing: 0.1em;
 }
 
-.card-editorial h3 {
+.card-editorial__title {
   font-size: 1.25rem;
   line-height: 1.25;
-
 }
-.card-editorial h3 a {
+.card-editorial__title a {
   color: var(--color-text);
   text-decoration: none;
   background-image: linear-gradient(var(--color-accent), var(--color-accent));
@@ -1232,6 +1231,8 @@ section + section { border-top: 1px solid var(--color-border-soft); padding-bott
   padding: clamp(4rem, 10vw, 8rem) 0;
   text-align: center;
 }
+.error-page h1 { margin-bottom: 1rem; }
+.error-page .lede { margin: 0 auto 2rem; }
 .error-page__code {
   font-family: var(--font-display);
   font-size: clamp(8rem, 20vw, 16rem);
@@ -1306,7 +1307,7 @@ html[data-force-theme="light"] {
   --color-paper: #FFFFFF;
   --color-text: #1A1A1A;
   --color-text-muted: #5B5B5B;
-  --color-text-subtle: #6B6B6B;
+  --color-text-subtle: #595959;
   --color-border: #E5E2DB;
   --color-border-soft: #EFECE4;
   --color-accent: rgb(229, 0, 93);

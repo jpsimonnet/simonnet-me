@@ -1,0 +1,224 @@
+/* ================================================================
+   PRINT STYLESHEET — simonnet.me
+   ================================================================ */
+
+@media print {
+
+  /* Reset colors and backgrounds */
+  * {
+    background: transparent !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 12pt;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Hide non-essential elements */
+  .site-header,
+  .site-footer,
+  .skip-link,
+  .menu-toggle,
+  .site-tools,
+  .search-toggle,
+  #search-panel,
+  .galerie-lightbox,
+  .pagination,
+  .kicker,
+  .kicker::before,
+  .fade-in,
+  .section-heading a,
+  .profil__liens,
+  .article-nav,
+  nav[aria-label="Fil d'Ariane"] {
+    display: none !important;
+  }
+
+  /* Container: full width */
+  .container,
+  .container-wide {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Page title */
+  h1 {
+    font-size: 24pt;
+    margin-bottom: 0.5em;
+    page-break-after: avoid;
+  }
+
+  h2 {
+    font-size: 18pt;
+    margin-top: 1.5em;
+    page-break-after: avoid;
+  }
+
+  h3 {
+    font-size: 14pt;
+    margin-top: 1em;
+    page-break-after: avoid;
+  }
+
+  h4, h5, h6 {
+    font-size: 12pt;
+    page-break-after: avoid;
+  }
+
+  p, li, td, th {
+    orphans: 3;
+    widows: 3;
+  }
+
+  /* Links: show URL after text */
+  a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 9pt;
+    font-weight: normal;
+    font-style: italic;
+    word-break: break-all;
+  }
+
+  /* Don't show URL for internal/anchor links */
+  a[href^="#"]::after,
+  a[href^="/"]::after,
+  nav a::after,
+  .card-editorial a::after,
+  .card-livre a::after,
+  .card-intervention a::after,
+  .card-galerie::after {
+    content: none !important;
+  }
+
+  /* Images */
+  img {
+    max-width: 100% !important;
+    page-break-inside: avoid;
+  }
+
+  /* Book detail: side by side */
+  .livre-detail {
+    display: flex !important;
+    gap: 2em;
+  }
+  .livre-detail__cover {
+    max-width: 200px !important;
+    box-shadow: none !important;
+  }
+  .livre-detail__cover::before {
+    display: none !important;
+  }
+
+  /* Cards grid: simpler layout */
+  .grid-editorial,
+  .grid-livres,
+  .grid-livres--5,
+  .interventions-grid,
+  .grid-galeries {
+    display: block !important;
+    columns: 2;
+    column-gap: 2em;
+  }
+  .grid-editorial > *,
+  .grid-livres > *,
+  .interventions-grid > *,
+  .grid-galeries > * {
+    break-inside: avoid;
+    margin-bottom: 1.5em;
+  }
+
+  /* Card images: smaller in print */
+  .card-editorial__image,
+  .card-intervention__image {
+    max-height: 150px;
+    overflow: hidden;
+  }
+  .card-livre__cover {
+    max-height: 200px;
+    box-shadow: none !important;
+  }
+  .card-livre__cover::before {
+    display: none !important;
+  }
+  .card-intervention__year {
+    position: static !important;
+    background: none !important;
+    padding: 0 !important;
+    font-weight: bold;
+  }
+
+  /* Gallery: grid for print */
+  .galerie-masonry {
+    columns: 3 !important;
+  }
+
+  /* Tables */
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  th, td {
+    border: 1px solid #ccc;
+    padding: 0.4em 0.6em;
+  }
+  thead {
+    display: table-header-group;
+  }
+  tr {
+    page-break-inside: avoid;
+  }
+
+  /* Prose */
+  .prose, .article-body {
+    max-width: 100% !important;
+  }
+
+  /* Hero: compact */
+  .hero {
+    padding: 0 0 1em !important;
+    border-bottom: 2px solid #000;
+    margin-bottom: 1em;
+  }
+  .hero h1 em {
+    font-style: normal;
+  }
+  .lede {
+    font-style: italic;
+    color: #333 !important;
+  }
+
+  /* Section borders */
+  section + section {
+    border-top: 1px solid #ccc;
+    padding-top: 1em;
+  }
+
+  /* Page breaks */
+  section {
+    page-break-inside: avoid;
+  }
+  .livre-detail,
+  article,
+  figure {
+    page-break-inside: avoid;
+  }
+
+  /* Footer info for print: add site URL */
+  body::after {
+    content: "Imprimé depuis simonnet.me — Jean-Philippe Simonnet";
+    display: block;
+    text-align: center;
+    font-size: 9pt;
+    font-style: italic;
+    margin-top: 2em;
+    padding-top: 1em;
+    border-top: 1px solid #ccc;
+  }
+}

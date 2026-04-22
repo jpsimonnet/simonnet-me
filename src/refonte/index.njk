@@ -35,13 +35,13 @@ permalink: /
       <article class="card-editorial">
         {% if item.image %}
         <div class="card-editorial__image">
-          <img src="{{ item.image }}" alt="" loading="lazy">
+          <img src="{{ item.image }}" alt="Illustration de {{ item.title | e }}" loading="lazy">
         </div>
         {% endif %}
         <p class="card-editorial__meta">
           <time datetime="{{ item.created }}">{{ item.created | formatDateFr }}</time>
         </p>
-        <h3>
+        <h3 class="card-editorial__title">
           <a href="/actualite/{{ item.slug or (item.title | slugify) }}/">
             {{ item.title | e }}
           </a>
@@ -70,7 +70,7 @@ permalink: /
       {% for livre in livresRecents %}
       <a class="card-livre" href="/livre/{{ livre.id }}/">
         <div class="card-livre__cover">
-          <img src="/assets/images/lectures/{{ livre.id }}.webp" alt="" loading="lazy">
+          <img src="/assets/images/lectures/{{ livre.id }}.webp" alt="Couverture de {{ livre.Nom | e }}" loading="lazy">
         </div>
         <div>
           <div class="card-livre__title">{{ livre.Nom | e }}</div>

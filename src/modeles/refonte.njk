@@ -9,12 +9,13 @@ permalink: false
   <title>{{ title }} — Oxymore</title>
   <meta name="description" content="{{ description or 'Jean-Philippe Simonnet — expert accessibilité numérique.' }}">
   <link rel="stylesheet" href="/css/refonte.css">
+  <link rel="stylesheet" href="/css/print.css" media="print">
   <link rel="icon" href="/favicon.ico">
 </head>
 <body>
   <a class="skip-link" href="#nav-main">Aller au menu</a>
   <a class="skip-link" href="#main">Aller au contenu</a>
-  <a class="skip-link" href="#search-panel" onclick="event.preventDefault();document.querySelector('.search-toggle').click();">Aller à la recherche</a>
+  <a class="skip-link" href="#search-panel">Aller à la recherche</a>
   <a class="skip-link" href="#footer">Aller au pied de page</a>
 
   <header class="site-header">
@@ -84,7 +85,7 @@ permalink: false
   {# Search panel #}
   <div id="search-panel" class="search-panel" hidden>
     <div class="search-panel__inner container">
-      <div id="search-results"></div>
+      <div id="search-results" aria-live="polite"></div>
       <button type="button" class="search-panel__close" aria-label="Fermer la recherche">&times;</button>
     </div>
   </div>
@@ -163,6 +164,20 @@ permalink: false
       document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && !searchPanel.hidden) closeSearch();
       });
+      // Skip link: intercept click on #search-panel anchor
+      var skipSearch = document.querySelector('a.skip-link[href="#search-panel"]');
+      if (skipSearch) {
+        skipSearch.addEventListener('click', function(e) { e.preventDefault(); openSearch(); });
+      }
+      // Label the Pagefind input for accessibility (NC9)
+      var observer = new MutationObserver(function() {
+        var input = searchPanel.querySelector('input');
+        if (input && !input.getAttribute('aria-label')) {
+          input.setAttribute('aria-label', 'Rechercher sur le site');
+          observer.disconnect();
+        }
+      });
+      observer.observe(searchPanel, { childList: true, subtree: true });
     }
   })();
   </script>

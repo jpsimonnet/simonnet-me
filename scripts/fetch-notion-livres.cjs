@@ -41,7 +41,7 @@ function downloadBuffer(url) {
 async function downloadAndCompressImage(url, destPath) {
   const buffer = await downloadBuffer(url);
   await sharp(buffer)
-    .webp({ quality: 85 })
+    .webp({ quality: 75 })
     .toFile(destPath);
 }
 
