@@ -554,7 +554,7 @@ section + section { border-top: 1px solid var(--color-border-soft); padding: 2re
     0 12px 24px -4px rgba(0,0,0,0.15),
     0 32px 56px -12px rgba(0,0,0,0.28);
 }
-.card-livre__cover img { width: 100%; height: 100%; object-fit: cover; }
+.card-livre__cover img { width: 100%; height: 100%; object-fit: fill; }
 
 .card-livre__title {
   font-family: var(--font-display);
@@ -955,7 +955,7 @@ section + section { border-top: 1px solid var(--color-border-soft); padding: 2re
   background: rgba(0,0,0,0.2);
   z-index: 2;
 }
-.livre-detail__cover img { width: 100%; height: 100%; object-fit: cover; }
+.livre-detail__cover img { width: 100%; height: 100%; object-fit: fill; }
 
 .livre-detail__type {
   display: inline-block;
