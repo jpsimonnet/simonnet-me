@@ -17,12 +17,17 @@
         <div class="text-6xl mb-4">🤖</div>
         <h1 class="text-3xl font-bold text-indigo-400 mb-2">IA Master Challenge</h1>
         <p class="text-slate-400 mb-8 text-sm italic">Prouve ta maîtrise des 10 défis de l'IA</p>
-        
-        <div class="mb-8 text-left">
+
+        <div class="mb-6 text-left">
             <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-2">Ton Pseudo</label>
             <input type="text" id="username" placeholder="Ex: CyberEleve" class="w-full bg-slate-900 border border-slate-700 rounded-2xl px-5 py-4 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition">
         </div>
-        
+
+        <div id="history-box" class="hidden mb-6 text-left">
+            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-3">Tentatives précédentes</p>
+            <div id="history-list" class="space-y-2"></div>
+        </div>
+
         <button onclick="startQuiz()" class="w-full bg-indigo-600 hover:bg-indigo-500 font-bold py-4 rounded-2xl transition duration-200 shadow-lg">
             Démarrer le Quiz 🚀
         </button>
@@ -44,12 +49,27 @@
     <div id="result-screen" class="hidden max-w-md w-full bg-slate-800 p-8 rounded-3xl shadow-2xl border border-slate-700 text-center">
         <div id="feedback-icon" class="text-6xl mb-4">✅</div>
         <h2 id="feedback-text" class="text-2xl font-bold mb-2">Bonne réponse !</h2>
-        <p id="points-earned" class="text-amber-400 font-mono text-xl mb-6">+0 pts</p>
-        
-        <div class="bg-slate-900 rounded-2xl p-6 mb-8 text-left">
+        <p id="points-earned" class="text-amber-400 font-mono text-xl mb-4">+0 pts</p>
+
+        <div id="correct-answer-box" class="hidden bg-emerald-900/30 border border-emerald-700/40 rounded-2xl p-3 mb-4 text-left">
+            <p class="text-xs text-emerald-400 font-bold uppercase mb-1">Bonne réponse</p>
+            <p id="correct-answer-text" class="text-sm text-emerald-300"></p>
+        </div>
+
+        <div class="bg-slate-900 rounded-2xl p-4 mb-4 text-left">
             <p class="text-xs text-slate-500 uppercase font-bold mb-2">Score Total</p>
             <div class="text-3xl font-bold text-white"><span id="total-score">0</span> pts</div>
         </div>
+
+        <a id="resource-link" href="#" target="_blank" rel="noopener noreferrer"
+           class="flex items-center gap-2 bg-indigo-900/40 border border-indigo-700/40 rounded-2xl p-3 mb-6 text-left hover:bg-indigo-900/60 transition group">
+            <span class="text-lg">📖</span>
+            <div class="flex-1 min-w-0">
+                <p class="text-xs text-indigo-400 font-bold uppercase mb-0.5">Pour aller plus loin</p>
+                <p id="resource-label" class="text-sm text-indigo-300 group-hover:underline truncate"></p>
+            </div>
+            <span class="text-indigo-500 text-xs">↗</span>
+        </a>
 
         <button onclick="nextQuestion()" class="w-full bg-emerald-600 hover:bg-emerald-500 font-bold py-4 rounded-2xl transition duration-200">
             Suivant ➡️
@@ -60,7 +80,7 @@
         <div class="text-6xl mb-4">🏆</div>
         <h2 class="text-3xl font-bold mb-2">Quiz Terminé !</h2>
         <p id="final-rank" class="text-indigo-400 font-bold text-xl mb-8 uppercase tracking-widest">Grade : Expert</p>
-        
+
         <div class="grid grid-cols-2 gap-4 mb-8">
             <div class="bg-slate-900 p-4 rounded-2xl">
                 <p class="text-xs text-slate-500 mb-1">Score</p>
@@ -78,17 +98,70 @@
     </div>
 
     <script>
+        const STORAGE_KEY = 'quizScores_ia';
+        const MAX_HISTORY = 5;
+
         const questions = [
-            { q: "Quand ChatGPT invente des faits avec assurance, c'est :", options: ["Un bug serveur", "Une hallucination", "Une fake news volontaire", "Un complot"], correct: 1 },
-            { q: "Impact de l'IA générative sur l'environnement ?", options: ["Aucun impact", "Baisse de conso", "Forte conso d'eau et d'électricité", "Pollution sonore"], correct: 2 },
-            { q: "Risque de demander à une IA de rédiger ton devoir ?", options: ["IA trop intelligente", "Plagiat et perte d'esprit critique", "Explosion du PC", "20/20 garanti"], correct: 1 },
-            { q: "Qui décide du contenu de ton fil TikTok / Insta ?", options: ["Le hasard", "Des modérateurs", "Un algorithme de recommandation", "Les délégués de classe"], correct: 2 },
-            { q: "Vidéo truquée pour changer les paroles d'une personne :", options: ["Filtre Snap", "Deepfake", "Montage MovieMaker", "VLOG"], correct: 1 },
-            { q: "Si l'IA associe 'Chirurgien' à 'Homme', c'est :", options: ["La vérité", "Un biais algorithmique", "Un choix esthétique", "Une erreur Windows"], correct: 1 },
-            { q: "Technologie pour déverrouiller FaceID :", options: ["Vision par ordinateur", "Télépathie", "Scan laser", "Microscope"], correct: 0 },
-            { q: "Origine des images pour entraîner Midjourney ?", options: ["Données privées", "Web public (souvent sans accord)", "Appareil photo de Google", "Dessins d'enfants"], correct: 1 },
-            { q: "L'effet 'bulle de filtre' c'est :", options: ["Écran qui brille", "Ne voir que des avis identiques aux siens", "Bloquer les virus", "Mode sombre"], correct: 1 },
-            { q: "Loi européenne encadrant l'IA :", options: ["Code Civil", "L'AI Act", "Charte du Lycée", "Loi 5G"], correct: 1 }
+            {
+                q: "Quand ChatGPT invente des faits avec assurance, c'est :",
+                options: ["Un bug serveur", "Une hallucination", "Une fake news volontaire", "Un complot"],
+                correct: 1,
+                resource: { url: "https://www.cnil.fr/fr/intelligence-artificielle-les-questions-que-vous-vous-posez", label: "CNIL — L'IA et ses limites expliquées" }
+            },
+            {
+                q: "Impact de l'IA générative sur l'environnement ?",
+                options: ["Aucun impact", "Baisse de conso", "Forte conso d'eau et d'électricité", "Pollution sonore"],
+                correct: 2,
+                resource: { url: "https://www.arcep.fr/la-regulation/grands-dossiers-thematiques-transverses/lempreinte-environnementale-du-numerique.html", label: "ARCEP — Empreinte environnementale du numérique" }
+            },
+            {
+                q: "Risque de demander à une IA de rédiger ton devoir ?",
+                options: ["IA trop intelligente", "Plagiat et perte d'esprit critique", "Explosion du PC", "20/20 garanti"],
+                correct: 1,
+                resource: { url: "https://eduscol.education.fr/3866/intelligence-artificielle-en-education", label: "Éduscol — IA et éducation : enjeux pédagogiques" }
+            },
+            {
+                q: "Qui décide du contenu de ton fil TikTok / Insta ?",
+                options: ["Le hasard", "Des modérateurs", "Un algorithme de recommandation", "Les délégués de classe"],
+                correct: 2,
+                resource: { url: "https://www.cnil.fr/fr/algorithmes-et-intelligence-artificielle", label: "CNIL — Comprendre les algorithmes de recommandation" }
+            },
+            {
+                q: "Vidéo truquée pour changer les paroles d'une personne :",
+                options: ["Filtre Snap", "Deepfake", "Montage MovieMaker", "VLOG"],
+                correct: 1,
+                resource: { url: "https://www.cybermalveillance.gouv.fr/tous-nos-contenus/fiches-reflexes/deepfakes", label: "Cybermalveillance.gouv.fr — Les deepfakes expliqués" }
+            },
+            {
+                q: "Si l'IA associe 'Chirurgien' à 'Homme', c'est :",
+                options: ["La vérité", "Un biais algorithmique", "Un choix esthétique", "Une erreur Windows"],
+                correct: 1,
+                resource: { url: "https://www.cnil.fr/fr/biais-algorithmiques-et-discrimination", label: "CNIL — Biais algorithmiques et discriminations" }
+            },
+            {
+                q: "Technologie pour déverrouiller FaceID :",
+                options: ["Vision par ordinateur", "Télépathie", "Scan laser", "Microscope"],
+                correct: 0,
+                resource: { url: "https://www.cnil.fr/fr/reconnaissance-faciale-pour-une-approche-europeenne", label: "CNIL — La reconnaissance faciale en France" }
+            },
+            {
+                q: "Origine des images pour entraîner Midjourney ?",
+                options: ["Données privées", "Web public (souvent sans accord)", "Appareil photo de Google", "Dessins d'enfants"],
+                correct: 1,
+                resource: { url: "https://www.cnil.fr/fr/ia-generative-et-protection-des-donnees-les-questions-que-vous-vous-posez", label: "CNIL — IA générative et protection des données" }
+            },
+            {
+                q: "L'effet 'bulle de filtre' c'est :",
+                options: ["Écran qui brille", "Ne voir que des avis identiques aux siens", "Bloquer les virus", "Mode sombre"],
+                correct: 1,
+                resource: { url: "https://www.clemi.fr/fr/ressources/nos-ressources-pedagogiques/ressources-pedagogiques/bulles-de-filtre-et-chambres-d-echo.html", label: "CLEMI — Bulles de filtre et chambres d'écho" }
+            },
+            {
+                q: "Loi européenne encadrant l'IA :",
+                options: ["Code Civil", "L'AI Act", "Charte du Lycée", "Loi 5G"],
+                correct: 1,
+                resource: { url: "https://www.vie-publique.fr/eclairage/292428-reglementation-europeenne-sur-lia-ce-que-contient-lai-act", label: "Vie-publique.fr — L'AI Act européen expliqué" }
+            }
         ];
 
         let currentIdx = 0;
@@ -96,6 +169,38 @@
         let correctAnswers = 0;
         let timer;
         let timeLeft = 15;
+
+        function loadHistory() {
+            try {
+                return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+            } catch(e) { return []; }
+        }
+
+        function saveScore(pseudo, finalScore, acc) {
+            const history = loadHistory();
+            history.unshift({ pseudo: pseudo || 'Anonyme', score: finalScore, accuracy: acc, date: new Date().toISOString() });
+            if (history.length > MAX_HISTORY) history.length = MAX_HISTORY;
+            try { localStorage.setItem(STORAGE_KEY, JSON.stringify(history)); } catch(e) {}
+        }
+
+        function renderHistory() {
+            const history = loadHistory();
+            if (!history.length) return;
+            const box = document.getElementById('history-box');
+            const list = document.getElementById('history-list');
+            box.classList.remove('hidden');
+            list.innerHTML = history.map((h, i) => {
+                const d = new Date(h.date);
+                const dateStr = d.toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
+                const medal = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : '▪️';
+                return `<div class="flex items-center justify-between bg-slate-900 rounded-xl px-4 py-2 text-sm">
+                    <span class="text-slate-300">${medal} <span class="font-semibold">${h.pseudo}</span></span>
+                    <span class="text-amber-400 font-mono font-bold">${h.score} pts</span>
+                    <span class="text-emerald-400 font-mono">${h.accuracy}%</span>
+                    <span class="text-slate-500 text-xs">${dateStr}</span>
+                </div>`;
+            }).join('');
+        }
 
         function startQuiz() {
             document.getElementById('start-screen').classList.add('hidden');
@@ -108,10 +213,10 @@
             document.getElementById('timer').innerText = "15s";
             document.getElementById('question-number').innerText = `${currentIdx + 1}/${questions.length}`;
             document.getElementById('question-text').innerText = questions[currentIdx].q;
-            
+
             const container = document.getElementById('options-container');
             container.innerHTML = '';
-            
+
             questions[currentIdx].options.forEach((opt, i) => {
                 const b = document.createElement('button');
                 b.className = "w-full text-left bg-slate-900 border border-slate-700 p-4 rounded-2xl hover:border-indigo-500 transition font-medium text-sm";
@@ -134,6 +239,8 @@
             const icon = document.getElementById('feedback-icon');
             const text = document.getElementById('feedback-text');
             const ptsText = document.getElementById('points-earned');
+            const correctBox = document.getElementById('correct-answer-box');
+            const correctText = document.getElementById('correct-answer-text');
 
             let pts = 0;
             if (idx === q.correct) {
@@ -143,14 +250,19 @@
                 icon.innerText = "✅";
                 text.innerText = "Bien joué !";
                 ptsText.innerText = `+${pts} pts (Vitesse!)`;
-                ptsText.className = "text-emerald-400 font-mono text-xl mb-6";
+                ptsText.className = "text-emerald-400 font-mono text-xl mb-4";
+                correctBox.classList.add('hidden');
             } else {
                 icon.innerText = "❌";
                 text.innerText = idx === -1 ? "Temps écoulé !" : "Raté...";
                 ptsText.innerText = "0 pts";
-                ptsText.className = "text-red-400 font-mono text-xl mb-6";
+                ptsText.className = "text-red-400 font-mono text-xl mb-4";
+                correctBox.classList.remove('hidden');
+                correctText.innerText = q.options[q.correct];
             }
 
+            document.getElementById('resource-link').href = q.resource.url;
+            document.getElementById('resource-label').innerText = q.resource.label;
             document.getElementById('total-score').innerText = score;
             document.getElementById('quiz-screen').classList.add('hidden');
             feedback.classList.remove('hidden');
@@ -168,16 +280,22 @@
         }
 
         function showFinal() {
+            const pseudo = document.getElementById('username').value.trim();
+            const acc = Math.round((correctAnswers / questions.length) * 100);
+            saveScore(pseudo, score, acc);
+
             document.getElementById('final-screen').classList.remove('hidden');
             document.getElementById('final-score').innerText = score;
-            document.getElementById('accuracy').innerText = Math.round((correctAnswers / questions.length) * 100) + "%";
-            
+            document.getElementById('accuracy').innerText = acc + "%";
+
             let rank = "Apprenti IA";
             if (score > 4000) rank = "Initié Numérique";
             if (score > 7000) rank = "Expert Critique";
             if (score > 9000) rank = "Master de l'IA";
             document.getElementById('final-rank').innerText = "Grade : " + rank;
         }
+
+        renderHistory();
     </script>
 </body>
 </html>
