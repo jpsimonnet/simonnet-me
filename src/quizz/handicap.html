@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inclusion Pro : Handicap au Travail 💼</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+        body { font-family: 'Poppins', sans-serif; }
+        .option-btn { transition: all 0.2s ease; }
+    </style>
+</head>
+<body class="bg-slate-900 text-white min-h-screen flex flex-col items-center justify-center p-4">
+
+    <div id="start-screen" class="max-w-md w-full bg-slate-800 p-8 rounded-3xl shadow-2xl text-center border border-slate-700">
+        <div class="text-6xl mb-4">💼</div>
+        <h1 class="text-3xl font-bold text-indigo-400 mb-2">Inclusion Pro</h1>
+        <p class="text-slate-400 mb-8 text-sm italic">Le handicap dans le monde du travail</p>
+        
+        <div class="mb-8 text-left">
+            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-2">Ton Pseudo</label>
+            <input type="text" id="username" placeholder="Ex: ProInclusif" class="w-full bg-slate-900 border border-slate-700 rounded-2xl px-5 py-4 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition">
+        </div>
+        
+        <button onclick="startQuiz()" class="w-full bg-indigo-600 hover:bg-indigo-500 font-bold py-4 rounded-2xl transition duration-200 shadow-lg">
+            Démarrer le Quiz 🚀
+        </button>
+    </div>
+
+    <div id="quiz-screen" class="hidden max-w-md w-full bg-slate-800 p-6 rounded-3xl shadow-2xl border border-slate-700">
+        <div class="flex justify-between items-center mb-6">
+            <span id="question-number" class="text-xs bg-indigo-500/20 text-indigo-300 px-4 py-1.5 rounded-full font-bold">1/10</span>
+            <div id="timer-box" class="bg-amber-500/10 border border-amber-500/20 px-3 py-1 rounded-lg">
+                <span class="text-xs text-amber-500 mr-2 uppercase font-bold">Temps</span>
+                <span id="timer" class="text-sm font-mono font-bold text-amber-400">15s</span>
+            </div>
+        </div>
+
+        <h2 id="question-text" class="text-xl font-bold mb-8 leading-tight">...</h2>
+        <div id="options-container" class="space-y-4"></div>
+    </div>
+
+    <div id="result-screen" class="hidden max-w-md w-full bg-slate-800 p-8 rounded-3xl shadow-2xl border border-slate-700 text-center">
+        <div id="feedback-icon" class="text-6xl mb-4">✅</div>
+        <h2 id="feedback-text" class="text-2xl font-bold mb-2">Bonne réponse !</h2>
+        <p id="points-earned" class="text-amber-400 font-mono text-xl mb-6">+0 pts</p>
+        
+        <div class="bg-slate-900 rounded-2xl p-6 mb-8 text-left">
+            <p class="text-xs text-slate-500 uppercase font-bold mb-2">Score Total</p>
+            <div class="text-3xl font-bold text-white"><span id="total-score">0</span> pts</div>
+        </div>
+
+        <button onclick="nextQuestion()" class="w-full bg-emerald-600 hover:bg-emerald-500 font-bold py-4 rounded-2xl transition duration-200">
+            Suivant ➡️
+        </button>
+    </div>
+
+    <div id="final-screen" class="hidden max-w-md w-full bg-slate-800 p-8 rounded-3xl shadow-2xl border border-slate-700 text-center">
+        <div class="text-6xl mb-4">🏆</div>
+        <h2 class="text-3xl font-bold mb-2">Quiz Terminé !</h2>
+        <p id="final-rank" class="text-indigo-400 font-bold text-xl mb-8 uppercase tracking-widest">Grade : ...</p>
+        
+        <div class="grid grid-cols-2 gap-4 mb-8">
+            <div class="bg-slate-900 p-4 rounded-2xl">
+                <p class="text-xs text-slate-500 mb-1">Score</p>
+                <p id="final-score" class="text-2xl font-bold text-amber-400">0</p>
+            </div>
+            <div class="bg-slate-900 p-4 rounded-2xl">
+                <p class="text-xs text-slate-500 mb-1">Précision</p>
+                <p id="accuracy" class="text-2xl font-bold text-emerald-400">0%</p>
+            </div>
+        </div>
+
+        <button onclick="location.reload()" class="w-full bg-slate-700 hover:bg-slate-600 font-bold py-4 rounded-2xl transition">
+            Recommencer 🔄
+        </button>
+    </div>
+
+    <script>
+        const questions = [
+            { q: "Quel pourcentage des handicaps sont invisibles à l'œil nu (ex: diabète, troubles psy, surdité partielle) ?", options: ["Environ 20%", "Environ 50%", "Environ 80%", "Moins de 5%"], correct: 2 },
+            { q: "En France, quel est le taux obligatoire de travailleurs handicapés dans les entreprises de 20 salariés et plus ?", options: ["1%", "3%", "6%", "10%"], correct: 2 },
+            { q: "Qu'est-ce que l'aménagement de poste en entreprise ?", options: ["Changer d'horaires toutes les semaines", "Adapter le matériel, l'environnement ou les horaires au handicap du salarié", "Remplacer le salarié par un robot", "Donner un bureau plus grand pour le prestige"], correct: 1 },
+            { q: "Que signifie le sigle RQTH, essentiel pour faire valoir ses droits au travail ?", options: ["Régime Quotidien des Travailleurs Handicapés", "Reconnaissance de la Qualité de Travailleur Handicapé", "Règlement Relatif au Handicap", "Réseau Qualité Travail et Humour"], correct: 1 },
+            { q: "Quelle proportion de personnes connaîtront un jour une situation de handicap au cours de leur vie active ?", options: ["1 personne sur 20", "1 personne sur 3", "Uniquement les sportifs de haut niveau", "Pratiquement personne"], correct: 1 },
+            { q: "Un employeur a-t-il le droit de refuser d'embaucher quelqu'un uniquement à cause de son handicap ?", options: ["Oui, c'est son entreprise", "Non, c'est une discrimination punie par la loi", "Oui, mais seulement si le poste est fatiguant", "Oui, si l'équipe n'est pas d'accord"], correct: 1 },
+            { q: "Parmi ces handicaps, lequel représente moins de 3% des cas en France, contrairement aux idées reçues ?", options: ["Le port de lunettes", "Les maux de dos chroniques", "Être en fauteuil roulant", "La dépression"], correct: 2 },
+            { q: "Quel organisme aide les entreprises à financer l'adaptation des postes pour les personnes handicapées ?", options: ["La CAF", "L'AGEFIPH (ou le FIPHFP dans le public)", "Pôle Emploi", "Le Ministère des Sports"], correct: 1 },
+            { q: "Qu'est-ce qu'un trouble 'dys' (dyslexie, dyspraxie...) dans le contexte du travail ?", options: ["Une maladie contagieuse", "Un handicap cognitif invisible qui nécessite des adaptations (ex: logiciels d'aide)", "Une panne d'ordinateur", "Une mauvaise volonté du salarié"], correct: 1 },
+            { q: "L'inclusion des personnes en situation de handicap en entreprise est principalement :", options: ["Une corvée administrative", "Une opportunité humaine et de performance qui enrichit les équipes", "Une stratégie de communication mensongère", "Une perte de temps collective"], correct: 1 }
+        ];
+
+        let currentIdx = 0; let score = 0; let correctAnswers = 0; let timer; let timeLeft = 15;
+        function startQuiz() { document.getElementById('start-screen').classList.add('hidden'); document.getElementById('quiz-screen').classList.remove('hidden'); loadQuestion(); }
+        function loadQuestion() {
+            timeLeft = 15; document.getElementById('timer').innerText = "15s"; document.getElementById('question-number').innerText = `${currentIdx + 1}/${questions.length}`; document.getElementById('question-text').innerText = questions[currentIdx].q;
+            const container = document.getElementById('options-container'); container.innerHTML = '';
+            questions[currentIdx].options.forEach((opt, i) => {
+                const b = document.createElement('button'); b.className = "w-full text-left bg-slate-900 border border-slate-700 p-4 rounded-2xl hover:border-indigo-500 transition font-medium text-sm"; b.innerText = opt; b.onclick = () => select(i); container.appendChild(b);
+            });
+            timer = setInterval(() => { timeLeft--; document.getElementById('timer').innerText = timeLeft + "s"; if (timeLeft <= 0) { clearInterval(timer); select(-1); } }, 1000);
+        }
+        function select(idx) {
+            clearInterval(timer); const q = questions[currentIdx]; const feedback = document.getElementById('result-screen'); const icon = document.getElementById('feedback-icon'); const text = document.getElementById('feedback-text'); const ptsText = document.getElementById('points-earned');
+            let pts = 0;
+            if (idx === q.correct) { pts = Math.round((timeLeft / 15) * 1000); score += pts; correctAnswers++; icon.innerText = "✅"; text.innerText = "Bien joué !"; ptsText.innerText = `+${pts} pts`; ptsText.className = "text-emerald-400 font-mono text-xl mb-6"; }
+            else { icon.innerText = "❌"; text.innerText = idx === -1 ? "Temps écoulé !" : "Raté..."; ptsText.innerText = "0 pts"; ptsText.className = "text-red-400 font-mono text-xl mb-6"; }
+            document.getElementById('total-score').innerText = score; document.getElementById('quiz-screen').classList.add('hidden'); feedback.classList.remove('hidden');
+        }
+        function nextQuestion() { currentIdx++; document.getElementById('result-screen').classList.add('hidden'); if (currentIdx < questions.length) { document.getElementById('quiz-screen').classList.remove('hidden'); loadQuestion(); } else { showFinal(); } }
+        function showFinal() {
+            document.getElementById('final-screen').classList.remove('hidden'); document.getElementById('final-score').innerText = score; document.getElementById('accuracy').innerText = Math.round((correctAnswers / questions.length) * 100) + "%";
+            let rank = "Novice"; if (score > 4000) rank = "Collaborateur Allié"; if (score > 7000) rank = "Manager Inclusif"; if (score > 9000) rank = "Ambassadeur de la Diversité 🏆";
+            document.getElementById('final-rank').innerText = "Grade : " + rank;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Pour Tous : Accessibilité Numérique 🌐</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+        body { font-family: 'Poppins', sans-serif; }
+        .option-btn { transition: all 0.2s ease; }
+    </style>
+</head>
+<body class="bg-slate-900 text-white min-h-screen flex flex-col items-center justify-center p-4">
+
+    <div id="start-screen" class="max-w-md w-full bg-slate-800 p-8 rounded-3xl shadow-2xl text-center border border-slate-700">
+        <div class="text-6xl mb-4">🌐</div>
+        <h1 class="text-3xl font-bold text-indigo-400 mb-2">Web Pour Tous</h1>
+        <p class="text-slate-400 mb-8 text-sm italic">Le défi de l'accessibilité numérique</p>
+        
+        <div class="mb-8 text-left">
+            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-2">Ton Pseudo</label>
+            <input type="text" id="username" placeholder="Ex: AccessUser" class="w-full bg-slate-900 border border-slate-700 rounded-2xl px-5 py-4 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition">
+        </div>
+        
+        <button onclick="startQuiz()" class="w-full bg-indigo-600 hover:bg-indigo-500 font-bold py-4 rounded-2xl transition duration-200 shadow-lg">
+            Démarrer le Quiz 🚀
+        </button>
+    </div>
+
+    <div id="quiz-screen" class="hidden max-w-md w-full bg-slate-800 p-6 rounded-3xl shadow-2xl border border-slate-700">
+        <div class="flex justify-between items-center mb-6">
+            <span id="question-number" class="text-xs bg-indigo-500/20 text-indigo-300 px-4 py-1.5 rounded-full font-bold">1/10</span>
+            <div id="timer-box" class="bg-amber-500/10 border border-amber-500/20 px-3 py-1 rounded-lg">
+                <span class="text-xs text-amber-500 mr-2 uppercase font-bold">Temps</span>
+                <span id="timer" class="text-sm font-mono font-bold text-amber-400">15s</span>
+            </div>
+        </div>
+
+        <h2 id="question-text" class="text-xl font-bold mb-8 leading-tight">...</h2>
+        <div id="options-container" class="space-y-4"></div>
+    </div>
+
+    <div id="result-screen" class="hidden max-w-md w-full bg-slate-800 p-8 rounded-3xl shadow-2xl border border-slate-700 text-center">
+        <div id="feedback-icon" class="text-6xl mb-4">✅</div>
+        <h2 id="feedback-text" class="text-2xl font-bold mb-2">Bonne réponse !</h2>
+        <p id="points-earned" class="text-amber-400 font-mono text-xl mb-6">+0 pts</p>
+        
+        <div class="bg-slate-900 rounded-2xl p-6 mb-8 text-left">
+            <p class="text-xs text-slate-500 uppercase font-bold mb-2">Score Total</p>
+            <div class="text-3xl font-bold text-white"><span id="total-score">0</span> pts</div>
+        </div>
+
+        <button onclick="nextQuestion()" class="w-full bg-emerald-600 hover:bg-emerald-500 font-bold py-4 rounded-2xl transition duration-200">
+            Suivant ➡️
+        </button>
+    </div>
+
+    <div id="final-screen" class="hidden max-w-md w-full bg-slate-800 p-8 rounded-3xl shadow-2xl border border-slate-700 text-center">
+        <div class="text-6xl mb-4">🏆</div>
+        <h2 class="text-3xl font-bold mb-2">Quiz Terminé !</h2>
+        <p id="final-rank" class="text-indigo-400 font-bold text-xl mb-8 uppercase tracking-widest">Grade : ...</p>
+        
+        <div class="grid grid-cols-2 gap-4 mb-8">
+            <div class="bg-slate-900 p-4 rounded-2xl">
+                <p class="text-xs text-slate-500 mb-1">Score</p>
+                <p id="final-score" class="text-2xl font-bold text-amber-400">0</p>
+            </div>
+            <div class="bg-slate-900 p-4 rounded-2xl">
+                <p class="text-xs text-slate-500 mb-1">Précision</p>
+                <p id="accuracy" class="text-2xl font-bold text-emerald-400">0%</p>
+            </div>
+        </div>
+
+        <button onclick="location.reload()" class="w-full bg-slate-700 hover:bg-slate-600 font-bold py-4 rounded-2xl transition">
+            Recommencer 🔄
+        </button>
+    </div>
+
+    <script>
+        const questions = [
+            { q: "Qu'est-ce que l'accessibilité numérique ?", options: ["Rendre internet gratuit pour tous", "Créer des sites lisibles par tous, y compris les personnes handicapées", "Avoir une connexion 5G partout", "Sécuriser les mots de passe"], correct: 1 },
+            { q: "À quoi sert l'attribut 'alt' (texte alternatif) sur une image web ?", options: ["À changer la couleur de l'image", "À décrire l'image pour les personnes aveugles (via synthèse vocale)", "À masquer l'image si elle est moche", "À accélérer le téléchargement"], correct: 1 },
+            { q: "Pourquoi le contraste entre le texte et le fond est-il crucial ?", options: ["Pour faire joli", "Pour les personnes malvoyantes ou sur écran au soleil", "Pour économiser la batterie", "Pour plaire aux algorithmes"], correct: 1 },
+            { q: "Qu'est-ce qu'un lecteur d'écran (ex: VoiceOver, NVDA) ?", options: ["Un filtre anti-lumière bleue", "Un logiciel qui lit à haute voix ce qui est affiché à l'écran", "Une application pour tricher en dictée", "Un scanner de documents"], correct: 1 },
+            { q: "Pourquoi faut-il éviter d'écrire 'cliquez ici' sur un lien hypertexte ?", options: ["C'est interdit par la loi", "Ça n'aide pas à comprendre où mène le lien sans le contexte", "C'est trop long à écrire", "Les téléphones ne comprennent pas le mot 'cliquer'"], correct: 1 },
+            { q: "Pour quelle raison ajoute-t-on des sous-titres sur les vidéos de cours ?", options: ["Pour les élèves sourds, malentendants ou dans un lieu bruyant", "Pour décorer le bas de l'image", "Pour masquer les fautes d'orthographe", "Pour traduire automatiquement en latin"], correct: 0 },
+            { q: "Si un site ne peut être navigué qu'avec une souris (impossible au clavier), qui est bloqué ?", options: ["Les personnes ayant un handicap moteur empêchant l'usage d'une souris", "Les joueurs de e-sport", "Les personnes aveugles", "Personne, la souris est obligatoire"], correct: 0 },
+            { q: "Quelle police d'écriture est souvent recommandée pour faciliter la lecture des personnes dyslexiques ?", options: ["Une police avec empattements (Times New Roman)", "Une police sans empattements, aérée (ex: Arial, OpenDyslexic)", "Une police gothique", "Une écriture cursive (manuscrite)"], correct: 1 },
+            { q: "Quel sigle désigne le référentiel officiel de l'accessibilité en France ?", options: ["Le RGPD", "Le RGAA (Référentiel Général d'Amélioration de l'Accessibilité)", "Le SNT", "La CNIL"], correct: 1 },
+            { q: "En rendant un site accessible aux personnes en situation de handicap, on améliore aussi l'expérience :", options: ["Des geeks uniquement", "Des personnes âgées, fatiguées ou sur petit écran (bénéfice universel)", "Des robots de Google", "De personne d'autre"], correct: 1 }
+        ];
+
+        let currentIdx = 0; let score = 0; let correctAnswers = 0; let timer; let timeLeft = 15;
+        function startQuiz() { document.getElementById('start-screen').classList.add('hidden'); document.getElementById('quiz-screen').classList.remove('hidden'); loadQuestion(); }
+        function loadQuestion() {
+            timeLeft = 15; document.getElementById('timer').innerText = "15s"; document.getElementById('question-number').innerText = `${currentIdx + 1}/${questions.length}`; document.getElementById('question-text').innerText = questions[currentIdx].q;
+            const container = document.getElementById('options-container'); container.innerHTML = '';
+            questions[currentIdx].options.forEach((opt, i) => {
+                const b = document.createElement('button'); b.className = "w-full text-left bg-slate-900 border border-slate-700 p-4 rounded-2xl hover:border-indigo-500 transition font-medium text-sm"; b.innerText = opt; b.onclick = () => select(i); container.appendChild(b);
+            });
+            timer = setInterval(() => { timeLeft--; document.getElementById('timer').innerText = timeLeft + "s"; if (timeLeft <= 0) { clearInterval(timer); select(-1); } }, 1000);
+        }
+        function select(idx) {
+            clearInterval(timer); const q = questions[currentIdx]; const feedback = document.getElementById('result-screen'); const icon = document.getElementById('feedback-icon'); const text = document.getElementById('feedback-text'); const ptsText = document.getElementById('points-earned');
+            let pts = 0;
+            if (idx === q.correct) { pts = Math.round((timeLeft / 15) * 1000); score += pts; correctAnswers++; icon.innerText = "✅"; text.innerText = "Bien joué !"; ptsText.innerText = `+${pts} pts`; ptsText.className = "text-emerald-400 font-mono text-xl mb-6"; }
+            else { icon.innerText = "❌"; text.innerText = idx === -1 ? "Temps écoulé !" : "Raté..."; ptsText.innerText = "0 pts"; ptsText.className = "text-red-400 font-mono text-xl mb-6"; }
+            document.getElementById('total-score').innerText = score; document.getElementById('quiz-screen').classList.add('hidden'); feedback.classList.remove('hidden');
+        }
+        function nextQuestion() { currentIdx++; document.getElementById('result-screen').classList.add('hidden'); if (currentIdx < questions.length) { document.getElementById('quiz-screen').classList.remove('hidden'); loadQuestion(); } else { showFinal(); } }
+        function showFinal() {
+            document.getElementById('final-screen').classList.remove('hidden'); document.getElementById('final-score').innerText = score; document.getElementById('accuracy').innerText = Math.round((correctAnswers / questions.length) * 100) + "%";
+            let rank = "Débutant"; if (score > 4000) rank = "Sensibilisé"; if (score > 7000) rank = "Concepteur Inclusif"; if (score > 9000) rank = "Champion de l'Inclusion 🏆";
+            document.getElementById('final-rank').innerText = "Grade : " + rank;
+        }
+    </script>
+</body>
+</html>
