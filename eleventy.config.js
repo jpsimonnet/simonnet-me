@@ -24,6 +24,7 @@ export default function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy({"src/assets/favicon": "./"});
   eleventyConfig.addPassthroughCopy("src/serment");
   eleventyConfig.addPassthroughCopy("src/rdv");
+  eleventyConfig.addPassthroughCopy("src/ia");
   eleventyConfig.addPassthroughCopy("src/gobelins");
   eleventyConfig.addPassthroughCopy("src/image-facile");
   eleventyConfig.addPassthroughCopy("src/email-facile");
