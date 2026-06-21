@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IA Master Challenge 🤖</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+        body { font-family: 'Poppins', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-900 text-white min-h-screen flex flex-col items-center justify-center p-4">
+
+    <div id="start-screen" class="max-w-md w-full bg-slate-800 p-6 rounded-2xl shadow-xl text-center border border-slate-700">
+        <h1 class="text-3xl font-bold text-indigo-400 mb-2">🤖 IA Master Challenge</h1>
+        <p class="text-slate-400 mb-6 text-sm">Prêt à tester tes connaissances sur l'IA au quotidien ?</p>
+        
+        <div class="mb-6 text-left">
+            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Choisis ton pseudo</label>
+            <input type="text" id="username" placeholder="Ex: Major_IA" class="w-full bg-slate-700 border border-slate-600 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500 transition">
+        </div>
+        
+        <button onclick="startQuiz()" class="w-full bg-indigo-600 hover:bg-indigo-500 font-semibold py-3 rounded-xl transition duration-200 cursor-pointer shadow-lg shadow-indigo-600/30">
+            Rejoindre la partie 🚀
+        </button>
+    </div>
+
+    <div id="quiz-screen" class="hidden max-w-md w-full bg-slate-800 p-6 rounded-2xl shadow-xl border border-slate-700">
+        <div class="flex justify-between items-center mb-4 border-b border-slate-700 pb-3">
+            <span id="question-number" class="text-xs bg-slate-700 px-3 py-1 rounded-full font-semibold text-indigo-300">Question 1/4</span>
+            <div class="flex items-center gap-2">
+                <span class="text-xs text-slate-400">Temps :</span>
+                <span id="timer" class="text-sm font-bold text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">15s</span>
+            </div>
+        </div>
+
+        <h2 id="question-text" class="text-lg font-semibold mb-6 leading-snug">Chargement de la question...</h2>
+
+        <div id="options-container" class="space-y-3 mb-6">
+            </div>
+    </div>
+
+    <div id="leaderboard-screen" class="hidden max-w-md w-full bg-slate-800 p-6 rounded-2xl shadow-xl border border-slate-700 text-center">
+        <h2 id="leaderboard-title" class="text-2xl font-bold text-amber-400 mb-1">🏆 Classement en direct</h2>
+        <p id="leaderboard-subtitle" class="text-xs text-slate-400 mb-6">Après la question X</p>
+
+        <div class="bg-slate-900 rounded-xl p-2 border border-slate-700 divide-y divide-slate-800 mb-6">
+            <div id="leaderboard-list">
+                </div>
+        </div>
+
+        <button id="next-btn" onclick="nextQuestion()" class="w-full bg-emerald-600 hover:bg-emerald-500 font-semibold py-3 rounded-xl transition duration-200 cursor-pointer">
+            Continuer ➡️
+        </button>
+    </div>
+
+    <script>
+        // Banques de questions adaptées aux secondes
+        const questions = [
+            {
+                q: "Quand ChatGPT invente de fausses informations avec assurance, comment appelle-t-on ce phénomène ?",
+                options: ["Un bug de connexion", "Une hallucination", "Une fake news volontaire", "Un complot"],
+                correct: 1,
+                points: 1000
+            },
+            {
+                q: "Quel est l'impact environnemental majeur de l'utilisation massive des IA génératives ?",
+                options: ["Aucun, tout est virtuel", "Une baisse de la consommation d'électricité", "Une forte consommation d'eau (refroidissement) et d'électricité", "La pollution des ondes 5G"],
+                correct: 2,
+                points: 1000
+            },
+            {
+                q: "Si tu demandes à une IA de rédiger entièrement ton devoir de SNT, quel est le principal risque ?",
+                options: ["Que l'IA refuse par éthique", "Rendre un devoir faux, sans esprit critique, repérable par le prof", "Que ton téléphone explose", "Avoir 20/20 à coup sûr"],
+                correct: 1,
+                points: 1000
+            },
+            {
+                q: "Sur les réseaux (TikTok, Insta), qu'est-ce qui décide des vidéos qui s'affichent dans ton fil ?",
+                options: ["Le hasard pur", "Une équipe de modérateurs humains", "Une IA d'analyse prédictive (algorithme de recommandation)", "Un vote des autres lycéens"],
+                correct: 2,
+                points: 1000
+            }
+        ];
+
+        // Participants fictifs pour simuler la classe et le classement en temps réel
+        let players = [
+            { name: "Emma_SNT", score: 0, isBot: true, speedFactor: 0.7 },
+            { name: "Lucas_ProGamer", score: 0, isBot: true, speedFactor: 0.85 },
+            { name: "Chloé_Du92", score: 0, isBot: true, speedFactor: 0.6 },
+            { name: "Tom_IA", score: 0, isBot: true, speedFactor: 0.75 }
+        ];
+
+        let currentQuestionIndex = 0;
+        let playerScore = 0;
+        let playerName = "Toi";
+        let timerInterval;
+        let timeLeft = 15;
+        let canAnswer = true;
+
+        function startQuiz() {
+            const inputName = document.getElementById('username').value.trim();
+            if (inputName !== "") {
+                playerName = inputName;
+            }
+            // Ajouter le vrai joueur à la liste
+            players.push({ name: playerName, score: 0, isBot: false });
+            
+            document.getElementById('start-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+            showQuestion();
+        }
+
+        function showQuestion() {
+            canAnswer = true;
+            timeLeft = 15;
+            document.getElementById('timer').innerText = timeLeft + "s";
+            document.getElementById('timer').className = "text-sm font-bold text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20";
+            
+            const qData = questions[currentQuestionIndex];
+            document.getElementById('question-number').innerText = `Question ${currentQuestionIndex + 1}/${questions.length}`;
+            document.getElementById('question-text').innerText = qData.q;
+            
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+            
+            qData.options.forEach((option, index) => {
+                const btn = document.createElement('button');
+                btn.className = "w-full text-left bg-slate-700 hover:bg-slate-600 border border-slate-600 rounded-xl px-4 py-3 transition text-sm font-medium cursor-pointer option-btn";
+                btn.innerText = option;
+                btn.onclick = () => checkAnswer(index, btn);
+                optionsContainer.appendChild(btn);
+            });
+
+            // Lancer le chrono
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                document.getElementById('timer').innerText = timeLeft + "s";
+                if (timeLeft <= 5) {
+                    document.getElementById('timer').className = "text-sm font-bold text-red-400 bg-red-500/10 px-2 py-0.5 rounded border border-red-500/20 animate-pulse";
+                }
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    autoTimeout();
+                }
+            }, 1000);
+        }
+
+        function checkAnswer(selectedIndex, selectedBtn) {
+            if (!canAnswer) return;
+            canAnswer = false;
+            clearInterval(timerInterval);
+
+            const qData = questions[currentQuestionIndex];
+            const buttons = document.querySelectorAll('.option-btn');
+            
+            // Calcul des points du joueur (vitesse)
+            let pointsGagnes = 0;
+            if (selectedIndex === qData.correct) {
+                pointsGagnes = Math.round((timeLeft / 15) * qData.points);
+                selectedBtn.classList.remove('bg-slate-700', 'hover:bg-slate-600', 'border-slate-600');
+                selectedBtn.classList.add('bg-emerald-600/20', 'border-emerald-500', 'text-emerald-300', 'font-bold');
+            } else {
+                selectedBtn.classList.remove('bg-slate-700', 'hover:bg-slate-600', 'border-slate-600');
+                selectedBtn.classList.add('bg-red-600/20', 'border-red-500', 'text-red-300');
+            }
+
+            // Mettre à jour le score du joueur
+            const pIndex = players.findIndex(p => !p.isBot);
+            players[pIndex].score += pointsGagnes;
