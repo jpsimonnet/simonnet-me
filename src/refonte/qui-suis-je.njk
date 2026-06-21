@@ -1,0 +1,34 @@
+---
+layout: refonte
+title: Qui suis-je ?
+permalink: /qui-suis-je/
+---
+
+<section class="hero">
+  <div class="container">
+    <nav aria-label="Fil d'Ariane">
+      <ol class="breadcrumb">
+        <li><a href="/">Accueil</a></li>
+        <li aria-current="page">À propos</li>
+      </ol>
+    </nav>
+
+    <p class="kicker">Portrait</p>
+    <h1>Jean-Philippe <em>Simonnet</em></h1>
+    <p class="lede">
+      Chargé de mission « hospitalité numérique » et expert accessibilité depuis 2011.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <article class="prose">
+      {% if notionPages and notionPages['qui-suis-je'] and notionPages['qui-suis-je'].content %}
+        {{ notionPages['qui-suis-je'].content | markdownify | safe }}
+      {% else %}
+      <p>Contenu en cours de chargement depuis Notion.</p>
+      {% endif %}
+    </article>
+  </div>
+</section>

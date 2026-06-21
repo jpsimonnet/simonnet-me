@@ -5,9 +5,9 @@ url: /pages/interventions/2014-serment
 tags: interventions
 title: "2014 - Petits secrets entre amis : les acteurs du web doivent ils prêter serment ?"
 date: 2014-10-17
-image: /assets/images/2014-serment.jpg
+image: /assets/images/2014-serment.webp
 description: "Mini-conf Paris web"
-rubriqueurl: /interventions/
+rubriqueurl: /2025/interventions/
 rubriquenom: "Mes interventions"
 eleventyNavigation:
   key: interventions

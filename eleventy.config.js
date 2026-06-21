@@ -4,18 +4,22 @@ import fs from "fs";
 import { fileURLToPath } from 'url';
 import { HtmlBasePlugin } from "@11ty/eleventy";
 import { feedPlugin } from "@11ty/eleventy-plugin-rss";
+import markdownit from "markdown-it";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 export default function(eleventyConfig) {
 
+  // Ignorer les index.md dans les dossiers photos (lus par le data file, pas par Eleventy)
+  eleventyConfig.ignores.add("src/assets/photos/**/*.md");
+
   // Ressources statiques
   eleventyConfig.addPassthroughCopy("./src/css");
   eleventyConfig.addPassthroughCopy("./src/js");
   eleventyConfig.addPassthroughCopy("src/assets");
   eleventyConfig.addPassthroughCopy("src/assets/images");
-  eleventyConfig.addPassthroughCopy("src/rss/");
+  eleventyConfig.addPassthroughCopy("src/rss-facile");
   eleventyConfig.addPassthroughCopy({"src/assets/favicon": "/"});
   eleventyConfig.addPassthroughCopy({"src/assets/favicon": "./"});
   eleventyConfig.addPassthroughCopy("src/serment");
@@ -90,6 +94,20 @@ export default function(eleventyConfig) {
         name: "Jean-Philippe Simonnet"
       }
     }
+  });
+
+  // Markdown filter for Notion content
+  const md = markdownit({ html: true, linkify: true, breaks: false, typographer: true });
+  eleventyConfig.addFilter("isoDate", (dateObj) => {
+    if (!dateObj) return '';
+    const d = new Date(dateObj);
+    if (isNaN(d)) return String(dateObj).replace(/\//g, '-');
+    return d.toISOString().split('T')[0];
+  });
+
+  eleventyConfig.addFilter("markdownify", (content) => {
+    if (!content || typeof content !== 'string') return '';
+    return md.render(content);
   });
 
   // Shortcodes

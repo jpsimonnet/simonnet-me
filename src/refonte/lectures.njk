@@ -1,0 +1,75 @@
+---
+layout: refonte
+title: Lectures
+pagination:
+  data: collections.livresTries
+  size: 24
+  alias: livresPage
+permalink: "lectures/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber }}/{% endif %}index.html"
+---
+
+<section class="hero">
+  <div class="container">
+    <nav aria-label="Fil d'Ariane">
+      <ol class="breadcrumb">
+        <li><a href="/">Accueil</a></li>
+        <li aria-current="page">Lectures</li>
+      </ol>
+    </nav>
+
+    <p class="kicker">Bibliothèque</p>
+    <h1>Mes <em>lectures</em></h1>
+    <p class="lede">
+      Une sélection des livres que j'ai lus ces dernières années.
+      Romans, essais, ouvrages techniques — un panorama de ce qui m'anime.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="grid-livres">
+      {% for livre in livresPage %}
+      <a class="card-livre" href="/livre/{{ livre.id }}/">
+        <div class="card-livre__cover">
+          <img src="/assets/images/lectures/{{ livre.id }}.webp" alt="Couverture de {{ livre.Nom | e }}" loading="lazy">
+        </div>
+        <div>
+          <div class="card-livre__title">{{ livre.Nom | e }}</div>
+          {% if livre.Auteur %}<div class="card-livre__author">{{ livre.Auteur }}</div>{% endif %}
+          {% if livre["Lu le"] %}
+          <div class="card-livre__date">
+            <time datetime="{{ livre['Lu le'] | isoDate }}">{{ livre["Lu le"] | formatDateFr }}</time>
+          </div>
+          {% endif %}
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+
+    {% if pagination.pages.length > 1 %}
+    <nav aria-label="Pagination">
+      <ul class="pagination">
+        {% if pagination.href.previous %}
+          <li><a href="{{ pagination.href.previous }}" rel="prev">← Précédente</a></li>
+        {% else %}
+          <li><span class="disabled">← Précédente</span></li>
+        {% endif %}
+        {% for pageNumber in pagination.pages %}
+          {% set pageIndex = loop.index0 %}
+          {% if pageIndex == pagination.pageNumber %}
+            <li><span aria-current="page">{{ pageIndex + 1 }}</span></li>
+          {% else %}
+            <li><a href="{{ pagination.hrefs[pageIndex] }}">{{ pageIndex + 1 }}</a></li>
+          {% endif %}
+        {% endfor %}
+        {% if pagination.href.next %}
+          <li><a href="{{ pagination.href.next }}" rel="next">Suivante →</a></li>
+        {% else %}
+          <li><span class="disabled">Suivante →</span></li>
+        {% endif %}
+      </ul>
+    </nav>
+    {% endif %}
+  </div>
+</section>

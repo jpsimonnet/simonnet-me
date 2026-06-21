@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>Lecteur RSS - Export</title>
+    <dateCreated>Sun, 08 Mar 2026 18:04:46 GMT</dateCreated>
+  </head>
+  <body>
+    <outline text="Médias environnement">
+      <outline type="rss" text="Vert.eco" xmlUrl="https://vert.eco/feed" htmlUrl="https://vert.eco"/>
+      <outline type="rss" text="Bon Pote" xmlUrl="https://bonpote.com/feed/" htmlUrl="https://bonpote.com"/>
+      <outline type="rss" text="Reporterre" xmlUrl="https://reporterre.net/spip.php?page=backend" htmlUrl="https://reporterre.net"/>
+      <outline type="rss" text="Natura Sciences" xmlUrl="https://www.natura-sciences.com/feed/" htmlUrl="https://www.natura-sciences.com"/>
+      <outline type="rss" text="La Relève et La Peste" xmlUrl="https://lareleveetlapeste.fr/feed/" htmlUrl="https://lareleveetlapeste.fr"/>
+      <outline type="rss" text="Novethic" xmlUrl="https://www.novethic.fr/rss" htmlUrl="https://www.novethic.fr"/>
+    </outline>
+    <outline text="Transition énergétique">
+      <outline type="rss" text="Actu-Environnement" xmlUrl="https://www.actu-environnement.com/flux/rss/environnement/" htmlUrl="https://www.actu-environnement.com"/>
+      <outline type="rss" text="Connaissance des Énergies" xmlUrl="https://www.connaissancedesenergies.org/rss.xml" htmlUrl="https://www.connaissancedesenergies.org"/>
+      <outline type="rss" text="Révolution Énergétique" xmlUrl="https://www.revolution-energetique.com/feed/" htmlUrl="https://www.revolution-energetique.com"/>
+    </outline>
+    <outline text="Sciences du climat">
+      <outline type="rss" text="The Conversation Environnement" xmlUrl="https://theconversation.com/fr/environnement/articles.atom" htmlUrl="https://theconversation.com/fr"/>
+      <outline type="rss" text="CNRS Environnement" xmlUrl="https://lejournal.cnrs.fr/rss" htmlUrl="https://lejournal.cnrs.fr"/>
+    </outline>
+    <outline text="Économie verte et RSE">
+      <outline type="rss" text="GreenFlex" xmlUrl="https://www.greenflex.com/feed/" htmlUrl="https://www.greenflex.com"/>
+      <outline type="rss" text="L&apos;Usine Nouvelle Environnement" xmlUrl="https://www.usinenouvelle.com/arc/outboundfeeds/rss/" htmlUrl="https://www.usinenouvelle.com"/>
+    </outline>
+    <outline text="Biodiversité et nature">
+      <outline type="rss" text="France Nature Environnement" xmlUrl="https://fne.asso.fr/flux.rss" htmlUrl="https://fne.asso.fr"/>
+    </outline>
+    <outline text="Sites Publics">
+      <outline type="rss" text="ecologie.gouv.fr" xmlUrl="https://www.ecologie.gouv.fr/rss-actualites.xml"/>
+      <outline type="rss" text="notre-environnement" xmlUrl="https://www.notre-environnement.gouv.fr/spip.php?page=backend"/>
+      <outline type="rss" text="Igedd" xmlUrl="https://www.igedd.developpement-durable.gouv.fr/spip.php?page=backend-actu"/>
+      <outline type="rss" text="Ecolab" xmlUrl="https://greentechinnovation.fr/feed/"/>
+      <outline type="rss" text="BRGM" xmlUrl="https://www.brgm.fr/fr/rss/news"/>
+      <outline type="rss" text="Cerema - Actualité" xmlUrl="https://www.cerema.fr/fr/rss/news/feed"/>
+      <outline type="rss" text="CEA" xmlUrl="https://www.cea.fr/_layouts/15/i2i/web/ceasrchrss.ashx?pid=3748&amp;wid=g_9cac7691_a0b2_4e18_850e_0aeff2541696"/>
+      <outline type="rss" text="IGN" xmlUrl="https://www.ign.fr/actualites/rss.xml"/>
+    </outline>
+  </body>
+</opml>

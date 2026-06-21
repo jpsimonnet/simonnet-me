@@ -378,3 +378,14 @@ img.proc-preview {
 .status-error {
   color: var(--text-default-error);
 }
+
+.fr-header__logo, .fr-header__operator, .fr-header__service {
+    padding: 0.5rem;
+}
+
+.fr-header__logo .fr-icon-image-line::before {
+    --icon-size: 5rem !important;
+    width: 5rem !important;
+    height: 5rem !important;
+    color: #3558a2;
+}

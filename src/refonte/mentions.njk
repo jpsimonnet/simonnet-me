@@ -1,0 +1,40 @@
+---
+layout: refonte
+title: Mentions légales
+permalink: /mentions/
+---
+
+<section class="hero">
+  <div class="container">
+    <nav aria-label="Fil d'Ariane">
+      <ol class="breadcrumb">
+        <li><a href="/">Accueil</a></li>
+        <li aria-current="page">Mentions légales</li>
+      </ol>
+    </nav>
+
+    <p class="kicker">Information</p>
+    <h1>Mentions <em>légales</em></h1>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <article class="prose">
+      {% if notionPages and notionPages['mentions'] and notionPages['mentions'].content %}
+        {{ notionPages['mentions'].content | markdownify | safe }}
+      {% else %}
+      <h2>Éditeur</h2>
+      <p>Ce site est la propriété de Jean-Philippe Simonnet.</p>
+      <h2>Hébergement</h2>
+      <p>Ce site est hébergé par GitHub, Inc.</p>
+      <h2>Licence</h2>
+      <p>
+        Cette œuvre, disponible sur <a href="https://www.simonnet.me">simonnet.me</a>,
+        est mise à disposition selon les termes de la licence
+        <strong>Creative Commons Attribution — Partage dans les mêmes conditions 3.0 France</strong>.
+      </p>
+      {% endif %}
+    </article>
+  </div>
+</section>

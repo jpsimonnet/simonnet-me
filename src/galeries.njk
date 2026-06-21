@@ -1,0 +1,46 @@
+---
+pagination:
+  data: galeries
+  size: 1
+  alias: galerie
+  addAllPagesToCollections: true
+permalink: "/2025/photos/{{ galerie.slug }}/"
+layout: base
+tags: photos
+eleventyComputed:
+  title: "{{ galerie.title }}"
+  description: "{{ galerie.description }}"
+  date: "{{ galerie.date }}"
+  image: "{{ galerie.thumbnail }}"
+  rubriqueurl: "/2025/photos/"
+  rubriquenom: "Mes photos"
+---
+
+<h1>{{ galerie.title }}</h1>
+
+{{ galerie.body | safe }}
+
+<p class="text-muted mb-4">{{ galerie.images.length }} photos — {{ galerie.date | formatDateFr }}</p>
+
+<div class="galerie-grid row g-2 g-md-3">
+  {% for img in galerie.images %}
+  <div class="col-6 col-md-4 col-lg-3">
+    <a href="{{ img.src }}" class="galerie-item" data-index="{{ loop.index0 }}" aria-label="Agrandir {{ img.alt }}">
+      <img src="{{ img.src }}" alt="{{ img.alt }}" loading="lazy" decoding="async" class="img-fluid rounded">
+    </a>
+  </div>
+  {% endfor %}
+</div>
+
+<div id="lightbox" class="galerie-lightbox" role="dialog" aria-label="Visionneuse de photos" aria-modal="true" hidden>
+  <div class="galerie-lightbox-overlay"></div>
+  <button class="galerie-lightbox-close" aria-label="Fermer">&times;</button>
+  <button class="galerie-lightbox-prev" aria-label="Photo précédente">&#10094;</button>
+  <button class="galerie-lightbox-next" aria-label="Photo suivante">&#10095;</button>
+  <div class="galerie-lightbox-content">
+    <img src="" alt="" class="galerie-lightbox-img">
+    <p class="galerie-lightbox-counter"></p>
+  </div>
+</div>
+
+<script src="/js/galerie.js" defer></script>

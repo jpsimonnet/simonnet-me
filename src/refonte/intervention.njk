@@ -1,0 +1,42 @@
+---
+layout: refonte
+pagination:
+  data: notionInterventions
+  size: 1
+  alias: item
+permalink: "intervention/{{ item.slug }}/"
+eleventyComputed:
+  title: "{{ item.title }}"
+  description: "{{ item.description }}"
+---
+
+<section class="hero">
+  <div class="container">
+    <nav aria-label="Fil d'Ariane">
+      <ol class="breadcrumb">
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/interventions/">Interventions</a></li>
+        <li aria-current="page">{{ item.title | e }}</li>
+      </ol>
+    </nav>
+
+    <p class="kicker">Intervention</p>
+    <h1>{{ item.title | e }}</h1>
+    {% if item.description %}
+    <p class="lede">{{ item.description }}</p>
+    {% endif %}
+    {% if item.date %}
+    <p class="meta" style="margin-top: var(--space-md);">
+      <time datetime="{{ item.date }}">{{ item.date | formatDateFr }}</time>
+    </p>
+    {% endif %}
+  </div>
+</section>
+
+<div class="article-body">
+  {{ item.body | markdownify | safe }}
+</div>
+
+<nav class="article-nav" aria-label="Navigation entre interventions">
+  <a href="/interventions/">← Toutes les interventions</a>
+</nav>

@@ -9,7 +9,7 @@
 
       {% include "header.njk" %}
 
-  <main id="main" data-pagefind-body>
+  <main id="main">
     <div id="content" class="container py-4">
 
         {% if title != "Accueil" %}
@@ -17,7 +17,7 @@
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/">Accueil</a></li>
             {% if rubriqueurl %}<li class="breadcrumb-item"><a href="{{rubriqueurl}}">{{rubriquenom}}</a></li>{% endif %}
-            <li class="breadcrumb-item active" aria-current="page">{{title}}</li>
+            <li class="breadcrumb-item active" aria-current="page">{{title | e}}</li>
         </ol>
       </nav>
       {% endif %}

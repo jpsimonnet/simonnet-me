@@ -1,0 +1,52 @@
+---
+layout: refonte
+title: Interventions
+permalink: /interventions/
+---
+
+<section class="hero">
+  <div class="container">
+    <nav aria-label="Fil d'Ariane">
+      <ol class="breadcrumb">
+        <li><a href="/">Accueil</a></li>
+        <li aria-current="page">Interventions</li>
+      </ol>
+    </nav>
+
+    <p class="kicker">Conférences, formations</p>
+    <h1>Mes <em>interventions</em></h1>
+    <p class="lede">
+      Conférences, formations et ateliers autour de l'accessibilité numérique,
+      de l'IA et de la qualité web — depuis 2010.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    {% if notionInterventions and notionInterventions.length > 0 %}
+    <ul class="interventions-grid">
+      {% for item in notionInterventions %}
+      <li>
+        <a class="card-intervention" href="/intervention/{{ item.slug }}/">
+          <div class="card-intervention__image">
+            {% if item.image %}
+            <img src="{{ item.image }}" alt="Illustration de {{ item.title | e }}" loading="lazy">
+            {% endif %}
+            {% if item.date %}
+            <span class="card-intervention__year">{{ item.date | truncate(4, true, "") }}</span>
+            {% endif %}
+          </div>
+          <h2 class="card-intervention__title">{{ item.title | e }}</h2>
+          {% if item.description %}
+          <p class="card-intervention__desc">{{ item.description | truncate(140) }}</p>
+          {% endif %}
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p>Aucune intervention publiée pour le moment.</p>
+    {% endif %}
+  </div>
+</section>

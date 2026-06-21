@@ -6,6 +6,10 @@ on:
   push:
     branches: ["main"]
 
+  # Rebuild daily to pick up Notion changes
+  schedule:
+    - cron: '0 6 * * *'
+
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -21,6 +25,9 @@ concurrency:
   group: "pages"
   cancel-in-progress: false
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   # Single deploy job since we're just deploying
   deploy:
@@ -30,22 +37,46 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
           cache: 'npm'
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Fetch Notion data
+      - name: Cache Notion images
+        uses: actions/cache@v4
+        with:
+          path: |
+            src/assets/images/actualites
+            src/assets/images/lectures
+            src/assets/images/notion
+            src/assets/images/notion-inline
+          key: notion-images-${{ github.run_number }}
+          restore-keys: |
+            notion-images-
+
+      - name: Fetch Notion actualités
         env:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
           NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
         run: node scripts/fetch-notion-actualite.cjs
+        continue-on-error: true
+
+      - name: Fetch Notion livres
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+        run: node scripts/fetch-notion-livres.cjs
+        continue-on-error: true
+
+      - name: Fetch Notion content (interventions + pages)
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+        run: node scripts/fetch-notion-content.cjs
         continue-on-error: true
 
       - name: Build Eleventy site
@@ -72,13 +103,13 @@ jobs:
         run: npm run search
 
       - name: Setup Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: './public'
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5

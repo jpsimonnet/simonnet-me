@@ -5,9 +5,9 @@ url: /pages/interventions/2011-parisweb
 tags: interventions
 title: "2011 - L’accessibilité : un truc réservé aux riches ?"
 date: 2011-10-13
-image: /assets/images/2011-parisweb.jpg
+image: /assets/images/2011-parisweb.webp
 description: "13 octobre 2011 - Lightning talks Paris web"
-rubriqueurl: /interventions/
+rubriqueurl: /2025/interventions/
 rubriquenom: "Mes interventions"
 eleventyNavigation:
   key: interventions

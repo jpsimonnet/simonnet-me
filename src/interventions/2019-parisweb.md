@@ -5,9 +5,9 @@ url: /pages/interventions/2019-parisweb
 tags: interventions
 title: "2019 - Parisweb - Et si Tim avait toujours raison ?"
 date: 2019-10-18
-image: /assets/images/2019-parisweb.png
+image: /assets/images/2019-parisweb.webp
 description: "Retour d’expérience sur une mise en place à grande échelle d’une diffusion de connaissance dans un web public et ouvert qui s’appuie sur la qualité web, la sémantique et l’empathie."
-rubriqueurl: /interventions/
+rubriqueurl: /2025/interventions/
 rubriquenom: "Mes interventions"
 eleventyNavigation:
   key: interventions

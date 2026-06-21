@@ -521,3 +521,114 @@ mark {
     padding: 0.15rem 0.4rem;
   }
 }
+
+/* === Page listing galeries === */
+
+.card .card-img-top {
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+/* === Galerie photo === */
+
+.galerie-grid .galerie-item {
+  display: block;
+  overflow: hidden;
+  border-radius: 0.375rem;
+  position: relative;
+}
+
+.galerie-grid .galerie-item img {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: contain;
+  background-color: #fff;
+}
+
+[data-bs-theme="dark"] .galerie-grid .galerie-item img {
+  background-color: #212529;
+}
+
+.galerie-grid .galerie-item:hover img,
+.galerie-grid .galerie-item:focus img {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+.galerie-grid .galerie-item:focus {
+  outline: 3px solid #e6025d;
+  outline-offset: 2px;
+}
+
+/* Lightbox */
+.galerie-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.galerie-lightbox[hidden] {
+  display: none;
+}
+
+.galerie-lightbox-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+}
+
+.galerie-lightbox-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 90vw;
+  max-height: 90vh;
+}
+
+.galerie-lightbox-img {
+  max-width: 90vw;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 0.25rem;
+}
+
+.galerie-lightbox-close,
+.galerie-lightbox-prev,
+.galerie-lightbox-next {
+  position: absolute;
+  z-index: 2;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 2.5rem;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  transition: color 0.2s;
+}
+
+.galerie-lightbox-close:hover,
+.galerie-lightbox-prev:hover,
+.galerie-lightbox-next:hover {
+  color: #e6025d;
+}
+
+.galerie-lightbox-close:focus,
+.galerie-lightbox-prev:focus,
+.galerie-lightbox-next:focus {
+  outline: 2px solid #e6025d;
+  outline-offset: 2px;
+}
+
+.galerie-lightbox-close { top: 1rem; right: 1rem; }
+.galerie-lightbox-prev { top: 50%; left: 1rem; transform: translateY(-50%); }
+.galerie-lightbox-next { top: 50%; right: 1rem; transform: translateY(-50%); }
+
+.galerie-lightbox-counter {
+  color: #ccc;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}

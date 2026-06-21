@@ -1,0 +1,119 @@
+---
+layout: refonte
+title: Accueil
+permalink: /
+---
+{% set actualiteRefonte = actualite | slice(0, 6) %}
+{% set livresRecents = collections.livresTries | slice(0, 5) %}
+
+<section class="hero">
+  <div class="container">
+    <p class="kicker fade-in">Facilitateur et expert accessibilité numérique</p>
+    <h1 class="fade-in" data-delay="1">Rendre le web <em>plus accessible</em>, <br>à tout le monde.</h1>
+    <p class="lede fade-in" data-delay="2">
+      Je suis Jean-Philippe Simonnet, chargé de mission « hospitalité numérique »
+      à la DNUM et expert accessibilité depuis 2011. Je partage sur ce site mes lectures,
+      mes interventions, ma veille et mes photos en espérant un monde numérique toujours plus inclusif.
+    </p>
+
+  </div>
+</section>
+
+<section aria-labelledby="actualite-titre">
+  <div class="container">
+    <div class="section-heading">
+      <div>
+        <p class="section-heading__kicker">Veille</p>
+        <h2 id="actualite-titre">À la <em>une</em></h2>
+      </div>
+      <a href="/a-la-une/">Toutes les actualités →</a>
+    </div>
+
+    {% if actualiteRefonte and actualiteRefonte.length > 0 %}
+    <div class="grid-editorial">
+      {% for item in actualiteRefonte %}
+      <article class="card-editorial">
+        {% if item.image %}
+        <div class="card-editorial__image">
+          <img src="{{ item.image }}" alt="Illustration de {{ item.title | e }}" loading="lazy">
+        </div>
+        {% endif %}
+        <p class="card-editorial__meta">
+          <time datetime="{{ item.created }}">{{ item.created | formatDateFr }}</time>
+        </p>
+        <h3 class="card-editorial__title">
+          <a href="/actualite/{{ item.slug or (item.title | slugify) }}/">
+            {{ item.title | e }}
+          </a>
+        </h3>
+        {% if item.summary %}
+        <p>{{ item.summary | truncate(160) }}</p>
+        {% endif %}
+      </article>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+<section aria-labelledby="lectures-titre">
+  <div class="container">
+    <div class="section-heading">
+      <div>
+        <p class="section-heading__kicker">Bibliothèque</p>
+        <h2 id="lectures-titre">Lectures <em>récentes</em></h2>
+      </div>
+      <a href="/lectures/">Voir toutes les lectures →</a>
+    </div>
+
+    <div class="grid-livres grid-livres--5">
+      {% for livre in livresRecents %}
+      <a class="card-livre" href="/livre/{{ livre.id }}/">
+        <div class="card-livre__cover">
+          <img src="/assets/images/lectures/{{ livre.id }}.webp" alt="Couverture de {{ livre.Nom | e }}" loading="lazy">
+        </div>
+        <div>
+          <div class="card-livre__title">{{ livre.Nom | e }}</div>
+          {% if livre.Auteur %}<div class="card-livre__author">{{ livre.Auteur }}</div>{% endif %}
+          {% if livre.Résumé %}<p class="card-livre__resume">{{ livre.Résumé | truncate(120) }}</p>{% endif %}
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="profil-titre">
+  <div class="container">
+    <div class="section-heading">
+      <div>
+        <p class="section-heading__kicker">Portrait</p>
+        <h2 id="profil-titre">À <em>propos</em></h2>
+      </div>
+      <a href="/qui-suis-je/">Lire la bio complète →</a>
+    </div>
+
+    <div class="profil">
+      <div class="profil__image">
+        <img src="/assets/images/jp.webp" alt="Portrait de Jean-Philippe Simonnet">
+      </div>
+      <div class="profil__body">
+        <p>
+Je suis actuellement Chargé de mission 'hospitalité numérique' à la DNUM - Usages Numériques et Innovation - au ministère de l’Aménagement du territoire et de la Décentralisation et le ministère de la Transition écologique, de la Biodiversité, de la Forêt, de la Mer et de la Pêche.
+        </p>
+        <p>
+          Expert accessibilité depuis 2011, j'accompagne équipes et décideurs pour rendre
+          leurs services numériques accessibles à toutes et tous. J'interviens régulièrement
+          en conférence et en formation.
+        </p>
+
+        <ul class="profil__liens">
+          <li><a href="https://www.linkedin.com/in/simonnet/fr" rel="external noopener">LinkedIn</a></li>
+          <li><a href="https://github.com/jpsimonnet" rel="external noopener">GitHub</a></li>
+          <li><a href="https://www.instagram.com/oxymore93/" rel="external noopener">Instagram</a></li>
+          <li><a href="https://www.doyoubuzz.com/jean-philippe-simonnet" rel="external noopener">CV</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

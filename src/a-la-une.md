@@ -3,7 +3,7 @@ pagination:
   data: actualite
   size: 9
   alias: actualitePage
-permalink: "a-la-une/{{ pagination.pageNumber }}/index.html"
+permalink: "2025/a-la-une/{{ pagination.pageNumber }}/index.html"
 layout: base
 title: "À la une"
 name : JP Simonnet

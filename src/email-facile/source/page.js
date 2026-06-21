@@ -1,5 +1,5 @@
 /**
- * page.js — Génère le header/footer DSFR et injecte le contenu Markdown.
+ * page.js — Génère le header DSFR et injecte le contenu Markdown.
  *
  * Utilisation dans une page HTML :
  *   <div id="content" data-src="./source/content/mentions-legales.md"></div>
@@ -19,7 +19,7 @@
           <div class="fr-header__brand fr-enlarge-link">
             <div class="fr-header__brand-top">
               <div class="fr-header__logo">
-                <p class="fr-logo">République <br>Française</p>
+                <span class="fr-icon-mail-line" aria-hidden="true"></span>
               </div>
             </div>
             <div class="fr-header__service">
@@ -29,60 +29,22 @@
               <p class="fr-header__service-tagline">Créez vos e-mails facilement au format DSFR</p>
             </div>
           </div>
+          <div class="fr-header__tools">
+            <div class="fr-header__tools-links">
+              <ul class="fr-btns-group">
+                <li>
+                  <a class="fr-btn fr-btn--sm fr-icon-eye-line" href="./accessibilite.html">Accessibilité</a>
+                </li>
+                <li>
+                  <a class="fr-btn fr-btn--sm fr-icon-scales-3-line" href="./mentions-legales.html">Mentions légales</a>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </header>`;
-
-  /* ── Footer HTML ────────────────────────────────────── */
-  const footer = `
-  <footer class="fr-footer" role="contentinfo" id="footer">
-    <div class="fr-container">
-      <div class="fr-footer__body">
-        <div class="fr-footer__brand fr-enlarge-link">
-          <a href="./index.html" title="Retour à l'accueil du site - Email-Facile">
-            <p class="fr-logo">République <br>Française</p>
-          </a>
-        </div>
-        <div class="fr-footer__content">
-          <p class="fr-footer__content-desc">Ce site est géré par la DNUM</p>
-          <ul class="fr-footer__content-list">
-            <li class="fr-footer__content-item">
-              <a class="fr-footer__content-link" target="_blank" href="https://legifrance.gouv.fr"
-                 aria-label="legifrance.gouv.fr — Nouvelle fenêtre" rel="noopener">legifrance.gouv.fr</a>
-            </li>
-            <li class="fr-footer__content-item">
-              <a class="fr-footer__content-link" target="_blank" href="https://gouvernement.fr"
-                 aria-label="gouvernement.fr — Nouvelle fenêtre" rel="noopener">gouvernement.fr</a>
-            </li>
-            <li class="fr-footer__content-item">
-              <a class="fr-footer__content-link" target="_blank" href="https://service-public.fr"
-                 aria-label="service-public.fr — Nouvelle fenêtre" rel="noopener">service-public.fr</a>
-            </li>
-            <li class="fr-footer__content-item">
-              <a class="fr-footer__content-link" target="_blank" href="https://data.gouv.fr"
-                 aria-label="data.gouv.fr — Nouvelle fenêtre" rel="noopener">data.gouv.fr</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="fr-footer__bottom">
-        <ul class="fr-footer__bottom-list">
-          <li class="fr-footer__bottom-item">
-            <a class="fr-footer__bottom-link" href="./accessibilite.html">Accessibilité : non conforme</a>
-          </li>
-          <li class="fr-footer__bottom-item">
-            <a class="fr-footer__bottom-link" href="./mentions-legales.html">Mentions légales</a>
-          </li>
-        </ul>
-        <div class="fr-footer__bottom-copy">
-          <p>Sauf mention contraire, tous les contenus de ce site sont sous
-            <a href="https://github.com/etalab/licence-ouverte/blob/master/LO.md" target="_blank"
-               aria-label="licence etalab-2.0 — Nouvelle fenêtre" rel="noopener">licence etalab-2.0</a></p>
-        </div>
-      </div>
-    </div>
-  </footer>`;
 
   /* ── Rendu ──────────────────────────────────────────── */
   const container = document.getElementById("content");
@@ -94,6 +56,14 @@
   // Injecter header avant le <main>
   const main = document.querySelector("main") || container.parentElement;
   main.insertAdjacentHTML("beforebegin", header);
+
+  // Marquer le lien courant dans le header
+  var currentPage = location.pathname.split("/").pop();
+  document.querySelectorAll(".fr-header .fr-btns-group a").forEach(function (link) {
+    if (link.getAttribute("href").indexOf(currentPage) !== -1) {
+      link.setAttribute("aria-current", "page");
+    }
+  });
 
   // Charger et convertir le Markdown
   fetch(mdFile)
@@ -131,15 +101,4 @@
         err.message +
         "</p></div>";
     });
-
-  // Injecter footer après le <main>
-  main.insertAdjacentHTML("afterend", footer);
-
-  // Marquer le lien courant dans le footer
-  var currentPage = location.pathname.split("/").pop();
-  document.querySelectorAll(".fr-footer__bottom-link").forEach(function (link) {
-    if (link.getAttribute("href").indexOf(currentPage) !== -1) {
-      link.setAttribute("aria-current", "page");
-    }
-  });
 })();

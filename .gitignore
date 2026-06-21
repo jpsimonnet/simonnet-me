@@ -15,11 +15,21 @@ node_modules/
 public/
 _site/
 
+# Notion-fetched book covers (re-downloaded at build time)
+src/assets/images/lectures/
+src/assets/images/actualites/
+src/assets/images/notion/
+src/assets/images/notion-inline/
+
 # IDE
 .vscode/
 .idea/
 *.swp
 *.swo
+
+# Python
+__pycache__/
+*.pyc
 
 # Logs
 npm-debug.log*

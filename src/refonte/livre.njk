@@ -1,0 +1,66 @@
+---
+layout: refonte
+pagination:
+  data: livres
+  size: 1
+  alias: livre
+permalink: "livre/{{ livre.id }}/index.html"
+eleventyComputed:
+  title: "{{ livre.Nom }}"
+---
+
+<section class="detail-top">
+  <div class="container">
+    <nav aria-label="Fil d'Ariane">
+      <ol class="breadcrumb">
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/lectures/">Lectures</a></li>
+        <li aria-current="page">{{ livre.Nom | e }}</li>
+      </ol>
+    </nav>
+
+    <div class="livre-detail">
+      <div class="livre-detail__cover">
+        <img src="/assets/images/lectures/{{ livre.id }}.webp" alt="Couverture de {{ livre.Nom | e }}">
+      </div>
+
+      <div>
+        {% if livre.Type %}
+        <p class="livre-detail__type">{{ livre.Type }}</p>
+        {% endif %}
+
+        <h1 class="livre-detail__title">{{ livre.Nom | e }}</h1>
+
+        {% if livre.Auteur %}
+        <p class="livre-detail__author">par {{ livre.Auteur }}</p>
+        {% endif %}
+
+        {% if livre["Lu le"] %}
+        <p class="livre-detail__date">
+          Lu le <time datetime="{{ livre['Lu le'] | isoDate }}">{{ livre["Lu le"] | formatDateFr }}</time>
+        </p>
+        {% endif %}
+
+        {% if livre.Résumé %}
+        <div class="livre-detail__resume">
+          <p>{{ livre.Résumé }}</p>
+        </div>
+        {% endif %}
+
+        {% if livre["En ligne"] %}
+        <p style="margin-top: 2rem;">
+          <a href="{{ livre['En ligne'] }}" target="_blank" rel="noopener noreferrer">
+            Voir sur Babelio
+            <span class="visually-hidden">(nouvelle fenêtre)</span>
+            →
+          </a>
+        </p>
+        {% endif %}
+
+        <p style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--color-border);">
+          <a href="/lectures/">← Retour à la bibliothèque</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

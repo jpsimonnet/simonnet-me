@@ -1,0 +1,83 @@
+---
+layout: refonte
+title: À la une
+pagination:
+  data: actualite
+  size: 9
+  alias: actualitePage
+permalink: "a-la-une/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber }}/{% endif %}index.html"
+---
+
+<section class="hero">
+  <div class="container">
+    <nav aria-label="Fil d'Ariane">
+      <ol class="breadcrumb">
+        <li><a href="/">Accueil</a></li>
+        <li aria-current="page">À la une</li>
+      </ol>
+    </nav>
+
+    <p class="kicker">Ma veille</p>
+    <h1>À la <em>une</em></h1>
+    <p class="lede">
+      Articles sélectionnés sur l'accessibilité, l'intelligence artificielle et le web.
+      Ma veille complète est sur <a href="https://oxymore.notion.site/" rel="external noopener">Notion</a>.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    {% if actualitePage and actualitePage.length > 0 %}
+    <div class="grid-editorial">
+      {% for item in actualitePage %}
+      <article class="card-editorial">
+        {% if item.image %}
+        <div class="card-editorial__image">
+          <img src="{{ item.image }}" alt="Illustration de {{ item.title | e }}" loading="lazy">
+        </div>
+        {% endif %}
+        <p class="card-editorial__meta">
+          <time datetime="{{ item.created }}">{{ item.created | formatDateFr }}</time>
+        </p>
+        <h2 class="card-editorial__title">
+          <a href="/actualite/{{ item.slug or (item.title | slugify) }}/">
+            {{ item.title | e }}
+          </a>
+        </h2>
+        {% if item.summary %}
+        <p>{{ item.summary | truncate(160) }}</p>
+        {% endif %}
+      </article>
+      {% endfor %}
+    </div>
+
+    <nav aria-label="Pagination">
+      <ul class="pagination">
+        {% if pagination.href.previous %}
+          <li><a href="{{ pagination.href.previous }}" rel="prev">← Précédente</a></li>
+        {% else %}
+          <li><span class="disabled">← Précédente</span></li>
+        {% endif %}
+
+        {% for pageNumber in pagination.pages %}
+          {% set pageIndex = loop.index0 %}
+          {% if pageIndex == pagination.pageNumber %}
+            <li><span aria-current="page">{{ pageIndex + 1 }}</span></li>
+          {% else %}
+            <li><a href="{{ pagination.hrefs[pageIndex] }}">{{ pageIndex + 1 }}</a></li>
+          {% endif %}
+        {% endfor %}
+
+        {% if pagination.href.next %}
+          <li><a href="{{ pagination.href.next }}" rel="next">Suivante →</a></li>
+        {% else %}
+          <li><span class="disabled">Suivante →</span></li>
+        {% endif %}
+      </ul>
+    </nav>
+    {% else %}
+    <p>Aucune actualité pour le moment.</p>
+    {% endif %}
+  </div>
+</section>

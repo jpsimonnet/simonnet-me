@@ -1,0 +1,62 @@
+---
+layout: refonte
+pagination:
+  data: galeries
+  size: 1
+  alias: galerie
+permalink: "photos/{{ galerie.slug }}/"
+eleventyComputed:
+  title: "{{ galerie.title }}"
+  description: "{{ galerie.description }}"
+---
+
+<section class="hero">
+  <div class="container">
+    <nav aria-label="Fil d'Ariane">
+      <ol class="breadcrumb">
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/photos/">Photos</a></li>
+        <li aria-current="page">{{ galerie.title | e }}</li>
+      </ol>
+    </nav>
+
+    <p class="kicker">Galerie</p>
+    <h1>{{ galerie.title | e }}</h1>
+    {% if galerie.description %}
+    <p class="lede">{{ galerie.description }}</p>
+    {% endif %}
+    <p class="meta" style="margin-top: var(--space-md);">
+      {{ galerie.images.length }} photos ·
+      <time datetime="{{ galerie.date }}">{{ galerie.date | formatDateFr }}</time>
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="container-wide">
+    <div class="galerie-masonry">
+      {% for img in galerie.images %}
+      <a href="{{ img.src }}" class="galerie-item" data-index="{{ loop.index0 }}" aria-label="Agrandir {{ img.alt }}">
+        <img src="{{ img.src }}" alt="{{ img.alt }}" loading="lazy" decoding="async">
+      </a>
+      {% endfor %}
+    </div>
+
+    <p class="text-center" style="margin-top: var(--space-xl);">
+      <a href="/photos/">← Toutes les galeries</a>
+    </p>
+  </div>
+</section>
+
+<div id="lightbox" class="galerie-lightbox" role="dialog" aria-label="Visionneuse de photos" aria-modal="true" hidden>
+  <div class="galerie-lightbox-overlay"></div>
+  <button class="galerie-lightbox-close" aria-label="Fermer">&times;</button>
+  <button class="galerie-lightbox-prev" aria-label="Photo précédente">&#10094;</button>
+  <button class="galerie-lightbox-next" aria-label="Photo suivante">&#10095;</button>
+  <div class="galerie-lightbox-content">
+    <img src="" alt="" class="galerie-lightbox-img">
+    <p class="galerie-lightbox-counter"></p>
+  </div>
+</div>
+
+<script src="/js/galerie.js" defer></script>

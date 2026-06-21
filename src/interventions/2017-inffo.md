@@ -5,9 +5,9 @@ url: /pages/interventions/2017-inffo
 tags: interventions
 title: "2017 - Rendre accessible l’information pour tous"
 date: 2017-01-30
-image: /assets/images/2017-inffo.jpg
+image: /assets/images/2017-inffo.webp
 description: "Intervention lors de l’atelier 4 pendant les Premières Assises nationales de l’information sur la formation : A l’ère des open et big data, quels enjeux pour nos métiers et nos pratiques ?"
-rubriqueurl: /interventions/
+rubriqueurl: /2025/interventions/
 rubriquenom: "Mes interventions"
 
 ---
