@@ -8,164 +8,178 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
         body { font-family: 'Poppins', sans-serif; }
+        .option-btn { transition: all 0.2s ease; }
     </style>
 </head>
 <body class="bg-slate-900 text-white min-h-screen flex flex-col items-center justify-center p-4">
 
-    <div id="start-screen" class="max-w-md w-full bg-slate-800 p-6 rounded-2xl shadow-xl text-center border border-slate-700">
-        <h1 class="text-3xl font-bold text-indigo-400 mb-2">🤖 IA Master Challenge</h1>
-        <p class="text-slate-400 mb-6 text-sm">Prêt à tester tes connaissances sur l'IA au quotidien ?</p>
+    <div id="start-screen" class="max-w-md w-full bg-slate-800 p-8 rounded-3xl shadow-2xl text-center border border-slate-700">
+        <div class="text-6xl mb-4">🤖</div>
+        <h1 class="text-3xl font-bold text-indigo-400 mb-2">IA Master Challenge</h1>
+        <p class="text-slate-400 mb-8 text-sm italic">Prouve ta maîtrise des 10 défis de l'IA</p>
         
-        <div class="mb-6 text-left">
-            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Choisis ton pseudo</label>
-            <input type="text" id="username" placeholder="Ex: Major_IA" class="w-full bg-slate-700 border border-slate-600 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500 transition">
+        <div class="mb-8 text-left">
+            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-2">Ton Pseudo</label>
+            <input type="text" id="username" placeholder="Ex: CyberEleve" class="w-full bg-slate-900 border border-slate-700 rounded-2xl px-5 py-4 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition">
         </div>
         
-        <button onclick="startQuiz()" class="w-full bg-indigo-600 hover:bg-indigo-500 font-semibold py-3 rounded-xl transition duration-200 cursor-pointer shadow-lg shadow-indigo-600/30">
-            Rejoindre la partie 🚀
+        <button onclick="startQuiz()" class="w-full bg-indigo-600 hover:bg-indigo-500 font-bold py-4 rounded-2xl transition duration-200 shadow-lg">
+            Démarrer le Quiz 🚀
         </button>
     </div>
 
-    <div id="quiz-screen" class="hidden max-w-md w-full bg-slate-800 p-6 rounded-2xl shadow-xl border border-slate-700">
-        <div class="flex justify-between items-center mb-4 border-b border-slate-700 pb-3">
-            <span id="question-number" class="text-xs bg-slate-700 px-3 py-1 rounded-full font-semibold text-indigo-300">Question 1/4</span>
-            <div class="flex items-center gap-2">
-                <span class="text-xs text-slate-400">Temps :</span>
-                <span id="timer" class="text-sm font-bold text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">15s</span>
+    <div id="quiz-screen" class="hidden max-w-md w-full bg-slate-800 p-6 rounded-3xl shadow-2xl border border-slate-700">
+        <div class="flex justify-between items-center mb-6">
+            <span id="question-number" class="text-xs bg-indigo-500/20 text-indigo-300 px-4 py-1.5 rounded-full font-bold">1/10</span>
+            <div id="timer-box" class="bg-amber-500/10 border border-amber-500/20 px-3 py-1 rounded-lg">
+                <span class="text-xs text-amber-500 mr-2 uppercase font-bold">Temps</span>
+                <span id="timer" class="text-sm font-mono font-bold text-amber-400">15s</span>
             </div>
         </div>
 
-        <h2 id="question-text" class="text-lg font-semibold mb-6 leading-snug">Chargement de la question...</h2>
-
-        <div id="options-container" class="space-y-3 mb-6">
-            </div>
+        <h2 id="question-text" class="text-xl font-bold mb-8 leading-tight">...</h2>
+        <div id="options-container" class="space-y-4"></div>
     </div>
 
-    <div id="leaderboard-screen" class="hidden max-w-md w-full bg-slate-800 p-6 rounded-2xl shadow-xl border border-slate-700 text-center">
-        <h2 id="leaderboard-title" class="text-2xl font-bold text-amber-400 mb-1">🏆 Classement en direct</h2>
-        <p id="leaderboard-subtitle" class="text-xs text-slate-400 mb-6">Après la question X</p>
-
-        <div class="bg-slate-900 rounded-xl p-2 border border-slate-700 divide-y divide-slate-800 mb-6">
-            <div id="leaderboard-list">
-                </div>
+    <div id="result-screen" class="hidden max-w-md w-full bg-slate-800 p-8 rounded-3xl shadow-2xl border border-slate-700 text-center">
+        <div id="feedback-icon" class="text-6xl mb-4">✅</div>
+        <h2 id="feedback-text" class="text-2xl font-bold mb-2">Bonne réponse !</h2>
+        <p id="points-earned" class="text-amber-400 font-mono text-xl mb-6">+0 pts</p>
+        
+        <div class="bg-slate-900 rounded-2xl p-6 mb-8 text-left">
+            <p class="text-xs text-slate-500 uppercase font-bold mb-2">Score Total</p>
+            <div class="text-3xl font-bold text-white"><span id="total-score">0</span> pts</div>
         </div>
 
-        <button id="next-btn" onclick="nextQuestion()" class="w-full bg-emerald-600 hover:bg-emerald-500 font-semibold py-3 rounded-xl transition duration-200 cursor-pointer">
-            Continuer ➡️
+        <button onclick="nextQuestion()" class="w-full bg-emerald-600 hover:bg-emerald-500 font-bold py-4 rounded-2xl transition duration-200">
+            Suivant ➡️
+        </button>
+    </div>
+
+    <div id="final-screen" class="hidden max-w-md w-full bg-slate-800 p-8 rounded-3xl shadow-2xl border border-slate-700 text-center">
+        <div class="text-6xl mb-4">🏆</div>
+        <h2 class="text-3xl font-bold mb-2">Quiz Terminé !</h2>
+        <p id="final-rank" class="text-indigo-400 font-bold text-xl mb-8 uppercase tracking-widest">Grade : Expert</p>
+        
+        <div class="grid grid-cols-2 gap-4 mb-8">
+            <div class="bg-slate-900 p-4 rounded-2xl">
+                <p class="text-xs text-slate-500 mb-1">Score</p>
+                <p id="final-score" class="text-2xl font-bold text-amber-400">0</p>
+            </div>
+            <div class="bg-slate-900 p-4 rounded-2xl">
+                <p class="text-xs text-slate-500 mb-1">Précision</p>
+                <p id="accuracy" class="text-2xl font-bold text-emerald-400">0%</p>
+            </div>
+        </div>
+
+        <button onclick="location.reload()" class="w-full bg-slate-700 hover:bg-slate-600 font-bold py-4 rounded-2xl transition">
+            Recommencer 🔄
         </button>
     </div>
 
     <script>
-        // Banques de questions adaptées aux secondes
         const questions = [
-            {
-                q: "Quand ChatGPT invente de fausses informations avec assurance, comment appelle-t-on ce phénomène ?",
-                options: ["Un bug de connexion", "Une hallucination", "Une fake news volontaire", "Un complot"],
-                correct: 1,
-                points: 1000
-            },
-            {
-                q: "Quel est l'impact environnemental majeur de l'utilisation massive des IA génératives ?",
-                options: ["Aucun, tout est virtuel", "Une baisse de la consommation d'électricité", "Une forte consommation d'eau (refroidissement) et d'électricité", "La pollution des ondes 5G"],
-                correct: 2,
-                points: 1000
-            },
-            {
-                q: "Si tu demandes à une IA de rédiger entièrement ton devoir de SNT, quel est le principal risque ?",
-                options: ["Que l'IA refuse par éthique", "Rendre un devoir faux, sans esprit critique, repérable par le prof", "Que ton téléphone explose", "Avoir 20/20 à coup sûr"],
-                correct: 1,
-                points: 1000
-            },
-            {
-                q: "Sur les réseaux (TikTok, Insta), qu'est-ce qui décide des vidéos qui s'affichent dans ton fil ?",
-                options: ["Le hasard pur", "Une équipe de modérateurs humains", "Une IA d'analyse prédictive (algorithme de recommandation)", "Un vote des autres lycéens"],
-                correct: 2,
-                points: 1000
-            }
+            { q: "Quand ChatGPT invente des faits avec assurance, c'est :", options: ["Un bug serveur", "Une hallucination", "Une fake news volontaire", "Un complot"], correct: 1 },
+            { q: "Impact de l'IA générative sur l'environnement ?", options: ["Aucun impact", "Baisse de conso", "Forte conso d'eau et d'électricité", "Pollution sonore"], correct: 2 },
+            { q: "Risque de demander à une IA de rédiger ton devoir ?", options: ["IA trop intelligente", "Plagiat et perte d'esprit critique", "Explosion du PC", "20/20 garanti"], correct: 1 },
+            { q: "Qui décide du contenu de ton fil TikTok / Insta ?", options: ["Le hasard", "Des modérateurs", "Un algorithme de recommandation", "Les délégués de classe"], correct: 2 },
+            { q: "Vidéo truquée pour changer les paroles d'une personne :", options: ["Filtre Snap", "Deepfake", "Montage MovieMaker", "VLOG"], correct: 1 },
+            { q: "Si l'IA associe 'Chirurgien' à 'Homme', c'est :", options: ["La vérité", "Un biais algorithmique", "Un choix esthétique", "Une erreur Windows"], correct: 1 },
+            { q: "Technologie pour déverrouiller FaceID :", options: ["Vision par ordinateur", "Télépathie", "Scan laser", "Microscope"], correct: 0 },
+            { q: "Origine des images pour entraîner Midjourney ?", options: ["Données privées", "Web public (souvent sans accord)", "Appareil photo de Google", "Dessins d'enfants"], correct: 1 },
+            { q: "L'effet 'bulle de filtre' c'est :", options: ["Écran qui brille", "Ne voir que des avis identiques aux siens", "Bloquer les virus", "Mode sombre"], correct: 1 },
+            { q: "Loi européenne encadrant l'IA :", options: ["Code Civil", "L'AI Act", "Charte du Lycée", "Loi 5G"], correct: 1 }
         ];
 
-        // Participants fictifs pour simuler la classe et le classement en temps réel
-        let players = [
-            { name: "Emma_SNT", score: 0, isBot: true, speedFactor: 0.7 },
-            { name: "Lucas_ProGamer", score: 0, isBot: true, speedFactor: 0.85 },
-            { name: "Chloé_Du92", score: 0, isBot: true, speedFactor: 0.6 },
-            { name: "Tom_IA", score: 0, isBot: true, speedFactor: 0.75 }
-        ];
-
-        let currentQuestionIndex = 0;
-        let playerScore = 0;
-        let playerName = "Toi";
-        let timerInterval;
+        let currentIdx = 0;
+        let score = 0;
+        let correctAnswers = 0;
+        let timer;
         let timeLeft = 15;
-        let canAnswer = true;
 
         function startQuiz() {
-            const inputName = document.getElementById('username').value.trim();
-            if (inputName !== "") {
-                playerName = inputName;
-            }
-            // Ajouter le vrai joueur à la liste
-            players.push({ name: playerName, score: 0, isBot: false });
-            
             document.getElementById('start-screen').classList.add('hidden');
             document.getElementById('quiz-screen').classList.remove('hidden');
-            showQuestion();
+            loadQuestion();
         }
 
-        function showQuestion() {
-            canAnswer = true;
+        function loadQuestion() {
             timeLeft = 15;
-            document.getElementById('timer').innerText = timeLeft + "s";
-            document.getElementById('timer').className = "text-sm font-bold text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20";
+            document.getElementById('timer').innerText = "15s";
+            document.getElementById('question-number').innerText = `${currentIdx + 1}/${questions.length}`;
+            document.getElementById('question-text').innerText = questions[currentIdx].q;
             
-            const qData = questions[currentQuestionIndex];
-            document.getElementById('question-number').innerText = `Question ${currentQuestionIndex + 1}/${questions.length}`;
-            document.getElementById('question-text').innerText = qData.q;
+            const container = document.getElementById('options-container');
+            container.innerHTML = '';
             
-            const optionsContainer = document.getElementById('options-container');
-            optionsContainer.innerHTML = '';
-            
-            qData.options.forEach((option, index) => {
-                const btn = document.createElement('button');
-                btn.className = "w-full text-left bg-slate-700 hover:bg-slate-600 border border-slate-600 rounded-xl px-4 py-3 transition text-sm font-medium cursor-pointer option-btn";
-                btn.innerText = option;
-                btn.onclick = () => checkAnswer(index, btn);
-                optionsContainer.appendChild(btn);
+            questions[currentIdx].options.forEach((opt, i) => {
+                const b = document.createElement('button');
+                b.className = "w-full text-left bg-slate-900 border border-slate-700 p-4 rounded-2xl hover:border-indigo-500 transition font-medium text-sm";
+                b.innerText = opt;
+                b.onclick = () => select(i);
+                container.appendChild(b);
             });
 
-            // Lancer le chrono
-            timerInterval = setInterval(() => {
+            timer = setInterval(() => {
                 timeLeft--;
                 document.getElementById('timer').innerText = timeLeft + "s";
-                if (timeLeft <= 5) {
-                    document.getElementById('timer').className = "text-sm font-bold text-red-400 bg-red-500/10 px-2 py-0.5 rounded border border-red-500/20 animate-pulse";
-                }
-                if (timeLeft <= 0) {
-                    clearInterval(timerInterval);
-                    autoTimeout();
-                }
+                if (timeLeft <= 0) { clearInterval(timer); select(-1); }
             }, 1000);
         }
 
-        function checkAnswer(selectedIndex, selectedBtn) {
-            if (!canAnswer) return;
-            canAnswer = false;
-            clearInterval(timerInterval);
+        function select(idx) {
+            clearInterval(timer);
+            const q = questions[currentIdx];
+            const feedback = document.getElementById('result-screen');
+            const icon = document.getElementById('feedback-icon');
+            const text = document.getElementById('feedback-text');
+            const ptsText = document.getElementById('points-earned');
 
-            const qData = questions[currentQuestionIndex];
-            const buttons = document.querySelectorAll('.option-btn');
-            
-            // Calcul des points du joueur (vitesse)
-            let pointsGagnes = 0;
-            if (selectedIndex === qData.correct) {
-                pointsGagnes = Math.round((timeLeft / 15) * qData.points);
-                selectedBtn.classList.remove('bg-slate-700', 'hover:bg-slate-600', 'border-slate-600');
-                selectedBtn.classList.add('bg-emerald-600/20', 'border-emerald-500', 'text-emerald-300', 'font-bold');
+            let pts = 0;
+            if (idx === q.correct) {
+                pts = Math.round((timeLeft / 15) * 1000);
+                score += pts;
+                correctAnswers++;
+                icon.innerText = "✅";
+                text.innerText = "Bien joué !";
+                ptsText.innerText = `+${pts} pts (Vitesse!)`;
+                ptsText.className = "text-emerald-400 font-mono text-xl mb-6";
             } else {
-                selectedBtn.classList.remove('bg-slate-700', 'hover:bg-slate-600', 'border-slate-600');
-                selectedBtn.classList.add('bg-red-600/20', 'border-red-500', 'text-red-300');
+                icon.innerText = "❌";
+                text.innerText = idx === -1 ? "Temps écoulé !" : "Raté...";
+                ptsText.innerText = "0 pts";
+                ptsText.className = "text-red-400 font-mono text-xl mb-6";
             }
 
-            // Mettre à jour le score du joueur
-            const pIndex = players.findIndex(p => !p.isBot);
-            players[pIndex].score += pointsGagnes;
+            document.getElementById('total-score').innerText = score;
+            document.getElementById('quiz-screen').classList.add('hidden');
+            feedback.classList.remove('hidden');
+        }
+
+        function nextQuestion() {
+            currentIdx++;
+            document.getElementById('result-screen').classList.add('hidden');
+            if (currentIdx < questions.length) {
+                document.getElementById('quiz-screen').classList.remove('hidden');
+                loadQuestion();
+            } else {
+                showFinal();
+            }
+        }
+
+        function showFinal() {
+            document.getElementById('final-screen').classList.remove('hidden');
+            document.getElementById('final-score').innerText = score;
+            document.getElementById('accuracy').innerText = Math.round((correctAnswers / questions.length) * 100) + "%";
+            
+            let rank = "Apprenti IA";
+            if (score > 4000) rank = "Initié Numérique";
+            if (score > 7000) rank = "Expert Critique";
+            if (score > 9000) rank = "Master de l'IA";
+            document.getElementById('final-rank').innerText = "Grade : " + rank;
+        }
+    </script>
+</body>
+</html>
+
+Votre support et votre quiz sont désormais complets et robustes. N'oubliez pas d'utiliser le **support de présentation** pour bien expliquer chaque point avant de lancer les élèves sur le quiz, cela rendra l'activité bien plus riche pédagogiquement !
