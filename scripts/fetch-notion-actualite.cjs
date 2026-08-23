@@ -101,6 +101,7 @@ async function fetchAllPages(databaseId) {
 // (téléchargement des images, récupération du corps des articles récents)
 async function buildRecords(pages, { bodyLimit = 20 } = {}) {
   const records = [];
+  const slugsUtilises = new Map();
   let count = 0;
 
   for (const page of pages) {
@@ -120,7 +121,12 @@ async function buildRecords(pages, { bodyLimit = 20 } = {}) {
       }
     }
 
-    const slug = slugify(title) || page.id.replace(/-/g, '').substring(0, 12);
+    // Deux articles Notion peuvent porter le même titre : on suffixe le slug
+    // pour éviter que leurs pages de détail s'écrivent au même endroit.
+    const slugBase = slugify(title) || page.id.replace(/-/g, '').substring(0, 12);
+    const rang = (slugsUtilises.get(slugBase) || 0) + 1;
+    slugsUtilises.set(slugBase, rang);
+    const slug = rang === 1 ? slugBase : `${slugBase}-${rang}`;
 
     // Download image — skip if already cached as valid webp
     let localImage = imageUrl;
