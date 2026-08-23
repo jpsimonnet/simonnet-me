@@ -14,6 +14,9 @@ try { sharp = require('sharp'); } catch (e) { sharp = null; }
 const notion = new Client({ auth: process.env.NOTION_TOKEN });
 const n2m = new NotionToMarkdown({ notionClient: notion, config: { parseChildPages: false } });
 
+// Types (multi-select Notion) récupérés depuis la base d'actualités
+const TYPES = ['A la une', 'Outils'];
+
 const IMAGES_DIR = path.join(__dirname, '../src/assets/images/actualites');
 if (!fs.existsSync(IMAGES_DIR)) {
   fs.mkdirSync(IMAGES_DIR, { recursive: true });
@@ -81,8 +84,10 @@ async function fetchAllPages(databaseId) {
       database_id: databaseId,
       start_cursor: cursor,
       filter: {
-        property: 'Type',
-        multi_select: { contains: 'A la une' },
+        or: TYPES.map((type) => ({
+          property: 'Type',
+          multi_select: { contains: type },
+        })),
       },
       sorts: [{ property: 'Created', direction: 'descending' }],
     });
@@ -92,79 +97,93 @@ async function fetchAllPages(databaseId) {
   return pages;
 }
 
+// Transforme les pages Notion en enregistrements prêts pour le JSON
+// (téléchargement des images, récupération du corps des articles récents)
+async function buildRecords(pages, { bodyLimit = 20 } = {}) {
+  const records = [];
+  let count = 0;
+
+  for (const page of pages) {
+    const props = page.properties;
+    const title = props.Nom?.title?.[0]?.plain_text || '';
+    const url = props.URL?.url || '';
+    const created = props.Created?.created_time || '';
+    const summary = props['Résumé']?.rich_text?.[0]?.plain_text || '';
+    const tags = (props.Type?.multi_select || []).map((t) => t.name);
+
+    let imageUrl = props['URL image']?.url || '';
+    if (!imageUrl) {
+      const filesField = props.Image || props.image;
+      if (filesField?.files?.length > 0) {
+        const f = filesField.files[0];
+        imageUrl = f.file?.url || f.external?.url || '';
+      }
+    }
+
+    const slug = slugify(title) || page.id.replace(/-/g, '').substring(0, 12);
+
+    // Download image — skip if already cached as valid webp
+    let localImage = imageUrl;
+    if (imageUrl) {
+      const filename = `${slug}.webp`;
+      const destPath = path.join(IMAGES_DIR, filename);
+      const cached = fs.existsSync(destPath) && fs.statSync(destPath).size > 100;
+      const isWebp = cached && (() => { try { const h = Buffer.alloc(4); const fd = fs.openSync(destPath, 'r'); fs.readSync(fd, h, 0, 4, 0); fs.closeSync(fd); return h.toString('ascii', 0, 4) === 'RIFF'; } catch(e) { return false; } })();
+      if (cached && isWebp) {
+        localImage = `/assets/images/actualites/${filename}`;
+      } else {
+        try {
+          await downloadAndCompressImage(imageUrl, destPath);
+          localImage = `/assets/images/actualites/${filename}`;
+        } catch (err) {
+          // Keep original URL silently
+        }
+      }
+    }
+
+    // Only fetch body for the most recent articles to avoid hundreds of API calls
+    let body = '';
+    if (count < bodyLimit) {
+      try {
+        const blocks = await notion.blocks.children.list({ block_id: page.id, page_size: 1 });
+        if (blocks.results.length > 0) {
+          const mdBlocks = await n2m.pageToMarkdown(page.id);
+          const mdString = n2m.toMarkdownString(mdBlocks);
+          body = (typeof mdString === 'string') ? mdString : (mdString?.parent || '');
+        }
+      } catch (err) { /* no body */ }
+    }
+
+    records.push({ title, url, created, summary, image: localImage, slug, tags, body });
+    count++;
+    if (count % 20 === 0) console.log(`📥 ${count}/${pages.length} articles traités...`);
+  }
+
+  return records;
+}
+
 async function fetchActualite() {
   try {
     const databaseId = process.env.NOTION_DATABASE_ID;
     const pages = await fetchAllPages(databaseId);
 
     if (pages.length === 0) {
-      console.log('Aucune actualité "A la une" trouvée.');
+      console.log(`Aucune actualité (${TYPES.join(' / ')}) trouvée.`);
       return;
     }
 
     console.log(`🔍 Propriétés détectées:`, Object.keys(pages[0].properties));
 
-    const actualites = [];
-    let count = 0;
-
-    for (const page of pages) {
-      const props = page.properties;
-      const title = props.Nom?.title?.[0]?.plain_text || '';
-      const url = props.URL?.url || '';
-      const created = props.Created?.created_time || '';
-      const summary = props['Résumé']?.rich_text?.[0]?.plain_text || '';
-
-      let imageUrl = props['URL image']?.url || '';
-      if (!imageUrl) {
-        const filesField = props.Image || props.image;
-        if (filesField?.files?.length > 0) {
-          const f = filesField.files[0];
-          imageUrl = f.file?.url || f.external?.url || '';
-        }
-      }
-
-      const slug = slugify(title) || page.id.replace(/-/g, '').substring(0, 12);
-
-      // Download image — skip if already cached as valid webp
-      let localImage = imageUrl;
-      if (imageUrl) {
-        const filename = `${slug}.webp`;
-        const destPath = path.join(IMAGES_DIR, filename);
-        const cached = fs.existsSync(destPath) && fs.statSync(destPath).size > 100;
-        const isWebp = cached && (() => { try { const h = Buffer.alloc(4); const fd = fs.openSync(destPath, 'r'); fs.readSync(fd, h, 0, 4, 0); fs.closeSync(fd); return h.toString('ascii', 0, 4) === 'RIFF'; } catch(e) { return false; } })();
-        if (cached && isWebp) {
-          localImage = `/assets/images/actualites/${filename}`;
-        } else {
-          try {
-            await downloadAndCompressImage(imageUrl, destPath);
-            localImage = `/assets/images/actualites/${filename}`;
-          } catch (err) {
-            // Keep original URL silently
-          }
-        }
-      }
-
-      // Only fetch body for recent articles (last 20) to avoid 105 API calls
-      let body = '';
-      if (count < 20) {
-        try {
-          const blocks = await notion.blocks.children.list({ block_id: page.id, page_size: 1 });
-          if (blocks.results.length > 0) {
-            const mdBlocks = await n2m.pageToMarkdown(page.id);
-            const mdString = n2m.toMarkdownString(mdBlocks);
-            body = (typeof mdString === 'string') ? mdString : (mdString?.parent || '');
-          }
-        } catch (err) { /* no body */ }
-      }
-
-      actualites.push({ title, url, created, summary, image: localImage, slug, body });
-      count++;
-      if (count % 20 === 0) console.log(`📥 ${count}/${pages.length} articles traités...`);
-    }
+    const actualites = await buildRecords(pages);
 
     const outputPath = path.join(__dirname, '../src/_data/actualite.json');
     fs.writeFileSync(outputPath, JSON.stringify(actualites, null, 2));
-    console.log(`✅ ${actualites.length} actualité(s) "A la une" exportée(s) !`);
+
+    for (const type of TYPES) {
+      const n = actualites.filter((a) => a.tags.includes(type)).length;
+      console.log(`   · ${n} article(s) taggé(s) "${type}"`);
+    }
+    console.log(`✅ ${actualites.length} actualité(s) exportée(s) !`);
   } catch (error) {
     console.error('Erreur lors de la récupération des actualités:', error);
   }

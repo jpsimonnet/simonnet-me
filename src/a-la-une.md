@@ -1,6 +1,6 @@
 ---
 pagination:
-  data: actualite
+  data: aLaUne
   size: 9
   alias: actualitePage
 permalink: "2025/a-la-une/{{ pagination.pageNumber }}/index.html"

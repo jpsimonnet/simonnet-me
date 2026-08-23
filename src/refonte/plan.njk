@@ -27,6 +27,7 @@ permalink: /plan/
         <li><a href="/">Accueil</a></li>
         <li><a href="/qui-suis-je/">À propos</a></li>
         <li><a href="/a-la-une/">À la une</a></li>
+        <li><a href="/outils/">Outils</a></li>
         <li><a href="/lectures/">Lectures</a></li>
         <li><a href="/interventions/">Interventions</a></li>
         <li><a href="/photos/">Photos</a></li>
@@ -34,12 +35,23 @@ permalink: /plan/
 
       <h2>À la une</h2>
       <ul>
-        {% for item in actualite %}
+        {% for item in aLaUne %}
         <li>
           <a href="/actualite/{{ item.slug or (item.title | slugify) }}/">{{ item.title | e }}</a>
         </li>
         {% endfor %}
       </ul>
+
+      {% if outils and outils.length > 0 %}
+      <h2>Outils</h2>
+      <ul>
+        {% for item in outils %}
+        <li>
+          <a href="/actualite/{{ item.slug or (item.title | slugify) }}/">{{ item.title | e }}</a>
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
 
       <h2>Lectures</h2>
       <ul>

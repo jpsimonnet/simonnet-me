@@ -1,11 +1,12 @@
 ---
 layout: refonte
-title: À la une
+title: Outils
 pagination:
-  data: aLaUne
+  data: outils
   size: 9
-  alias: actualitePage
-permalink: "a-la-une/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber }}/{% endif %}index.html"
+  alias: outilsPage
+  generatePageOnEmptyData: true
+permalink: "outils/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber }}/{% endif %}index.html"
 ---
 
 <section class="hero">
@@ -13,24 +14,25 @@ permalink: "a-la-une/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber 
     <nav aria-label="Fil d'Ariane">
       <ol class="breadcrumb">
         <li><a href="/">Accueil</a></li>
-        <li aria-current="page">À la une</li>
+        <li aria-current="page">Outils</li>
       </ol>
     </nav>
 
-    <p class="kicker">Ma veille</p>
-    <h1>À la <em>une</em></h1>
+    <p class="kicker">Ma boîte à outils</p>
+    <h1>Des <em>outils</em></h1>
     <p class="lede">
-      Articles sélectionnés sur l'accessibilité, l'intelligence artificielle et le web.
-      Ma veille complète est sur <a href="https://oxymore.notion.site/" rel="external noopener">Notion</a>.
+      Une sélection d'outils pour l'accessibilité numérique, l'intelligence artificielle et le web,
+      repérés au fil de ma veille. Elle est aussi disponible sur
+      <a href="https://oxymore.notion.site/" rel="external noopener">Notion</a>.
     </p>
   </div>
 </section>
 
 <section>
   <div class="container">
-    {% if actualitePage and actualitePage.length > 0 %}
+    {% if outilsPage and outilsPage.length > 0 %}
     <div class="grid-editorial">
-      {% for item in actualitePage %}
+      {% for item in outilsPage %}
       <article class="card-editorial">
         {% if item.image %}
         <div class="card-editorial__image">
@@ -52,6 +54,7 @@ permalink: "a-la-une/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber 
       {% endfor %}
     </div>
 
+    {% if pagination.pages.length > 1 %}
     <nav aria-label="Pagination">
       <ul class="pagination">
         {% if pagination.href.previous %}
@@ -76,8 +79,9 @@ permalink: "a-la-une/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber 
         {% endif %}
       </ul>
     </nav>
+    {% endif %}
     {% else %}
-    <p>Aucune actualité pour le moment.</p>
+    <p>Aucun outil pour le moment.</p>
     {% endif %}
   </div>
 </section>

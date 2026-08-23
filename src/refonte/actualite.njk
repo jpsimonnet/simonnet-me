@@ -9,12 +9,21 @@ eleventyComputed:
   title: "{{ item.title }}"
 ---
 
+{% set estOutil = false %}
+{% if item.tags %}
+  {% set estOutil = ('Outils' in item.tags) and not ('A la une' in item.tags) %}
+{% endif %}
+
 <section class="detail-top">
   <div class="container">
     <nav aria-label="Fil d'Ariane">
       <ol class="breadcrumb">
         <li><a href="/">Accueil</a></li>
+        {% if estOutil %}
+        <li><a href="/outils/">Outils</a></li>
+        {% else %}
         <li><a href="/a-la-une/">À la une</a></li>
+        {% endif %}
         <li aria-current="page">{{ item.title | e }}</li>
       </ol>
     </nav>
@@ -27,7 +36,7 @@ eleventyComputed:
       {% endif %}
 
       <div>
-        <p class="livre-detail__type">À la une</p>
+        <p class="livre-detail__type">{% if estOutil %}Outils{% else %}À la une{% endif %}</p>
 
         <h1 class="livre-detail__title">{{ item.title | e }}</h1>
 
@@ -58,7 +67,11 @@ eleventyComputed:
         {% endif %}
 
         <p style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--color-border);">
+          {% if estOutil %}
+          <a href="/outils/">← Retour aux outils</a>
+          {% else %}
           <a href="/a-la-une/">← Retour aux actualités</a>
+          {% endif %}
         </p>
       </div>
     </div>
